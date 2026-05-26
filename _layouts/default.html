@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <link rel="icon" href="/image/favicon.png" type="image/x-icon">
+  <meta name="description" content="{{ site.description }}">
+  <meta name="robots" content="index,follow">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes pulse-ring {
+        0% {
+            transform: scale(0.7);
+            opacity: 0.8;
+        }
+        50% {
+            opacity: 0.4;
+        }
+        100% {
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+    
+    .pulse-ring {
+        animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    
+    @keyframes shake {
+        0%, 100% { transform: rotate(0); }
+        10%, 30%, 50%, 70%, 90% { transform: rotate(-4deg); }
+        20%, 40%, 60%, 80% { transform: rotate(4deg); }
+    }
+    
+    .shake-animation:hover .zalo-icon,
+    .shake-animation:hover .chat-icon {
+        animation: shake 0.5s ease-in-out;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+    }
+    .blog-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    .blog-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    .blog-content h2 {
+      font-size: 1.8rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #eee;
+      color: #444;
+    }
+    .blog-content h3 {
+      font-size: 1.5rem;
+      margin: 1.5rem 0 1rem;
+      color: #555;
+    }
+    .blog-content p, .blog-content ul, .blog-content ol {
+      margin-bottom: 1.2rem;
+    }
+    .blog-content ul, .blog-content ol {
+      padding-left: 2rem;
+    }
+    .blog-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .blog-content a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+    .blog-content a:hover {
+      text-decoration: underline;
+    }
+    .blog-meta {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 2rem;
+      display: block;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+  </style>
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}" />
+  <meta property="og:description" content="{{ site.description }}" />
+  <meta property="og:image" content="{{ site.url }}/image/png-clipart-line-gift-logo-line-text-heart.png" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:type" content="website" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}" />
+  <meta name="twitter:description" content="{{ site.description }}" />
+  <meta name="twitter:image" content="{{ site.url }}/image/png-clipart-line-gift-logo-line-text-heart.png" />
+</head>
+<body>
+  <header>
+    <div class="container">
+        <h1>{{ site.title }}</h1>
+        <p>Chuyên cung cấp các hộp quà tặng đẹp mắt</p>
+        <nav class="mt-4">
+            <a href="/" class="text-blue-600 hover:text-blue-800 font-medium">Trang chủ</a>
+            <a href="/blog/" class="text-blue-600 hover:text-blue-800 font-medium">Blog</a>
+        </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="blog-content">
+      {{ content }}
+    </div>
+  </main>
+
+  <footer class="bg-gradient-to-b from-gray-800 to-gray-900 text-white pt-12 pb-8">
+    <div class="container mx-auto px-4">
+        <!-- Grid Layout với tất cả các cột canh trái -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Shop Link Section -->
+            <div class="text-left transform transition duration-300 hover:scale-105">
+                <h3 class="text-xl font-bold mb-4 relative inline-block">
+                    <span class="relative z-10">Shop của chúng tôi</span>
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-orange-400 rounded"></span>
+                </h3>
+                <a href="https://shopee.vn/shop/169541002" target="_blank" 
+                   class="group inline-flex items-center hover:text-orange-400 transition-all duration-300 mb-4 p-2 rounded-lg hover:bg-gray-700/50">
+                    <svg class="w-7 h-7 mr-3 text-orange-500 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 4C12.96 4 4 12.96 4 24C4 35.04 12.96 44 24 44C35.04 44 44 35.04 44 24C44 12.96 35.04 4 24 4Z" fill="#EE4D2D"/>
+                        <path d="M36.01 16.52C35.41 15.92 34.26 15.92 33.66 16.52L33.66 16.52C33.06 17.12 31.91 17.12 31.31 16.52L31.31 16.52C30.71 15.92 29.56 15.92 28.96 16.52C28.36 17.12 28.36 18.27 28.96 18.87C29.56 19.47 29.56 20.62 28.96 21.22C28.36 21.82 27.21 21.82 26.61 21.22L26.61 21.22C26.01 20.62 24.86 20.62 24.26 21.22C23.66 21.82 23.66 22.97 24.26 23.57C24.86 24.17 24.86 25.32 24.26 25.92C23.66 26.52 22.51 26.52 21.91 25.92L21.91 25.92C21.31 25.32 20.16 25.32 19.56 25.92C18.96 26.52 18.96 27.67 19.56 28.27C20.16 28.87 20.16 30.02 19.56 30.62C18.96 31.22 17.81 31.22 17.21 30.62L17.21 30.62C16.61 30.02 15.46 30.02 14.86 30.62C14.26 31.22 14.26 32.37 14.86 32.97C15.46 33.57 15.46 34.72 14.86 35.32C14.26 35.92 13.11 35.92 12.51 35.32L12.51 35.32C11.91 34.72 10.76 34.72 10.16 35.32" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M27.73 27.46L27.73 27.46C27.13 26.86 25.98 26.86 25.38 27.46L25.37 27.46C24.77 28.06 23.62 28.06 23.02 27.46C22.42 26.86 22.42 25.71 23.02 25.11C23.62 24.51 23.62 23.36 23.02 22.76C22.42 22.16 21.27 22.16 20.67 22.76L20.67 22.76C20.07 23.36 18.92 23.36 18.32 22.76C17.72 22.16 17.72 21.01 18.32 20.41C18.92 19.81 18.92 18.66 18.32 18.06C17.72 17.46 16.57 17.46 15.97 18.06L15.97 18.06C15.37 18.66 14.22 18.66 13.62 18.06C13.02 17.46 13.02 16.31 13.62 15.71L14.5 14.83C15.1 14.23 16.25 14.23 16.85 14.83L16.85 14.83C17.45 15.43 18.6 15.43 19.2 14.83C19.8 14.23 19.8 13.08 19.2 12.48C18.6 11.88 18.6 10.73 19.2 10.13C19.8 9.53 20.95 9.53 21.55 10.13L21.55 10.13C22.15 10.73 23.3 10.73 23.9 10.13C24.5 9.53 24.5 8.38 23.9 7.78C23.3 7.18 23.3 6.03 23.9 5.43C24.5 4.83 25.65 4.83 26.25 5.43L26.25 5.43C26.85 6.03 28 6.03 28.6 5.43C29.2 4.83 29.2 3.68 28.6 3.08" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="text-lg font-medium">Mua sắm tại Shopee</span>
+                </a>
+                <p class="text-gray-300 pl-2 italic">Giao hàng toàn quốc, nhiều ưu đãi hấp dẫn</p>
+            </div>
+            
+            <!-- Social Media Links -->
+            <div class="text-left transform transition duration-300 hover:scale-105">
+                <h3 class="text-xl font-bold mb-4 relative inline-block">
+                    <span class="relative z-10">Kết nối với chúng tôi</span>
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-blue-400 rounded"></span>
+                </h3>
+                <a href="https://www.facebook.com/van.453776" target="_blank" 
+                   class="group inline-flex items-center hover:text-blue-400 transition-all duration-300 mb-4 p-2 rounded-lg hover:bg-gray-700/50">
+                    <svg class="w-7 h-7 mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C15.9164 21.5878 18.0622 20.3855 19.6099 18.57C21.1576 16.7546 22.0054 14.4456 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+                    </svg>
+                    <span class="text-lg font-medium">Theo dõi trên Facebook</span>
+                </a>
+                <p class="text-gray-300 pl-2 italic">Cập nhật tin tức và khuyến mãi mới nhất</p>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="text-left transform transition duration-300 hover:scale-105">
+                <h3 class="text-xl font-bold mb-4 relative inline-block">
+                    <span class="relative z-10">Liên hệ</span>
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-green-400 rounded"></span>
+                </h3>
+                <div class="flex flex-col items-start mt-4">
+                    <p class="flex items-center mb-3 group">
+                        <svg class="w-6 h-6 mr-3 text-green-400 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2C6.48,2 2,6.48 2,12C2,17.52 6.48,22 12,22C17.52,22 22,17.52 22,12C22,6.48 17.52,2 12,2ZM16.5,16.5C15.34,17.67 13.75,18.25 12,18.25C10.25,18.25 8.66,17.67 7.5,16.5C6.34,15.34 5.75,13.75 5.75,12C5.75,10.25 6.34,8.66 7.5,7.5C8.66,6.34 10.25,5.75 12,5.75C13.75,5.75 15.34,6.34 16.5,7.5C17.66,8.66 18.25,10.25 18.25,12C18.25,13.75 17.66,15.34 16.5,16.5ZM10,9.5L10,14.5L15,12L10,9.5Z"/>
+                        </svg>
+                        <span class="text-lg font-medium">Zalo: 0965671689</span>
+                    </p>
+                    <p class="flex items-center mb-2 group">
+                        <svg class="w-6 h-6 mr-3 text-red-400 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20,4H4C2.9,4 2,4.9 2,6V18C2,19.1 2.9,20 4,20H20C21.1,20 22,19.1 22,18V6C22,4.9 21.1,4 20,4ZM20,18H4V8L12,13L20,8V18ZM12,11L4,6H20L12,11Z"/>
+                        </svg>
+                        <span class="text-lg font-medium">Email: van96hvnh@gmail.com</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Divider và Copyright -->
+        <div class="border-t border-gray-600 mt-10 pt-6 text-center">
+            <p class="text-gray-300">&copy; 2025 <span class="text-white font-medium">{{ site.title }}</span>. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </div>
+  </footer>
+
+  <!-- Container cho các nút chat -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+      <!-- Nút Chat Zalo Cố Định với Hiệu Ứng Chuông Reo -->
+      <div class="shake-animation relative">
+          <!-- Hiệu ứng quầng sáng -->
+          <div class="absolute inset-0 rounded-full bg-blue-400/40 pulse-ring pointer-events-none"></div>
+          <div class="absolute inset-0 rounded-full bg-blue-400/40 pulse-ring pointer-events-none" style="animation-delay: 0.5s"></div>
+          
+          <!-- Nút Zalo với Biểu Tượng Thay Thế -->
+          <a href="https://zalo.me/0965671689" target="_blank" 
+             class="relative flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-full w-16 h-16 shadow-lg transition-all duration-300 hover:scale-110">
+              <span class="sr-only">Chat với chúng tôi qua Zalo</span>
+              <img src="/image/zalo-hd-logo.png" alt="Zalo" class="w-10 h-10 zalo-icon">
+          </a>
+      </div>
+      <!-- Nút Chat Messenger -->
+      <div class="shake-animation relative">
+          <!-- Hiệu ứng quầng sáng màu xanh Facebook -->
+          <div class="absolute inset-0 rounded-full pulse-ring pointer-events-none" style="background-color: rgba(0, 106, 255, 0.4);"></div>
+          <div class="absolute inset-0 rounded-full pulse-ring pointer-events-none" style="background-color: rgba(0, 106, 255, 0.4); animation-delay: 0.5s"></div>
+          
+          <!-- Nút Messenger -->
+          <a href="https://m.me/van.453776" target="_blank" 
+             class="relative flex items-center justify-center bg-[#0084ff] hover:bg-[#0066cc] text-white font-medium rounded-full w-16 h-16 shadow-lg transition-all duration-300 hover:scale-110">
+              <span class="sr-only">Chat với chúng tôi qua Messenger</span>
+              <svg class="w-8 h-8 chat-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2.042C7.483 2.042 2.042 7.058 2.042 13.417C2.042 16.633 3.375 19.513 5.558 21.558V25.375L9.292 23.208C10.767 23.758 12.35 24.083 14 24.083C20.517 24.083 25.958 19.067 25.958 12.708C25.958 6.35 20.517 2.042 14 2.042ZM15.3 16.308L12.6 13.417L7.483 16.308L13.067 10.458L15.767 13.35L20.883 10.458L15.3 16.308Z" fill="white"/>
+              </svg>
+          </a>
+      </div>
+      <div class="shake-animation relative">
+          <!-- Hiệu ứng quầng sáng màu xanh lá -->
+          <div class="absolute inset-0 rounded-full pulse-ring pointer-events-none" style="background-color: rgba(22, 163, 74, 0.4);"></div>
+          <div class="absolute inset-0 rounded-full pulse-ring pointer-events-none" style="background-color: rgba(22, 163, 74, 0.4); animation-delay: 0.5s"></div>
+          
+          <!-- Nút Call -->
+          <a href="tel:0965671689" 
+             class="relative flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium rounded-full w-16 h-16 shadow-lg transition-all duration-300 hover:scale-110">
+              <span class="sr-only">Gọi cho chúng tôi</span>
+              <svg class="w-8 h-8 chat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8333 20.7294C21.7225 20.9845 21.5601 21.2136 21.3582 21.4019C21.1563 21.5901 20.9194 21.7335 20.6615 21.8227C20.4036 21.9119 20.13 21.9451 19.86 21.92C16.7473 21.5856 13.7751 20.5341 11.19 18.85C8.77383 17.3147 6.72534 15.2662 5.19 12.85C3.49998 10.2412 2.44824 7.25059 2.12 4.11997C2.09501 3.85044 2.12788 3.57701 2.21649 3.31917C2.30511 3.06134 2.44756 2.82436 2.63476 2.62218C2.82196 2.42 3.05057 2.25718 3.30519 2.14563C3.55981 2.03408 3.83514 1.97618 4.11 1.97997H7.11C7.59531 1.97538 8.06579 2.15271 8.43376 2.47672C8.80173 2.80073 9.04208 3.24526 9.11 3.71997C9.23651 4.68003 9.47149 5.61861 9.81 6.51997C9.9445 6.8879 9.97372 7.29408 9.89259 7.68563C9.81146 8.07718 9.62273 8.43973 9.35 8.71997L8.09 9.97997C9.51356 12.4711 11.5289 14.4864 14.02 15.91L15.28 14.65C15.5603 14.3773 15.9228 14.1885 16.3144 14.1074C16.7059 14.0263 17.1121 14.0555 17.48 14.19C18.3814 14.5285 19.32 14.7635 20.28 14.89C20.7612 14.9585 21.2118 15.2032 21.5358 15.5775C21.8598 15.9518 22.0334 16.4296 22 16.92Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+          </a>
+      </div>
+  </div>
+</body>
+</html> 

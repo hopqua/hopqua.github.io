@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Season System</title>
+</head>
+<body>
+    <h1>Debug Season System</h1>
+    <div id="debug-output"></div>
+    
+    <script src="js/products.js"></script>
+    <script>
+        // Debug script
+        console.log('=== DEBUG START ===');
+        
+        // Kiểm tra products array
+        console.log('Total products:', products.length);
+        
+        // Kiểm tra sản phẩm theo season
+        const trungThuProducts = products.filter(p => p.season === 'trung thu');
+        const tetProducts = products.filter(p => p.season === 'tết');
+        
+        console.log('Trung thu products:', trungThuProducts.length);
+        console.log('Tết products:', tetProducts.length);
+        
+        // Test getFeaturedProducts
+        const featured = getFeaturedProducts(5);
+        console.log('Featured products:', featured.length);
+        
+        // Hiển thị kết quả
+        const debugDiv = document.getElementById('debug-output');
+        debugDiv.innerHTML = `
+            <h2>Debug Results:</h2>
+            <p>Total products: ${products.length}</p>
+            <p>Trung thu products: ${trungThuProducts.length}</p>
+            <p>Tết products: ${tetProducts.length}</p>
+            <p>Featured products: ${featured.length}</p>
+            <h3>Featured Products:</h3>
+            <ul>
+                ${featured.map(p => `<li>${p.name} (${p.season})</li>`).join('')}
+            </ul>
+        `;
+        
+        console.log('=== DEBUG END ===');
+    </script>
+</body>
+</html> 

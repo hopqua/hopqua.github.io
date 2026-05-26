@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test</title>
+</head>
+<body>
+    <h1>Simple Test</h1>
+    <div id="test-result"></div>
+    
+    <script>
+        // Test đơn giản
+        console.log('=== SIMPLE TEST ===');
+        
+        // Test 1: Kiểm tra tháng hiện tại
+        const now = new Date();
+        const currentMonth = now.getMonth() + 1;
+        console.log('Current month:', currentMonth);
+        
+        // Test 2: Logic mùa
+        let season = 'trung thu';
+        if (currentMonth >= 12 || currentMonth <= 2) {
+            season = 'tết';
+        } else if (currentMonth >= 8 && currentMonth <= 9) {
+            season = 'trung thu';
+        }
+        console.log('Current season:', season);
+        
+        // Test 3: Hiển thị kết quả
+        document.getElementById('test-result').innerHTML = `
+            <p>Tháng hiện tại: ${currentMonth}</p>
+            <p>Mùa hiện tại: ${season}</p>
+            <p>Thời gian: ${now.toLocaleString('vi-VN')}</p>
+        `;
+        
+        console.log('=== TEST COMPLETE ===');
+    </script>
+</body>
+</html> 

@@ -1,0 +1,12 @@
+title: "Hộp quà tặng Vân Thắng"
+description: "Blog chia sẻ tin tức và kiến thức về phụ kiện bánh Trung Thu"
+baseurl: ""           # If hosted at root of domain
+url: "https://quatang.love"    # Your site URL
+
+theme: minima
+plugins:
+  - jekyll-paginate
+paginate: 5
+
+# Exclude static files not needed in build
+exclude: [README.md] 

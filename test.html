@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Sản phẩm</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .product { border: 1px solid #ccc; margin: 10px; padding: 10px; }
+        .new-product { background-color: #e7f3ff; }
+    </style>
+</head>
+<body>
+    <h1>Danh sách tất cả sản phẩm</h1>
+    <div id="product-test"></div>
+    
+    <script src="js/products.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('product-test');
+            
+            console.log('Tổng số sản phẩm:', products.length);
+            
+            // Danh sách sản phẩm mới
+            const newProductIds = [
+                '4b-re-do-xd', '4b-re-sen-phu-quy', 'hac-do-re', 'hoa-vien-re-do', 
+                'hong-nguyet-vien-cam', 'lan-vu-re-linh', 'nguyet-yen-1x',
+                'vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k', 'vo-banh-trung-thu-sen-toa-4-banh-20-25k',
+                'vo-hop-banh-trung-thu-hon-viet-4-banh-4-banh-tra-6-banh-26k-39k',
+                'vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k',
+                'vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k',
+                'vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k',
+                'vo-hop-trung-thu-lan-vu-4-banh-re-16-20k',
+                'vo-hop-trung-thu-mini-4-banh-6-banh-quai-da-13-18k',
+                'vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k',
+                'vo-hop-trung-thu-vong-hac-4-banh-26-33k'
+            ];
+            
+            products.forEach((product, index) => {
+                const div = document.createElement('div');
+                div.className = 'product';
+                
+                if (newProductIds.includes(product.id)) {
+                    div.className += ' new-product';
+                }
+                
+                div.innerHTML = `
+                    <h3>${index + 1}. ${product.name} ${newProductIds.includes(product.id) ? '(MỚI)' : ''}</h3>
+                    <p><strong>ID:</strong> ${product.id}</p>
+                    <p><strong>Thư mục:</strong> ${product.folder}</p>
+                    <p><strong>Giá:</strong> ${product.price}</p>
+                    <p><strong>Thumbnail:</strong> <img src="${product.thumbnail}" alt="${product.name}" style="max-width: 100px; height: auto;" onerror="this.style.display='none'; this.nextSibling.textContent=' (Ảnh lỗi)'"><span></span></p>
+                `;
+                
+                container.appendChild(div);
+            });
+            
+            const newProductsCount = products.filter(p => newProductIds.includes(p.id)).length;
+            console.log('Số sản phẩm mới:', newProductsCount);
+            
+            const summary = document.createElement('div');
+            summary.innerHTML = `<h2>Tóm tắt: ${products.length} sản phẩm tổng cộng, ${newProductsCount} sản phẩm mới</h2>`;
+            container.insertBefore(summary, container.firstChild);
+        });
+    </script>
+</body>
+</html> 
