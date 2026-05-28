@@ -53,18 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (productListElement) {
         featuredProducts = getFeaturedProducts(9999); // Lấy tất cả sản phẩm nổi bật theo mùa
         
-        // Debug log
-        console.log('=== DEBUG SEASON SYSTEM ===');
-        console.log(`Tổng số sản phẩm: ${products.length}`);
-        console.log(`Sản phẩm trung thu: ${getProductsBySeason('trung thu').length}`);
-        console.log(`Sản phẩm tết: ${getProductsBySeason('tet').length}`);
-        console.log(`Sản phẩm nổi bật: ${featuredProducts.length}`);
-        
-        // Log chi tiết sản phẩm nổi bật
-        featuredProducts.forEach((product, index) => {
-            console.log(`${index + 1}. ${product.name} (${product.season})`);
-        });
-        
         renderPage(1);
     }
 });
@@ -74,14 +62,9 @@ function displayProducts(container, productsToDisplay = null) {
     // Sử dụng sản phẩm được truyền vào hoặc tất cả sản phẩm
     const productsToShow = productsToDisplay || getAllProducts();
     
-    console.log('Bắt đầu hiển thị sản phẩm...');
-    console.log(`Sẽ hiển thị ${productsToShow.length} sản phẩm`);
-    
-    productsToShow.forEach((product, index) => {
-        console.log(`Hiển thị sản phẩm ${index + 1}: ${product.name} (${product.season})`);
-        
-        // Lấy ảnh ngẫu nhiên cho sản phẩm
-        const randomImage = getRandomProductImage(product);
+    productsToShow.forEach((product) => {
+        // Dùng thumbnail chính để tránh request ảnh ngẫu nhiên không tồn tại.
+        const randomImage = product.thumbnail;
         
         const productCard = document.createElement('div');
         productCard.className = 'product-card';
@@ -92,43 +75,10 @@ function displayProducts(container, productsToDisplay = null) {
         }
         
         // Tạo thumbnails thông minh dựa trên loại sản phẩm
-        let thumbnailsHtml = '';
-        
-        if (product.folder && product.folder.includes('vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k')) {
-            // Cho sản phẩm trong thư mục vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k
-            const folderParts = product.folder.split('/');
-            const subFolder = folderParts[folderParts.length - 1];
-            
-            thumbnailsHtml = `
-                <img src="image/${product.folder}/${subFolder}-1.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/${subFolder}-2.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/${subFolder}-3.jpg" alt="${product.name}" onerror="this.style.display='none'">
-            `;
-        } else if (product.folder && product.folder.includes('18-06-2025')) {
-            // Cho sản phẩm trong thư mục 18-06-2025
-            const folderParts = product.folder.split('/');
-            const subFolder = folderParts[folderParts.length - 1];
-            
-            thumbnailsHtml = `
-                <img src="image/${product.folder}/${subFolder}-1.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/${subFolder}-2.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/${subFolder}-3.jpg" alt="${product.name}" onerror="this.style.display='none'">
-            `;
-        } else if (product.id === 'hop-lam-cuc-4-6-banh') {
-            // Cho sản phẩm hộp lam cúc - mix ảnh gốc và ảnh mới
-            thumbnailsHtml = `
-                <img src="image/${product.folder}/hop-lam-cuc-4-6-banh-1.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/vo-hop-trung-thu-lam-cuc-4-banh-tra-6-banh-them-anh-1.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/vo-hop-trung-thu-lam-cuc-4-banh-tra-6-banh-them-anh-5.jpg" alt="${product.name}" onerror="this.style.display='none'">
-            `;
-        } else {
-            // Cho các sản phẩm khác (pattern mặc định)
-            thumbnailsHtml = `
-                <img src="image/${product.folder}/${product.id}-1.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/${product.id}-2.jpg" alt="${product.name}" onerror="this.style.display='none'">
-                <img src="image/${product.folder}/${product.id}-3.jpg" alt="${product.name}" onerror="this.style.display='none'">
-            `;
-        }
+        const thumbnails = getProductThumbnailImages(product);
+        const thumbnailsHtml = thumbnails
+            .map((src) => `<img src="${src}" alt="${product.name}" loading="lazy" decoding="async">`)
+            .join('');
         
         // Thêm badge theo mùa nếu có
         const seasonBadge = product.season ? `<span class="season-badge season-${product.season.replace(' ', '-')}">${product.season === 'trung thu' ? 'Trung Thu' : 'Tết'}</span>` : '';
@@ -136,7 +86,7 @@ function displayProducts(container, productsToDisplay = null) {
         productCard.innerHTML = `
             <a href="product.html?id=${product.id}">
                 <div class="product-image-container">
-                    <img src="${randomImage}" alt="${product.name}" onerror="this.src='${product.thumbnail}'; console.log('Fallback to thumbnail for ${product.name}');">
+                    <img src="${randomImage}" alt="${product.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${product.thumbnail}';">
                     ${seasonBadge}
                 </div>
                 <div class="product-thumbnails" aria-label="Ảnh thu nhỏ">
@@ -152,6 +102,12 @@ function displayProducts(container, productsToDisplay = null) {
         
         container.appendChild(productCard);
     });
-    
-    console.log(`Đã hiển thị ${productsToShow.length} sản phẩm`);
+}
+
+function getProductThumbnailImages(product) {
+    if (product.thumbnailImages && product.thumbnailImages.length) {
+        return product.thumbnailImages.slice(0, 3);
+    }
+
+    return [product.thumbnail];
 } 

@@ -99,10 +99,13 @@ function updateMetaTags(product) {
     const ogImage = document.querySelector('meta[property="og:image"]');
     const ogUrl = document.querySelector('meta[property="og:url"]');
     
+    const canonicalProductUrl = getCanonicalProductUrl(product);
+    const canonicalImageUrl = getCanonicalAssetUrl(product.thumbnail);
+    
     if (ogTitle) ogTitle.setAttribute('content', product.name);
     if (ogDesc) ogDesc.setAttribute('content', product.description);
-    if (ogImage) ogImage.setAttribute('content', product.thumbnail);
-    if (ogUrl) ogUrl.setAttribute('content', window.location.href);
+    if (ogImage) ogImage.setAttribute('content', canonicalImageUrl);
+    if (ogUrl) ogUrl.setAttribute('content', canonicalProductUrl);
     
     // Cập nhật Twitter Card meta tags
     const twTitle = document.querySelector('meta[name="twitter:title"]');
@@ -111,7 +114,7 @@ function updateMetaTags(product) {
     
     if (twTitle) twTitle.setAttribute('content', product.name);
     if (twDesc) twDesc.setAttribute('content', product.description);
-    if (twImage) twImage.setAttribute('content', product.thumbnail);
+    if (twImage) twImage.setAttribute('content', canonicalImageUrl);
     
     // Cập nhật JSON-LD
     const jsonLdScript = document.querySelector('script[type="application/ld+json"]');
@@ -120,13 +123,23 @@ function updateMetaTags(product) {
             const jsonLd = JSON.parse(jsonLdScript.textContent);
             jsonLd.name = product.name;
             jsonLd.description = product.description;
-            jsonLd.image = product.thumbnail;
-            jsonLd.url = window.location.href;
+            jsonLd.image = canonicalImageUrl;
+            jsonLd.url = canonicalProductUrl;
             jsonLdScript.textContent = JSON.stringify(jsonLd, null, 2);
         } catch (e) {
-            console.error('Lỗi khi cập nhật JSON-LD:', e);
+            // Bỏ qua nếu JSON-LD gốc không hợp lệ.
         }
     }
+}
+
+function getCanonicalProductUrl(product) {
+    return `https://hopqua.github.io/product.html?id=${encodeURIComponent(product.id)}`;
+}
+
+function getCanonicalAssetUrl(assetPath) {
+    if (!assetPath) return '';
+    if (/^https?:\/\//i.test(assetPath)) return assetPath;
+    return `https://hopqua.github.io/${assetPath.replace(/^\.\//, '')}`;
 }
 
 // Hàm tự động phát hiện ảnh có sẵn trong thư mục
@@ -216,7 +229,6 @@ async function loadProductImagesAdvanced(product, container) {
             const detectedImages = await detectAvailableImages(basePath, imagePatterns);
             productImages.push(...detectedImages);
         } catch (error) {
-            console.warn('Không thể tự động phát hiện ảnh:', error);
             // Fallback về phương pháp cũ
             loadProductImagesOldMethod(product);
             return;
@@ -484,8 +496,7 @@ function createGalleryIndicators() {
         indicatorsContainer.appendChild(thumbContainer);
     });
     
-    // Hiển thị tổng số ảnh
-    console.log(`Gallery created with ${productImages.length} images`);
+    // Gallery indicators ready
 }
 
 // Cập nhật trạng thái active của các chỉ báo
