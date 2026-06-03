@@ -7,8 +7,8 @@
   <link rel="icon" href="/image/favicon.png" type="image/x-icon">
   <meta name="description" content="{{ site.description }}">
   <meta name="robots" content="index,follow">
+  <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
   <link rel="stylesheet" href="/css/styles.css">
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     @keyframes pulse-ring {
         0% {
@@ -148,7 +148,7 @@
                     </svg>
                     <span class="text-lg font-medium">Mua sắm tại Shopee</span>
                 </a>
-                <p class="text-gray-300 pl-2 italic">Giao hàng toàn quốc, nhiều ưu đãi hấp dẫn</p>
+                <p class="text-gray-300 pl-2 italic">Mua online trên Shopee, nhiều ưu đãi</p>
             </div>
             
             <!-- Social Media Links -->
@@ -157,14 +157,24 @@
                     <span class="relative z-10">Kết nối với chúng tôi</span>
                     <span class="absolute bottom-0 left-0 w-full h-1 bg-blue-400 rounded"></span>
                 </h3>
-                <a href="https://www.facebook.com/van.453776" target="_blank" 
-                   class="group inline-flex items-center hover:text-blue-400 transition-all duration-300 mb-4 p-2 rounded-lg hover:bg-gray-700/50">
-                    <svg class="w-7 h-7 mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <a href="https://www.facebook.com/Torangesvn/" target="_blank" rel="noopener noreferrer"
+                   class="footer-social-link group inline-flex items-center hover:text-blue-400 transition-all duration-300 mb-3 p-2 rounded-lg hover:bg-gray-700/50">
+                    <svg class="w-7 h-7 mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C15.9164 21.5878 18.0622 20.3855 19.6099 18.57C21.1576 16.7546 22.0054 14.4456 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
                     </svg>
-                    <span class="text-lg font-medium">Theo dõi trên Facebook</span>
+                    <span class="text-lg font-medium">Fanpage Toranges</span>
                 </a>
-                <p class="text-gray-300 pl-2 italic">Cập nhật tin tức và khuyến mãi mới nhất</p>
+                <a href="https://zalo.me/g/vffwdx817" target="_blank" rel="noopener noreferrer"
+                   class="footer-social-link group inline-flex items-center hover:text-blue-300 transition-all duration-300 mb-3 p-2 rounded-lg hover:bg-gray-700/50">
+                    <img src="/image/zalo-hd-logo.png" alt="" width="28" height="28" class="w-7 h-7 mr-3" loading="lazy">
+                    <span class="text-lg font-medium">Zalo nhóm 1</span>
+                </a>
+                <a href="https://zalo.me/g/qzfgvs076" target="_blank" rel="noopener noreferrer"
+                   class="footer-social-link group inline-flex items-center hover:text-blue-300 transition-all duration-300 mb-3 p-2 rounded-lg hover:bg-gray-700/50">
+                    <img src="/image/zalo-hd-logo.png" alt="" width="28" height="28" class="w-7 h-7 mr-3" loading="lazy">
+                    <span class="text-lg font-medium">Zalo nhóm 2</span>
+                </a>
+                <p class="text-gray-300 pl-2 italic">Xem mẫu, ưu đãi và tham khảo từ khách</p>
             </div>
             
             <!-- Contact Information -->
@@ -192,7 +202,7 @@
         
         <!-- Divider và Copyright -->
         <div class="border-t border-gray-600 mt-10 pt-6 text-center">
-            <p class="text-gray-300">&copy; 2025 <span class="text-white font-medium">{{ site.title }}</span>. Tất cả quyền được bảo lưu.</p>
+            <p class="text-gray-300">&copy; 2026 <span class="text-white font-medium">{{ site.title }}</span>. Tất cả quyền được bảo lưu.</p>
         </div>
     </div>
   </footer>
@@ -219,8 +229,8 @@
           <div class="absolute inset-0 rounded-full pulse-ring pointer-events-none" style="background-color: rgba(0, 106, 255, 0.4); animation-delay: 0.5s"></div>
           
           <!-- Nút Messenger -->
-          <a href="https://m.me/van.453776" target="_blank" 
-             class="relative flex items-center justify-center bg-[#0084ff] hover:bg-[#0066cc] text-white font-medium rounded-full w-16 h-16 shadow-lg transition-all duration-300 hover:scale-110">
+          <a href="https://m.me/Torangesvn" target="_blank" rel="noopener noreferrer" 
+             class="relative flex items-center justify-center bg-messenger hover-bg-messenger text-white font-medium rounded-full w-16 h-16 shadow-lg transition-all duration-300 hover:scale-110">
               <span class="sr-only">Chat với chúng tôi qua Messenger</span>
               <svg class="w-8 h-8 chat-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M14 2.042C7.483 2.042 2.042 7.058 2.042 13.417C2.042 16.633 3.375 19.513 5.558 21.558V25.375L9.292 23.208C10.767 23.758 12.35 24.083 14 24.083C20.517 24.083 25.958 19.067 25.958 12.708C25.958 6.35 20.517 2.042 14 2.042ZM15.3 16.308L12.6 13.417L7.483 16.308L13.067 10.458L15.767 13.35L20.883 10.458L15.3 16.308Z" fill="white"/>

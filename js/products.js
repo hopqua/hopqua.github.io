@@ -103,11 +103,11 @@ const products = [
     },
     {
         id: 'song-nguyet-4-6-banh',
-        name: 'Song Nguyệt 4 bánh, 6 bánh',
+        name: 'Song Nguyệt   4 bánh, 6 bánh',
         folder: 'song-nguyet-4-6-banh',
         thumbnail: 'image/song-nguyet-4-6-banh/song-nguyet-4-6-banh-1.jpg',
         price: 'Từ 25.000đ đến 33.000đ',
-        description: 'Bộ vỏ hộp song nguyệt đẹp mắt.',
+        description: 'Bộ vỏ hộp song Nguyệt   đẹp mắt.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -204,11 +204,11 @@ const products = [
     },
     {
         id: 'hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac',
-        name: 'Hộp ngũ long nguyệt hội 4 bánh hình bát giác',
+        name: 'Hộp ngũ long Nguyệt   hội 4 bánh hình bát giác',
         folder: 'hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac',
         thumbnail: 'image/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac-1.jpg',
         price: 'Từ 36.000đ đến 39.000đ',
-        description: 'Hộp bánh hình bát giác độc đáo với họa tiết ngũ long nguyệt hội, đựng được 4 bánh cỡ lớn.',
+        description: 'Hộp bánh hình bát giác độc đáo với họa tiết ngũ long Nguyệt   hội, đựng được 4 bánh cỡ lớn.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -248,11 +248,11 @@ const products = [
     },
     {
         id: 'hop-song-nguyet-4-6-banh',
-        name: 'Hộp song nguyệt 4-6 bánh',
+        name: 'Hộp song Nguyệt   4-6 bánh',
         folder: 'hop-song-nguyet-4-6-banh',
         thumbnail: 'image/hop-song-nguyet-4-6-banh/hop-song-nguyet-4-6-banh-1.jpg',
         price: 'Từ 28.000đ đến 32.000đ',
-        description: 'Hộp bánh trung thu với họa tiết song nguyệt tinh tế, có thể đựng 4-6 bánh tùy kích thước.',
+        description: 'Hộp bánh trung thu với họa tiết song Nguyệt   tinh tế, có thể đựng 4-6 bánh tùy kích thước.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -330,11 +330,11 @@ const products = [
     },
     {
         id: 'hong-nguyet-vien-cam',
-        name: 'Vỏ hộp hồng nguyệt viên cam',
+        name: 'Vỏ hộp hồng Nguyệt   viên cam',
         folder: 'vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/hong-nguyet-vien-cam',
         thumbnail: 'image/vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/hong-nguyet-vien-cam/hong-nguyet-vien-cam-1.jpg',
         price: '5.000đ - 7.000đ',
-        description: 'Vỏ hộp hồng nguyệt viên màu cam tươi sáng, thiết kế bắt mắt.',
+        description: 'Vỏ hộp hồng Nguyệt   viên màu cam tươi sáng, thiết kế bắt mắt.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -356,11 +356,11 @@ const products = [
     },
     {
         id: 'nguyet-yen-1x',
-        name: 'Vỏ hộp nguyệt yến 1x',
+        name: 'Vỏ hộp Nguyệt   yến 1x',
         folder: 'vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/nguyet-yen-1x',
         thumbnail: 'image/vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/nguyet-yen-1x/nguyet-yen-1x-1.jpg',
         price: '5.000đ - 7.000đ',
-        description: 'Vỏ hộp nguyệt yến thiết kế đơn giản, phù hợp nhiều dịp.',
+        description: 'Vỏ hộp Nguyệt   yến thiết kế đơn giản, phù hợp nhiều dịp.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -370,11 +370,11 @@ const products = [
     // Sản phẩm từ thư mục 18-06-2025
     {
         id: 'vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k',
-        name: 'Vỏ bánh trung thu Nguyệt thổ minh 4 bánh',
+        name: 'Vỏ bánh trung thu Nguyệt   thổ minh 4 bánh',
         folder: '18-06-2025/vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k',
         thumbnail: 'image/18-06-2025/vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k/vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k-1.jpg',
         price: '28.000đ - 35.000đ',
-        description: 'Vỏ bánh trung thu Nguyệt thổ minh 4 bánh, thiết kế cổ điển trang nhã.',
+        description: 'Vỏ bánh trung thu Nguyệt   thổ minh 4 bánh, thiết kế cổ điển trang nhã.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -403,11 +403,11 @@ const products = [
     },
     {
         id: 'vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k',
-        name: 'Vỏ hộp bánh trung thu nguyệt ánh 4 bánh trà',
+        name: 'Vỏ hộp bánh trung thu Nguyệt   ánh 4 bánh trà',
         folder: '18-06-2025/vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k',
         thumbnail: 'image/18-06-2025/vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k/vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k-1.jpg',
         price: '32.000đ - 39.000đ',
-        description: 'Vỏ hộp bánh trung thu nguyệt ánh 4 bánh trà, thiết kế sang trọng.',
+        description: 'Vỏ hộp bánh trung thu Nguyệt   ánh 4 bánh trà, thiết kế sang trọng.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -425,11 +425,11 @@ const products = [
     },
     {
         id: 'vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k',
-        name: 'Vỏ hộp trung thu hồng nguyệt viên cam 4 bánh rẻ',
+        name: 'Vỏ hộp trung thu hồng Nguyệt   viên cam 4 bánh rẻ',
         folder: '18-06-2025/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k-1.jpg',
         price: '16.000đ - 20.000đ',
-        description: 'Vỏ hộp trung thu hồng nguyệt viên cam 4 bánh, giá cả phải chăng.',
+        description: 'Vỏ hộp trung thu hồng Nguyệt   viên cam 4 bánh, giá cả phải chăng.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -462,11 +462,11 @@ const products = [
     },
     {
         id: 'vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k',
-        name: 'Vỏ hộp trung thu nguyệt yến 4 bánh rẻ',
+        name: 'Vỏ hộp trung thu Nguyệt   yến 4 bánh rẻ',
         folder: '18-06-2025/vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k/vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k-1.jpg',
         price: '16.000đ - 20.000đ',
-        description: 'Vỏ hộp trung thu nguyệt yến 4 bánh, giá cả phải chăng.',
+        description: 'Vỏ hộp trung thu Nguyệt   yến 4 bánh, giá cả phải chăng.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -493,7 +493,7 @@ const products = [
         folder: '26-5-2026/6-banh-mini-kim-son-cam-20k-26k',
         thumbnail: 'image/26-5-2026/6-banh-mini-kim-son-cam-20k-26k/6-banh-mini-kim-son-cam-20k-26k-1.jpg',
         price: '20.000đ - 26.000đ',
-        description: 'Mẫu hộp bánh trung thu 6 bánh mini kim sơn cam 20k 26k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu 6 bánh mini kim sơn cam 20k 26k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -504,7 +504,7 @@ const products = [
         folder: '26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k',
         thumbnail: 'image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg',
         price: '36.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu bát giác hào quang ánh trăng 36k 44k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu bát giác hào quang ánh trăng 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -513,11 +513,11 @@ const products = [
     },
     {
         id: 'cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k',
-        name: 'Cúc Ngưyệt Đỉnh 4 Bánh Kem Hộp Tra Đỏ 36k 44k',
+        name: 'Cúc Nguyệt  Đỉnh 4 Bánh Kem Hộp Tra Đỏ 36k 44k',
         folder: '26-5-2026/cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k',
         thumbnail: 'image/26-5-2026/cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k/cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k-1.jpg',
         price: '36.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu cúc ngưyệt đỉnh 4 bánh kem hộp tra đỏ 36k 44k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu cúc Nguyệt  đỉnh 4 bánh kem hộp tra đỏ 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -528,7 +528,7 @@ const products = [
         folder: '26-5-2026/hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k',
         thumbnail: 'image/26-5-2026/hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k/hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k-1.jpg',
         price: '61.000đ - 70.000đ',
-        description: 'Mẫu hộp bánh trung thu hoàng kim hàng giấy mềm cao cấp màu gold 4 bánh 6 bánh 61k 70k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu hoàng kim hàng giấy mềm cao cấp màu gold 4 bánh 6 bánh 61k 70k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -539,7 +539,7 @@ const products = [
         folder: '26-5-2026/hop-1-banh-to-tho-do-300-600g-23k-28k',
         thumbnail: 'image/26-5-2026/hop-1-banh-to-tho-do-300-600g-23k-28k/hop-1-banh-to-tho-do-300-600g-23k-28k-1.jpg',
         price: '23.000đ - 28.000đ',
-        description: 'Mẫu hộp bánh trung thu hộp 1 bánh to thỏ đỏ 300 600g 23k 28k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu hộp 1 bánh to thỏ đỏ 300 600g 23k 28k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -550,7 +550,7 @@ const products = [
         folder: '26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k',
         thumbnail: 'image/26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-1.jpg',
         price: '65.000đ - 75.000đ',
-        description: 'Mẫu hộp bánh trung thu hộp cứng 4 bánh kem hộp tra xanh lá 65k 75k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu hộp cứng 4 bánh kem hộp tra xanh lá 65k 75k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -561,7 +561,7 @@ const products = [
         folder: '26-5-2026/hop-cung-6-banh-mini-75-100g-36k-45k',
         thumbnail: 'image/26-5-2026/hop-cung-6-banh-mini-75-100g-36k-45k/hop-cung-6-banh-mini-75-100g-36k-45k-1.jpg',
         price: '36.000đ - 45.000đ',
-        description: 'Mẫu hộp bánh trung thu hộp cứng 6 bánh mini 75 100g 36k 45k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu hộp cứng 6 bánh mini 75 100g 36k 45k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -571,52 +571,52 @@ const products = [
         name: 'Hộp Cứng Quai Trúc Xanh Dương 4 Bánh Kem Tra 80 90k',
         folder: '26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k',
         thumbnail: 'image/26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k-1.jpg',
-        price: 'Liên hệ',
-        description: 'Mẫu hộp bánh trung thu hộp cứng quai trúc xanh dương 4 bánh kem tra 80 90k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        price: 'Từ 80.000đ – 90.000đ',
+        description: 'Hộp cứng quai trúc xanh dương, 4 bánh kem trà — mẫu cao cấp, phù hợp quà tặng và bán lẻ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
     },
     {
         id: 'khuc-nguyet-vien-cuc-do-4-banh-29-35k',
-        name: 'Khúc Ngưyệt Viên Cúc Đỏ 4 Bánh 29 35k',
+        name: 'Khúc Nguyệt  Viên Cúc Đỏ 4 Bánh 29 35k',
         folder: '26-5-2026/khuc-nguyet-vien-cuc-do-4-banh-29-35k',
         thumbnail: 'image/26-5-2026/khuc-nguyet-vien-cuc-do-4-banh-29-35k/khuc-nguyet-vien-cuc-do-4-banh-29-35k-1.jpg',
-        price: 'Liên hệ',
-        description: 'Mẫu hộp bánh trung thu khúc ngưyệt viên cúc đỏ 4 bánh 29 35k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        price: 'Từ 29.000đ – 35.000đ',
+        description: 'Khúc Nguyệt viên cúc đỏ, 4 bánh — thiết kế truyền thống, giá hợp lý cho đại lý và quà gia đình.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
     },
     {
         id: 'kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k',
-        name: 'Kim Liên Ngưyệt Xanh Lá 4 Bánh 6 Bánh 29k 44k',
+        name: 'Kim Liên Nguyệt  Xanh Lá 4 Bánh 6 Bánh 29k 44k',
         folder: '26-5-2026/kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k',
         thumbnail: 'image/26-5-2026/kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k/kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k-1.jpg',
         price: '29.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu kim liên ngưyệt xanh lá 4 bánh 6 bánh 29k 44k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu kim liên Nguyệt  xanh lá 4 bánh 6 bánh 29k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
     },
     {
         id: 'lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k',
-        name: 'Liên Ngưyệt Đỉnh 4 Bánh Kem Hộp Tra 6 Bánh 33k 40k',
+        name: 'Liên Nguyệt  Đỉnh 4 Bánh Kem Hộp Tra 6 Bánh 33k 40k',
         folder: '26-5-2026/lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k',
         thumbnail: 'image/26-5-2026/lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k/lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k-1.jpg',
         price: '33.000đ - 40.000đ',
-        description: 'Mẫu hộp bánh trung thu liên ngưyệt đỉnh 4 bánh kem hộp tra 6 bánh 33k 40k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu liên Nguyệt  đỉnh 4 bánh kem hộp tra 6 bánh 33k 40k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
     },
     {
         id: 'nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k',
-        name: 'Ngưyệt Hoa Viên Doxanh Duong 4 Bánh Rẻ 185k 25k',
+        name: 'Nguyệt  Hoa Viên Doxanh Duong 4 Bánh Rẻ 185k 25k',
         folder: '26-5-2026/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k',
         thumbnail: 'image/26-5-2026/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k-1.jpg',
         price: '18.500đ - 25.000đ',
-        description: 'Mẫu hộp bánh trung thu ngưyệt hoa viên doxanh duong 4 bánh rẻ 185k 25k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu Nguyệt  hoa viên doxanh duong 4 bánh rẻ 185k 25k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -625,11 +625,11 @@ const products = [
     },
     {
         id: 'nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k',
-        name: 'Ngưyệt Liên Ngư 4 Bánh Tra 6 Bánh 37k 44k',
+        name: 'Nguyệt  Liên Ngư 4 Bánh Tra 6 Bánh 37k 44k',
         folder: '26-5-2026/nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k',
         thumbnail: 'image/26-5-2026/nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k/nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k-1.jpg',
         price: '37.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu ngưyệt liên ngư 4 bánh tra 6 bánh 37k 44k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu Nguyệt  liên ngư 4 bánh tra 6 bánh 37k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -640,18 +640,18 @@ const products = [
         folder: '26-5-2026/song-ngu-do-4-banh-tra-doc-36k-44k',
         thumbnail: 'image/26-5-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-1.jpg',
         price: '36.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu song ngư đỏ 4 bánh tra dọc 36k 44k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu song ngư đỏ 4 bánh tra dọc 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
     },
     {
         id: 'thien-hoa-van-nguyet-4-banh-re-175k-24k',
-        name: 'Thiên Hoa Vân Ngưyệt 4 Bánh Rẻ 175k 24k',
+        name: 'Thiên Hoa Vân Nguyệt  4 Bánh Rẻ 175k 24k',
         folder: '26-5-2026/thien-hoa-van-nguyet-4-banh-re-175k-24k',
         thumbnail: 'image/26-5-2026/thien-hoa-van-nguyet-4-banh-re-175k-24k/thien-hoa-van-nguyet-4-banh-re-175k-24k-1.jpg',
         price: '17.500đ - 24.000đ',
-        description: 'Mẫu hộp bánh trung thu thiên hoa vân ngưyệt 4 bánh rẻ 175k 24k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu thiên hoa vân Nguyệt  4 bánh rẻ 175k 24k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -662,7 +662,7 @@ const products = [
         folder: '26-5-2026/tho-xanh-duong-4-banh-29k-35k',
         thumbnail: 'image/26-5-2026/tho-xanh-duong-4-banh-29k-35k/tho-xanh-duong-4-banh-29k-35k-1.jpg',
         price: '29.000đ - 35.000đ',
-        description: 'Mẫu hộp bánh trung thu thỏ xanh dương 4 bánh 29k 35k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu thỏ xanh dương 4 bánh 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -673,7 +673,7 @@ const products = [
         folder: '26-5-2026/thu-hoa-4-banh-do-29k-35k',
         thumbnail: 'image/26-5-2026/thu-hoa-4-banh-do-29k-35k/thu-hoa-4-banh-do-29k-35k-1.jpg',
         price: '29.000đ - 35.000đ',
-        description: 'Mẫu hộp bánh trung thu thu hoa 4 bánh đỏ 29k 35k, phù hợp làm quà tặng và đóng set bánh mùa Trung Thu.',
+        description: 'Mẫu hộp bánh trung thu thu hoa 4 bánh đỏ 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []

@@ -6,7 +6,7 @@ const blogPosts = [
         slug: 'cach-chon-hop-qua-tang-phu-hop-cho-dip-tet',
         thumbnail: 'image/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac-1.jpg',
         summary: 'Tìm hiểu cách chọn hộp quà tặng phù hợp với từng đối tượng và dịp Tết để thể hiện tấm lòng thành của bạn.',
-        date: '2025-01-05',
+        date: '2026-01-05',
         author: 'Vân Thắng',
         content: `
             <h2>Chọn hộp quà tặng phù hợp cho dịp Tết</h2>
@@ -19,7 +19,7 @@ const blogPosts = [
             
             <ul>
                 <li><strong>Người lớn tuổi:</strong> Nên chọn các mẫu hộp truyền thống với họa tiết như song hạc, lân vũ, sen phú quý... thể hiện sự tôn kính.</li>
-                <li><strong>Đối tác kinh doanh:</strong> Hộp có thiết kế sang trọng như ngũ long nguyệt hội, lam cúc với số lượng bánh 4-6 chiếc.</li>
+                <li><strong>Đối tác kinh doanh:</strong> Hộp có thiết kế sang trọng như ngũ long Nguyệt   hội, lam cúc với số lượng bánh 4-6 chiếc.</li>
                 <li><strong>Bạn bè, người thân:</strong> Có thể linh hoạt với các mẫu hiện đại, trẻ trung hoặc mẫu truyền thống tùy sở thích.</li>
                 <li><strong>Trẻ em:</strong> Hộp quà với màu sắc tươi sáng, họa tiết vui nhộn như hộp quà 1.6 cho bé.</li>
             </ul>
@@ -31,7 +31,7 @@ const blogPosts = [
             <ul>
                 <li><strong>Ngân sách thấp:</strong> Hộp 1-2 bánh hoặc hộp sen phú quý 4 bánh giá rẻ (từ 4.000đ đến 18.000đ).</li>
                 <li><strong>Ngân sách trung bình:</strong> Hộp 4 bánh như hộp liên ngư, hộp lân vũ (từ 25.000đ đến 34.000đ).</li>
-                <li><strong>Ngân sách cao:</strong> Hộp 6 bánh cao cấp như hộp ngũ long nguyệt hội, hộp lam cúc (từ 35.000đ trở lên).</li>
+                <li><strong>Ngân sách cao:</strong> Hộp 6 bánh cao cấp như hộp ngũ long Nguyệt   hội, hộp lam cúc (từ 35.000đ trở lên).</li>
             </ul>
             
             <h3>3. Lựa chọn phụ kiện đi kèm</h3>
@@ -59,7 +59,7 @@ const blogPosts = [
         slug: 'nhung-luu-y-khi-chon-hop-banh-trung-thu',
         thumbnail: 'image/hop-song-nguyet-4-6-banh/hop-song-nguyet-4-6-banh-1.jpg',
         summary: 'Các tiêu chí quan trọng cần lưu ý khi lựa chọn hộp bánh trung thu để làm quà tặng.',
-        date: '2025-02-10',
+        date: '2026-02-10',
         author: 'Vân Thắng',
         content: `
             <h2>Những lưu ý quan trọng khi chọn hộp bánh trung thu</h2>
@@ -96,7 +96,7 @@ const blogPosts = [
             
             <ul>
                 <li><strong>Người lớn tuổi:</strong> Họa tiết truyền thống như hoa sen, song hạc, lân vũ...</li>
-                <li><strong>Đối tác kinh doanh:</strong> Thiết kế thanh lịch, trang nhã như mẫu ngũ long nguyệt hội, lam cúc...</li>
+                <li><strong>Đối tác kinh doanh:</strong> Thiết kế thanh lịch, trang nhã như mẫu ngũ long Nguyệt   hội, lam cúc...</li>
                 <li><strong>Bạn bè, đồng nghiệp:</strong> Có thể chọn mẫu hiện đại, trẻ trung.</li>
                 <li><strong>Trẻ em:</strong> Họa tiết vui nhộn, nhiều màu sắc.</li>
             </ul>
@@ -115,21 +115,21 @@ const blogPosts = [
         `
     },
     {
-        id: 'xu-huong-hop-qua-tang-2025',
-        title: 'Xu hướng hộp quà tặng năm 2025',
-        slug: 'xu-huong-hop-qua-tang-nam-2025',
+        id: 'xu-huong-hop-qua-tang-2026',
+        title: 'Xu hướng hộp quà tặng năm 2026',
+        slug: 'xu-huong-hop-qua-tang-nam-2026',
         thumbnail: 'image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg',
-        summary: 'Khám phá những xu hướng mới nhất về hộp quà tặng trong năm 2025, từ thiết kế đến chất liệu.',
-        date: '2025-03-15',
+        summary: 'Khám phá những xu hướng mới nhất về hộp quà tặng trong năm 2026, từ thiết kế đến chất liệu.',
+        date: '2026-03-15',
         author: 'Vân Thắng',
         content: `
-            <h2>Xu hướng hộp quà tặng năm 2025</h2>
+            <h2>Xu hướng hộp quà tặng năm 2026</h2>
             
-            <p>Thị trường hộp quà tặng luôn có những thay đổi để đáp ứng nhu cầu và thị hiếu ngày càng cao của người tiêu dùng. Năm 2025 chứng kiến nhiều xu hướng mới đáng chú ý sau đây.</p>
+            <p>Thị trường hộp quà tặng luôn có những thay đổi để đáp ứng nhu cầu và thị hiếu ngày càng cao của người tiêu dùng. Năm 2026 chứng kiến nhiều xu hướng mới đáng chú ý sau đây.</p>
             
             <h3>1. Thiết kế tối giản, hiện đại</h3>
             
-            <p>Năm 2025 chứng kiến sự lên ngôi của phong cách thiết kế tối giản (minimalism) với các đặc điểm:</p>
+            <p>Năm 2026 chứng kiến sự lên ngôi của phong cách thiết kế tối giản (minimalism) với các đặc điểm:</p>
             
             <ul>
                 <li>Hạn chế họa tiết rườm rà, thay vào đó là các đường nét đơn giản, thanh thoát.</li>
@@ -181,7 +181,7 @@ const blogPosts = [
                 <li>Hộp với mùi hương nhẹ nhàng (như hương trà, hương hoa) tạo ấn tượng đặc biệt.</li>
             </ul>
             
-            <p>Năm 2025, thị trường hộp quà tặng ngày càng phát triển đa dạng, đáp ứng nhu cầu và kỳ vọng cao của người tiêu dùng. Bằng cách nắm bắt các xu hướng mới, bạn có thể chọn được những hộp quà không chỉ đẹp mắt mà còn mang ý nghĩa và giá trị lâu dài.</p>
+            <p>Năm 2026, thị trường hộp quà tặng ngày càng phát triển đa dạng, đáp ứng nhu cầu và kỳ vọng cao của người tiêu dùng. Bằng cách nắm bắt các xu hướng mới, bạn có thể chọn được những hộp quà không chỉ đẹp mắt mà còn mang ý nghĩa và giá trị lâu dài.</p>
         `
     }
 ];
