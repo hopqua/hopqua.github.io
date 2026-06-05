@@ -2,6 +2,7 @@ title: "Hộp quà tặng Vân Thắng"
 description: "Blog chia sẻ tin tức và kiến thức về phụ kiện bánh Trung Thu"
 baseurl: ""           # If hosted at root of domain
 url: "https://hopqua.github.io"    # Your site URL
+default_og_image: "/image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg"
 
 theme: minima
 plugins:

@@ -3,6 +3,7 @@ layout: post
 title: "Nguồn gốc và lịch sử bánh Trung thu qua các thời kỳ"
 date: 2026-05-16 15:30:00 +0700
 categories: lich-su truyen-thong
+image: /image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg
 ---
 
 ![Bánh Trung thu truyền thống](/image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg)

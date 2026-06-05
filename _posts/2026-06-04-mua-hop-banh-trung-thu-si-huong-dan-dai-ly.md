@@ -3,6 +3,7 @@ layout: post
 title: "Mua hộp bánh Trung Thu sỉ: hướng dẫn cho tiệm bánh và đại lý"
 date: 2026-06-04 10:00:00 +0700
 categories: ban-si huong-dan
+image: /image/26-5-2026/hop-cung-6-banh-mini-75-100g-36k-45k/hop-cung-6-banh-mini-75-100g-36k-45k-1.jpg
 ---
 
 ![Đặt hộp bánh Trung Thu số lượng lớn](/image/26-5-2026/hop-cung-6-banh-mini-75-100g-36k-45k/hop-cung-6-banh-mini-75-100g-36k-45k-1.jpg)

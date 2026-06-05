@@ -3,6 +3,7 @@ layout: post
 title: "5 xu hướng thiết kế hộp bánh Trung thu năm 2026"
 date: 2026-05-18 11:15:00 +0700
 categories: xu-huong thiet-ke
+image: /image/hop-song-nguyet-4-6-banh/hop-song-nguyet-4-6-banh-1.jpg
 ---
 
 ![Xu hướng thiết kế hộp bánh](/image/hop-song-nguyet-4-6-banh/hop-song-nguyet-4-6-banh-1.jpg)

@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
   <link rel="icon" href="/image/favicon.png" type="image/x-icon">
-  <meta name="description" content="{{ site.description }}">
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+  {% assign og_image = page.image | default: site.default_og_image | default: '/image/png-clipart-line-gift-logo-line-text-heart.png' %}
+  {% unless og_image contains '://' %}
+    {% assign og_image = site.url | append: og_image %}
+  {% endunless %}
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     @keyframes pulse-ring {
@@ -48,15 +52,15 @@
   </style>
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}" />
-  <meta property="og:description" content="{{ site.description }}" />
-  <meta property="og:image" content="{{ site.url }}/image/png-clipart-line-gift-logo-line-text-heart.png" />
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+  <meta property="og:image" content="{{ og_image }}" />
   <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
   <meta property="og:type" content="website" />
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}" />
-  <meta name="twitter:description" content="{{ site.description }}" />
-  <meta name="twitter:image" content="{{ site.url }}/image/png-clipart-line-gift-logo-line-text-heart.png" />
+  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+  <meta name="twitter:image" content="{{ og_image }}" />
 </head>
 <body>
   <header class="header-compact">

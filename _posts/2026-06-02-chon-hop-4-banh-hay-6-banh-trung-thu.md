@@ -3,6 +3,7 @@ layout: post
 title: "Chọn hộp 4 bánh hay 6 bánh Trung Thu: gợi ý cho tiệm bánh và khách sỉ"
 date: 2026-06-02 10:00:00 +0700
 categories: huong-dan chon-hop
+image: /image/song-nguyet-4-6-banh/song-nguyet-4-6-banh-1.jpg
 ---
 
 ![Hộp 4 bánh và 6 bánh Trung Thu](/image/song-nguyet-4-6-banh/song-nguyet-4-6-banh-1.jpg)

@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (headerZalo) {
         headerZalo.addEventListener('click', () => trackZaloClick(null));
     }
+
+    if (typeof renderHomeBlogSection === 'function') {
+        renderHomeBlogSection();
+    }
 });
 
 function setupTierNav() {
@@ -87,7 +91,7 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0) {
         const thumbnailsHtml = thumbnails
             .map((src) => {
                 const thumbSrc = getThumbUrl(src);
-                return `<img src="${thumbSrc}" alt="" width="50" height="50" loading="lazy" decoding="async" aria-hidden="true">`;
+                return `<img src="${thumbSrc}" alt="" width="50" height="50" loading="lazy" decoding="async" aria-hidden="true" onerror="this.onerror=null; this.src='${src}';">`;
             })
             .join('');
 

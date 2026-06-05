@@ -3,6 +3,7 @@ layout: post
 title: "Kinh nghiệm chọn hộp bánh Trung thu cho doanh nghiệp"
 date: 2026-05-17 08:45:00 +0700
 categories: doanh-nghiep kinh-nghiem
+image: /image/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac-1.jpg
 ---
 
 ![Hộp bánh doanh nghiệp](/image/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac-1.jpg)

@@ -3,6 +3,7 @@ layout: post
 title: "Hướng dẫn bảo quản bánh Trung thu đúng cách và an toàn"
 date: 2026-05-15 09:15:00 +0700
 categories: huong-dan bao-quan
+image: /image/hop-6-banh-mini-tho-ngoc-vang/hop-6-banh-mini-tho-ngoc-vang-1.jpg
 ---
 
 ![Bánh Trung thu](/image/hop-6-banh-mini-tho-ngoc-vang/hop-6-banh-mini-tho-ngoc-vang-1.jpg)

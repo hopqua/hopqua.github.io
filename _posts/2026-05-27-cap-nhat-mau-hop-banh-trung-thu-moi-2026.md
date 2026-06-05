@@ -3,9 +3,12 @@ layout: post
 title: "Cập nhật mẫu hộp bánh Trung Thu mới 2026"
 date: 2026-05-27 09:55:00 +0700
 categories: blog
+image: /image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg
 ---
 
 # Cập nhật mẫu hộp bánh Trung Thu mới 2026
+
+![Mẫu hộp bánh Trung Thu mới 2026](/image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg)
 
 Hộp quà tặng Văn Thắng vừa cập nhật thêm bộ sưu tập mẫu hộp bánh Trung Thu mới cho mùa 2026, gồm nhiều lựa chọn từ hộp 1 bánh, hộp 4 bánh, hộp 6 bánh mini đến các mẫu hộp cứng kèm hộp trà sang trọng.
 

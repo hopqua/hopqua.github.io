@@ -3,9 +3,10 @@ layout: post
 title: "Hộp cứng và hộp giấy mềm bánh Trung Thu: nên chọn loại nào?"
 date: 2026-06-01 10:00:00 +0700
 categories: huong-dan chon-hop
+image: /image/26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-1.jpg
 ---
 
-![Hộp bánh Trung Thu hộp cứng và giấy mềm](/image/26-5-2026/hop-cung-4-banh-kem-ho-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-ho-tra-xanh-la-65k-75k-1.jpg)
+![Hộp bánh Trung Thu hộp cứng và giấy mềm](/image/26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-1.jpg)
 
 Khi chuẩn bị mùa Trung Thu, nhiều tiệm bánh và khách đặt sỉ thường phân vân giữa **hộp cứng** và **hộp giấy mềm (hàng giấy)**. Mỗi loại có ưu điểm riêng — chọn đúng giúp set quà trông đẹp hơn và phù hợp ngân sách.
 
