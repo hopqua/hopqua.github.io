@@ -109,6 +109,7 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0) {
             product.description.length > 72
                 ? product.description.substring(0, 72) + '…'
                 : product.description;
+        const postedMeta = renderProductPostedMeta(product);
 
         productCard.innerHTML = `
             <a href="${detailUrl}" class="product-card-link">
@@ -120,6 +121,7 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0) {
                 <div class="product-thumbnails" aria-hidden="true">${thumbnailsHtml}</div>
                 <div class="product-info">
                     <h3>${product.name}</h3>
+                    ${postedMeta}
                     <p class="product-price">${product.price}</p>
                     <p class="product-short-desc">${shortDesc}</p>
                 </div>

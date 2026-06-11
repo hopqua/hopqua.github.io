@@ -86,6 +86,7 @@ function displayProductInfo(product) {
         ? `<span class="season-badge season-${product.season.replace(/\s+/g, '-')}">${product.season === 'trung thu' ? 'Trung Thu' : 'Tết'}</span>`
         : '';
     const zaloUrl = buildZaloUrl(product);
+    const postedMeta = renderProductPostedMeta(product);
 
     productInfoElement.innerHTML = `
         <div class="pd-gallery-col">
@@ -110,6 +111,7 @@ function displayProductInfo(product) {
         </div>
         <aside class="pd-sidebar">
             <h1 class="pd-title">${product.name}</h1>
+            ${postedMeta ? `<p class="pd-posted-meta">${postedMeta}</p>` : ''}
             ${badges || seasonBadge ? `<div class="pd-badges">${badges}${seasonBadge}</div>` : ''}
             <div class="pd-price-box">
                 <span class="pd-price-label">Giá tham khảo</span>
@@ -246,7 +248,7 @@ function buildFallbackImagePaths(product) {
 
     const folderParts = product.folder.split('/');
     const subFolder = folderParts[folderParts.length - 1];
-    const max = product.folder.includes('18-06-2025') || product.folder.includes('26-5-2026') ? 15 : 12;
+    const max = product.folder.includes('18-06-2025') || product.folder.includes('26-5-2026') || product.folder.includes('11-06-2026') ? 15 : 12;
 
     for (let i = 1; i <= max; i++) {
         result.push(`${basePath}/${subFolder}-${i}.jpg`);
@@ -602,20 +604,27 @@ function openLightbox(imageSrc, imageAlt) {
     const lightbox = document.createElement('div');
     lightbox.className = 'lightbox';
 
-    lightbox.innerHTML = `
-        <div class="lightbox-content">
-            <span class="close-lightbox">&times;</span>
-            <img src="${imageSrc}" alt="${imageAlt}" width="1200" height="900" decoding="async">
-        </div>
-    `;
+    const content = document.createElement('div');
+    content.className = 'lightbox-content';
 
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close-lightbox';
+    closeBtn.innerHTML = '&times;';
+
+    const img = document.createElement('img');
+    img.alt = imageAlt;
+    img.decoding = 'async';
+    img.src = imageSrc;
+
+    content.appendChild(closeBtn);
+    content.appendChild(img);
+    lightbox.appendChild(content);
     document.body.appendChild(lightbox);
 
     setTimeout(() => {
         lightbox.style.opacity = '1';
     }, 50);
 
-    const closeBtn = lightbox.querySelector('.close-lightbox');
     closeBtn.addEventListener('click', function() {
         lightbox.style.opacity = '0';
         setTimeout(() => lightbox.remove(), 300);

@@ -586,7 +586,9 @@ const products = [
         description: 'Khúc Nguyệt viên cúc đỏ, 4 bánh — thiết kế truyền thống, giá hợp lý cho đại lý và quà gia đình.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
-        videos: []
+        videos: [
+            'image/26-5-2026/khuc-nguyet-vien-cuc-do-4-banh-29-35k/khuc-nguyet-vien-cuc-do-4-banh-29-35k-video-1.mp4'
+        ]
     },
     {
         id: 'kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k',
@@ -620,7 +622,8 @@ const products = [
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
-            'image/26-5-2026/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k/7867186421098.mp4'
+            'image/26-5-2026/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k/7867186421098.mp4',
+            'image/26-5-2026/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k-video-1.mp4'
         ]
     },
     {
@@ -674,6 +677,148 @@ const products = [
         thumbnail: 'image/26-5-2026/thu-hoa-4-banh-do-29k-35k/thu-hoa-4-banh-do-29k-35k-1.jpg',
         price: '29.000đ - 35.000đ',
         description: 'Mẫu hộp bánh trung thu thu hoa 4 bánh đỏ 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    // Sản phẩm từ thư mục 11-06-2026
+    {
+        id: '1b-mini-sll-3k',
+        name: 'Hộp 1 bánh mini sỉ 3k',
+        folder: '11-06-2026/1b-mini-sll-3k',
+        thumbnail: 'image/11-06-2026/1b-mini-sll-3k/1b-mini-sll-3k-1.jpg',
+        price: '3.000đ',
+        description: 'Mẫu hộp bánh trung thu hộp 1 bánh mini sỉ 3k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: '2-banh-re-5-mau',
+        name: '2 bánh rẻ 5 màu',
+        folder: '11-06-2026/2-banh-re-5-mau',
+        thumbnail: 'image/11-06-2026/2-banh-re-5-mau/2-banh-re-5-mau-1.jpg',
+        price: '14.000đ - 20.000đ',
+        description: 'Mẫu hộp bánh trung thu 2 bánh rẻ 5 màu, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: '6-banh-mini-mem-san-2-ma-sll-19k',
+        name: '6 bánh mini mềm sẵn 2 mã sỉ 19k',
+        folder: '11-06-2026/6-banh-mini-mem-san-2-ma-sll-19k',
+        thumbnail: 'image/11-06-2026/6-banh-mini-mem-san-2-ma-sll-19k/6-banh-mini-mem-san-2-ma-sll-19k-1.jpg',
+        price: '19.000đ - 26.000đ',
+        description: 'Mẫu hộp bánh trung thu 6 bánh mini mềm sẵn 2 mã sỉ 19k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: [
+            'image/11-06-2026/6-banh-mini-mem-san-2-ma-sll-19k/6-banh-mini-mem-san-2-ma-sll-19k-video-1.mp4',
+            'image/11-06-2026/6-banh-mini-mem-san-2-ma-sll-19k/6-banh-mini-mem-san-2-ma-sll-19k-video-2.mp4'
+        ]
+    },
+    {
+        id: '6b-mini-san-hn-3x',
+        name: '6 bánh mini sẵn HN 3x',
+        folder: '11-06-2026/6b-mini-san-hn-3x',
+        thumbnail: 'image/11-06-2026/6b-mini-san-hn-3x/6b-mini-san-hn-3x-1.jpg',
+        price: '19.000đ - 26.000đ',
+        description: 'Mẫu hộp bánh trung thu 6 bánh mini sẵn HN 3x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: 'bat-giac-tho-quy-toc',
+        name: 'Bát giác thỏ quý tộc',
+        folder: '11-06-2026/bat-giac-tho-quy-toc',
+        thumbnail: 'image/11-06-2026/bat-giac-tho-quy-toc/bat-giac-tho-quy-toc-1.jpg',
+        price: '36.000đ - 44.000đ',
+        description: 'Mẫu hộp bánh trung thu bát giác thỏ quý tộc, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: [
+            'image/11-06-2026/bat-giac-tho-quy-toc/bat-giac-tho-quy-toc-video-1.mp4'
+        ]
+    },
+    {
+        id: 'hut-am',
+        name: 'Gói hút ẩm bánh Trung Thu',
+        folder: '11-06-2026/hut-am',
+        thumbnail: 'image/11-06-2026/hut-am/hut-am-1.jpg',
+        price: '5.000đ - 15.000đ',
+        description: 'Mẫu phụ kiện gói hút ẩm bánh Trung Thu, phù hợp cửa hàng bánh và đại lý.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: 'hac-van-nguyet-3x',
+        name: 'Hạc vân nguyệt 3x',
+        folder: '11-06-2026/hac-van-nguyet-3x',
+        thumbnail: 'image/11-06-2026/hac-van-nguyet-3x/hac-van-nguyet-3x-1.jpg',
+        price: '29.000đ - 35.000đ',
+        description: 'Mẫu hộp bánh trung thu hạc vân nguyệt 3x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: 'hac-vu-nguyet-ca-4-banh-6-banh',
+        name: 'Hạc vũ nguyệt ca 4 bánh 6 bánh',
+        folder: '11-06-2026/hac-vu-nguyet-ca-4-banh-6-banh',
+        thumbnail: 'image/11-06-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-1.jpg',
+        price: '50.000đ - 70.000đ',
+        description: 'Mẫu hộp bánh trung thu hạc vũ nguyệt ca 4 bánh 6 bánh, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: 'hop-cung-gap-gon-6x',
+        name: 'Hộp cứng gấp gọn 6x',
+        folder: '11-06-2026/hop-cung-gap-gon-6x',
+        thumbnail: 'image/11-06-2026/hop-cung-gap-gon-6x/hop-cung-gap-gon-6x-1.jpg',
+        price: '36.000đ - 45.000đ',
+        description: 'Mẫu hộp bánh trung thu hộp cứng gấp gọn 6x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: [
+            'image/11-06-2026/hop-cung-gap-gon-6x/hop-cung-gap-gon-6x-video-1.mp4',
+            'image/11-06-2026/hop-cung-gap-gon-6x/hop-cung-gap-gon-6x-video-2.mp4',
+            'image/11-06-2026/hop-cung-gap-gon-6x/hop-cung-gap-gon-6x-video-3.mp4'
+        ]
+    },
+    {
+        id: 'khay-tui-pet',
+        name: 'Khay túi pet đựng bánh',
+        folder: '11-06-2026/khay-tui-pet',
+        thumbnail: 'image/11-06-2026/khay-tui-pet/khay-tui-pet-1.jpg',
+        price: '5.000đ - 15.000đ',
+        description: 'Mẫu phụ kiện khay túi pet đựng bánh, phù hợp cửa hàng bánh và đại lý.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: 'lan-da-3x-nho',
+        name: 'Lan dạ 3x nhỏ',
+        folder: '11-06-2026/lan-da-3x-nho',
+        thumbnail: 'image/11-06-2026/lan-da-3x-nho/lan-da-3x-nho-1.jpg',
+        price: '16.000đ - 20.000đ',
+        description: 'Mẫu hộp bánh trung thu lan dạ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    {
+        id: 'tho-do-3x-nho',
+        name: 'Thỏ đỏ 3x nhỏ',
+        folder: '11-06-2026/tho-do-3x-nho',
+        thumbnail: 'image/11-06-2026/tho-do-3x-nho/tho-do-3x-nho-1.jpg',
+        price: '23.000đ - 28.000đ',
+        description: 'Mẫu hộp bánh trung thu thỏ đỏ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []

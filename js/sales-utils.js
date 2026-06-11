@@ -55,13 +55,85 @@ function getProductTier(product) {
     return 'premium';
 }
 
+/** Ngày đăng SP: ưu tiên postedAt, không thì suy từ folder (vd. 26-5-2026/, 18-06-2025/). */
+function parsePostedDateFromFolder(folder) {
+    if (!folder) return null;
+    const match = folder.match(/^(\d{1,2})-(\d{1,2})-(\d{4})\//);
+    if (!match) return null;
+    const day = match[1].padStart(2, '0');
+    const month = match[2].padStart(2, '0');
+    const year = match[3];
+    return `${year}-${month}-${day}`;
+}
+
+function getProductPostedAt(product) {
+    if (product.postedAt) return product.postedAt;
+    return parsePostedDateFromFolder(product.folder);
+}
+
+function formatProductPostedDate(isoDate) {
+    if (!isoDate) return '';
+    const [y, m, d] = isoDate.split('-');
+    return `${d}/${m}/${y}`;
+}
+
+/** Nhãn thời gian kiểu timeline: Hôm nay, 3 ngày trước, hoặc 26/05/2026 */
+function formatProductPostedLabel(isoDate) {
+    if (!isoDate) return '';
+
+    const posted = new Date(`${isoDate}T12:00:00`);
+    if (Number.isNaN(posted.getTime())) return formatProductPostedDate(isoDate);
+
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+    const diffDays = Math.floor((today - posted) / (24 * 60 * 60 * 1000));
+
+    if (diffDays <= 0) return 'Hôm nay';
+    if (diffDays === 1) return 'Hôm qua';
+    if (diffDays < 7) return `${diffDays} ngày trước`;
+    if (diffDays < 30) return `${Math.floor(diffDays / 7)} tuần trước`;
+
+    return formatProductPostedDate(isoDate);
+}
+
+function renderProductPostedMeta(product) {
+    const postedAt = getProductPostedAt(product);
+    if (!postedAt) return '';
+
+    const label = formatProductPostedLabel(postedAt);
+    const fullDate = formatProductPostedDate(postedAt);
+    const title = label === fullDate ? `Đăng ngày ${fullDate}` : `Đăng ngày ${fullDate} (${label})`;
+
+    return `<time class="product-posted-date" datetime="${postedAt}" title="${title}">Đăng ${label}</time>`;
+}
+
+function compareProductsByPostedAt(a, b) {
+    const aDate = getProductPostedAt(a);
+    const bDate = getProductPostedAt(b);
+    if (aDate && bDate) return bDate.localeCompare(aDate);
+    if (aDate) return -1;
+    if (bDate) return 1;
+    return 0;
+}
+
 function isNew2026(product) {
     return product.folder && product.folder.startsWith('26-5-2026/');
 }
 
+function isRecentlyPosted(product, withinDays = 60) {
+    const postedAt = getProductPostedAt(product);
+    if (!postedAt) return isNew2026(product);
+
+    const posted = new Date(`${postedAt}T12:00:00`);
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+    const diffDays = Math.floor((today - posted) / (24 * 60 * 60 * 1000));
+    return diffDays >= 0 && diffDays <= withinDays;
+}
+
 function getProductBadges(product) {
     const badges = [];
-    if (isNew2026(product)) badges.push({ label: 'Mới 2026', className: 'badge-new' });
+    if (isRecentlyPosted(product)) badges.push({ label: 'Mới', className: 'badge-new' });
     const text = `${product.name} ${product.id}`.toLowerCase();
     if (/4\s*banh|4-banh/.test(text)) badges.push({ label: '4 bánh', className: 'badge-4' });
     if (/6\s*banh|6-banh/.test(text)) badges.push({ label: '6 bánh', className: 'badge-6' });
@@ -89,12 +161,15 @@ function trackZaloClick(product) {
 }
 
 function getHotProducts(limit = 12) {
-    const newOnes = products.filter(isNew2026);
-    if (newOnes.length >= limit) return newOnes.slice(0, limit);
-    const featured = getFeaturedProducts(limit);
-    const seen = new Set(newOnes.map((p) => p.id));
-    const extra = featured.filter((p) => !seen.has(p.id));
-    return [...newOnes, ...extra].slice(0, limit);
+    const withDate = products
+        .filter((p) => getProductPostedAt(p))
+        .sort(compareProductsByPostedAt);
+
+    if (withDate.length >= limit) return withDate.slice(0, limit);
+
+    const seen = new Set(withDate.map((p) => p.id));
+    const featured = getFeaturedProducts(limit).filter((p) => !seen.has(p.id));
+    return [...withDate, ...featured].slice(0, limit);
 }
 
 function getCatalogSections() {

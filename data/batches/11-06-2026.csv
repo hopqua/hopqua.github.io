@@ -1,0 +1,19 @@
+source_folder,slug,name,price_min,price_max,action,merge_into_id
+"1b mini, sll 3k",1b-mini-sll-3k,"Hộp 1 bánh mini sỉ 3k",3000,3000,new,
+"2 bánh rẻ 5 màu",2-banh-re-5-mau,"2 bánh rẻ 5 màu",14000,20000,new,
+"6 bánh mini mềm sẵn 2 mã sll 19k",6-banh-mini-mem-san-2-ma-sll-19k,"6 bánh mini mềm sẵn 2 mã sỉ 19k",19000,26000,new,
+"6b mini sẵn HN 3x",6b-mini-san-hn-3x,"6 bánh mini sẵn HN 3x",19000,26000,new,
+"Bát giác thỏ quý tộc",bat-giac-tho-quy-toc,"Bát giác thỏ quý tộc",36000,44000,new,
+"Cúc Nguyệt đình, 3x",cuc-nguyet-dinh-3x,,,,merge,cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k
+"Cúc đỏ 4b, sll 29k",cuc-do-4b-sll-29k,,,,merge,khuc-nguyet-vien-cuc-do-4-banh-29-35k
+"Hút ẩm",hut-am,"Gói hút ẩm bánh Trung Thu",5000,15000,new,
+"Hạc vân nguyệt 3x",hac-van-nguyet-3x,"Hạc vân nguyệt 3x",29000,35000,new,
+"hạc vũ nguyệt ca (4 bánh, 6 bánh)",hac-vu-nguyet-ca-4-banh-6-banh,"Hạc vũ nguyệt ca 4 bánh 6 bánh",50000,70000,new,
+"Hộp cứng gấp gọn 6x",hop-cung-gap-gon-6x,"Hộp cứng gấp gọn 6x",36000,45000,new,
+"Khay túi, pet",khay-tui-pet,"Khay túi pet đựng bánh",5000,15000,new,
+"lan dạ 3x nhỏ",lan-da-3x-nho,"Lan dạ 3x nhỏ",16000,20000,new,
+"Liên nguyệt đình 3x",lien-nguyet-dinh-3x,,,,merge,lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k
+"Nguyệt hoa viên sll 19k",nguyet-hoa-vien-sll-19k,,,,merge,nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k
+"Sen xanh bổ sung ảnh (kim liên nguyệt)",sen-xanh-bo-sung-anh-kim-lien-nguyet,,,,merge,kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k
+"Thu hoa đỏ 3x nhỏ",thu-hoa-do-3x-nho,,,,merge,thu-hoa-4-banh-do-29k-35k
+"Thỏ  Đỏ 3x nhỏ",tho-do-3x-nho,"Thỏ đỏ 3x nhỏ",23000,28000,new,
