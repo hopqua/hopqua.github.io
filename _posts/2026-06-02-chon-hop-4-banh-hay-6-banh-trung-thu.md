@@ -55,7 +55,7 @@ Ví dụ: [Hộp 6 bánh mini Kim Sơn Cam](/product.html?id=6-banh-mini-kim-son
 
 - [Trang chủ — xem ảnh mẫu](/)
 - Zalo: **0965671689**
-- Shopee: [shop/169541002](https://shopee.vn/shop/169541002)
+- Shopee: [longthibo958](https://shopee.vn/longthibo958)
 
 ---
 

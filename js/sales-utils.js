@@ -1,5 +1,5 @@
 const ZALO_PHONE = '0965671689';
-const SHOPEE_SHOP_URL = 'https://shopee.vn/shop/169541002';
+const SHOPEE_SHOP_URL = 'https://shopee.vn/longthibo958';
 const SITE_ORIGIN = 'https://hopqua.github.io';
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/Torangesvn/';
 const ZALO_GROUP_1_URL = 'https://zalo.me/g/vffwdx817';

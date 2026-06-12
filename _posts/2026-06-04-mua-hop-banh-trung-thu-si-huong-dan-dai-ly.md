@@ -58,7 +58,7 @@ Nên lấy **5–10 hộp** thử đóng bánh thật trước khi chốt đơn 
 
 - Chốt mẫu, số lượng, giá, cọc (nếu có).
 - Theo dõi tiến độ qua Zalo.
-- Đặt lẻ bổ sung qua [Shopee](https://shopee.vn/shop/169541002) khi thiếu số lẻ.
+- Đặt lẻ bổ sung qua [Shopee](https://shopee.vn/longthibo958) khi thiếu số lẻ.
 
 ## Đặt sỉ qua kênh nào?
 
@@ -91,7 +91,7 @@ Nên lấy **5–10 hộp** thử đóng bánh thật trước khi chốt đơn 
 
 - **Zalo / Gọi:** 0965671689  
 - **Website:** [hopqua.github.io](/)  
-- **Shopee:** [shop/169541002](https://shopee.vn/shop/169541002)
+- **Shopee:** [longthibo958](https://shopee.vn/longthibo958)
 
 ---
 

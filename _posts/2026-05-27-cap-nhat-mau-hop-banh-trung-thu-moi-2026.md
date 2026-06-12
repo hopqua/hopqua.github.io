@@ -31,6 +31,6 @@ Các mẫu mới đã được cập nhật trong danh mục sản phẩm của 
 
 - Zalo / Điện thoại: **0965671689**
 - Facebook: [Văn Thắng](https://www.facebook.com/van.453776)
-- Shopee: [shop/169541002](https://shopee.vn/shop/169541002)
+- Shopee: [longthibo958](https://shopee.vn/longthibo958)
 
 Nếu cần chọn mẫu hộp phù hợp ngân sách, số lượng bánh hoặc concept quà tặng doanh nghiệp, hãy liên hệ để được tư vấn nhanh.
