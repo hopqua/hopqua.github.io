@@ -165,6 +165,51 @@ def rename_videos_in_dir(folder: Path, slug: str) -> None:
             print(f"  doi ten video -> {dest.name}")
 
 
+def normalize_images_in_dir(folder: Path, slug: str) -> None:
+    """Đổi ảnh PNG/JPG tùy ý → {slug}-1.jpg, {slug}-2.jpg, ..."""
+    try:
+        from PIL import Image
+    except ImportError as exc:
+        raise SystemExit("Cần Pillow: pip install Pillow") from exc
+
+    pattern = re.compile(rf"^{re.escape(slug)}-\d+\.jpe?g$", re.I)
+    candidates = sorted(
+        p
+        for p in folder.iterdir()
+        if p.is_file()
+        and p.suffix.lower() in (".jpg", ".jpeg", ".png")
+        and "-thumb" not in p.stem
+        and not pattern.match(p.name)
+    )
+    if not candidates:
+        return
+
+    temp_files: list[Path] = []
+    for i, src in enumerate(candidates):
+        tmp = folder / f"__import_tmp_{i}{src.suffix.lower()}"
+        src.rename(tmp)
+        temp_files.append(tmp)
+
+    idx = next_image_index(folder, slug) + 1
+    for tmp in temp_files:
+        dest = folder / f"{slug}-{idx}.jpg"
+        if tmp.suffix.lower() == ".png":
+            with Image.open(tmp) as im:
+                im.convert("RGB").save(dest, "JPEG", quality=88, optimize=True)
+            tmp.unlink()
+        elif tmp.suffix.lower() in (".jpg", ".jpeg"):
+            if tmp.suffix.lower() != ".jpg":
+                with Image.open(tmp) as im:
+                    im.save(dest, "JPEG", quality=88, optimize=True)
+                tmp.unlink()
+            else:
+                tmp.rename(dest)
+        else:
+            tmp.rename(dest)
+        print(f"  doi ten anh -> {dest.name}")
+        idx += 1
+
+
 def build_product_block(row: dict) -> str:
     slug = row["slug"]
     name = row["name"] or title_case_name(slug)
@@ -297,6 +342,7 @@ def main() -> None:
         if not src_dir.is_dir():
             raise FileNotFoundError(f"Không thấy: {src_dir}")
         src_dir = rename_batch_folder(src_dir, slug)
+        normalize_images_in_dir(src_dir, slug)
         rename_videos_in_dir(src_dir, slug)
         new_blocks.append(build_product_block(row))
         news += 1

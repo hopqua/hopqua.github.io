@@ -1,5 +1,18 @@
 const ZALO_PHONE = '0965671689';
 const SHOPEE_SHOP_URL = 'https://shopee.vn/longthibo958';
+
+function getShopeeUrl(product) {
+    if (product && product.shopeeUrl) {
+        return product.shopeeUrl;
+    }
+    if (typeof SHOPEE_PRODUCT_URLS !== 'undefined' && product && product.id) {
+        const direct = SHOPEE_PRODUCT_URLS[product.id];
+        if (direct) {
+            return direct;
+        }
+    }
+    return SHOPEE_SHOP_URL;
+}
 const SITE_ORIGIN = 'https://hopqua.github.io';
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/Torangesvn/';
 const ZALO_GROUP_1_URL = 'https://zalo.me/g/vffwdx817';

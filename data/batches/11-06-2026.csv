@@ -17,3 +17,4 @@ source_folder,slug,name,price_min,price_max,action,merge_into_id
 "Sen xanh bổ sung ảnh (kim liên nguyệt)",sen-xanh-bo-sung-anh-kim-lien-nguyet,,,,merge,kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k
 "Thu hoa đỏ 3x nhỏ",thu-hoa-do-3x-nho,,,,merge,thu-hoa-4-banh-do-29k-35k
 "Thỏ  Đỏ 3x nhỏ",tho-do-3x-nho,"Thỏ đỏ 3x nhỏ",23000,28000,new,
+"Vỏ ép kim thúc nổi",vo-ep-kim-thuc-noi,"Vỏ ép kim thúc nổi",29000,45000,new,

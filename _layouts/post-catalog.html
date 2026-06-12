@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<article class="blog-post blog-post-with-catalog">
+  <header class="blog-post-header">
+    <h1 class="blog-post-title">{{ page.title }}</h1>
+    <div class="blog-meta">
+      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">Ngày đăng: {{ page.date | date: "%d/%m/%Y" }}</time>
+      {% if page.categories %}
+      <span class="blog-meta-cats">
+        {% for category in page.categories %}
+        <span class="blog-card-tag">{{ category }}</span>
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="blog-post-body blog-post-intro">
+    {{ content | split: '<!-- product-grid -->' | first }}
+  </div>
+
+  {% if page.product_ids.size > 0 %}
+  <section class="blog-post-catalog home-catalog" aria-label="Danh sách sản phẩm">
+    <h2 class="catalog-section-title">{{ page.catalog_title | default: "18 mẫu hot Trung Thu 2026" }}</h2>
+    <p class="catalog-section-subtitle">Bấm ảnh xem chi tiết hoặc Zalo báo giá — giống danh mục trên trang chủ.</p>
+    <div class="product-grid" id="blog-product-grid" role="list"></div>
+    <script type="application/json" id="blog-product-ids">{{ page.product_ids | jsonify }}</script>
+  </section>
+  {% endif %}
+
+  <div class="blog-post-body blog-post-after-catalog">
+    {{ content | split: '<!-- product-grid -->' | last }}
+  </div>
+
+  <footer class="blog-post-footer">
+    <a href="{{ '/blog/' | relative_url }}" class="blog-back-link">← Quay lại danh sách bài viết</a>
+    <a href="{{ '/' | relative_url }}" class="blog-back-link blog-back-link-secondary">Xem sản phẩm</a>
+  </footer>
+</article>
+
+<script src="/js/products.js"></script>
+<script src="/js/product-images-manifest.js"></script>
+<script src="/js/image-utils.js"></script>
+<script src="/js/sales-utils.js"></script>
+<script src="/js/product-grid.js"></script>
+<script src="/js/blog-product-grid.js"></script>

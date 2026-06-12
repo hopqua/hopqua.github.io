@@ -1070,6 +1070,31 @@ main.container > section:not(.pd-layout):not(.community-block) {
     margin: 0 auto;
 }
 
+.blog-content:has(.blog-post-with-catalog) {
+    max-width: 1200px;
+}
+
+.blog-post-catalog {
+    margin: 28px 0 8px;
+}
+
+.blog-post-catalog .catalog-section-title {
+    margin: 0 0 6px;
+    font-size: 1.35rem;
+    color: #0f172a;
+}
+
+.blog-post-catalog .catalog-section-subtitle {
+    margin: 0 0 18px;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.blog-post-with-catalog .blog-post-body {
+    margin-bottom: 0;
+}
+
 .header-brand-link {
     color: inherit;
     text-decoration: none;

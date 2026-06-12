@@ -654,6 +654,17 @@ const productImageManifest = {
             "image/11-06-2026/tho-do-3x-nho/tho-do-3x-nho-3.jpg",
             "image/11-06-2026/tho-do-3x-nho/tho-do-3x-nho-4.jpg"
     ],
+    'vo-ep-kim-thuc-noi': [
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-1.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-2.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-3.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-4.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-5.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-6.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-7.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-8.jpg",
+            "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-9.jpg"
+    ],
 };
 
 function getManifestImages(productId) {

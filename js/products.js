@@ -822,6 +822,17 @@ const products = [
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
+    },
+    {
+        id: 'vo-ep-kim-thuc-noi',
+        name: 'Vỏ ép kim thúc nổi',
+        folder: '11-06-2026/vo-ep-kim-thuc-noi',
+        thumbnail: 'image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-1.jpg',
+        price: 'Từ 29.000đ – 45.000đ',
+        description: 'Vỏ hộp bánh trung thu ép kim thúc nổi — họa tiết nổi bật, sang trọng, phù hợp set quà cao cấp và bán lẻ trên Shopee.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
     }
 ];
 

@@ -1,6 +1,12 @@
 /** Bài blog hiển thị trên trang chủ — cập nhật khi thêm bài mới trong _posts/ */
 const homeBlogPosts = [
     {
+        title: '18 mẫu hộp bánh Trung Thu hot 2026 — xem ảnh & mua Shopee',
+        url: '/blog/mau-hot/2026/06/12/18-mau-hop-banh-trung-thu-hot-2026.html',
+        date: '2026-06-12',
+        image: 'image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-1.jpg'
+    },
+    {
         title: 'Mua hộp bánh Trung Thu sỉ: hướng dẫn cho tiệm bánh và đại lý',
         url: '/ban-si/huong-dan/2026/06/04/mua-hop-banh-trung-thu-si-huong-dan-dai-ly.html',
         date: '2026-06-04',

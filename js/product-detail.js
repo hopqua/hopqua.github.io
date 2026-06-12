@@ -127,7 +127,7 @@ function displayProductInfo(product) {
                     <img src="./image/zalo-hd-logo.png" alt="" width="22" height="22" loading="lazy">
                     Nhắn Zalo báo giá mẫu này
                 </a>
-                <a href="${SHOPEE_SHOP_URL}" target="_blank" rel="noopener" class="pd-btn pd-btn-shopee">
+                <a href="${getShopeeUrl(product)}" target="_blank" rel="noopener" class="pd-btn pd-btn-shopee">
                     Mua lẻ trên Shopee
                 </a>
                 <a href="index.html" class="pd-btn pd-btn-outline">← Xem thêm mẫu khác</a>
@@ -152,7 +152,7 @@ function setupMobileBuyBar(product) {
     bar.removeAttribute('aria-hidden');
     bar.innerHTML = `
         <a href="${zaloUrl}" target="_blank" rel="noopener" class="pd-mobile-btn pd-mobile-zalo" id="pd-mobile-zalo">Zalo báo giá</a>
-        <a href="${SHOPEE_SHOP_URL}" target="_blank" rel="noopener" class="pd-mobile-btn pd-mobile-shopee">Shopee</a>
+        <a href="${getShopeeUrl(product)}" target="_blank" rel="noopener" class="pd-mobile-btn pd-mobile-shopee">Shopee</a>
     `;
 }
 
