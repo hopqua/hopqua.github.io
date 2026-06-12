@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://hopqua.github.io/</loc>
     <lastmod>2026-06-12</lastmod>
@@ -457,67 +457,67 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2025/05/15/huong-dan-bao-quan-banh-trung-thu.html</loc>
+    <loc>https://hopqua.github.io/huong-dan/bao-quan/2025/05/15/huong-dan-bao-quan-banh-trung-thu.html</loc>
     <lastmod>2026-05-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2025/05/16/nguon-goc-lich-su-banh-trung-thu.html</loc>
+    <loc>https://hopqua.github.io/lich-su/truyen-thong/2025/05/16/nguon-goc-lich-su-banh-trung-thu.html</loc>
     <lastmod>2026-05-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2025/05/17/kinh-nghiem-chon-hop-banh-trung-thu-doanh-nghiep.html</loc>
+    <loc>https://hopqua.github.io/doanh-nghiep/kinh-nghiem/2025/05/17/kinh-nghiem-chon-hop-banh-trung-thu-doanh-nghiep.html</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2025/05/18/xu-huong-thiet-ke-hop-banh-trung-thu.html</loc>
+    <loc>https://hopqua.github.io/xu-huong/thiet-ke/2025/05/18/xu-huong-thiet-ke-hop-banh-trung-thu.html</loc>
     <lastmod>2026-05-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2025/05/21/chao-mung.html</loc>
+    <loc>https://hopqua.github.io/blog/2025/05/21/chao-mung.html</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2026/05/27/cap-nhat-mau-hop-banh-trung-thu-moi-2026.html</loc>
+    <loc>https://hopqua.github.io/blog/2026/05/27/cap-nhat-mau-hop-banh-trung-thu-moi-2026.html</loc>
     <lastmod>2026-05-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2026/06/01/hop-cung-vs-hop-giay-mem-banh-trung-thu.html</loc>
+    <loc>https://hopqua.github.io/huong-dan/chon-hop/2026/06/01/hop-cung-vs-hop-giay-mem-banh-trung-thu.html</loc>
     <lastmod>2026-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2026/06/02/chon-hop-4-banh-hay-6-banh-trung-thu.html</loc>
+    <loc>https://hopqua.github.io/huong-dan/chon-hop/2026/06/02/chon-hop-4-banh-hay-6-banh-trung-thu.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2026/06/03/bang-gia-hop-banh-trung-thu-theo-ngan-sach.html</loc>
+    <loc>https://hopqua.github.io/bang-gia/huong-dan/2026/06/03/bang-gia-hop-banh-trung-thu-theo-ngan-sach.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2026/06/04/mua-hop-banh-trung-thu-si-huong-dan-dai-ly.html</loc>
+    <loc>https://hopqua.github.io/ban-si/huong-dan/2026/06/04/mua-hop-banh-trung-thu-si-huong-dan-dai-ly.html</loc>
     <lastmod>2026-06-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://hopqua.github.io/2026/06/12/18-mau-hop-banh-trung-thu-hot-2026.html</loc>
+    <loc>https://hopqua.github.io/blog/mau-hot/2026/06/12/18-mau-hop-banh-trung-thu-hot-2026.html</loc>
     <lastmod>2026-06-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

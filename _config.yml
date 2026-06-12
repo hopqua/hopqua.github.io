@@ -11,3 +11,6 @@ plugins:
 paginate: 5
 
 exclude: [README.md]
+include:
+  - sitemap.xml
+  - robots.txt
