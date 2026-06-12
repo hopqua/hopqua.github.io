@@ -2,7 +2,14 @@
 layout: default
 ---
 
-<article class="blog-post blog-post-with-catalog">
+<article class="blog-post{% if page.layout == 'post-catalog' %} blog-post-with-catalog{% endif %}">
+  <nav class="blog-breadcrumb" aria-label="Breadcrumb">
+    <a href="{{ '/' | relative_url }}">Trang chủ</a>
+    <span class="blog-breadcrumb-sep" aria-hidden="true">/</span>
+    <a href="{{ '/blog/' | relative_url }}">Blog</a>
+    <span class="blog-breadcrumb-sep" aria-hidden="true">/</span>
+    <span>{{ page.title }}</span>
+  </nav>
   <header class="blog-post-header">
     <h1 class="blog-post-title">{{ page.title }}</h1>
     <div class="blog-meta">
@@ -36,13 +43,13 @@ layout: default
 
   <footer class="blog-post-footer">
     <a href="{{ '/blog/' | relative_url }}" class="blog-back-link">← Quay lại danh sách bài viết</a>
+    <a href="/18-mau-hot-2026.html" class="blog-back-link blog-back-link-secondary">18 mẫu hot Shopee</a>
     <a href="{{ '/' | relative_url }}" class="blog-back-link blog-back-link-secondary">Xem sản phẩm</a>
   </footer>
 </article>
 
-<script src="/js/products.js"></script>
-<script src="/js/product-images-manifest.js"></script>
-<script src="/js/image-utils.js"></script>
-<script src="/js/sales-utils.js"></script>
-<script src="/js/product-grid.js"></script>
-<script src="/js/blog-product-grid.js"></script>
+<script src="/js/products.js" defer></script>
+<script src="/js/image-utils.js" defer></script>
+<script src="/js/sales-utils.js" defer></script>
+<script src="/js/product-grid.js" defer></script>
+<script src="/js/blog-product-grid.js" defer></script>

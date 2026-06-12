@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
-Sitemap: https://hopqua.github.io/sitemap.xml 
+Disallow: /debug.html
+Disallow: /test.html
+Disallow: /simple-test.html
+
+Sitemap: https://hopqua.github.io/sitemap.xml

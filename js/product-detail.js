@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!productId) {
         showProductMissingId();
+        if (typeof loadDeferredGtag === 'function') loadDeferredGtag();
         return;
     }
 
@@ -14,12 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!product) {
         showProductNotFound();
+        if (typeof loadDeferredGtag === 'function') loadDeferredGtag();
         return;
     }
 
     const breadcrumbName = document.getElementById('product-breadcrumb-name');
     if (breadcrumbName) breadcrumbName.textContent = product.name;
-    document.title = product.name + ' - Hộp Bánh Trung Thu Vân Thắng';
+    document.title = product.name + ' | Hộp Bánh Trung Thu Vân Thắng';
 
     updateMetaTags(product);
     displayProductInfo(product);
@@ -37,12 +39,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const communityEl = document.getElementById('product-community');
     if (communityEl && typeof renderCommunityLinksBlock === 'function') {
-        communityEl.innerHTML = renderCommunityLinksBlock('full');
+        if (typeof runWhenIdle === 'function') {
+            runWhenIdle(() => {
+                communityEl.innerHTML = renderCommunityLinksBlock('full');
+            });
+        } else {
+            communityEl.innerHTML = renderCommunityLinksBlock('full');
+        }
     }
 
     setupGalleryNavigation();
     setupMobileBuyBar(product);
     attachZaloTracking(product);
+
+    if (typeof loadDeferredGtag === 'function') {
+        loadDeferredGtag();
+    }
 });
 
 function showProductMissingId() {
@@ -157,52 +169,26 @@ function setupMobileBuyBar(product) {
 }
 
 function updateMetaTags(product) {
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-
+    const metaDesc = buildProductMetaDescription(product);
     const canonicalProductUrl = getCanonicalProductUrl(product);
-    const canonicalImageUrl = getCanonicalAssetUrl(product.thumbnail);
-    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    const canonicalImageUrl = getAbsoluteUrl(product.thumbnail);
+    const pageTitle = `${product.name} | Hộp Bánh Trung Thu Vân Thắng`;
 
-    if (ogTitle) ogTitle.setAttribute('content', product.name);
-    if (ogDesc) ogDesc.setAttribute('content', product.description);
-    if (ogImage) ogImage.setAttribute('content', canonicalImageUrl);
-    if (ogUrl) ogUrl.setAttribute('content', canonicalProductUrl);
+    document.title = pageTitle;
+    setMetaContent('#meta-description', metaDesc);
+    setMetaContent('meta[property="og:title"]', pageTitle);
+    setMetaContent('meta[property="og:description"]', metaDesc);
+    setMetaContent('meta[property="og:image"]', canonicalImageUrl);
+    setMetaContent('meta[property="og:url"]', canonicalProductUrl);
+    setMetaContent('meta[name="twitter:title"]', pageTitle);
+    setMetaContent('meta[name="twitter:description"]', metaDesc);
+    setMetaContent('meta[name="twitter:image"]', canonicalImageUrl);
+
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink) canonicalLink.setAttribute('href', canonicalProductUrl);
 
-    const twTitle = document.querySelector('meta[name="twitter:title"]');
-    const twDesc = document.querySelector('meta[name="twitter:description"]');
-    const twImage = document.querySelector('meta[name="twitter:image"]');
-
-    if (twTitle) twTitle.setAttribute('content', product.name);
-    if (twDesc) twDesc.setAttribute('content', product.description);
-    if (twImage) twImage.setAttribute('content', canonicalImageUrl);
-
-    const jsonLdScript = document.querySelector('script[type="application/ld+json"]');
-    if (jsonLdScript) {
-        try {
-            const jsonLd = JSON.parse(jsonLdScript.textContent);
-            jsonLd.name = product.name;
-            jsonLd.description = product.description;
-            jsonLd.image = canonicalImageUrl;
-            jsonLd.url = canonicalProductUrl;
-            jsonLdScript.textContent = JSON.stringify(jsonLd, null, 2);
-        } catch (e) {
-            // Bỏ qua nếu JSON-LD gốc không hợp lệ.
-        }
-    }
-}
-
-function getCanonicalProductUrl(product) {
-    return `https://hopqua.github.io/product.html?id=${encodeURIComponent(product.id)}`;
-}
-
-function getCanonicalAssetUrl(assetPath) {
-    if (!assetPath) return '';
-    if (/^https?:\/\//i.test(assetPath)) return assetPath;
-    return `https://hopqua.github.io/${assetPath.replace(/^\.\//, '')}`;
+    injectJsonLd(buildProductJsonLd(product), 'product-json-ld');
+    injectJsonLd(buildProductBreadcrumbJsonLd(product), 'breadcrumb-json-ld');
 }
 
 function resolveGalleryPaths(product) {

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Cập nhật mẫu hộp bánh Trung Thu mới 2026"
+description: "Mẫu hộp bánh Trung Thu mới 2026 — hộp 1 bánh, 4 bánh, 6 mini, hộp cứng kèm trà. Cập nhật từ Vân Thắng, xem ảnh và báo giá Zalo."
 date: 2026-05-27 09:55:00 +0700
 categories: blog
 image: /image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg

@@ -1,6 +1,9 @@
 ---
 layout: post-catalog
 title: "18 mẫu hộp bánh Trung Thu hot 2026 — xem ảnh, giá tham khảo & mua Shopee"
+description: "18 mẫu hộp bánh Trung Thu hot nhất 2026 — Hoàng Kim, ép kim, hộp cứng, Liên Nguyệt, Thỏ đỏ mini. Xem ảnh, giá, mua Shopee longthibo958."
+keywords: "18 mẫu hộp bánh trung thu hot 2026, hộp bánh trung thu bán chạy, mua hộp trung thu shopee"
+canonical_url: https://hopqua.github.io/18-mau-hot-2026.html
 date: 2026-06-12 10:00:00 +0700
 categories: blog mau-hot
 image: /image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-1.jpg

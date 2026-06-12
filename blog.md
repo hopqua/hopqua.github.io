@@ -1,12 +1,14 @@
 ---
 layout: default
 title: "Blog — Hộp bánh Trung Thu & hộp quà"
+description: "Blog hướng dẫn chọn hộp bánh Trung Thu 2026, bảng giá tham khảo, 18 mẫu hot và mẹo đặt sỉ — Vân Thắng."
+keywords: "blog hộp bánh trung thu, hướng dẫn chọn hộp trung thu, bảng giá hộp bánh trung thu, mẹo mua hộp sỉ"
 permalink: /blog/
 image: /image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg
 ---
 
 <div class="blog-index">
-  <p class="blog-index-lead">Mẹo chọn hộp, bảng giá tham khảo, mẫu mới — cập nhật mùa Trung Thu 2026.</p>
+  <p class="blog-index-lead">Mẹo chọn hộp, bảng giá tham khảo, mẫu mới — cập nhật mùa Trung Thu 2026. Xem <a href="/18-mau-hot-2026.html">18 mẫu hot nhất 2026</a> có link Shopee từng sản phẩm.</p>
 
   <div class="blog-card-grid">
 {% for post in site.posts %}

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Bảng giá hộp bánh Trung Thu theo ngân sách (cập nhật 2026)"
+description: "Bảng giá hộp bánh Trung Thu 2026 theo ngân sách — dưới 20k, 20–35k, 35–50k và cao cấp. Giá vỏ hộp tham khảo, báo giá sỉ qua Zalo."
 date: 2026-06-03 10:00:00 +0700
 categories: bang-gia huong-dan
 image: /image/phu-quy-29-35k/phu-quy-29-35k-1.jpg

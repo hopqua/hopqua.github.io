@@ -1,7 +1,8 @@
-title: "Hộp quà tặng Vân Thắng"
-description: "Blog chia sẻ tin tức và kiến thức về phụ kiện bánh Trung Thu"
-baseurl: ""           # If hosted at root of domain
-url: "https://hopqua.github.io"    # Your site URL
+title: "Hộp Bánh Trung Thu & Hộp Quà — Vân Thắng"
+description: "Chuyên hộp bánh Trung Thu cao cấp, hộp quà Tết — 70+ mẫu 4–6 bánh, giá sỉ. Mua Shopee longthibo958 hoặc Zalo báo giá 0965671689."
+keywords: "hộp bánh trung thu, hộp quà trung thu, hộp bánh trung thu cao cấp, hộp quà tết, hộp đựng bánh trung thu, mua hộp bánh trung thu shopee, hộp bánh trung thu 2026"
+baseurl: ""
+url: "https://hopqua.github.io"
 default_og_image: "/image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg"
 
 theme: minima
@@ -9,5 +10,4 @@ plugins:
   - jekyll-paginate
 paginate: 5
 
-# Exclude static files not needed in build
-exclude: [README.md] 
+exclude: [README.md]

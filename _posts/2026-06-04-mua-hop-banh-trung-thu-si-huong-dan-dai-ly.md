@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Mua hộp bánh Trung Thu sỉ: hướng dẫn cho tiệm bánh và đại lý"
+description: "Hướng dẫn đặt hộp bánh Trung Thu sỉ cho tiệm bánh và đại lý — quy trình chọn mẫu, báo giá Zalo, giao hàng mùa 2026."
 date: 2026-06-04 10:00:00 +0700
 categories: ban-si huong-dan
 image: /image/26-5-2026/hop-cung-6-banh-mini-75-100g-36k-45k/hop-cung-6-banh-mini-75-100g-36k-45k-1.jpg

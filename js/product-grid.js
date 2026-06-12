@@ -2,11 +2,12 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
     if (!container || !productsToDisplay.length) return;
 
     const useShopee = options.secondaryAction === 'shopee' && typeof getShopeeUrl === 'function';
+    const showThumbnails = options.showThumbnails === true;
 
     productsToDisplay.forEach((product, localIndex) => {
         const globalIndex = globalStartIndex + localIndex;
         const cardThumb = getThumbUrl(product.thumbnail);
-        const isPriority = globalIndex < 4;
+        const isPriority = globalIndex < 2;
         const badges = getProductBadges(product);
         const zaloUrl = buildZaloUrl(product);
         const detailUrl = `product.html?id=${encodeURIComponent(product.id)}`;
@@ -22,13 +23,16 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
             productCard.classList.add(`season-${product.season.replace(/\s+/g, '-')}`);
         }
 
-        const thumbnails = getProductThumbnailImages(product);
+        const thumbnails = showThumbnails ? getProductThumbnailImages(product) : [];
         const thumbnailsHtml = thumbnails
             .map((src) => {
                 const thumbSrc = getThumbUrl(src);
                 return `<img src="${thumbSrc}" alt="" width="50" height="50" loading="lazy" decoding="async" aria-hidden="true" onerror="this.onerror=null; this.src='${src}';">`;
             })
             .join('');
+        const thumbnailsBlock = thumbnailsHtml
+            ? `<div class="product-thumbnails" aria-hidden="true">${thumbnailsHtml}</div>`
+            : '';
 
         const seasonBadge = product.season
             ? `<span class="season-badge season-${product.season.replace(' ', '-')}">${product.season === 'trung thu' ? 'Trung Thu' : 'Tết'}</span>`
@@ -53,7 +57,7 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
                     ${seasonBadge}
                     ${badgesHtml ? `<div class="product-badges">${badgesHtml}</div>` : ''}
                 </div>
-                <div class="product-thumbnails" aria-hidden="true">${thumbnailsHtml}</div>
+                ${thumbnailsBlock}
                 <div class="product-info">
                     <h3>${product.name}</h3>
                     ${postedMeta}

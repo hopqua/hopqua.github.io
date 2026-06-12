@@ -1,0 +1,34 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "Vân Thắng — Hộp Bánh Trung Thu",
+      "url": "{{ site.url }}/",
+      "logo": "{{ site.url }}/image/favicon.png",
+      "sameAs": [
+        "https://shopee.vn/longthibo958",
+        "https://www.facebook.com/Torangesvn/",
+        "https://zalo.me/0965671689"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+84-965671689",
+        "contactType": "customer service",
+        "availableLanguage": ["vi"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "Hộp Bánh Trung Thu Vân Thắng",
+      "description": "{{ site.description | strip_newlines | escape }}",
+      "publisher": { "@id": "{{ site.url }}/#organization" },
+      "inLanguage": "vi-VN"
+    }
+  ]
+}
+</script>
