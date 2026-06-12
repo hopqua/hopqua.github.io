@@ -30,6 +30,8 @@ product_ids:
 
 Mùa **Trung Thu 2026**, tiệm bánh và khách sỉ thường chọn trước các mẫu **bán chạy, dễ chụp ảnh, dễ bán lẻ**. Dưới đây là **18 mẫu hộp hot** đang có trên website và **Shopee [longthibo958](https://shopee.vn/longthibo958)** — xem ảnh, giá tham khảo và bấm **Xem mẫu** / **Zalo báo giá** ngay trên từng thẻ sản phẩm bên dưới (giống trang chủ).
 
+> **Trang SEO đầy đủ:** [18 mẫu hot Trung Thu 2026 — mua Shopee từng sản phẩm](/18-mau-hot-2026.html)
+
 <!-- product-grid -->
 
 ## Gợi ý chọn nhanh theo nhu cầu

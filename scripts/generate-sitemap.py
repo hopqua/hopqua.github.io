@@ -54,6 +54,7 @@ def main() -> None:
 
     # Core pages
     lines.append(make_url_block(f"{BASE_URL}/", today, "daily", "1.0"))
+    lines.append(make_url_block(f"{BASE_URL}/18-mau-hot-2026.html", today, "weekly", "0.95"))
     lines.append(make_url_block(f"{BASE_URL}/product.html", today, "daily", "0.9"))
     lines.append(make_url_block(f"{BASE_URL}/blog/", today, "daily", "0.9"))
 

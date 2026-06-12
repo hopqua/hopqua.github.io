@@ -1,5 +1,7 @@
-function displayProducts(container, productsToDisplay, globalStartIndex = 0) {
+function displayProducts(container, productsToDisplay, globalStartIndex = 0, options = {}) {
     if (!container || !productsToDisplay.length) return;
+
+    const useShopee = options.secondaryAction === 'shopee' && typeof getShopeeUrl === 'function';
 
     productsToDisplay.forEach((product, localIndex) => {
         const globalIndex = globalStartIndex + localIndex;
@@ -8,6 +10,9 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0) {
         const badges = getProductBadges(product);
         const zaloUrl = buildZaloUrl(product);
         const detailUrl = `product.html?id=${encodeURIComponent(product.id)}`;
+        const secondaryBtnHtml = useShopee
+            ? `<a href="${getShopeeUrl(product)}" target="_blank" rel="noopener sponsored" class="btn-shopee-card">Mua Shopee</a>`
+            : `<a href="${zaloUrl}" target="_blank" rel="noopener" class="btn-zalo-card" data-product-id="${product.id}">Zalo báo giá</a>`;
 
         const productCard = document.createElement('article');
         productCard.className = 'product-card';
@@ -58,12 +63,14 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0) {
             </a>
             <div class="product-card-actions">
                 <a href="${detailUrl}" class="btn-detail">Xem mẫu</a>
-                <a href="${zaloUrl}" target="_blank" rel="noopener" class="btn-zalo-card" data-product-id="${product.id}">Zalo báo giá</a>
+                ${secondaryBtnHtml}
             </div>
         `;
 
         const zaloBtn = productCard.querySelector('.btn-zalo-card');
-        zaloBtn.addEventListener('click', () => trackZaloClick(product));
+        if (zaloBtn) {
+            zaloBtn.addEventListener('click', () => trackZaloClick(product));
+        }
 
         container.appendChild(productCard);
     });

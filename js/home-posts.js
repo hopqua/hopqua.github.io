@@ -2,7 +2,7 @@
 const homeBlogPosts = [
     {
         title: '18 mẫu hộp bánh Trung Thu hot 2026 — xem ảnh & mua Shopee',
-        url: '/blog/mau-hot/2026/06/12/18-mau-hop-banh-trung-thu-hot-2026.html',
+        url: '/18-mau-hot-2026.html',
         date: '2026-06-12',
         image: 'image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-1.jpg'
     },

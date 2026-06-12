@@ -1711,6 +1711,148 @@ footer a {
     background: #0052cc;
 }
 
+.btn-shopee-card {
+    flex: 1;
+    text-align: center;
+    padding: 9px 10px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    background: #ee4d2d;
+    color: #fff;
+}
+
+.btn-shopee-card:hover {
+    background: #d43c20;
+}
+
+/* ========== Landing 18 mẫu hot 2026 ========== */
+.hot-18-main {
+    padding-top: 12px;
+    padding-bottom: 40px;
+}
+
+.hot-18-hero {
+    margin-bottom: 20px;
+}
+
+.hot-18-hero img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+}
+
+.hot-18-lead {
+    margin: 0 0 14px;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #334155;
+}
+
+.hot-18-lead strong {
+    color: #0f172a;
+}
+
+.hot-18-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    font-size: 0.92rem;
+    color: #64748b;
+}
+
+.hot-18-trust li::before {
+    content: "✓ ";
+    color: #16a34a;
+    font-weight: 700;
+}
+
+.hot-18-section-title {
+    margin: 0 0 8px;
+    font-size: 1.35rem;
+    color: #0f172a;
+}
+
+.hot-18-section-subtitle {
+    margin: 0 0 18px;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.hot-18-guide {
+    margin: 36px 0 28px;
+    padding: 20px 22px;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.hot-18-guide h2 {
+    margin: 0 0 14px;
+    font-size: 1.2rem;
+    color: #0f172a;
+}
+
+.hot-18-guide table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.hot-18-guide th,
+.hot-18-guide td {
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.hot-18-guide th {
+    background: #f8fafc;
+    font-weight: 600;
+}
+
+.hot-18-faq {
+    margin: 28px 0;
+}
+
+.hot-18-faq h2 {
+    margin: 0 0 14px;
+    font-size: 1.2rem;
+}
+
+.hot-18-faq details {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+}
+
+.hot-18-faq summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.hot-18-faq p {
+    margin: 10px 0 0;
+    color: #475569;
+    line-height: 1.55;
+}
+
+.hot-18-cta {
+    margin-top: 32px;
+}
+
 .product-trust-list {
     list-style: none;
     padding: 14px 16px;
@@ -1839,6 +1981,68 @@ footer a {
 
 .home-toolbar {
     margin-bottom: 14px;
+}
+
+.home-hot-promo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border: 1px solid #fdba74;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #9a3412;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-hot-promo:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(234, 88, 12, 0.15);
+}
+
+.home-hot-promo-badge {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #ea580c;
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.home-hot-promo-text {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #7c2d12;
+}
+
+.home-hot-promo-arrow {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ea580c;
+}
+
+.header-nav-hot {
+    font-weight: 700;
+}
+
+.catalog-nav-link-hot {
+    background: #fff7ed;
+    border-color: #fdba74;
+    color: #c2410c;
+    font-weight: 600;
+}
+
+.catalog-nav-link-hot:hover {
+    background: #ffedd5;
+    border-color: #fb923c;
+    color: #9a3412;
 }
 
 .home-toolbar-lead {
