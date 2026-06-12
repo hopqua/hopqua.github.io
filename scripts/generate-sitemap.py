@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""Generate sitemap.xml for pages, blog posts, and product URLs."""
+"""Generate sitemap index + child sitemaps for GitHub Pages."""
 from __future__ import annotations
 
 import re
 import xml.sax.saxutils
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE_URL = "https://hopqua.github.io"
 POSTS_DIR = ROOT / "_posts"
 PRODUCTS_JS = ROOT / "js" / "products.js"
-SITEMAP_XML = ROOT / "sitemap.xml"
 SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 
 
@@ -32,7 +32,6 @@ def parse_post_categories(path: Path) -> list[str]:
     match = re.search(r"^categories:\s*(.+)$", text, re.MULTILINE)
     if not match:
         return []
-
     value = match.group(1).strip()
     if value.startswith("["):
         return re.findall(r"['\"]([^'\"]+)['\"]", value)
@@ -54,14 +53,19 @@ def parse_product_ids() -> list[str]:
     return re.findall(r"\bid:\s*'([^']+)'", text)
 
 
-def xml_loc(url: str) -> str:
-    return xml.sax.saxutils.escape(url, {"'": "&apos;", '"': "&quot;"})
+def xml_text(value: str) -> str:
+    return xml.sax.saxutils.escape(value, {"'": "&apos;", '"': "&quot;"})
+
+
+def product_url(product_id: str) -> str:
+    encoded_id = quote(product_id, safe="")
+    return f"{BASE_URL}/product.html?id={encoded_id}"
 
 
 def make_url_block(loc: str, lastmod: str, changefreq: str, priority: str) -> str:
     return (
         "  <url>\n"
-        f"    <loc>{xml_loc(loc)}</loc>\n"
+        f"    <loc>{xml_text(loc)}</loc>\n"
         f"    <lastmod>{lastmod}</lastmod>\n"
         f"    <changefreq>{changefreq}</changefreq>\n"
         f"    <priority>{priority}</priority>\n"
@@ -69,36 +73,75 @@ def make_url_block(loc: str, lastmod: str, changefreq: str, priority: str) -> st
     )
 
 
-def main() -> None:
-    today = datetime.now().strftime("%Y-%m-%d")
+def write_urlset(path: Path, blocks: list[str]) -> None:
+    content = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<urlset xmlns="{SITEMAP_NS}">\n'
+        + "".join(blocks)
+        + "</urlset>\n"
+    )
+    path.write_text(content, encoding="utf-8")
+
+
+def write_sitemap_index(path: Path, entries: list[tuple[str, str]]) -> None:
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>\n',
-        f'<urlset xmlns="{SITEMAP_NS}">\n',
+        f'<sitemapindex xmlns="{SITEMAP_NS}">\n',
     ]
+    for loc, lastmod in entries:
+        lines.append("  <sitemap>\n")
+        lines.append(f"    <loc>{xml_text(loc)}</loc>\n")
+        lines.append(f"    <lastmod>{lastmod}</lastmod>\n")
+        lines.append("  </sitemap>\n")
+    lines.append("</sitemapindex>\n")
+    path.write_text("".join(lines), encoding="utf-8")
 
-    lines.append(make_url_block(f"{BASE_URL}/", today, "daily", "1.0"))
-    lines.append(make_url_block(f"{BASE_URL}/18-mau-hot-2026.html", today, "weekly", "0.95"))
-    lines.append(make_url_block(f"{BASE_URL}/product.html", today, "daily", "0.9"))
-    lines.append(make_url_block(f"{BASE_URL}/blog/", today, "daily", "0.9"))
 
-    for pid in parse_product_ids():
-        lines.append(
-            make_url_block(
-                f"{BASE_URL}/product.html?id={pid}",
-                today,
-                "weekly",
-                "0.7",
-            )
-        )
+def validate_xml(path: Path) -> None:
+    import xml.etree.ElementTree as ET
 
+    ET.parse(path)
+
+
+def main() -> None:
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    page_blocks = [
+        make_url_block(f"{BASE_URL}/", today, "daily", "1.0"),
+        make_url_block(f"{BASE_URL}/18-mau-hot-2026.html", today, "weekly", "0.95"),
+        make_url_block(f"{BASE_URL}/product.html", today, "daily", "0.9"),
+        make_url_block(f"{BASE_URL}/blog/", today, "daily", "0.9"),
+    ]
+    write_urlset(ROOT / "sitemap-pages.xml", page_blocks)
+
+    post_blocks = []
     for post in sorted(POSTS_DIR.glob("*.md")):
-        post_date = parse_post_date(post)
+        post_date = iso_date(parse_post_date(post))
         post_url = parse_post_url(post)
-        lines.append(make_url_block(f"{BASE_URL}{post_url}", iso_date(post_date), "monthly", "0.8"))
+        post_blocks.append(make_url_block(f"{BASE_URL}{post_url}", post_date, "monthly", "0.8"))
+    write_urlset(ROOT / "sitemap-posts.xml", post_blocks)
 
-    lines.append("</urlset>\n")
-    SITEMAP_XML.write_text("".join(lines), encoding="utf-8")
-    print(f"Generated sitemap: {SITEMAP_XML} ({len(lines) - 2} URLs)")
+    product_blocks = []
+    for pid in parse_product_ids():
+        product_blocks.append(make_url_block(product_url(pid), today, "weekly", "0.7"))
+    write_urlset(ROOT / "sitemap-products.xml", product_blocks)
+
+    write_sitemap_index(
+        ROOT / "sitemap.xml",
+        [
+            (f"{BASE_URL}/sitemap-pages.xml", today),
+            (f"{BASE_URL}/sitemap-posts.xml", today),
+            (f"{BASE_URL}/sitemap-products.xml", today),
+        ],
+    )
+
+    for name in ("sitemap.xml", "sitemap-pages.xml", "sitemap-posts.xml", "sitemap-products.xml"):
+        validate_xml(ROOT / name)
+
+    print(
+        "Generated sitemaps: "
+        f"index + pages({len(page_blocks)}) + posts({len(post_blocks)}) + products({len(product_blocks)})"
+    )
 
 
 if __name__ == "__main__":
