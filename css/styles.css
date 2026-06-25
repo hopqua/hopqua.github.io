@@ -114,6 +114,7 @@ header a.back-btn:hover {
     font-size: 0.9rem;
     color: #666;
     margin-bottom: 15px;
+    white-space: pre-line;
 }
 
 .view-details {
@@ -184,6 +185,10 @@ header a.back-btn:hover {
     font-weight: 600;
     color: #f59e0b;
     margin-bottom: 20px;
+}
+
+.product-info .description {
+    white-space: pre-line;
 }
 
 .buy-buttons {

@@ -94,7 +94,7 @@ const products = [
         folder: 'hoa-vien-do-4-banh-re',
         thumbnail: 'image/hoa-vien-do-4-banh-re/hoa-vien-do-4-banh-re-1.jpg',
         price: 'Từ 16.000đ đến 20.000đ',
-        description: 'Bộ vỏ hộp hoa viên đỏ đẹp mắt.',
+        description: 'Bộ vỏ hộp hoa viên đỏ đẹp mắt.\n\n•KT: 25*26CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -151,7 +151,7 @@ const products = [
         folder: 'hop-6-banh-mini-tho-ngoc-do',
         thumbnail: 'image/hop-6-banh-mini-tho-ngoc-do/hop-6-banh-mini-tho-ngoc-do-1.jpg',
         price: 'Từ 15.000đ đến 18.500đ',
-        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu đỏ sang trọng, phù hợp cho các dịp lễ tết.',
+        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu đỏ sang trọng, phù hợp cho các dịp lễ tết.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia \n•Ép kim mặt hộp, in 2 mặt \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -162,7 +162,7 @@ const products = [
         folder: 'hop-6-banh-mini-tho-ngoc-vang',
         thumbnail: 'image/hop-6-banh-mini-tho-ngoc-vang/hop-6-banh-mini-tho-ngoc-vang-1.jpg',
         price: 'Từ 21.000đ đến 24.500đ',
-        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu vàng sang trọng, biểu tượng của sự may mắn và thịnh vượng.',
+        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu vàng sang trọng, biểu tượng của sự may mắn và thịnh vượng.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia \n•Ép kim mặt hộp, in 2 mặt \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -173,7 +173,7 @@ const products = [
         folder: 'hop-lam-cuc-4-6-banh',
         thumbnail: 'image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg',
         price: 'Từ 35.000đ đến 38.000đ',
-        description: 'Hộp bánh trung thu có họa tiết hoa cúc tinh tế, có thể đựng 4-6 bánh tùy kích thước.',
+        description: 'Hộp bánh trung thu có họa tiết hoa cúc tinh tế, có thể đựng 4-6 bánh tùy kích thước.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -186,7 +186,7 @@ const products = [
         folder: 'hop-lan-vu-4-banh',
         thumbnail: 'image/hop-lan-vu-4-banh/hop-lan-vu-4-banh-1.jpg',
         price: 'Từ 29.000đ đến 34.000đ',
-        description: 'Hộp bánh trung thu với họa tiết lan vũ sang trọng, đựng được 4 bánh cỡ vừa.',
+        description: 'Hộp bánh trung thu với họa tiết lan vũ sang trọng, đựng được 4 bánh cỡ vừa.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -197,7 +197,7 @@ const products = [
         folder: 'hop-lien-ngu-4-banh',
         thumbnail: 'image/hop-lien-ngu-4-banh/hop-lien-ngu-4-banh-1.jpg',
         price: 'Từ 26.500đ đến 30.000đ',
-        description: 'Hộp bánh liên ngũ đựng được 4 bánh, thiết kế sang trọng phù hợp biếu tặng.',
+        description: 'Hộp bánh liên ngũ đựng được 4 bánh, thiết kế sang trọng phù hợp biếu tặng.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -208,7 +208,7 @@ const products = [
         folder: 'hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac',
         thumbnail: 'image/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac-1.jpg',
         price: 'Từ 36.000đ đến 39.000đ',
-        description: 'Hộp bánh hình bát giác độc đáo với họa tiết ngũ long Nguyệt   hội, đựng được 4 bánh cỡ lớn.',
+        description: 'Hộp bánh hình bát giác độc đáo với họa tiết ngũ long Nguyệt   hội, đựng được 4 bánh cỡ lớn.\n\n•KT: Túi: 39*40cm, đáy: 38*39cm (R-C)\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con \n•Ép kim nắp hộp, hộp con \n•Vách chia bồi sóng \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -230,7 +230,7 @@ const products = [
         folder: 'hop-sen-phu-quy-4-banh-re',
         thumbnail: 'image/hop-sen-phu-quy-4-banh-re/hop-sen-phu-quy-4-banh-re-1.jpg',
         price: 'Từ 15.000đ đến 18.000đ',
-        description: 'Hộp bánh trung thu với họa tiết hoa sen - biểu tượng của sự phú quý, đựng được 4 bánh với giá thành hợp lý.',
+        description: 'Hộp bánh trung thu với họa tiết hoa sen - biểu tượng của sự phú quý, đựng được 4 bánh với giá thành hợp lý.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -252,7 +252,7 @@ const products = [
         folder: 'hop-song-nguyet-4-6-banh',
         thumbnail: 'image/hop-song-nguyet-4-6-banh/hop-song-nguyet-4-6-banh-1.jpg',
         price: 'Từ 28.000đ đến 32.000đ',
-        description: 'Hộp bánh trung thu với họa tiết song Nguyệt   tinh tế, có thể đựng 4-6 bánh tùy kích thước.',
+        description: 'Hộp bánh trung thu với họa tiết song Nguyệt   tinh tế, có thể đựng 4-6 bánh tùy kích thước.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -297,7 +297,7 @@ const products = [
         folder: 'vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/4b-re-sen-phu-quy',
         thumbnail: 'image/vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/4b-re-sen-phu-quy/4b-re-sen-phu-quy-1.jpg',
         price: '5.000đ - 7.000đ',
-        description: 'Vỏ hộp 4 bánh với họa tiết hoa sen phú quý, thiết kế sang trọng.',
+        description: 'Vỏ hộp 4 bánh với họa tiết hoa sen phú quý, thiết kế sang trọng.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -321,7 +321,7 @@ const products = [
         folder: 'vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/hoa-vien-re-do',
         thumbnail: 'image/vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/hoa-vien-re-do/hoa-vien-re-do-1.jpg',
         price: '5.000đ - 7.000đ',
-        description: 'Vỏ hộp hoa viên màu đỏ đẹp mắt, giá cả hợp lý.',
+        description: 'Vỏ hộp hoa viên màu đỏ đẹp mắt, giá cả hợp lý.\n\n•KT: 25*26CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -347,7 +347,7 @@ const products = [
         folder: 'vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/lan-vu-re-linh',
         thumbnail: 'image/vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/lan-vu-re-linh/lan-vu-re-linh-1.jpg',
         price: '5.000đ - 7.000đ',
-        description: 'Vỏ hộp lan vũ thiết kế tinh tế, giá cả phải chăng.',
+        description: 'Vỏ hộp lan vũ thiết kế tinh tế, giá cả phải chăng.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -442,7 +442,7 @@ const products = [
         folder: '18-06-2025/vo-hop-trung-thu-lan-vu-4-banh-re-16-20k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-lan-vu-4-banh-re-16-20k/vo-hop-trung-thu-lan-vu-4-banh-re-16-20k-1.jpg',
         price: '16.000đ - 20.000đ',
-        description: 'Vỏ hộp trung thu lan vũ 4 bánh, thiết kế tinh tế với giá rẻ.',
+        description: 'Vỏ hộp trung thu lan vũ 4 bánh, thiết kế tinh tế với giá rẻ.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -493,7 +493,7 @@ const products = [
         folder: '26-5-2026/6-banh-mini-kim-son-cam-20k-26k',
         thumbnail: 'image/26-5-2026/6-banh-mini-kim-son-cam-20k-26k/6-banh-mini-kim-son-cam-20k-26k-1.jpg',
         price: '20.000đ - 26.000đ',
-        description: 'Mẫu hộp bánh trung thu 6 bánh mini kim sơn cam 20k 26k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu 6 bánh mini kim sơn cam 20k 26k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia \n•Ép kim mặt hộp, in 2 mặt \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -504,7 +504,7 @@ const products = [
         folder: '26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k',
         thumbnail: 'image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg',
         price: '36.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu bát giác hào quang ánh trăng 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu bát giác hào quang ánh trăng 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 39*40cm, đáy: 38*39cm (R-C)\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con \n•Ép kim nắp hộp, hộp con \n•Vách chia bồi sóng \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -517,7 +517,7 @@ const products = [
         folder: '26-5-2026/cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k',
         thumbnail: 'image/26-5-2026/cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k/cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k-1.jpg',
         price: '36.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu cúc Nguyệt  đỉnh 4 bánh kem hộp tra đỏ 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu cúc Nguyệt  đỉnh 4 bánh kem hộp tra đỏ 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -528,7 +528,7 @@ const products = [
         folder: '26-5-2026/hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k',
         thumbnail: 'image/26-5-2026/hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k/hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k-1.jpg',
         price: '61.000đ - 70.000đ',
-        description: 'Mẫu hộp bánh trung thu hoàng kim hàng giấy mềm cao cấp màu gold 4 bánh 6 bánh 61k 70k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu hoàng kim hàng giấy mềm cao cấp màu gold 4 bánh 6 bánh 61k 70k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n【4 bánh】\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, cài trang trí\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP\n\n【6 bánh】\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, cài trang trí\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -550,7 +550,7 @@ const products = [
         folder: '26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k',
         thumbnail: 'image/26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-1.jpg',
         price: '65.000đ - 75.000đ',
-        description: 'Mẫu hộp bánh trung thu hộp cứng 4 bánh kem hộp tra xanh lá 65k 75k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu hộp cứng 4 bánh kem hộp tra xanh lá 65k 75k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: khay đáy 36*28*6.6cm, hộp con 10,2*10,2*6cm, \nHộp trà 6*6*22cm, Túi 38*31*8cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -561,7 +561,7 @@ const products = [
         folder: '26-5-2026/hop-cung-6-banh-mini-75-100g-36k-45k',
         thumbnail: 'image/26-5-2026/hop-cung-6-banh-mini-75-100g-36k-45k/hop-cung-6-banh-mini-75-100g-36k-45k-1.jpg',
         price: '36.000đ - 45.000đ',
-        description: 'Mẫu hộp bánh trung thu hộp cứng 6 bánh mini 75 100g 36k 45k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu hộp cứng 6 bánh mini 75 100g 36k 45k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia \n•Ép kim mặt hộp, in 2 mặt \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -572,7 +572,7 @@ const products = [
         folder: '26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k',
         thumbnail: 'image/26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k-1.jpg',
         price: 'Từ 80.000đ – 90.000đ',
-        description: 'Hộp cứng quai trúc xanh dương, 4 bánh kem trà — mẫu cao cấp, phù hợp quà tặng và bán lẻ.',
+        description: 'Hộp cứng quai trúc xanh dương, 4 bánh kem trà — mẫu cao cấp, phù hợp quà tặng và bán lẻ.\n\n•KT: khay đáy 36*28*6.6cm, hộp con 10,2*10,2*6cm, \nHộp trà 6*6*22cm, Túi 38*31*8cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -583,7 +583,7 @@ const products = [
         folder: '26-5-2026/khuc-nguyet-vien-cuc-do-4-banh-29-35k',
         thumbnail: 'image/26-5-2026/khuc-nguyet-vien-cuc-do-4-banh-29-35k/khuc-nguyet-vien-cuc-do-4-banh-29-35k-1.jpg',
         price: 'Từ 29.000đ – 35.000đ',
-        description: 'Khúc Nguyệt viên cúc đỏ, 4 bánh — thiết kế truyền thống, giá hợp lý cho đại lý và quà gia đình.',
+        description: 'Khúc Nguyệt viên cúc đỏ, 4 bánh — thiết kế truyền thống, giá hợp lý cho đại lý và quà gia đình.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -596,7 +596,7 @@ const products = [
         folder: '26-5-2026/kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k',
         thumbnail: 'image/26-5-2026/kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k/kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k-1.jpg',
         price: '29.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu kim liên Nguyệt  xanh lá 4 bánh 6 bánh 29k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu kim liên Nguyệt  xanh lá 4 bánh 6 bánh 29k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n【4 bánh】\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n\n【6 bánh】\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -607,7 +607,7 @@ const products = [
         folder: '26-5-2026/lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k',
         thumbnail: 'image/26-5-2026/lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k/lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k-1.jpg',
         price: '33.000đ - 40.000đ',
-        description: 'Mẫu hộp bánh trung thu liên Nguyệt  đỉnh 4 bánh kem hộp tra 6 bánh 33k 40k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu liên Nguyệt  đỉnh 4 bánh kem hộp tra 6 bánh 33k 40k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -618,7 +618,7 @@ const products = [
         folder: '26-5-2026/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k',
         thumbnail: 'image/26-5-2026/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k/nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k-1.jpg',
         price: '18.500đ - 25.000đ',
-        description: 'Mẫu hộp bánh trung thu Nguyệt  hoa viên doxanh duong 4 bánh rẻ 185k 25k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu Nguyệt  hoa viên doxanh duong 4 bánh rẻ 185k 25k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con ép kim\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -632,7 +632,7 @@ const products = [
         folder: '26-5-2026/nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k',
         thumbnail: 'image/26-5-2026/nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k/nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k-1.jpg',
         price: '37.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu Nguyệt  liên ngư 4 bánh tra 6 bánh 37k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu Nguyệt  liên ngư 4 bánh tra 6 bánh 37k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -643,7 +643,7 @@ const products = [
         folder: '26-5-2026/song-ngu-do-4-banh-tra-doc-36k-44k',
         thumbnail: 'image/26-5-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-1.jpg',
         price: '36.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu song ngư đỏ 4 bánh tra dọc 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu song ngư đỏ 4 bánh tra dọc 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 39*40cm, đáy: 38*39cm (R-C)\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con \n•Ép kim nắp hộp, hộp con \n•Vách chia bồi sóng \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -654,7 +654,7 @@ const products = [
         folder: '26-5-2026/thien-hoa-van-nguyet-4-banh-re-175k-24k',
         thumbnail: 'image/26-5-2026/thien-hoa-van-nguyet-4-banh-re-175k-24k/thien-hoa-van-nguyet-4-banh-re-175k-24k-1.jpg',
         price: '17.500đ - 24.000đ',
-        description: 'Mẫu hộp bánh trung thu thiên hoa vân Nguyệt  4 bánh rẻ 175k 24k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu thiên hoa vân Nguyệt  4 bánh rẻ 175k 24k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con ép kim\n•Ép kim full túi \n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -665,7 +665,7 @@ const products = [
         folder: '26-5-2026/tho-xanh-duong-4-banh-29k-35k',
         thumbnail: 'image/26-5-2026/tho-xanh-duong-4-banh-29k-35k/tho-xanh-duong-4-banh-29k-35k-1.jpg',
         price: '29.000đ - 35.000đ',
-        description: 'Mẫu hộp bánh trung thu thỏ xanh dương 4 bánh 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu thỏ xanh dương 4 bánh 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -676,7 +676,7 @@ const products = [
         folder: '26-5-2026/thu-hoa-4-banh-do-29k-35k',
         thumbnail: 'image/26-5-2026/thu-hoa-4-banh-do-29k-35k/thu-hoa-4-banh-do-29k-35k-1.jpg',
         price: '29.000đ - 35.000đ',
-        description: 'Mẫu hộp bánh trung thu thu hoa 4 bánh đỏ 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu thu hoa 4 bánh đỏ 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
