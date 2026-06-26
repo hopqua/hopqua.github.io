@@ -51,6 +51,19 @@ COL_STOCK = 12
 COL_VAR_SKU = 13
 COL_COVER = 17
 COL_IMG_START = 18
+# Kênh vận chuyển Shopee (sheet «Bản đăng tải»)
+COL_SHIP_FAST = 30       # Nhanh
+COL_SHIP_BULKY = 31      # Hàng Cồng Kềnh
+COL_SHIP_VIETTEL = 32    # Tủ nhận hàng - Viettel Smartbox
+COL_SHIP_SPX = 33        # Tủ nhận hàng - SPX
+COL_SHIP_PUDO = 34       # Điểm nhận hàng
+SHIPPING_CHANNEL_COLS = (
+    COL_SHIP_FAST,
+    COL_SHIP_BULKY,
+    COL_SHIP_VIETTEL,
+    COL_SHIP_SPX,
+    COL_SHIP_PUDO,
+)
 
 FEE_PLATFORM = 0.30
 FEE_RETURN = 0.04
@@ -58,8 +71,15 @@ ROUND_STEP = 500
 
 FOOTER = (
     "Phụ kiện hộp / khay đựng bánh Trung Thu, hàng có sẵn.\n"
-    "Inbox shop để được giá tốt theo số lượng.\n"
-    "Xem thêm ảnh: hopqua.github.io — Zalo 0965671689 báo giá sỉ."
+    "Chat với shop trên Shopee để được tư vấn mẫu và ưu đãi theo số lượng.\n"
+    "Ảnh chi tiết đầy đủ trong gallery sản phẩm."
+)
+
+# Dòng / URL dẫn giao dịch ngoài Shopee (vi phạm chính sách listing)
+_OFFPLATFORM_RE = re.compile(
+    r"https?://|hopqua\.github|zalo|facebook\.com|messenger|"
+    r"0965671689|inbox shop|báo giá sỉ|liên hệ ngoài",
+    re.I,
 )
 
 
@@ -176,11 +196,99 @@ def resolve_shopee_listing_price(direct: int | None) -> tuple[int | None, int, i
 
 
 def load_shopee_links() -> dict[str, str]:
-    """SKU → URL listing đã có trên shop (từ js/shopee-links.js)."""
+    """SKU → URL từ js/shopee-links.js (website)."""
     path = ROOT / "js" / "shopee-links.js"
     if not path.is_file():
         return {}
     return dict(re.findall(r"'([^']+)':\s*'(https://shopee\.vn/product/\d+/\d+)'", path.read_text(encoding="utf-8")))
+
+
+def _is_shopee_item_id(val: object) -> bool:
+    return bool(re.fullmatch(r"\d{8,12}", str(val or "").strip()))
+
+
+def read_seller_export_links(path: Path) -> tuple[dict[str, str], set[str]]:
+    """Đọc mass_update_basic_info — SKU→link + tập item ID (kể cả dòng SKU trống)."""
+    try:
+        import pandas as pd
+    except ImportError:
+        return {}, set()
+    if not path.is_file():
+        return {}, set()
+    df = pd.read_excel(path, engine="calamine", header=None)
+    links: dict[str, str] = {}
+    item_ids: set[str] = set()
+    for i in range(len(df)):
+        pid = df.iloc[i, 0]
+        if not _is_shopee_item_id(pid):
+            continue
+        iid = str(int(float(pid)))
+        item_ids.add(iid)
+        url = f"https://shopee.vn/product/{SHOP_ID}/{iid}"
+        sku = str(df.iloc[i, 1] or "").strip()
+        if not sku or sku in ("nan", "SKU Sản phẩm", "et_title_parent_sku"):
+            continue
+        if re.fullmatch(r"[a-f0-9]{32}", sku):
+            continue
+        links[sku] = url
+    return links, item_ids
+
+
+def shopee_item_id(url: str) -> str:
+    return url.rstrip("/").split("/")[-1] if url else ""
+
+
+def is_on_shopee(
+    sku: str,
+    export_links: dict[str, str],
+    export_item_ids: set[str],
+    all_links: dict[str, str],
+) -> bool:
+    if sku in export_links:
+        return True
+    if export_item_ids:
+        iid = shopee_item_id(all_links.get(sku, ""))
+        return bool(iid and iid in export_item_ids)
+    return sku in all_links
+
+
+def find_seller_export_file(out_dir: Path) -> Path | None:
+    """Tìm file export basic info Seller Centre để đối chiếu đã đăng."""
+    names = (
+        "seller-doi-chieu-basic-info.xlsx",
+        "mass_update_basic_info_SOURCE.xlsx",
+    )
+    for name in names:
+        p = out_dir / name
+        if p.is_file():
+            return p
+    for base in (out_dir, Path.home() / "Downloads"):
+        if not base.is_dir():
+            continue
+        matches = sorted(
+            base.glob("mass_update_basic_info_*.xlsx"),
+            key=lambda x: x.stat().st_mtime,
+            reverse=True,
+        )
+        if matches:
+            return matches[0]
+    return None
+
+
+def load_posted_from_seller_export(out_dir: Path) -> tuple[dict[str, str], set[str], str]:
+    """Trả về (SKU→URL, item ID trên shop, mô tả nguồn) từ export Seller Centre."""
+    path = find_seller_export_file(out_dir)
+    if not path:
+        return {}, set(), ""
+    links, item_ids = read_seller_export_links(path)
+    if not item_ids:
+        return {}, set(), ""
+    note = (
+        f"<strong>Đối chiếu «đã đăng Shopee»</strong> theo export Seller Centre: "
+        f"<code>{path.name}</code> ({len(item_ids)} SP trên shop"
+        f"{f', {len(links)} có SKU khớp' if len(links) < len(item_ids) else ''})."
+    )
+    return links, item_ids, note
 
 
 def fmt_vnd(n: int | None) -> str:
@@ -195,6 +303,25 @@ def abs_url(path: str) -> str:
     return f"{SITE}/{path.lstrip('/')}"
 
 
+def sanitize_shopee_text(text: str) -> str:
+    """Bỏ URL và nội dung gợi ý giao dịch ngoài Shopee."""
+    if not text:
+        return ""
+    kept: list[str] = []
+    for line in text.splitlines():
+        if _OFFPLATFORM_RE.search(line):
+            continue
+        if re.search(r"Giá lẻ|Giá tham khảo|SL 11|SL 100|Trên 1\.000", line, re.I):
+            continue
+        kept.append(line)
+    return "\n".join(kept).strip()
+
+
+def enable_all_shipping_channels(ws, row: int) -> None:
+    for col in SHIPPING_CHANNEL_COLS:
+        ws.cell(row=row, column=col).value = "Bật"
+
+
 def build_shopee_title(old_name: str, product: Product | None) -> str:
     name = (product.name if product else old_name).strip()
     if product and product.folder.startswith("cap-nhat-2026/"):
@@ -206,17 +333,10 @@ def build_shopee_title(old_name: str, product: Product | None) -> str:
 
 
 def build_shopee_description(product: Product, shopee_price: int) -> str:
-    intro = product.intro
+    intro = sanitize_shopee_text(product.intro)
     if intro and not intro.endswith("."):
         intro += "."
-    specs = product.specs
-    # Bỏ dòng giá cũ trong specs (web/Zalo)
-    spec_lines = []
-    for line in specs.splitlines():
-        if re.search(r"Giá lẻ|Giá tham khảo|SL 11|SL 100|Trên 1\.000", line):
-            continue
-        spec_lines.append(line)
-    specs_clean = "\n".join(spec_lines).strip()
+    specs_clean = sanitize_shopee_text(product.specs)
 
     parts: list[str] = []
     if intro:
@@ -226,14 +346,13 @@ def build_shopee_description(product: Product, shopee_price: int) -> str:
     parts.extend(
         [
             "",
-            f"Giá listing Shopee (lẻ 1–10 cái): {fmt_vnd(shopee_price)}.",
-            f"Xem ảnh & mô tả đầy đủ: {SITE}/product.html?id={product.id}",
+            f"Giá Shopee (lẻ 1–10 cái): {fmt_vnd(shopee_price)}.",
             FOOTER,
         ]
     )
     desc = "\n".join(parts)
     if len(desc) < 100:
-        desc += "\nZalo 0965671689 — tư vấn chọn mẫu và báo giá sỉ theo số lượng."
+        desc += "\nChat với shop trên Shopee để được tư vấn chọn mẫu phù hợp."
     return desc[:3000]
 
 
@@ -270,7 +389,16 @@ class RowReport:
     note: str = ""
 
 
-def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) -> None:
+def write_html_report(
+    rows: list[RowReport],
+    out_path: Path,
+    formula_note: str,
+    *,
+    excel_name: str = "Shopee_mass_upload_71sp_READY.xlsx",
+    page_title: str = "Báo cáo giá listing Shopee — mùa Trung Thu 2026",
+    skip_note: str = "",
+    doi_chieu_note: str = "",
+) -> None:
     updated = sum(1 for r in rows if r.has_product and r.direct)
     missing = [r for r in rows if not r.has_product]
     no_price = [r for r in rows if r.has_product and not r.direct]
@@ -310,7 +438,7 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Báo cáo giá Shopee 2026 — Vân Thắng</title>
+  <title>{page_title} — Vân Thắng</title>
   <style>
     :root {{ --bg:#fff8f0; --text:#2d1810; --accent:#8b1528; --gold:#f0c14b; --border:#e8d5c0; }}
     body {{ font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 24px; line-height: 1.5; }}
@@ -336,13 +464,15 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
   </style>
 </head>
 <body>
-  <h1>Báo cáo giá listing Shopee — mùa Trung Thu 2026</h1>
+  <h1>{page_title}</h1>
   <div class="meta">
     <p>Ngày tạo: <strong>{date.today().isoformat()}</strong></p>
+    {f'<p>{doi_chieu_note}</p>' if doi_chieu_note else ''}
+    {f'<p>{skip_note}</p>' if skip_note else ''}
     <p>Công thức: <strong>{formula_note}</strong></p>
-    <p>File Excel sẵn đăng: <strong>Shopee_mass_upload_71sp_READY.xlsx</strong> (sheet «Bản đăng tải»)</p>
-    <p>Sau khi đăng Shopee, điền <code>shopee_item_id</code> vào <strong>shopee-item-ids.csv</strong> rồi chạy:<br>
-    <code>python3 website/source/scripts/apply-shopee-item-ids.py</code> → cập nhật link Shopee trên website.</p>
+    <p>File Excel sẵn đăng: <strong>{excel_name}</strong> (sheet «Bản đăng tải»)</p>
+    <p>Sau khi đăng Shopee mới, export lại <strong>Thông tin cơ bản</strong> từ Seller Centre → chạy
+    <code>python3 scripts/build-shopee-upload-package.py --seller-export ~/Downloads/mass_update_basic_info_*.xlsx</code></p>
     <div class="stats">
       <span class="stat">{len(rows)} dòng Excel</span>
       <span class="stat">{updated} đã tính giá mới</span>
@@ -369,25 +499,92 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
     out_path.write_text(html, encoding="utf-8")
 
 
+def renumber_reports(rows: list[RowReport]) -> list[RowReport]:
+    """Gán lại cột # hiển thị 1..n."""
+    out: list[RowReport] = []
+    for i, r in enumerate(rows, start=1):
+        out.append(
+            RowReport(
+                row=i,
+                sku=r.sku,
+                name=r.name,
+                direct=r.direct,
+                fee30=r.fee30,
+                fee04=r.fee04,
+                shopee_price=r.shopee_price,
+                old_price=r.old_price,
+                delta=r.delta,
+                has_product=r.has_product,
+                has_images=r.has_images,
+                web_url=r.web_url,
+                on_shopee=r.on_shopee,
+                shopee_url=r.shopee_url,
+                note=r.note,
+            )
+        )
+    return out
+
+
+def write_csv_rows(csv_rows: list[dict], csv_path: Path) -> None:
+    with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(
+            f,
+            fieldnames=[
+                "web_id",
+                "sku",
+                "ten_shopee",
+                "da_dang_shopee",
+                "gia_le_max",
+                "gia_shopee",
+                "shopee_item_id",
+                "shopee_url",
+                "link_web",
+            ],
+        )
+        w.writeheader()
+        w.writerows(csv_rows)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--template", type=Path, default=DEFAULT_TEMPLATE)
     parser.add_argument("--out-dir", type=Path, default=DEFAULT_OUT_DIR)
+    parser.add_argument(
+        "--only-new",
+        action="store_true",
+        help="Chỉ tạo gói SP chưa đăng Shopee (bỏ qua SKU đã có trên shop theo export Seller Centre)",
+    )
+    parser.add_argument(
+        "--seller-export",
+        type=Path,
+        help="Export mass_update_basic_info từ Seller Centre (đối chiếu đã đăng)",
+    )
     args = parser.parse_args()
 
     if not args.template.is_file():
         raise SystemExit(f"Không thấy template: {args.template}")
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    out_xlsx = args.out_dir / "Shopee_mass_upload_71sp_READY.xlsx"
-    shutil.copy2(args.template, out_xlsx)
+    out_xlsx_full = args.out_dir / "Shopee_mass_upload_71sp_READY.xlsx"
+    out_xlsx_new = args.out_dir / "Shopee_mass_upload_CHUA_DANG_READY.xlsx"
+    shutil.copy2(args.template, out_xlsx_full)
+    out_xlsx = out_xlsx_new if args.only_new else out_xlsx_full
 
     products = parse_products_js()
     manifest = parse_manifest()
     enrich_images(products, manifest)
-    shopee_links = load_shopee_links()
 
-    wb = openpyxl.load_workbook(out_xlsx)
+    if args.seller_export and args.seller_export.is_file():
+        dest = args.out_dir / "seller-doi-chieu-basic-info.xlsx"
+        if args.seller_export.resolve() != dest.resolve():
+            shutil.copy2(args.seller_export, dest)
+
+    export_links, export_item_ids, doi_chieu_note = load_posted_from_seller_export(args.out_dir)
+    shopee_links = load_shopee_links()
+    # URL: ưu tiên export shop (đối chiếu), fallback link trên web
+    all_links = {**shopee_links, **export_links}
+
+    wb = openpyxl.load_workbook(out_xlsx_full)
     ws = wb[SHEET]
     reports: list[RowReport] = []
     csv_rows: list[dict] = []
@@ -413,8 +610,8 @@ def main() -> None:
         direct = parse_direct_retail_vnd(prod) if prod else None
         shopee_price = fee30 = fee04 = None
         note = ""
-        on_shopee = sku in shopee_links
-        shopee_url = shopee_links.get(sku, "")
+        on_shopee = is_on_shopee(sku, export_links, export_item_ids, all_links)
+        shopee_url = export_links.get(sku) or all_links.get(sku, "")
 
         if prod and direct:
             shopee_price, fee30, fee04, _ = resolve_shopee_listing_price(direct)
@@ -435,6 +632,11 @@ def main() -> None:
             shopee_price = old_price
         else:
             note = "Không có trong products.js"
+
+        enable_all_shipping_channels(ws, row)
+        desc_val = ws.cell(row=row, column=COL_DESC).value
+        if desc_val:
+            ws.cell(row=row, column=COL_DESC).value = sanitize_shopee_text(str(desc_val))
 
         delta = (shopee_price - old_price) if shopee_price is not None and old_price else None
         reports.append(
@@ -470,61 +672,109 @@ def main() -> None:
             }
         )
 
-    wb.save(out_xlsx)
-
-    html_path = args.out_dir / "bao-cao-gia-shopee.html"
-    write_html_report(reports, html_path, formula_note)
-
-    csv_path = args.out_dir / "shopee-item-ids.csv"
-    existing_links: dict[str, tuple[str, str]] = {}
-    shopee_js = ROOT / "js" / "shopee-links.js"
-    if shopee_js.is_file():
-        for m in re.finditer(
-            r"'([^']+)':\s*'(https://shopee\.vn/product/\d+/(\d+))'", shopee_js.read_text(encoding="utf-8")
-        ):
-            existing_links[m.group(1)] = (m.group(2), m.group(3))
+    posted_excel_rows = sorted((r.row for r in reports if r.on_shopee), reverse=True)
+    new_reports = [r for r in reports if not r.on_shopee]
 
     for row in csv_rows:
         sku = row["sku"]
-        if sku in existing_links:
-            row["shopee_url"], row["shopee_item_id"] = existing_links[sku]
+        if sku in export_links:
+            row["shopee_url"] = export_links[sku]
+            row["shopee_item_id"] = shopee_item_id(export_links[sku])
             row["da_dang_shopee"] = "Có"
+        elif is_on_shopee(sku, export_links, export_item_ids, all_links):
+            row["shopee_url"] = all_links[sku]
+            row["shopee_item_id"] = shopee_item_id(all_links[sku])
+            row["da_dang_shopee"] = "Có"
+    posted_src = "export Seller Centre" if export_item_ids else "shopee-links.js"
+    skip_posted = (
+        f"<strong>Đã bỏ qua {len(posted_excel_rows)} SP</strong> đã có trên shop "
+        f"(đối chiếu {posted_src}) — chỉ còn SP cần đăng mới."
+    )
 
-    with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
-        w = csv.DictWriter(
-            f,
-            fieldnames=[
-                "web_id",
-                "sku",
-                "ten_shopee",
-                "da_dang_shopee",
-                "gia_le_max",
-                "gia_shopee",
-                "shopee_item_id",
-                "shopee_url",
-                "link_web",
-            ],
+    new_csv_rows = [r for r in csv_rows if r["da_dang_shopee"] != "Có"]
+
+    if args.only_new:
+        for row_idx in posted_excel_rows:
+            ws.delete_rows(row_idx)
+        wb.save(out_xlsx_new)
+        html_path = args.out_dir / "bao-cao-gia-shopee-chua-dang.html"
+        csv_path = args.out_dir / "shopee-item-ids-chua-dang.csv"
+        write_html_report(
+            renumber_reports(new_reports),
+            html_path,
+            formula_note,
+            excel_name=out_xlsx_new.name,
+            page_title="SP chưa đăng Shopee — upload mùa Trung Thu 2026",
+            skip_note=skip_posted,
+            doi_chieu_note=doi_chieu_note,
         )
-        w.writeheader()
-        w.writerows(csv_rows)
+        write_csv_rows(new_csv_rows, csv_path)
+        summary = {
+            "generated": date.today().isoformat(),
+            "formula": formula_note,
+            "excel": str(out_xlsx_new),
+            "html": str(html_path),
+            "csv": str(csv_path),
+            "rows": len(new_reports),
+            "skipped_posted": len(posted_excel_rows),
+            "priced": sum(1 for r in new_reports if r.direct),
+        }
+    else:
+        wb.save(out_xlsx_full)
+        html_path = args.out_dir / "bao-cao-gia-shopee.html"
+        csv_path = args.out_dir / "shopee-item-ids.csv"
+        write_html_report(reports, html_path, formula_note, doi_chieu_note=doi_chieu_note)
+        write_csv_rows(csv_rows, csv_path)
 
-    summary = {
-        "generated": date.today().isoformat(),
-        "formula": formula_note,
-        "excel": str(out_xlsx),
-        "html": str(html_path),
-        "csv": str(csv_path),
-        "rows": len(reports),
-        "priced": sum(1 for r in reports if r.direct),
-    }
+        # Gói upload: chỉ SP chưa đăng
+        wb_new = openpyxl.load_workbook(out_xlsx_full)
+        ws_new = wb_new[SHEET]
+        for row_idx in posted_excel_rows:
+            ws_new.delete_rows(row_idx)
+        wb_new.save(out_xlsx_new)
+        html_new = args.out_dir / "bao-cao-gia-shopee-chua-dang.html"
+        csv_new = args.out_dir / "shopee-item-ids-chua-dang.csv"
+        write_html_report(
+            renumber_reports(new_reports),
+            html_new,
+            formula_note,
+            excel_name=out_xlsx_new.name,
+            page_title="SP chưa đăng Shopee — upload mùa Trung Thu 2026",
+            skip_note=skip_posted,
+            doi_chieu_note=doi_chieu_note,
+        )
+        write_csv_rows(new_csv_rows, csv_new)
+
+        summary = {
+            "generated": date.today().isoformat(),
+            "formula": formula_note,
+            "excel_full": str(out_xlsx_full),
+            "excel_chua_dang": str(out_xlsx_new),
+            "html_full": str(html_path),
+            "html_chua_dang": str(html_new),
+            "csv_full": str(csv_path),
+            "csv_chua_dang": str(csv_new),
+            "rows": len(reports),
+            "rows_chua_dang": len(new_reports),
+            "skipped_posted": len(posted_excel_rows),
+            "priced": sum(1 for r in reports if r.direct),
+        }
+
     (args.out_dir / "manifest.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
 
-    print(f"✅ Excel → {out_xlsx}")
-    print(f"✅ Báo cáo HTML → {html_path}")
-    print(f"✅ CSV item IDs → {csv_path}")
-    print(f"   {summary['priced']}/{summary['rows']} sản phẩm có giá Shopee mới")
+    if args.only_new:
+        print(f"✅ Excel (chưa đăng) → {out_xlsx_new}")
+        print(f"✅ Báo cáo HTML → {html_path}")
+        print(f"✅ CSV item IDs → {csv_path}")
+        print(f"   Bỏ qua {len(posted_excel_rows)} SP đã đăng · {len(new_reports)} SP sẵn upload")
+    else:
+        print(f"✅ Excel đầy đủ → {out_xlsx_full}")
+        print(f"✅ Excel chưa đăng → {out_xlsx_new} ({len(new_reports)} SP)")
+        print(f"✅ Báo cáo HTML → {html_path} + {html_new.name}")
+        print(f"✅ CSV item IDs → {csv_path} + {csv_new.name}")
+        print(f"   {summary['priced']}/{summary['rows']} có giá · bỏ qua {len(posted_excel_rows)} đã đăng")
 
 
 if __name__ == "__main__":

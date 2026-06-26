@@ -1,6 +1,17 @@
 function displayProducts(container, productsToDisplay, globalStartIndex = 0, options = {}) {
     if (!container || !productsToDisplay.length) return;
 
+    if (options.layout === 'cap-nhat' && typeof renderCapNhatProductCardHtml === 'function') {
+        productsToDisplay.forEach((product, localIndex) => {
+            const globalIndex = globalStartIndex + localIndex;
+            container.insertAdjacentHTML(
+                'beforeend',
+                renderCapNhatProductCardHtml(product, { priorityImage: globalIndex < 2 })
+            );
+        });
+        return;
+    }
+
     const useShopee = options.secondaryAction === 'shopee' && typeof getShopeeUrl === 'function';
     const showThumbnails = options.showThumbnails === true;
 

@@ -215,7 +215,8 @@ def main() -> None:
     if args.sales and args.sales.is_file():
         shutil.copy2(args.sales, args.out_dir / args.sales.name)
 
-    shutil.copy2(args.basic, args.out_dir / "mass_update_basic_info_SOURCE.xlsx")
+    dest_doi_chieu = args.out_dir / "seller-doi-chieu-basic-info.xlsx"
+    shutil.copy2(args.basic, dest_doi_chieu)
 
     print(f"✅ Link Shopee: {len(urls)} SP → {OUT_JS}")
     print(f"✅ Basic info READY: {out_basic}")

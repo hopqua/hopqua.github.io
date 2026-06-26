@@ -99,11 +99,11 @@ function renderCatalogSection(sectionEl, section, globalStartIndex) {
     sectionEl.innerHTML = `
         <h2 class="catalog-section-title">${section.title}</h2>
         ${subtitleHtml}
-        <div class="product-grid" role="list"></div>
+        <div class="cap-nhat-grid" role="list"></div>
     `;
 
-    const grid = sectionEl.querySelector('.product-grid');
-    displayProducts(grid, section.products, globalStartIndex, { showThumbnails: false });
+    const grid = sectionEl.querySelector('.cap-nhat-grid');
+    displayProducts(grid, section.products, globalStartIndex, { layout: 'cap-nhat' });
 }
 
 function setupTierNav() {
