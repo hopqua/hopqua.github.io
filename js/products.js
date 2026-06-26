@@ -28,7 +28,7 @@ const products = [
         folder: 'khay-6b-mini-khay-1-banh-lon-100d-5000d',
         thumbnail: 'image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-1.jpg',
         price: 'Từ 100đ đến 5000đ',
-        description: 'Bộ vỏ hộp Duật Vân đẹp mắt.',
+        description: 'Bộ vỏ hộp Duật Vân đẹp mắt.\n\n•Cân nặng đóng hàng: 50g (1 bánh)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -83,7 +83,7 @@ const products = [
         folder: 'ngoc-hoa-cam-4-banh',
         thumbnail: 'image/ngoc-hoa-cam-4-banh/ngoc-hoa-cam-4-banh-1.jpg',
         price: 'Từ 27.000đ đến 31.000đ',
-        description: 'Bộ vỏ hộp ngọc hoa cam 4 bánh đẹp mắt.',
+        description: 'Bộ vỏ hộp ngọc hoa cam 4 bánh đẹp mắt.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -94,7 +94,7 @@ const products = [
         folder: 'hoa-vien-do-4-banh-re',
         thumbnail: 'image/hoa-vien-do-4-banh-re/hoa-vien-do-4-banh-re-1.jpg',
         price: 'Từ 16.000đ đến 20.000đ',
-        description: 'Bộ vỏ hộp hoa viên đỏ đẹp mắt.\n\n•KT: 25*26CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
+        description: 'Bộ vỏ hộp hoa viên đỏ đẹp mắt.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -107,7 +107,7 @@ const products = [
         folder: 'song-nguyet-4-6-banh',
         thumbnail: 'image/song-nguyet-4-6-banh/song-nguyet-4-6-banh-1.jpg',
         price: 'Từ 25.000đ đến 33.000đ',
-        description: 'Bộ vỏ hộp song Nguyệt   đẹp mắt.',
+        description: 'Bộ vỏ hộp song Nguyệt   đẹp mắt.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -129,7 +129,7 @@ const products = [
         folder: 'hop-1-banh',
         thumbnail: 'image/hop-1-banh/hop-1-banh-1.jpg',
         price: 'Từ 4.000đ đến 8.000đ',
-        description: 'Hộp đựng 1 bánh trung thu đơn giản, sang trọng, phù hợp làm quà tặng hoặc sử dụng trong gia đình.',
+        description: 'Hộp đựng 1 bánh trung thu đơn giản, sang trọng, phù hợp làm quà tặng hoặc sử dụng trong gia đình.\n\n•Cân nặng đóng hàng: 50g (1 bánh)',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -140,7 +140,7 @@ const products = [
         folder: 'cap-nhat-2026/2-banh-re',
         thumbnail: 'image/cap-nhat-2026/2-banh-re/2-banh-re-1.jpg',
         price: 'Từ 3.500đ/cái · SL 1–10',
-        description: 'Hộp đựng 2 bánh trung thu giá rẻ nhưng vẫn đảm bảo chất lượng và tính thẩm mỹ.\n\n•Cân nặng đóng hàng: 20g (2 bánh rẻ)\n•Giá lẻ (1–10 cái): 3.500đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 4.550đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Hộp đựng 2 bánh trung thu giá rẻ nhưng vẫn đảm bảo chất lượng và tính thẩm mỹ.\n\n•Cân nặng đóng hàng: 20g (2 bánh rẻ)\n•Kích thước: 21,5×11 cm\n•Giá lẻ (1–10 cái): 3.500đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 4.550đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -151,7 +151,7 @@ const products = [
         folder: 'hop-6-banh-mini-tho-ngoc-do',
         thumbnail: 'image/hop-6-banh-mini-tho-ngoc-do/hop-6-banh-mini-tho-ngoc-do-1.jpg',
         price: 'Từ 15.000đ đến 18.500đ',
-        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu đỏ sang trọng, phù hợp cho các dịp lễ tết.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia \n•Ép kim mặt hộp, in 2 mặt \n•Chất liệu giấy ivr350',
+        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu đỏ sang trọng, phù hợp cho các dịp lễ tết.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n•Bao gồm: đáy, nắp, túi, thanh chia\n•Ép kim mặt hộp, in 2 mặt\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -162,7 +162,7 @@ const products = [
         folder: 'hop-6-banh-mini-tho-ngoc-vang',
         thumbnail: 'image/hop-6-banh-mini-tho-ngoc-vang/hop-6-banh-mini-tho-ngoc-vang-1.jpg',
         price: 'Từ 21.000đ đến 24.500đ',
-        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu vàng sang trọng, biểu tượng của sự may mắn và thịnh vượng.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia \n•Ép kim mặt hộp, in 2 mặt \n•Chất liệu giấy ivr350',
+        description: 'Hộp đựng 6 bánh mini với họa tiết thỏ ngọc màu vàng sang trọng, biểu tượng của sự may mắn và thịnh vượng.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n•Bao gồm: đáy, nắp, túi, thanh chia\n•Ép kim mặt hộp, in 2 mặt\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -173,7 +173,7 @@ const products = [
         folder: 'hop-lam-cuc-4-6-banh',
         thumbnail: 'image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg',
         price: 'Từ 35.000đ đến 38.000đ',
-        description: 'Hộp bánh trung thu có họa tiết hoa cúc tinh tế, có thể đựng 4-6 bánh tùy kích thước.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
+        description: 'Hộp bánh trung thu có họa tiết hoa cúc tinh tế, có thể đựng 4-6 bánh tùy kích thước.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -186,7 +186,7 @@ const products = [
         folder: 'hop-lan-vu-4-banh',
         thumbnail: 'image/hop-lan-vu-4-banh/hop-lan-vu-4-banh-1.jpg',
         price: 'Từ 29.000đ đến 34.000đ',
-        description: 'Hộp bánh trung thu với họa tiết lan vũ sang trọng, đựng được 4 bánh cỡ vừa.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
+        description: 'Hộp bánh trung thu với họa tiết lan vũ sang trọng, đựng được 4 bánh cỡ vừa.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -197,7 +197,7 @@ const products = [
         folder: 'hop-lien-ngu-4-banh',
         thumbnail: 'image/hop-lien-ngu-4-banh/hop-lien-ngu-4-banh-1.jpg',
         price: 'Từ 26.500đ đến 30.000đ',
-        description: 'Hộp bánh liên ngũ đựng được 4 bánh, thiết kế sang trọng phù hợp biếu tặng.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
+        description: 'Hộp bánh liên ngũ đựng được 4 bánh, thiết kế sang trọng phù hợp biếu tặng.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -208,7 +208,7 @@ const products = [
         folder: 'hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac',
         thumbnail: 'image/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac/hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac-1.jpg',
         price: 'Từ 36.000đ đến 39.000đ',
-        description: 'Hộp bánh hình bát giác độc đáo với họa tiết ngũ long Nguyệt   hội, đựng được 4 bánh cỡ lớn.\n\n•KT: Túi: 39*40cm, đáy: 38*39cm (R-C)\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con \n•Ép kim nắp hộp, hộp con \n•Vách chia bồi sóng \n•Chất liệu giấy ivr350',
+        description: 'Hộp bánh hình bát giác độc đáo với họa tiết ngũ long Nguyệt   hội, đựng được 4 bánh cỡ lớn.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 37,7×37,5 cm · Túi 38×40 cm\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con\n•Ép kim nắp hộp, hộp con\n•Vách chia bồi sóng\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -230,7 +230,7 @@ const products = [
         folder: 'hop-sen-phu-quy-4-banh-re',
         thumbnail: 'image/hop-sen-phu-quy-4-banh-re/hop-sen-phu-quy-4-banh-re-1.jpg',
         price: 'Từ 15.000đ đến 18.000đ',
-        description: 'Hộp bánh trung thu với họa tiết hoa sen - biểu tượng của sự phú quý, đựng được 4 bánh với giá thành hợp lý.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
+        description: 'Hộp bánh trung thu với họa tiết hoa sen - biểu tượng của sự phú quý, đựng được 4 bánh với giá thành hợp lý.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -241,7 +241,7 @@ const products = [
         folder: 'hop-song-hac-6-banh',
         thumbnail: 'image/hop-song-hac-6-banh/hop-song-hac-6-banh-1.jpg',
         price: 'Từ 32.000đ đến 35.000đ',
-        description: 'Hộp bánh trung thu với họa tiết song hạc - biểu tượng của sự trường thọ và may mắn, đựng được 6 bánh.',
+        description: 'Hộp bánh trung thu với họa tiết song hạc - biểu tượng của sự trường thọ và may mắn, đựng được 6 bánh.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -252,7 +252,7 @@ const products = [
         folder: 'hop-song-nguyet-4-6-banh',
         thumbnail: 'image/hop-song-nguyet-4-6-banh/hop-song-nguyet-4-6-banh-1.jpg',
         price: 'Từ 28.000đ đến 32.000đ',
-        description: 'Hộp bánh trung thu với họa tiết song Nguyệt   tinh tế, có thể đựng 4-6 bánh tùy kích thước.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
+        description: 'Hộp bánh trung thu với họa tiết song Nguyệt   tinh tế, có thể đựng 4-6 bánh tùy kích thước.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -263,7 +263,7 @@ const products = [
         folder: 'khay-trong-sz-9-10-11',
         thumbnail: 'image/khay-trong-sz-9-10-11/khay-trong-sz-9-10-11-1.jpg',
         price: 'Từ 2.500đ đến 3.500đ',
-        description: 'Khay trong đựng bánh trung thu với nhiều kích thước khác nhau, phù hợp cho mọi loại bánh.',
+        description: 'Khay trong đựng bánh trung thu với nhiều kích thước khác nhau, phù hợp cho mọi loại bánh.\n\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm',
         category: 'phụ kiện',
         season: 'trung thu',
         videos: []
@@ -286,7 +286,7 @@ const products = [
         folder: 'cap-nhat-2026/4-banh-re-xanh-la',
         thumbnail: 'image/cap-nhat-2026/4-banh-re-xanh-la/4-banh-re-xanh-la-1.jpg',
         price: 'Từ 5.000đ/cái · SL 1–10',
-        description: 'Vỏ hộp 4 bánh màu đỏ thiết kế đơn giản, giá cả hợp lý.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 6.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Vỏ hộp 4 bánh màu đỏ thiết kế đơn giản, giá cả hợp lý.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 6.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -297,7 +297,7 @@ const products = [
         folder: 'cap-nhat-2026/4-banh-re-sen-o',
         thumbnail: 'image/cap-nhat-2026/4-banh-re-sen-o/4-banh-re-sen-o-1.jpg',
         price: 'Từ 5.000đ/cái · SL 1–10',
-        description: 'Vỏ hộp 4 bánh với họa tiết hoa sen phú quý, thiết kế sang trọng.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 6.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Vỏ hộp 4 bánh với họa tiết hoa sen phú quý, thiết kế sang trọng.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 6.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -310,7 +310,7 @@ const products = [
         folder: 'cap-nhat-2026/4-banh-re-hac-o',
         thumbnail: 'image/cap-nhat-2026/4-banh-re-hac-o/4-banh-re-hac-o-1.jpg',
         price: 'Từ 5.000đ/cái · SL 1–10',
-        description: 'Vỏ hộp với họa tiết hạc đỏ sang trọng, giá cả phải chăng.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 6.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Vỏ hộp với họa tiết hạc đỏ sang trọng, giá cả phải chăng.\n\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 6.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -321,7 +321,7 @@ const products = [
         folder: 'vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/hoa-vien-re-do',
         thumbnail: 'image/vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/hoa-vien-re-do/hoa-vien-re-do-1.jpg',
         price: '5.000đ - 7.000đ',
-        description: 'Vỏ hộp hoa viên màu đỏ đẹp mắt, giá cả hợp lý.\n\n•KT: 25*26CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
+        description: 'Vỏ hộp hoa viên màu đỏ đẹp mắt, giá cả hợp lý.\n\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -347,7 +347,7 @@ const products = [
         folder: 'vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/lan-vu-re-linh',
         thumbnail: 'image/vo-hop-banh-trung-thu-1-banh-lan-djo-tho-trang-3-5-7k/lan-vu-re-linh/lan-vu-re-linh-1.jpg',
         price: '5.000đ - 7.000đ',
-        description: 'Vỏ hộp lan vũ thiết kế tinh tế, giá cả phải chăng.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
+        description: 'Vỏ hộp lan vũ thiết kế tinh tế, giá cả phải chăng.\n\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -374,7 +374,7 @@ const products = [
         folder: '18-06-2025/vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k',
         thumbnail: 'image/18-06-2025/vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k/vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k-1.jpg',
         price: '28.000đ - 35.000đ',
-        description: 'Vỏ bánh trung thu Nguyệt   thổ minh 4 bánh, thiết kế cổ điển trang nhã.',
+        description: 'Vỏ bánh trung thu Nguyệt   thổ minh 4 bánh, thiết kế cổ điển trang nhã.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -385,7 +385,7 @@ const products = [
         folder: '18-06-2025/vo-banh-trung-thu-sen-toa-4-banh-20-25k',
         thumbnail: 'image/18-06-2025/vo-banh-trung-thu-sen-toa-4-banh-20-25k/vo-banh-trung-thu-sen-toa-4-banh-20-25k-1.jpg',
         price: '20.000đ - 25.000đ',
-        description: 'Vỏ bánh trung thu sen tỏa 4 bánh, với họa tiết hoa sen tỏa sáng.',
+        description: 'Vỏ bánh trung thu sen tỏa 4 bánh, với họa tiết hoa sen tỏa sáng.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -396,7 +396,7 @@ const products = [
         folder: '18-06-2025/vo-hop-banh-trung-thu-hon-viet-4-banh-4-banh-tra-6-banh-26k-39k',
         thumbnail: 'image/18-06-2025/vo-hop-banh-trung-thu-hon-viet-4-banh-4-banh-tra-6-banh-26k-39k/vo-hop-banh-trung-thu-hon-viet-4-banh-4-banh-tra-6-banh-26k-39k-1.jpg',
         price: '26.000đ - 39.000đ',
-        description: 'Vỏ hộp bánh trung thu hồn Việt có thể đựng 4 bánh, 4 bánh trà, hoặc 6 bánh.',
+        description: 'Vỏ hộp bánh trung thu hồn Việt có thể đựng 4 bánh, 4 bánh trà, hoặc 6 bánh.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -407,7 +407,7 @@ const products = [
         folder: '18-06-2025/vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k',
         thumbnail: 'image/18-06-2025/vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k/vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k-1.jpg',
         price: '32.000đ - 39.000đ',
-        description: 'Vỏ hộp bánh trung thu Nguyệt   ánh 4 bánh trà, thiết kế sang trọng.',
+        description: 'Vỏ hộp bánh trung thu Nguyệt   ánh 4 bánh trà, thiết kế sang trọng.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -418,7 +418,7 @@ const products = [
         folder: 'cap-nhat-2026/bach-uyen-4-banh',
         thumbnail: 'image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-1.jpg',
         price: 'Từ 26.000đ/cái · SL 1–10',
-        description: 'Vỏ hộp trung thu bạch liên xanh 4 bánh, màu sắc tươi mát.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 26.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 33.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Vỏ hộp trung thu bạch liên xanh 4 bánh, màu sắc tươi mát.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Giá lẻ (1–10 cái): 26.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 33.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -429,7 +429,7 @@ const products = [
         folder: '18-06-2025/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k-1.jpg',
         price: '16.000đ - 20.000đ',
-        description: 'Vỏ hộp trung thu hồng Nguyệt   viên cam 4 bánh, giá cả phải chăng.',
+        description: 'Vỏ hộp trung thu hồng Nguyệt   viên cam 4 bánh, giá cả phải chăng.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -442,7 +442,7 @@ const products = [
         folder: '18-06-2025/vo-hop-trung-thu-lan-vu-4-banh-re-16-20k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-lan-vu-4-banh-re-16-20k/vo-hop-trung-thu-lan-vu-4-banh-re-16-20k-1.jpg',
         price: '16.000đ - 20.000đ',
-        description: 'Vỏ hộp trung thu lan vũ 4 bánh, thiết kế tinh tế với giá rẻ.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi \n•Chất liệu giấy ivr350',
+        description: 'Vỏ hộp trung thu lan vũ 4 bánh, thiết kế tinh tế với giá rẻ.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Bao gồm: túi, đáy, thanh chia, hộp con\n•Ép kim full túi\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -455,7 +455,7 @@ const products = [
         folder: '18-06-2025/vo-hop-trung-thu-mini-4-banh-6-banh-quai-da-13-18k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-mini-4-banh-6-banh-quai-da-13-18k/vo-hop-trung-thu-mini-4-banh-6-banh-quai-da-13-18k-1.jpg',
         price: '13.000đ - 18.000đ',
-        description: 'Vỏ hộp trung thu mini có thể đựng 4 bánh hoặc 6 bánh, có quai da tiện lợi.',
+        description: 'Vỏ hộp trung thu mini có thể đựng 4 bánh hoặc 6 bánh, có quai da tiện lợi.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -466,7 +466,7 @@ const products = [
         folder: '18-06-2025/vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k/vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k-1.jpg',
         price: '16.000đ - 20.000đ',
-        description: 'Vỏ hộp trung thu Nguyệt   yến 4 bánh, giá cả phải chăng.',
+        description: 'Vỏ hộp trung thu Nguyệt   yến 4 bánh, giá cả phải chăng.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -479,7 +479,7 @@ const products = [
         folder: '18-06-2025/vo-hop-trung-thu-vong-hac-4-banh-26-33k',
         thumbnail: 'image/18-06-2025/vo-hop-trung-thu-vong-hac-4-banh-26-33k/vo-hop-trung-thu-vong-hac-4-banh-26-33k-1.jpg',
         price: '26.000đ - 33.000đ',
-        description: 'Vỏ hộp trung thu vọng hạc 4 bánh, họa tiết hạc bay thanh thoát.',
+        description: 'Vỏ hộp trung thu vọng hạc 4 bánh, họa tiết hạc bay thanh thoát.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -493,7 +493,7 @@ const products = [
         folder: 'cap-nhat-2026/6-banh-mini-cam',
         thumbnail: 'image/cap-nhat-2026/6-banh-mini-cam/6-banh-mini-cam-1.jpg',
         price: 'Từ 20.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu 6 bánh mini kim sơn cam 20k 26k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia\n•Ép kim mặt hộp, in 2 mặt\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Giá lẻ (1–10 cái): 20.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 26.000đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu 6 bánh mini kim sơn cam 20k 26k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n•Bao gồm: đáy, nắp, túi, thanh chia\n•Ép kim mặt hộp, in 2 mặt\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 20.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 26.000đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -504,7 +504,7 @@ const products = [
         folder: '26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k',
         thumbnail: 'image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg',
         price: '36.000đ - 44.000đ',
-        description: 'Mẫu hộp bánh trung thu bát giác hào quang ánh trăng 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 39*40cm, đáy: 38*39cm (R-C)\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con \n•Ép kim nắp hộp, hộp con \n•Vách chia bồi sóng \n•Chất liệu giấy ivr350',
+        description: 'Mẫu hộp bánh trung thu bát giác hào quang ánh trăng 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Kích thước: Đáy 37,7×37,5 cm · Túi 38×40 cm\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con\n•Ép kim nắp hộp, hộp con\n•Vách chia bồi sóng\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -517,7 +517,7 @@ const products = [
         folder: 'cap-nhat-2026/cuc-nguyet-inh-4-banh-tra',
         thumbnail: 'image/cap-nhat-2026/cuc-nguyet-inh-4-banh-tra/cuc-nguyet-inh-4-banh-tra-1.jpg',
         price: 'Từ 36.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu cúc Nguyệt  đỉnh 4 bánh kem hộp tra đỏ 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu cúc Nguyệt  đỉnh 4 bánh kem hộp tra đỏ 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -528,7 +528,7 @@ const products = [
         folder: 'cap-nhat-2026/hoang-kim-4-banh-6-banh',
         thumbnail: 'image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-1.jpg',
         price: 'Từ 61.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu hoàng kim hàng giấy mềm cao cấp màu gold 4 bánh 6 bánh 61k 70k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, cài trang trí\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, cài trang trí\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Giá lẻ (1–10 cái): 61.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 79.300đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu hoàng kim hàng giấy mềm cao cấp màu gold 4 bánh 6 bánh 61k 70k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, cài trang trí\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, cài trang trí\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP\n•Giá lẻ (1–10 cái): 61.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 79.300đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -550,7 +550,7 @@ const products = [
         folder: '26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k',
         thumbnail: 'image/26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-1.jpg',
         price: '65.000đ - 75.000đ',
-        description: 'Mẫu hộp bánh trung thu hộp cứng 4 bánh kem hộp tra xanh lá 65k 75k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: khay đáy 36*28*6.6cm, hộp con 10,2*10,2*6cm, \nHộp trà 6*6*22cm, Túi 38*31*8cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP',
+        description: 'Mẫu hộp bánh trung thu hộp cứng 4 bánh kem hộp tra xanh lá 65k 75k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -561,7 +561,7 @@ const products = [
         folder: 'cap-nhat-2026/hop-cung-6-banh-mini-o',
         thumbnail: 'image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-1.jpg',
         price: 'Từ 36.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu hộp cứng 6 bánh mini 75 100g 36k 45k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 19.5*25.5 (RC)\n•Bao gồm: đáy, nắp, túi, thanh chia\n•Ép kim mặt hộp, in 2 mặt\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu hộp cứng 6 bánh mini 75 100g 36k 45k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n•Bao gồm: đáy, nắp, túi, thanh chia\n•Ép kim mặt hộp, in 2 mặt\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -572,7 +572,7 @@ const products = [
         folder: '26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k',
         thumbnail: 'image/26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k-1.jpg',
         price: 'Từ 80.000đ – 90.000đ',
-        description: 'Hộp cứng quai trúc xanh dương, 4 bánh kem trà — mẫu cao cấp, phù hợp quà tặng và bán lẻ.\n\n•KT: khay đáy 36*28*6.6cm, hộp con 10,2*10,2*6cm, \nHộp trà 6*6*22cm, Túi 38*31*8cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP',
+        description: 'Hộp cứng quai trúc xanh dương, 4 bánh kem trà — mẫu cao cấp, phù hợp quà tặng và bán lẻ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -583,7 +583,7 @@ const products = [
         folder: 'cap-nhat-2026/khuc-nguyet-vien-4-banh',
         thumbnail: 'image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-1.jpg',
         price: 'Từ 29.000đ/cái · SL 1–10',
-        description: 'Khúc Nguyệt viên cúc đỏ, 4 bánh — thiết kế truyền thống, giá hợp lý cho đại lý và quà gia đình.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Khúc Nguyệt viên cúc đỏ, 4 bánh — thiết kế truyền thống, giá hợp lý cho đại lý và quà gia đình.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -596,7 +596,7 @@ const products = [
         folder: 'cap-nhat-2026/kim-nguyet-xanh-la-4-banh',
         thumbnail: 'image/cap-nhat-2026/kim-nguyet-xanh-la-4-banh/kim-nguyet-xanh-la-4-banh-1.jpg',
         price: 'Từ 29.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu kim liên Nguyệt  xanh lá 4 bánh 6 bánh 29k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu kim liên Nguyệt  xanh lá 4 bánh 6 bánh 29k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -607,7 +607,7 @@ const products = [
         folder: 'cap-nhat-2026/lien-nguyet-inh-4-banh-tra-6-banh',
         thumbnail: 'image/cap-nhat-2026/lien-nguyet-inh-4-banh-tra-6-banh/lien-nguyet-inh-4-banh-tra-6-banh-1.jpg',
         price: 'Từ 33.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu liên Nguyệt  đỉnh 4 bánh kem hộp tra 6 bánh 33k 40k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Giá lẻ (1–10 cái): 33.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 42.900đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu liên Nguyệt  đỉnh 4 bánh kem hộp tra 6 bánh 33k 40k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 33.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 42.900đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -618,7 +618,7 @@ const products = [
         folder: 'cap-nhat-2026/4-banh-re-nguyet-hoa-vien',
         thumbnail: 'image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-1.jpg',
         price: 'Từ 18.500đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu Nguyệt  hoa viên doxanh duong 4 bánh rẻ 185k 25k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con ép kim\n•Ép kim full túi\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Giá lẻ (1–10 cái): 18.500đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 24.050đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu Nguyệt  hoa viên doxanh duong 4 bánh rẻ 185k 25k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Bao gồm: túi, đáy, thanh chia, hộp con ép kim\n•Ép kim full túi\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 18.500đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 24.050đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -632,7 +632,7 @@ const products = [
         folder: 'cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh',
         thumbnail: 'image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-1.jpg',
         price: 'Từ 26.500đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu Nguyệt  liên ngư 4 bánh tra 6 bánh 37k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Giá lẻ (1–10 cái): 26.500đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 34.450đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu Nguyệt  liên ngư 4 bánh tra 6 bánh 37k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 26.500đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 34.450đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -643,7 +643,7 @@ const products = [
         folder: 'cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh',
         thumbnail: 'image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-1.jpg',
         price: 'Từ 29.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu song ngư đỏ 4 bánh tra dọc 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 39*40cm, đáy: 38*39cm (R-C)\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con\n•Ép kim nắp hộp, hộp con\n•Vách chia bồi sóng\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu song ngư đỏ 4 bánh tra dọc 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con\n•Ép kim nắp hộp, hộp con\n•Vách chia bồi sóng\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -654,7 +654,7 @@ const products = [
         folder: 'cap-nhat-2026/4-banh-re-thien-hoa-van-nguyet-o-xanh-la',
         thumbnail: 'image/cap-nhat-2026/4-banh-re-thien-hoa-van-nguyet-o-xanh-la/4-banh-re-thien-hoa-van-nguyet-o-xanh-la-1.jpg',
         price: 'Từ 16.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu thiên hoa vân Nguyệt  4 bánh rẻ 175k 24k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: 25.5*24CM\n•Bao gồm: túi, đáy, thanh chia, hộp con ép kim\n•Ép kim full túi\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Giá lẻ (1–10 cái): 16.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 20.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu thiên hoa vân Nguyệt  4 bánh rẻ 175k 24k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Bao gồm: túi, đáy, thanh chia, hộp con ép kim\n•Ép kim full túi\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 16.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 20.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -665,7 +665,7 @@ const products = [
         folder: '26-5-2026/tho-xanh-duong-4-banh-29k-35k',
         thumbnail: 'image/26-5-2026/tho-xanh-duong-4-banh-29k-35k/tho-xanh-duong-4-banh-29k-35k-1.jpg',
         price: '29.000đ - 35.000đ',
-        description: 'Mẫu hộp bánh trung thu thỏ xanh dương 4 bánh 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n• KT: 36*28*6.5cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con \n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
+        description: 'Mẫu hộp bánh trung thu thỏ xanh dương 4 bánh 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -676,7 +676,7 @@ const products = [
         folder: 'cap-nhat-2026/thu-hoa-4-banh',
         thumbnail: 'image/cap-nhat-2026/thu-hoa-4-banh/thu-hoa-4-banh-1.jpg',
         price: 'Từ 29.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu thu hoa 4 bánh đỏ 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•KT: Túi: 28.5*28.5cm, đáy: 27*27cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu thu hoa 4 bánh đỏ 29k 35k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Bao gồm: nắp, túi, đáy, vách chia, hộp con\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -688,7 +688,7 @@ const products = [
         folder: '11-06-2026/1b-mini-sll-3k',
         thumbnail: 'image/11-06-2026/1b-mini-sll-3k/1b-mini-sll-3k-1.jpg',
         price: '3.000đ',
-        description: 'Mẫu hộp bánh trung thu hộp 1 bánh mini sỉ 3k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu hộp 1 bánh mini sỉ 3k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 50g (1 bánh)',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -699,7 +699,7 @@ const products = [
         folder: 'cap-nhat-2026/2-banh-ep-kim',
         thumbnail: 'image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-1.jpg',
         price: 'Từ 14.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu 2 bánh rẻ 5 màu, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 50g (2 bánh ép kim)\n•Giá lẻ (1–10 cái): 14.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 18.200đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu 2 bánh rẻ 5 màu, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 20g (2 bánh rẻ)\n•Kích thước: 21,5×11 cm\n•Giá lẻ (1–10 cái): 14.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 18.200đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -710,7 +710,7 @@ const products = [
         folder: '11-06-2026/6-banh-mini-mem-san-2-ma-sll-19k',
         thumbnail: 'image/11-06-2026/6-banh-mini-mem-san-2-ma-sll-19k/6-banh-mini-mem-san-2-ma-sll-19k-1.jpg',
         price: '19.000đ - 26.000đ',
-        description: 'Mẫu hộp bánh trung thu 6 bánh mini mềm sẵn 2 mã sỉ 19k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.',
+        description: 'Mẫu hộp bánh trung thu 6 bánh mini mềm sẵn 2 mã sỉ 19k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -724,7 +724,7 @@ const products = [
         folder: 'cap-nhat-2026/6-banh-mini-xanh-la',
         thumbnail: 'image/cap-nhat-2026/6-banh-mini-xanh-la/6-banh-mini-xanh-la-1.jpg',
         price: 'Từ 19.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu 6 bánh mini sẵn HN 3x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Giá lẻ (1–10 cái): 19.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 24.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu 6 bánh mini sẵn HN 3x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n•Giá lẻ (1–10 cái): 19.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 24.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -735,7 +735,7 @@ const products = [
         folder: 'cap-nhat-2026/bat-giac-tho-quy-toc-4-banh',
         thumbnail: 'image/cap-nhat-2026/bat-giac-tho-quy-toc-4-banh/bat-giac-tho-quy-toc-4-banh-1.jpg',
         price: 'Từ 36.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu bát giác thỏ quý tộc, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu bát giác thỏ quý tộc, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Kích thước: Đáy 37,7×37,5 cm · Túi 38×40 cm\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -759,7 +759,7 @@ const products = [
         folder: 'cap-nhat-2026/hop-cung-hac-van-nguyet',
         thumbnail: 'image/cap-nhat-2026/hop-cung-hac-van-nguyet/hop-cung-hac-van-nguyet-1.jpg',
         price: 'Từ 29.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu hạc vân nguyệt 3x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu hạc vân nguyệt 3x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Giá lẻ (1–10 cái): 29.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 37.700đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -770,7 +770,7 @@ const products = [
         folder: 'cap-nhat-2026/hac-vu-nguyet-ca-4-banh-tra-6-banh',
         thumbnail: 'image/cap-nhat-2026/hac-vu-nguyet-ca-4-banh-tra-6-banh/hac-vu-nguyet-ca-4-banh-tra-6-banh-1.jpg',
         price: 'Từ 50.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu hạc vũ nguyệt ca 4 bánh 6 bánh, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Giá lẻ (1–10 cái): 50.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 65.000đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu hạc vũ nguyệt ca 4 bánh 6 bánh, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Giá lẻ (1–10 cái): 50.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 65.000đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -781,7 +781,7 @@ const products = [
         folder: 'cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh',
         thumbnail: 'image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-1.jpg',
         price: 'Từ 36.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu hộp cứng gấp gọn 6x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu hộp cứng gấp gọn 6x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Giá lẻ (1–10 cái): 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 46.800đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: [
@@ -796,7 +796,7 @@ const products = [
         folder: '11-06-2026/khay-tui-pet',
         thumbnail: 'image/11-06-2026/khay-tui-pet/khay-tui-pet-1.jpg',
         price: '5.000đ - 15.000đ',
-        description: 'Mẫu phụ kiện khay túi pet đựng bánh, phù hợp cửa hàng bánh và đại lý.',
+        description: 'Mẫu phụ kiện khay túi pet đựng bánh, phù hợp cửa hàng bánh và đại lý.\n\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -807,7 +807,7 @@ const products = [
         folder: 'cap-nhat-2026/lam-da-4-banh',
         thumbnail: 'image/cap-nhat-2026/lam-da-4-banh/lam-da-4-banh-1.jpg',
         price: 'Từ 35.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu lan dạ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 35.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 45.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu lan dạ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Giá lẻ (1–10 cái): 35.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 45.500đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -818,7 +818,7 @@ const products = [
         folder: 'cap-nhat-2026/tho-o-4-banh',
         thumbnail: 'image/cap-nhat-2026/tho-o-4-banh/tho-o-4-banh-1.jpg',
         price: 'Từ 23.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu thỏ đỏ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Giá lẻ (1–10 cái): 23.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 29.900đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        description: 'Mẫu hộp bánh trung thu thỏ đỏ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Giá lẻ (1–10 cái): 23.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 29.900đ/cái\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []

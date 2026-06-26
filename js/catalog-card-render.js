@@ -70,7 +70,7 @@ function renderCapNhatGroupCardHtml(group) {
                 </figure>
                 <div class="cap-nhat-card-body">
                     <h3>${escapeCatalogHtml(group.folder)} <span class="cap-nhat-badge">${group.variantCount} màu</span></h3>
-                    <p class="cap-nhat-group-meta">Cân đóng hàng: <strong>${group.packWeightG ? group.packWeightG + 'g' : '—'}</strong> · ${escapeCatalogHtml(group.priceSummary)}/cái</p>
+                        <p class="cap-nhat-group-meta">Cân đóng hàng: <strong>${group.packWeightG ? group.packWeightG + 'g' : '—'}</strong>${group.packSizeText ? ` · KT: ${escapeCatalogHtml(group.packSizeText)}` : ''} · ${escapeCatalogHtml(group.priceSummary)}/cái</p>
                     <div class="cap-nhat-variants" role="list">${chips}</div>
                 </div>
             </article>`;
@@ -85,6 +85,7 @@ function renderCapNhatProductCardHtml(product, options = {}) {
     const fallback = product.thumbnail || rawImg || 'image/favicon.png';
     const detail = catalogProductUrl(product);
     const packG = parsePackWeightG(product);
+    const sizeText = typeof getPackSizeText === 'function' ? getPackSizeText(product) : (product.packSizeText || '');
     const title = product.name || product.folder || '';
     const loading = options.priorityImage ? 'eager' : 'lazy';
     const fetchP = options.priorityImage ? ' fetchpriority="high"' : '';
@@ -102,6 +103,7 @@ function renderCapNhatProductCardHtml(product, options = {}) {
                 <h3><a href="${detail}">${escapeCatalogHtml(title)}</a></h3>
                 <dl class="cap-nhat-meta">
                     <div><dt>Cân đóng hàng</dt><dd>${packG ? packG + 'g' : '—'}</dd></div>
+                    ${sizeText ? `<div><dt>Kích thước</dt><dd class="cap-nhat-size">${escapeCatalogHtml(sizeText)}</dd></div>` : ''}
                     <div><dt>Giá lẻ</dt><dd class="cap-nhat-price">${escapeCatalogHtml(priceLabel)}</dd></div>
                 </dl>
                 <a href="${detail}" class="cap-nhat-btn-detail">Xem chi tiết →</a>

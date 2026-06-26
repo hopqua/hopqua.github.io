@@ -1,0 +1,56 @@
+{
+  "version": "2026-06-26",
+  "unit": "cm",
+  "note": "Kích thước đóng hàng (chỉ vỏ/khay/túi, chưa gồm bánh). Nguồn chuẩn shop Vân Thắng.",
+  "types": {
+    "6_banh_mini": {
+      "label": "6 bánh mini",
+      "sizeText": "Khay 24×17 cm · Túi 25×19 cm",
+      "khay": "24×17",
+      "tui": "25×19"
+    },
+    "4_banh_re": {
+      "label": "4 bánh rẻ",
+      "sizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
+      "day": "25×24",
+      "tui": "25,5×24,5"
+    },
+    "4_banh_co_nap": {
+      "label": "4 bánh có nắp",
+      "sizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
+      "day": "26×26",
+      "tui": "30×27,5"
+    },
+    "4_banh_tra_6_banh": {
+      "label": "4 bánh trà – 6 bánh",
+      "sizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
+      "day": "27×35,5",
+      "tui": "29×36,5"
+    },
+    "bat_giac": {
+      "label": "Bát giác",
+      "sizeText": "Đáy 37,7×37,5 cm · Túi 38×40 cm",
+      "day": "37,7×37,5",
+      "tui": "38×40"
+    },
+    "2_banh_re": {
+      "label": "2 bánh rẻ",
+      "sizeText": "21,5×11 cm"
+    },
+    "2_banh_dat": {
+      "label": "2 bánh đắt (ép nhũ / ép kim)",
+      "sizeText": "Hộp 21,5×11,5×5 cm · Túi 22,5×14×6 cm",
+      "hop": "21,5×11,5×5",
+      "tui": "22,5×14×6"
+    }
+  },
+  "weightRules": {
+    "4_banh": 330,
+    "4_banh_re": 250,
+    "1_banh": 50,
+    "1_banh_to": 180,
+    "2_banh_re": 20,
+    "2_banh_ep_kim": 50,
+    "6_banh_mini": 300
+  }
+}

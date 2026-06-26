@@ -10,6 +10,8 @@ from pathlib import Path
 
 import openpyxl
 
+from pack_spec_rules import classify_pack_type, pack_size_label, pack_size_text, packing_weight
+
 ROOT = Path(__file__).resolve()
 for parent in ROOT.parents:
     cap = parent / "cap-nhat"
@@ -137,29 +139,6 @@ def load_excel() -> list[dict]:
     return items
 
 
-def packing_weight(label: str) -> tuple[int | None, str]:
-    t = norm(label)
-    if re.search(r"1 bánh to|300g|600g|bánh to", t):
-        return WEIGHT_RULES["1_banh_to"], "1 bánh to (180g)"
-    if re.search(r"1 bánh|1b mini|cho bé", t) and "to" not in t:
-        return WEIGHT_RULES["1_banh"], "1 bánh (50g)"
-    if re.search(r"4 bánh rẻ|4b rẻ", t):
-        return WEIGHT_RULES["4_banh_re"], "4 bánh rẻ (250g)"
-    if re.search(r"2 bánh ép kim", t):
-        return 50, "2 bánh ép kim (50g)"
-    if re.search(r"2 bánh rẻ", t):
-        return 20, "2 bánh rẻ (20g)"
-    if re.search(r"6 bánh mini|6 mini", t):
-        return 300, "6 bánh mini (6×50g)"
-    if re.search(r"6 bánh", t):
-        return 330, "6 bánh (ước tính 330g)"
-    if re.search(r"4 bánh", t):
-        return WEIGHT_RULES["4_banh"], "4 bánh (330g)"
-    if re.search(r"hạc vân|hộp cứng", t):
-        return WEIGHT_RULES["4_banh"], "4 bánh (330g)"
-    return None, "chưa phân loại"
-
-
 def folder_manual_key(label: str) -> str:
     return norm(label.replace("/", " "))
 
@@ -253,6 +232,7 @@ def product_row(label: str, path: Path, excel: list[dict]) -> dict | None:
     fk = folder_manual_key(label)
     ex = match_excel(label, excel)
     w, wtype = packing_weight(label)
+    pack_type = classify_pack_type(label)
     retail = ex["price"] if ex else None
     fee_add = round(retail * 0.30) if retail else None
     price_with_fee = retail + fee_add if retail else None
@@ -278,6 +258,9 @@ def product_row(label: str, path: Path, excel: list[dict]) -> dict | None:
         "priceWithFeeFmt": fmt_vnd(price_with_fee),
         "packWeightG": w,
         "packWeightType": wtype,
+        "packType": pack_type,
+        "packTypeLabel": pack_size_label(pack_type) if pack_type else None,
+        "packSizeText": pack_size_text(pack_type) if pack_type else None,
         "imageCount": img_count,
     }
 
@@ -309,6 +292,8 @@ def build() -> dict:
                     "priceSummary": price_summary,
                     "packWeightG": rows[0].get("packWeightG"),
                     "packWeightType": rows[0].get("packWeightType"),
+                    "packType": rows[0].get("packType"),
+                    "packSizeText": rows[0].get("packSizeText"),
                     "variants": rows,
                 }
             )
@@ -320,6 +305,7 @@ def build() -> dict:
         "folderCount": len(groups),
         "variantCount": len(products),
         "weightRules": WEIGHT_RULES,
+        "dimensionRules": json.loads((Path(__file__).resolve().parents[1] / "data" / "pack-dimension-rules.json").read_text(encoding="utf-8")),
         "feeNote": "Giá lẻ 1–10 cái (mua trực tiếp). Giá Shopee tham khảo ≈ lẻ × 1,3.",
         "groups": groups,
         "products": products,

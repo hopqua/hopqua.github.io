@@ -10,6 +10,8 @@ from pathlib import Path
 
 import openpyxl
 
+from pack_spec_rules import classify_pack_type, dimension_bullet, packing_weight, upsert_spec_bullets
+
 ROOT = Path(__file__).resolve()
 SITE = ROOT.parents[1]  # website/source
 PRODUCTS_JS = SITE / "js" / "products.js"
@@ -179,27 +181,8 @@ def match_excel(label: str, excel: dict[str, dict]) -> dict | None:
     return best if score >= 2 else None
 
 
-def packing_weight(label: str) -> tuple[int | None, str]:
-    t = folder_key(label)
-    if re.search(r"2 bánh ép kim", t):
-        return WEIGHT_RULES["2_banh_ep_kim"], "2 bánh ép kim"
-    if re.search(r"2 bánh rẻ", t):
-        return WEIGHT_RULES["2_banh_re"], "2 bánh rẻ"
-    if re.search(r"1 bánh to|300g|600g|bánh to", t):
-        return WEIGHT_RULES["1_banh_to"], "1 bánh to"
-    if re.search(r"1 bánh|1b mini|cho bé", t) and "to" not in t:
-        return WEIGHT_RULES["1_banh"], "1 bánh"
-    if re.search(r"4 bánh rẻ|4b rẻ", t):
-        return WEIGHT_RULES["4_banh_re"], "4 bánh rẻ"
-    if re.search(r"6 bánh mini|6 mini", t):
-        return 300, "6 bánh mini"
-    if re.search(r"6 bánh", t):
-        return 330, "6 bánh"
-    if re.search(r"4 bánh", t):
-        return WEIGHT_RULES["4_banh"], "4 bánh"
-    if re.search(r"hạc vân|hộp cứng", t):
-        return WEIGHT_RULES["4_banh"], "4 bánh"
-    return None, ""
+def packing_weight_local(label: str) -> tuple[int | None, str]:
+    return packing_weight(label)
 
 
 def iter_cap_dirs() -> list[tuple[str, Path]]:
@@ -277,6 +260,7 @@ def extract_intro_and_bullets(desc: str) -> tuple[str, list[str]]:
             x in b.lower()
             for x in (
                 "cân nặng đóng hàng",
+                "kích thước",
                 "giá lẻ",
                 "giá mua trực tiếp",
                 "giá tham khảo trên shopee",
@@ -314,21 +298,21 @@ def build_description(
     if intro and not intro.endswith("."):
         intro += "."
 
-    if weight_g:
-        bullets = [b for b in bullets if "cân nặng" not in b.lower()]
-        bullets.append(f"•Cân nặng đóng hàng: {weight_g}g ({weight_type})")
+    kept = [b for b in bullets if not re.match(r"^•\s*kt\b", b, re.I)]
+    pack_type = classify_pack_type(label)
+    spec_bullets = upsert_spec_bullets(kept, pack_type, weight_g, weight_type)
 
     if direct:
-        bullets.append(f"•Giá lẻ (1–10 cái): {fmt_vnd(direct)}/cái — mua trực tiếp, không qua sàn TMĐT")
+        spec_bullets.append(f"•Giá lẻ (1–10 cái): {fmt_vnd(direct)}/cái — mua trực tiếp, không qua sàn TMĐT")
     if platform:
-        bullets.append(f"•Giá tham khảo mua qua Shopee: {fmt_vnd(platform)}/cái")
-    bullets.append("•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng")
-    bullets.append("•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)")
-    bullets.append("•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất")
+        spec_bullets.append(f"•Giá tham khảo mua qua Shopee: {fmt_vnd(platform)}/cái")
+    spec_bullets.append("•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng")
+    spec_bullets.append("•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)")
+    spec_bullets.append("•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất")
 
     body = intro
-    if bullets:
-        body += "\n\n" + "\n".join(bullets)
+    if spec_bullets:
+        body += "\n\n" + "\n".join(spec_bullets)
     return body
 
 

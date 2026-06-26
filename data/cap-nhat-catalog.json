@@ -9,6 +9,62 @@
     "1_banh": 50,
     "1_banh_to": 180
   },
+  "dimensionRules": {
+    "version": "2026-06-26",
+    "unit": "cm",
+    "note": "Kích thước đóng hàng (chỉ vỏ/khay/túi, chưa gồm bánh). Nguồn chuẩn shop Vân Thắng.",
+    "types": {
+      "6_banh_mini": {
+        "label": "6 bánh mini",
+        "sizeText": "Khay 24×17 cm · Túi 25×19 cm",
+        "khay": "24×17",
+        "tui": "25×19"
+      },
+      "4_banh_re": {
+        "label": "4 bánh rẻ",
+        "sizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
+        "day": "25×24",
+        "tui": "25,5×24,5"
+      },
+      "4_banh_co_nap": {
+        "label": "4 bánh có nắp",
+        "sizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
+        "day": "26×26",
+        "tui": "30×27,5"
+      },
+      "4_banh_tra_6_banh": {
+        "label": "4 bánh trà – 6 bánh",
+        "sizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
+        "day": "27×35,5",
+        "tui": "29×36,5"
+      },
+      "bat_giac": {
+        "label": "Bát giác",
+        "sizeText": "Đáy 37,7×37,5 cm · Túi 38×40 cm",
+        "day": "37,7×37,5",
+        "tui": "38×40"
+      },
+      "2_banh_re": {
+        "label": "2 bánh rẻ",
+        "sizeText": "21,5×11 cm"
+      },
+      "2_banh_dat": {
+        "label": "2 bánh đắt (ép nhũ / ép kim)",
+        "sizeText": "Hộp 21,5×11,5×5 cm · Túi 22,5×14×6 cm",
+        "hop": "21,5×11,5×5",
+        "tui": "22,5×14×6"
+      }
+    },
+    "weightRules": {
+      "4_banh": 330,
+      "4_banh_re": 250,
+      "1_banh": 50,
+      "1_banh_to": 180,
+      "2_banh_re": 20,
+      "2_banh_ep_kim": 50,
+      "6_banh_mini": 300
+    }
+  },
   "feeNote": "Giá lẻ 1–10 cái (mua trực tiếp). Giá Shopee tham khảo ≈ lẻ × 1,3.",
   "groups": [
     {
@@ -33,7 +89,10 @@
       "priceWithFee": 5200,
       "priceWithFeeFmt": "5.200đ",
       "packWeightG": 50,
-      "packWeightType": "1 bánh (50g)",
+      "packWeightType": "1 bánh",
+      "packType": null,
+      "packTypeLabel": null,
+      "packSizeText": null,
       "imageCount": 8
     },
     {
@@ -58,7 +117,10 @@
       "priceWithFee": 29900,
       "priceWithFeeFmt": "29.900đ",
       "packWeightG": 180,
-      "packWeightType": "1 bánh to (180g)",
+      "packWeightType": "1 bánh to",
+      "packType": null,
+      "packTypeLabel": null,
+      "packSizeText": null,
       "imageCount": 5
     },
     {
@@ -83,7 +145,10 @@
       "priceWithFee": 29900,
       "priceWithFeeFmt": "29.900đ",
       "packWeightG": 180,
-      "packWeightType": "1 bánh to (180g)",
+      "packWeightType": "1 bánh to",
+      "packType": null,
+      "packTypeLabel": null,
+      "packSizeText": null,
       "imageCount": 5
     },
     {
@@ -108,7 +173,10 @@
       "priceWithFee": 4550,
       "priceWithFeeFmt": "4.550đ",
       "packWeightG": 20,
-      "packWeightType": "2 bánh rẻ (20g)",
+      "packWeightType": "2 bánh rẻ",
+      "packType": "2_banh_re",
+      "packTypeLabel": "2 bánh rẻ",
+      "packSizeText": "21,5×11 cm",
       "imageCount": 24
     },
     {
@@ -133,7 +201,10 @@
       "priceWithFee": 18200,
       "priceWithFeeFmt": "18.200đ",
       "packWeightG": 50,
-      "packWeightType": "2 bánh ép kim (50g)",
+      "packWeightType": "2 bánh ép kim",
+      "packType": "2_banh_dat",
+      "packTypeLabel": "2 bánh đắt (ép nhũ / ép kim)",
+      "packSizeText": "Hộp 21,5×11,5×5 cm · Túi 22,5×14×6 cm",
       "imageCount": 11
     },
     {
@@ -143,7 +214,9 @@
       "variantCount": 5,
       "priceSummary": "5.000đ – 18.500đ",
       "packWeightG": 250,
-      "packWeightType": "4 bánh rẻ (250g)",
+      "packWeightType": "4 bánh rẻ",
+      "packType": "4_banh_re",
+      "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
       "variants": [
         {
           "id": "4-banh-re-hac-o",
@@ -166,7 +239,10 @@
           "priceWithFee": 6500,
           "priceWithFeeFmt": "6.500đ",
           "packWeightG": 250,
-          "packWeightType": "4 bánh rẻ (250g)",
+          "packWeightType": "4 bánh rẻ",
+          "packType": "4_banh_re",
+          "packTypeLabel": "4 bánh rẻ",
+          "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
           "imageCount": 4
         },
         {
@@ -190,7 +266,10 @@
           "priceWithFee": 24050,
           "priceWithFeeFmt": "24.050đ",
           "packWeightG": 250,
-          "packWeightType": "4 bánh rẻ (250g)",
+          "packWeightType": "4 bánh rẻ",
+          "packType": "4_banh_re",
+          "packTypeLabel": "4 bánh rẻ",
+          "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
           "imageCount": 12
         },
         {
@@ -212,7 +291,10 @@
           "priceWithFee": 6500,
           "priceWithFeeFmt": "6.500đ",
           "packWeightG": 250,
-          "packWeightType": "4 bánh rẻ (250g)",
+          "packWeightType": "4 bánh rẻ",
+          "packType": "4_banh_re",
+          "packTypeLabel": "4 bánh rẻ",
+          "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
           "imageCount": 2
         },
         {
@@ -236,7 +318,10 @@
           "priceWithFee": 20800,
           "priceWithFeeFmt": "20.800đ",
           "packWeightG": 250,
-          "packWeightType": "4 bánh rẻ (250g)",
+          "packWeightType": "4 bánh rẻ",
+          "packType": "4_banh_re",
+          "packTypeLabel": "4 bánh rẻ",
+          "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
           "imageCount": 7
         },
         {
@@ -258,7 +343,10 @@
           "priceWithFee": 6500,
           "priceWithFeeFmt": "6.500đ",
           "packWeightG": 250,
-          "packWeightType": "4 bánh rẻ (250g)",
+          "packWeightType": "4 bánh rẻ",
+          "packType": "4_banh_re",
+          "packTypeLabel": "4 bánh rẻ",
+          "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
           "imageCount": 2
         }
       ]
@@ -285,7 +373,10 @@
       "priceWithFee": 26000,
       "priceWithFeeFmt": "26.000đ",
       "packWeightG": 300,
-      "packWeightType": "6 bánh mini (6×50g)",
+      "packWeightType": "6 bánh mini",
+      "packType": "6_banh_mini",
+      "packTypeLabel": "6 bánh mini",
+      "packSizeText": "Khay 24×17 cm · Túi 25×19 cm",
       "imageCount": 6
     },
     {
@@ -310,7 +401,10 @@
       "priceWithFee": 24700,
       "priceWithFeeFmt": "24.700đ",
       "packWeightG": 300,
-      "packWeightType": "6 bánh mini (6×50g)",
+      "packWeightType": "6 bánh mini",
+      "packType": "6_banh_mini",
+      "packTypeLabel": "6 bánh mini",
+      "packSizeText": "Khay 24×17 cm · Túi 25×19 cm",
       "imageCount": 8
     },
     {
@@ -334,7 +428,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "bat_giac",
+      "packTypeLabel": "Bát giác",
+      "packSizeText": "Đáy 37,7×37,5 cm · Túi 38×40 cm",
       "imageCount": 3
     },
     {
@@ -359,7 +456,10 @@
       "priceWithFee": 33800,
       "priceWithFeeFmt": "33.800đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 11
     },
     {
@@ -384,7 +484,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 5
     },
     {
@@ -409,7 +512,10 @@
       "priceWithFee": 79300,
       "priceWithFeeFmt": "79.300đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 11
     },
     {
@@ -434,7 +540,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 7
     },
     {
@@ -459,7 +568,10 @@
       "priceWithFee": 65000,
       "priceWithFeeFmt": "65.000đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 5
     },
     {
@@ -484,7 +596,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 300,
-      "packWeightType": "6 bánh mini (6×50g)",
+      "packWeightType": "6 bánh mini",
+      "packType": "6_banh_mini",
+      "packTypeLabel": "6 bánh mini",
+      "packSizeText": "Khay 24×17 cm · Túi 25×19 cm",
       "imageCount": 9
     },
     {
@@ -509,7 +624,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 14
     },
     {
@@ -534,7 +652,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 4
     },
     {
@@ -559,7 +680,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 13
     },
     {
@@ -584,7 +708,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 6
     },
     {
@@ -609,7 +736,10 @@
       "priceWithFee": 45500,
       "priceWithFeeFmt": "45.500đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 7
     },
     {
@@ -634,7 +764,10 @@
       "priceWithFee": 42900,
       "priceWithFeeFmt": "42.900đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 6
     },
     {
@@ -659,7 +792,10 @@
       "priceWithFee": 34450,
       "priceWithFeeFmt": "34.450đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 19
     },
     {
@@ -684,7 +820,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 15
     },
     {
@@ -709,7 +848,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 6
     },
     {
@@ -734,7 +876,10 @@
       "priceWithFee": 29900,
       "priceWithFeeFmt": "29.900đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 8
     }
   ],
@@ -760,7 +905,10 @@
       "priceWithFee": 5200,
       "priceWithFeeFmt": "5.200đ",
       "packWeightG": 50,
-      "packWeightType": "1 bánh (50g)",
+      "packWeightType": "1 bánh",
+      "packType": null,
+      "packTypeLabel": null,
+      "packSizeText": null,
       "imageCount": 8
     },
     {
@@ -784,7 +932,10 @@
       "priceWithFee": 29900,
       "priceWithFeeFmt": "29.900đ",
       "packWeightG": 180,
-      "packWeightType": "1 bánh to (180g)",
+      "packWeightType": "1 bánh to",
+      "packType": null,
+      "packTypeLabel": null,
+      "packSizeText": null,
       "imageCount": 5
     },
     {
@@ -808,7 +959,10 @@
       "priceWithFee": 29900,
       "priceWithFeeFmt": "29.900đ",
       "packWeightG": 180,
-      "packWeightType": "1 bánh to (180g)",
+      "packWeightType": "1 bánh to",
+      "packType": null,
+      "packTypeLabel": null,
+      "packSizeText": null,
       "imageCount": 5
     },
     {
@@ -832,7 +986,10 @@
       "priceWithFee": 4550,
       "priceWithFeeFmt": "4.550đ",
       "packWeightG": 20,
-      "packWeightType": "2 bánh rẻ (20g)",
+      "packWeightType": "2 bánh rẻ",
+      "packType": "2_banh_re",
+      "packTypeLabel": "2 bánh rẻ",
+      "packSizeText": "21,5×11 cm",
       "imageCount": 24
     },
     {
@@ -856,7 +1013,10 @@
       "priceWithFee": 18200,
       "priceWithFeeFmt": "18.200đ",
       "packWeightG": 50,
-      "packWeightType": "2 bánh ép kim (50g)",
+      "packWeightType": "2 bánh ép kim",
+      "packType": "2_banh_dat",
+      "packTypeLabel": "2 bánh đắt (ép nhũ / ép kim)",
+      "packSizeText": "Hộp 21,5×11,5×5 cm · Túi 22,5×14×6 cm",
       "imageCount": 11
     },
     {
@@ -880,7 +1040,10 @@
       "priceWithFee": 6500,
       "priceWithFeeFmt": "6.500đ",
       "packWeightG": 250,
-      "packWeightType": "4 bánh rẻ (250g)",
+      "packWeightType": "4 bánh rẻ",
+      "packType": "4_banh_re",
+      "packTypeLabel": "4 bánh rẻ",
+      "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
       "imageCount": 4
     },
     {
@@ -904,7 +1067,10 @@
       "priceWithFee": 24050,
       "priceWithFeeFmt": "24.050đ",
       "packWeightG": 250,
-      "packWeightType": "4 bánh rẻ (250g)",
+      "packWeightType": "4 bánh rẻ",
+      "packType": "4_banh_re",
+      "packTypeLabel": "4 bánh rẻ",
+      "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
       "imageCount": 12
     },
     {
@@ -926,7 +1092,10 @@
       "priceWithFee": 6500,
       "priceWithFeeFmt": "6.500đ",
       "packWeightG": 250,
-      "packWeightType": "4 bánh rẻ (250g)",
+      "packWeightType": "4 bánh rẻ",
+      "packType": "4_banh_re",
+      "packTypeLabel": "4 bánh rẻ",
+      "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
       "imageCount": 2
     },
     {
@@ -950,7 +1119,10 @@
       "priceWithFee": 20800,
       "priceWithFeeFmt": "20.800đ",
       "packWeightG": 250,
-      "packWeightType": "4 bánh rẻ (250g)",
+      "packWeightType": "4 bánh rẻ",
+      "packType": "4_banh_re",
+      "packTypeLabel": "4 bánh rẻ",
+      "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
       "imageCount": 7
     },
     {
@@ -972,7 +1144,10 @@
       "priceWithFee": 6500,
       "priceWithFeeFmt": "6.500đ",
       "packWeightG": 250,
-      "packWeightType": "4 bánh rẻ (250g)",
+      "packWeightType": "4 bánh rẻ",
+      "packType": "4_banh_re",
+      "packTypeLabel": "4 bánh rẻ",
+      "packSizeText": "Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)",
       "imageCount": 2
     },
     {
@@ -996,7 +1171,10 @@
       "priceWithFee": 26000,
       "priceWithFeeFmt": "26.000đ",
       "packWeightG": 300,
-      "packWeightType": "6 bánh mini (6×50g)",
+      "packWeightType": "6 bánh mini",
+      "packType": "6_banh_mini",
+      "packTypeLabel": "6 bánh mini",
+      "packSizeText": "Khay 24×17 cm · Túi 25×19 cm",
       "imageCount": 6
     },
     {
@@ -1020,7 +1198,10 @@
       "priceWithFee": 24700,
       "priceWithFeeFmt": "24.700đ",
       "packWeightG": 300,
-      "packWeightType": "6 bánh mini (6×50g)",
+      "packWeightType": "6 bánh mini",
+      "packType": "6_banh_mini",
+      "packTypeLabel": "6 bánh mini",
+      "packSizeText": "Khay 24×17 cm · Túi 25×19 cm",
       "imageCount": 8
     },
     {
@@ -1043,7 +1224,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "bat_giac",
+      "packTypeLabel": "Bát giác",
+      "packSizeText": "Đáy 37,7×37,5 cm · Túi 38×40 cm",
       "imageCount": 3
     },
     {
@@ -1067,7 +1251,10 @@
       "priceWithFee": 33800,
       "priceWithFeeFmt": "33.800đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 11
     },
     {
@@ -1091,7 +1278,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 5
     },
     {
@@ -1115,7 +1305,10 @@
       "priceWithFee": 79300,
       "priceWithFeeFmt": "79.300đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 11
     },
     {
@@ -1139,7 +1332,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 7
     },
     {
@@ -1163,7 +1359,10 @@
       "priceWithFee": 65000,
       "priceWithFeeFmt": "65.000đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 5
     },
     {
@@ -1187,7 +1386,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 300,
-      "packWeightType": "6 bánh mini (6×50g)",
+      "packWeightType": "6 bánh mini",
+      "packType": "6_banh_mini",
+      "packTypeLabel": "6 bánh mini",
+      "packSizeText": "Khay 24×17 cm · Túi 25×19 cm",
       "imageCount": 9
     },
     {
@@ -1211,7 +1413,10 @@
       "priceWithFee": 46800,
       "priceWithFeeFmt": "46.800đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 14
     },
     {
@@ -1235,7 +1440,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 4
     },
     {
@@ -1259,7 +1467,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 13
     },
     {
@@ -1283,7 +1494,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 6
     },
     {
@@ -1307,7 +1521,10 @@
       "priceWithFee": 45500,
       "priceWithFeeFmt": "45.500đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 7
     },
     {
@@ -1331,7 +1548,10 @@
       "priceWithFee": 42900,
       "priceWithFeeFmt": "42.900đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 6
     },
     {
@@ -1355,7 +1575,10 @@
       "priceWithFee": 34450,
       "priceWithFeeFmt": "34.450đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 19
     },
     {
@@ -1379,7 +1602,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "6 bánh (ước tính 330g)",
+      "packWeightType": "6 bánh",
+      "packType": "4_banh_tra_6_banh",
+      "packTypeLabel": "4 bánh trà – 6 bánh",
+      "packSizeText": "Đáy 27×35,5 cm · Túi 29×36,5 cm",
       "imageCount": 15
     },
     {
@@ -1403,7 +1629,10 @@
       "priceWithFee": 37700,
       "priceWithFeeFmt": "37.700đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 6
     },
     {
@@ -1427,7 +1656,10 @@
       "priceWithFee": 29900,
       "priceWithFeeFmt": "29.900đ",
       "packWeightG": 330,
-      "packWeightType": "4 bánh (330g)",
+      "packWeightType": "4 bánh",
+      "packType": "4_banh_co_nap",
+      "packTypeLabel": "4 bánh có nắp",
+      "packSizeText": "Đáy 26×26 cm · Túi 30×27,5 cm",
       "imageCount": 8
     }
   ]

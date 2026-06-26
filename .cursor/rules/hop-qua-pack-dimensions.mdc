@@ -1,0 +1,48 @@
+---
+description: Quy cách cân nặng và kích thước đóng hàng hộp bánh Trung Thu Vân Thắng
+globs: du-an/vo-anh/hop-qua/website/source/**/*
+alwaysApply: false
+---
+
+# Quy cách đóng hàng — hộp bánh Trung Thu
+
+Nguồn chuẩn: `data/pack-dimension-rules.json` + `scripts/pack_spec_rules.py` + `js/pack-spec-rules.js`.
+
+Khi cập nhật mô tả SP, catalog, Shopee hoặc báo giá — **dùng đúng bảng dưới**, không copy KT cũ trong `products.js`.
+
+## Cân nặng (chỉ vỏ/khay/túi, chưa gồm bánh)
+
+| Loại | Gram |
+|------|------|
+| 4 bánh | 330g |
+| 4 bánh rẻ | 250g |
+| 1 bánh | 50g |
+| 1 bánh to | 180g |
+| 2 bánh rẻ | 20g |
+| 2 bánh ép kim | 50g |
+| 6 bánh mini | 300g |
+
+## Kích thước (cm)
+
+| Loại | Quy cách |
+|------|----------|
+| **6 bánh mini** | Khay 24×17 · Túi 25×19 |
+| **4 bánh rẻ** | Đáy 25×24 · Túi 25,5×24,5 (đáy và túi chênh 0,5 cm) |
+| **4 bánh có nắp** | Đáy 26×26 · Túi 30×27,5 |
+| **4 bánh trà – 6 bánh** | Đáy 27×35,5 · Túi 29×36,5 |
+| **Bát giác** | Đáy 37,7×37,5 · Túi 38×40 |
+| **2 bánh rẻ** | 21,5×11 |
+| **2 bánh đắt (ép nhũ / ép kim)** | Hộp 21,5×11,5×5 · Túi 22,5×14×6 |
+
+## Phân loại tự động
+
+- `classify_pack_type()` trong `pack_spec_rules.py` / `pack-spec-rules.js`
+- Mô tả SP: bullet `•Kích thước: …` qua `dimension_bullet()`
+- Cập nhật hàng loạt: `python3 scripts/update-product-pack-dimensions.py`
+- Catalog cap-nhat: `python3 scripts/build-cap-nhat-catalog.py`
+
+## Ghi chú
+
+- Hộp **kem trà / 6 bánh trà / hoàng kim / liên nguyệt** → `4_banh_tra_6_banh`
+- Hộp **4 bánh thường có nắp** (330g, không dòng trà) → `4_banh_co_nap`
+- **Khay** 6 mini → dùng KT loại `6_banh_mini`
