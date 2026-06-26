@@ -12,7 +12,7 @@
         if (!data || !data.hotModels || !data.hotModels.length) return '';
         const chips = data.hotModels
             .map((m) => {
-                const href = m.id ? `product.html?id=${encodeURIComponent(m.id)}` : '#';
+                const href = m.id ? `/product.html?id=${encodeURIComponent(m.id)}` : '#';
                 return `<a href="${href}" class="rfq-trend-chip">${escapeHtml(m.name)}</a>`;
             })
             .join('');

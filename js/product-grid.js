@@ -17,11 +17,15 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
 
     productsToDisplay.forEach((product, localIndex) => {
         const globalIndex = globalStartIndex + localIndex;
+        const fullThumb = toRootAssetUrl(product.thumbnail);
         const cardThumb = getThumbUrl(product.thumbnail);
         const isPriority = globalIndex < 2;
         const badges = getProductBadges(product);
         const zaloUrl = buildZaloUrl(product);
-        const detailUrl = `product.html?id=${encodeURIComponent(product.id)}`;
+        const detailUrl =
+            typeof buildProductPageUrl === 'function'
+                ? buildProductPageUrl(product)
+                : `/product.html?id=${encodeURIComponent(product.id)}`;
         const secondaryBtnHtml = useShopee
             ? `<a href="${getShopeeUrl(product)}" target="_blank" rel="noopener sponsored" class="btn-shopee-card">Mua Shopee</a>`
             : `<a href="${zaloUrl}" target="_blank" rel="noopener" class="btn-zalo-card" data-product-id="${product.id}">Zalo báo giá</a>`;
@@ -38,7 +42,7 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
         const thumbnailsHtml = thumbnails
             .map((src) => {
                 const thumbSrc = getThumbUrl(src);
-                return `<img src="${thumbSrc}" alt="" width="50" height="50" loading="lazy" decoding="async" aria-hidden="true" onerror="this.onerror=null; this.src='${src}';">`;
+                return `<img src="${thumbSrc}" alt="" width="50" height="50" loading="lazy" decoding="async" aria-hidden="true" onerror="this.onerror=null; this.src='${toRootAssetUrl(src)}';">`;
             })
             .join('');
         const thumbnailsBlock = thumbnailsHtml
@@ -65,7 +69,7 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
         productCard.innerHTML = `
             <a href="${detailUrl}" class="product-card-link">
                 <div class="product-image-container">
-                    <img src="${cardThumb}" alt="${product.name}" width="400" height="320" loading="${loadingAttr}" decoding="async"${fetchPriority} onerror="this.onerror=null; this.src='${product.thumbnail}';">
+                    <img src="${cardThumb}" alt="${product.name}" width="400" height="320" loading="${loadingAttr}" decoding="async"${fetchPriority} onerror="this.onerror=null; this.src='${fullThumb}';">
                     ${seasonBadge}
                     ${badgesHtml ? `<div class="product-badges">${badgesHtml}</div>` : ''}
                 </div>

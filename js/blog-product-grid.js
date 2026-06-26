@@ -13,5 +13,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const products = ids.map((id) => getProductById(id)).filter(Boolean);
-    displayProducts(grid, products, 0, { showThumbnails: false });
+    displayProducts(grid, products, 0, { showThumbnails: false, secondaryAction: 'shopee' });
 });

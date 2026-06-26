@@ -9,7 +9,7 @@ function escapeCatalogHtml(str) {
 
 function catalogProductUrl(row) {
     const id = row.webId || row.id;
-    return id ? `product.html?id=${encodeURIComponent(id)}` : '#';
+    return id ? `/product.html?id=${encodeURIComponent(id)}` : '#';
 }
 
 function parsePackWeightG(product) {
@@ -82,7 +82,10 @@ function renderCapNhatGroupCardHtml(group) {
 function renderCapNhatProductCardHtml(product, options = {}) {
     const rawImg = (product.images && product.images[0]) || product.thumbnail || 'image/favicon.png';
     const img = typeof getThumbUrl === 'function' ? getThumbUrl(rawImg) : rawImg;
-    const fallback = product.thumbnail || rawImg || 'image/favicon.png';
+    const fallback =
+        typeof toRootAssetUrl === 'function'
+            ? toRootAssetUrl(product.thumbnail || rawImg || 'image/favicon.png')
+            : product.thumbnail || rawImg || 'image/favicon.png';
     const detail = catalogProductUrl(product);
     const packG = parsePackWeightG(product);
     const sizeText = typeof getPackSizeText === 'function' ? getPackSizeText(product) : (product.packSizeText || '');
