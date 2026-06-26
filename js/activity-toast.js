@@ -1,6 +1,10 @@
-/** Toast góc trái dưới — hoạt động đặt mẫu (tên + vùng, không SĐT). */
-(function () {
+/** Toast góc trái dưới — đơn RFQ thật (Sheet) + hoạt động tham khảo. Không hiện SĐT. */
+(function (global) {
     const CONTAINER_ID = 'activity-toast-root';
+    const QTY_FROM_TIER = { '1-10': 10, '11-99': 50, '100-500': 200, '500+': 500 };
+
+    let currentSettings = null;
+    let pendingItems = [];
 
     function fmtVnd(n) {
         if (!n) return '';
@@ -14,6 +18,29 @@
             [a[i], a[j]] = [a[j], a[i]];
         }
         return a;
+    }
+
+    function maskName(raw) {
+        const s = String(raw || '').trim();
+        if (!s) return 'Khách mới';
+        return s.split(/\s+/)[0];
+    }
+
+    function qtyFromPayload(payload) {
+        const detail = parseInt(String(payload.qtyDetail || '').trim(), 10);
+        if (detail > 0) return detail;
+        return QTY_FROM_TIER[payload.qtyTier] || 10;
+    }
+
+    function rfqPayloadToActivityItem(payload) {
+        return {
+            name: maskName(payload.name),
+            product: payload.productName || 'hộp Trung Thu',
+            qty: qtyFromPayload(payload),
+            type: 'rfq',
+            note: payload.needLabel || 'Báo giá',
+            real: true,
+        };
     }
 
     function buildMessage(item) {
@@ -51,13 +78,25 @@
         }
     }
 
+    function ensureRoot() {
+        let root = document.getElementById(CONTAINER_ID);
+        if (!root) {
+            root = document.createElement('div');
+            root.id = CONTAINER_ID;
+            root.className = 'activity-toast-root';
+            root.setAttribute('aria-live', 'polite');
+            document.body.appendChild(root);
+        }
+        return root;
+    }
+
     function showToast(root, item, settings, onDismiss) {
         const el = document.createElement('div');
-        el.className = 'activity-toast';
+        el.className = 'activity-toast' + (item.real ? ' activity-toast--real' : '');
         el.setAttribute('role', 'status');
         el.innerHTML = `
             <button type="button" class="activity-toast-close" aria-label="Đóng">×</button>
-            <p class="activity-toast-kicker">Hoạt động gần đây</p>
+            <p class="activity-toast-kicker">${item.real ? 'Vừa gửi yêu cầu' : 'Hoạt động gần đây'}</p>
             <p class="activity-toast-body">${buildMessage(item)}</p>
             <button type="button" class="activity-toast-mute">Không hiện hôm nay</button>
         `;
@@ -86,21 +125,41 @@
         return min + Math.floor(Math.random() * (max - min + 1));
     }
 
+    function mergeFeeds(staticFeed, realFeed) {
+        const settings = { ...(staticFeed && staticFeed.settings) };
+        const demo = shuffle((staticFeed && staticFeed.items) || []);
+        const real = ((realFeed && realFeed.items) || []).filter((item) => item && item.real !== false);
+        return { settings, items: real.concat(demo) };
+    }
+
+    function loadRealActivityFeed() {
+        return fetch('data/rfq-config.json')
+            .then((r) => (r.ok ? r.json() : {}))
+            .then((cfg) => {
+                const base = String(cfg.submitUrl || '').trim();
+                if (!base) return null;
+                const sep = base.indexOf('?') >= 0 ? '&' : '?';
+                return fetch(`${base}${sep}feed=activity&limit=20`, { mode: 'cors' });
+            })
+            .then((r) => (r && r.ok ? r.json() : null))
+            .catch(() => null);
+    }
+
     function start(feed) {
         const settings = feed.settings || {};
+        currentSettings = settings;
         const storageKey = settings.storageKey || 'hopqua_activity_toast_off';
-        if (isDisabled(storageKey)) return;
 
-        let root = document.getElementById(CONTAINER_ID);
-        if (!root) {
-            root = document.createElement('div');
-            root.id = CONTAINER_ID;
-            root.className = 'activity-toast-root';
-            root.setAttribute('aria-live', 'polite');
-            document.body.appendChild(root);
+        const root = ensureRoot();
+
+        if (pendingItems.length) {
+            pendingItems.forEach((item) => showToast(root, item, settings, () => {}));
+            pendingItems = [];
         }
 
-        const queue = shuffle(feed.items || []);
+        if (isDisabled(storageKey)) return;
+
+        const queue = feed.items || [];
         let index = 0;
         let shown = 0;
         const max = settings.maxPerSession || 5;
@@ -121,12 +180,41 @@
         setTimeout(next, randBetween(12000, 22000));
     }
 
+    function pushItem(item) {
+        if (!item) return;
+        const settings = currentSettings || {
+            displayMs: 7500,
+            storageKey: 'hopqua_activity_toast_off',
+        };
+        const root = ensureRoot();
+        if (!currentSettings) {
+            pendingItems.push(item);
+            return;
+        }
+        showToast(root, item, settings, () => {});
+    }
+
+    function pushFromRfq(payload) {
+        pushItem(rfqPayloadToActivityItem(payload));
+    }
+
+    global.HopQuaActivity = {
+        pushItem,
+        pushFromRfq,
+        rfqPayloadToActivityItem,
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
-        fetch('data/activity-feed.json')
-            .then((r) => (r.ok ? r.json() : null))
-            .then((feed) => {
-                if (feed && feed.items && feed.items.length) start(feed);
+        Promise.all([
+            fetch('data/activity-feed.json').then((r) => (r.ok ? r.json() : null)),
+            loadRealActivityFeed(),
+        ])
+            .then(([staticFeed, realFeed]) => {
+                if (!staticFeed && !realFeed) return;
+                const merged = mergeFeeds(staticFeed || { items: [] }, realFeed);
+                if (merged.items.length) start(merged);
+                else if (staticFeed) start(staticFeed);
             })
             .catch(() => {});
     });
-})();
+})(typeof window !== 'undefined' ? window : globalThis);

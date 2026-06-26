@@ -94,8 +94,71 @@ function doPost(e) {
   }
 }
 
-function doGet() {
+function doGet(e) {
+  const param = (e && e.parameter) || {};
+  if (param.feed === 'activity') {
+    const limit = param.limit || 20;
+    const payload = getActivityFeed_(limit);
+    return ContentService.createTextOutput(JSON.stringify(payload))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
   return ContentService.createTextOutput('RFQ endpoint OK').setMimeType(ContentService.MimeType.TEXT);
+}
+
+function maskName_(name) {
+  const s = String(name || '').trim();
+  if (!s) return 'Khách mới';
+  return s.split(/\s+/)[0];
+}
+
+function qtyFromRow_(qtyDetail, qtyTierLabel) {
+  const detail = parseInt(String(qtyDetail || '').trim(), 10);
+  if (detail > 0) return detail;
+  const tier = String(qtyTierLabel || '');
+  if (tier.indexOf('500') >= 0 && tier.indexOf('+') >= 0) return 500;
+  if (tier.indexOf('100') >= 0) return 200;
+  if (tier.indexOf('11') >= 0) return 50;
+  return 10;
+}
+
+const TEST_PHONES_ = ['0900000099', '0900000098', '0900000097', '0900000096', '0900000095', '0900000094', '0900000093'];
+
+function getActivityFeed_(limit) {
+  const max = Math.min(parseInt(limit, 10) || 20, 30);
+  try {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const sh = ss.getSheetByName(SHEET_NAME);
+    if (!sh || sh.getLastRow() < 2) return { items: [] };
+
+    const lastRow = sh.getLastRow();
+    const startRow = Math.max(2, lastRow - max + 1);
+    const rows = sh.getRange(startRow, 1, lastRow, 11).getValues();
+    const items = [];
+
+    for (let i = rows.length - 1; i >= 0; i--) {
+      const row = rows[i];
+      const phone = String(row[1] || '').trim();
+      if (!phone || TEST_PHONES_.indexOf(phone) >= 0) continue;
+
+      const qtyDetail = row[7];
+      const qtyTierLabel = row[6];
+      const needLabel = String(row[5] || '').trim();
+      const note = String(row[8] || '').trim();
+
+      items.push({
+        name: maskName_(row[2]),
+        product: String(row[3] || '').trim() || 'hộp Trung Thu',
+        qty: qtyFromRow_(qtyDetail, qtyTierLabel),
+        type: 'rfq',
+        note: needLabel || note || 'Báo giá',
+        real: true,
+      });
+    }
+    return { items: items };
+  } catch (err) {
+    Logger.log('getActivityFeed_: ' + err);
+    return { items: [] };
+  }
 }
 
 function appendRow_(data) {

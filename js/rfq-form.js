@@ -278,6 +278,9 @@
             try {
                 await postRfqToGas(url, payload);
                 setStatus(form, formatSuccessMessage(data.phone, cfg), 'success');
+                if (global.HopQuaActivity && global.HopQuaActivity.pushFromRfq) {
+                    global.HopQuaActivity.pushFromRfq(payload);
+                }
                 form.reset();
                 if (data.productId) {
                     form.querySelector('[name="productId"]').value = data.productId;

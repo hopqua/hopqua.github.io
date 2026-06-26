@@ -4175,6 +4175,10 @@ footer .hover\:text-orange-300:hover {
     opacity: 1;
 }
 
+.activity-toast--real {
+    border-left: 3px solid var(--accent, #c9a227);
+}
+
 .activity-toast-kicker {
     margin: 0 0 4px;
     font-size: 0.72rem;
