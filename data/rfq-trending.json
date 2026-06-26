@@ -1,0 +1,11 @@
+{
+  "weekLabel": "Tuần này",
+  "rfqCount": 23,
+  "hotModels": [
+    { "name": "Phú quý 4 bánh", "id": "phu-quy-29-35k" },
+    { "name": "4 bánh rẻ (nhiều màu)", "id": "hac-do-re" },
+    { "name": "6 Bánh Mini Kim Sơn", "id": "6-banh-mini-kim-son-cam-20k-26k" },
+    { "name": "Thu Hoa 4 bánh", "id": "thu-hoa-4-banh-do-29k-35k" },
+    { "name": "Hoàng Kim 4–6 bánh", "id": "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k" }
+  ]
+}

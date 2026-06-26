@@ -124,6 +124,7 @@ function displayProductInfo(product) {
                 <span class="pd-price-label">Giá tham khảo</span>
                 <p class="pd-price">${product.price}</p>
             </div>
+            <div class="pd-rfq-wrap" id="pd-rfq-mount"></div>
             <div class="pd-desc-box">
                 <h2 class="pd-desc-title">Mô tả</h2>
                 <div class="pd-desc">${renderProductDescriptionHtml(product.description)}</div>
@@ -142,6 +143,15 @@ function displayProductInfo(product) {
         </aside>
     `;
 
+    if (typeof mountRfq === 'function') {
+        mountRfq('pd-rfq-mount', {
+            formId: 'pd-rfq-form',
+            productId: product.id,
+            productName: product.name,
+            title: 'Gọi lại báo giá mẫu này',
+            lead: 'Để SĐT — shop Vân Thắng gọi tư vấn giá sỉ & SL. Mua lẻ 1–10 cái: dùng Shopee bên dưới.',
+        });
+    }
 }
 
 function attachZaloTracking(product) {

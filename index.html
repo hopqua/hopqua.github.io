@@ -141,6 +141,11 @@
                     <li><strong>2 bánh đắt (ép nhũ / ép kim)</strong> — Hộp 21,5×11,5×5 · Túi 22,5×14×6</li>
                 </ul>
             </details>
+            <details class="rfq-banner">
+                <summary>📞 Cần báo giá sỉ 100+ hộp? Để SĐT — shop gọi lại miễn phí</summary>
+                <div id="home-rfq-mount"></div>
+            </details>
+            <div id="rfq-trending"></div>
             <nav class="catalog-nav catalog-nav-inline" id="catalog-nav" aria-label="Danh mục giá">
             <a href="18-mau-hot-2026.html" class="catalog-nav-link catalog-nav-link-hot">18 mẫu hot Shopee</a>
             <a href="cap-nhat-2026.html" class="catalog-nav-link">Mẫu cập nhật 2026</a>
@@ -280,6 +285,9 @@
     <script src="js/sales-utils.js" defer></script>
     <script src="js/catalog-card-render.js" defer></script>
     <script src="js/pack-spec-rules.js" defer></script>
+    <script src="js/rfq-form.js" defer></script>
+    <script src="js/rfq-trending.js" defer></script>
+    <script src="js/activity-toast.js" defer></script>
     <script src="js/product-description.js" defer></script>
     <script src="js/product-grid.js" defer></script>
     <script src="js/home-posts.js" defer></script>
@@ -287,6 +295,18 @@
     <script src="js/main.js" defer></script>
     <script src="js/product-search.js" defer></script>
     <script src="js/site-header-search.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof mountRfq === 'function') {
+                mountRfq('home-rfq-mount', {
+                    formId: 'home-rfq-form',
+                    variant: 'compact',
+                    title: 'Yêu cầu báo giá',
+                    lead: 'Shop gọi lại trong giờ hành chính (8h–20h).',
+                });
+            }
+        });
+    </script>
     <!-- Container cho các nút chat -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
         <!-- Nút Chat Zalo Cố Định với Hiệu Ứng Chuông Reo -->
