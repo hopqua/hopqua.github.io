@@ -1,123 +1,365 @@
 {
   "mapped": [
     {
-      "productId": "hop-1-banh",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/48112038624",
-      "shopeeName": "[2026] Vỏ hộp bánh trung thu Hoàng Kim – hộp quà cao cấp, sang trọng, dùng tặng khách/đối tác",
-      "itemid": 48112038624,
-      "score": 0.556
+      "productId": "1b-mini-sll-3k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53712833935",
+      "itemid": 53712833935
     },
     {
-      "productId": "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/40031646973",
-      "shopeeName": "[Mẫu 2026] - combo 5/10 hộp trung thu Liên Nguyệt đình đỏ 4 bánh kèm hộp trà/dao dĩa (150-250g)",
-      "itemid": 40031646973,
-      "score": 0.5
+      "productId": "2-banh-re-5-mau",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53412082834",
+      "itemid": 53412082834
     },
     {
-      "productId": "vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/51112057468",
-      "shopeeName": "[Mẫu 2026] - combo 5/10 hộp  Hộp trung thu Liên Nguyệt Đình 4 bánh kèm hộp trà/dao dĩa/ 6 bánh (150-250g)",
-      "itemid": 51112057468,
-      "score": 0.375
+      "productId": "4b-re-do-xd",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/46662866890",
+      "itemid": 46662866890
     },
     {
-      "productId": "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/28345022739",
-      "shopeeName": "[Mẫu 2026] - combo 5/10 Vỏ bánh trung thu 4 bánh không nắp hạc đỏ/xanh lá (125g-250g)",
-      "itemid": 28345022739,
-      "score": 0.333
+      "productId": "4b-re-sen-phu-quy",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/46462866836",
+      "itemid": 46462866836
     },
     {
-      "productId": "hop-cung-gap-gon-6x",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/40081639057",
-      "shopeeName": "[Mẫu 2026] - combo 2/5 Vỏ hộp cứng gấp gọn bánh trung thu 4 bánh cao cấp 4 bánh trà/6 bánh(125g-250g)",
-      "itemid": 40081639057,
-      "score": 0.5
+      "productId": "6-banh-mini-kim-son-cam-20k-26k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/41731641478",
+      "itemid": 41731641478
     },
     {
-      "productId": "nam-su-hong-150-250g-23-29k",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/44031632972",
-      "shopeeName": "[mẫu 2026] - combo 5/10 Vỏ hộp trung thu Thu Hoa đỏ 4 bánh ép kim long lanh (150-250g)",
-      "itemid": 44031632972,
-      "score": 0.333
+      "productId": "6-banh-mini-mem-san-2-ma-sll-19k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/29645127503",
+      "itemid": 29645127503
+    },
+    {
+      "productId": "6b-mini-san-hn-3x",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/52612060994",
+      "itemid": 52612060994
+    },
+    {
+      "productId": "bat-giac-hao-quang-anh-trang-36k-44k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49912858923",
+      "itemid": 49912858923
     },
     {
       "productId": "bat-giac-tho-quy-toc",
       "shopeeUrl": "https://shopee.vn/product/1307955653/51912066032",
-      "shopeeName": "[Mẫu 2026] - combo 5/10 vỏ hộp trung thu Thỏ quý tộc ép kim (150-250g)",
-      "itemid": 51912066032,
-      "score": 0.5
+      "itemid": 51912066032
+    },
+    {
+      "productId": "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/51562829888",
+      "itemid": 51562829888
+    },
+    {
+      "productId": "dao-nia-mau-trang-hong-xanh-duong",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/51562829886",
+      "itemid": 51562829886
+    },
+    {
+      "productId": "hac-do-re",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/28345022739",
+      "itemid": 28345022739
+    },
+    {
+      "productId": "hac-van-nguyet-3x",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49912858898",
+      "itemid": 49912858898
+    },
+    {
+      "productId": "hac-vu-nguyet-ca-4-banh-6-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/46562866884",
+      "itemid": 46562866884
+    },
+    {
+      "productId": "ho-diep-29-35k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53712833877",
+      "itemid": 53712833877
+    },
+    {
+      "productId": "hoa-vien-do-4-banh-re",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/56962838904",
+      "itemid": 56962838904
+    },
+    {
+      "productId": "hoa-vien-re-do",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44712849931",
+      "itemid": 44712849931
+    },
+    {
+      "productId": "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/48112038624",
+      "itemid": 48112038624
+    },
+    {
+      "productId": "hong-nguyet-vien-cam",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/46762866809",
+      "itemid": 46762866809
+    },
+    {
+      "productId": "hop-1-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44712849937",
+      "itemid": 44712849937
+    },
+    {
+      "productId": "hop-1-banh-to-tho-do-300-600g-23k-28k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/52412057658",
+      "itemid": 52412057658
+    },
+    {
+      "productId": "hop-2-banh-re",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53812833856",
+      "itemid": 53812833856
     },
     {
       "productId": "hop-6-banh-mini-tho-ngoc-do",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/41731641478",
-      "shopeeName": "[mẫu 2026] - combo 5/10 Vỏ hộp trung thu 6B mini Thỏ cam (50-100g)",
-      "itemid": 41731641478,
-      "score": 0.5
-    },
-    {
-      "productId": "hop-cong-tuoc-150-250g-28-33k",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/42281641284",
-      "shopeeName": "[Mẫu 2026] - combo 5/10 vỏ Hộp đựng bánh trung thu Cúc đỏ 4 bánh (150-250g)",
-      "itemid": 42281641284,
-      "score": 0.5
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53512833865",
+      "itemid": 53512833865
     },
     {
       "productId": "hop-6-banh-mini-tho-ngoc-vang",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/50712056189",
-      "shopeeName": "[Mẫu 2026] - Combo 5/10 Hộp trung thu Thỏ đỏ đựng bánh 150-250g",
-      "itemid": 50712056189,
-      "score": 0.5
+      "shopeeUrl": "https://shopee.vn/product/1307955653/51762829853",
+      "itemid": 51762829853
+    },
+    {
+      "productId": "hop-cong-tuoc-150-250g-28-33k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53512833934",
+      "itemid": 53512833934
+    },
+    {
+      "productId": "hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/43781648219",
+      "itemid": 43781648219
+    },
+    {
+      "productId": "hop-cung-6-banh-mini-75-100g-36k-45k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49012099573",
+      "itemid": 49012099573
+    },
+    {
+      "productId": "hop-cung-gap-gon-6x",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/40081639057",
+      "itemid": 40081639057
+    },
+    {
+      "productId": "hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53712833940",
+      "itemid": 53712833940
+    },
+    {
+      "productId": "hop-duat-van-14-17k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/29345127494",
+      "itemid": 29345127494
+    },
+    {
+      "productId": "hop-lam-cuc-4-6-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53712833936",
+      "itemid": 53712833936
+    },
+    {
+      "productId": "hop-lan-vu-4-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53812833855",
+      "itemid": 53812833855
+    },
+    {
+      "productId": "hop-lien-ngu-4-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49912858922",
+      "itemid": 49912858922
+    },
+    {
+      "productId": "hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53712833942",
+      "itemid": 53712833942
+    },
+    {
+      "productId": "hop-qua-16-cho-be",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44712849866",
+      "itemid": 44712849866
+    },
+    {
+      "productId": "hop-sen-phu-quy-4-banh-re",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49912858908",
+      "itemid": 49912858908
+    },
+    {
+      "productId": "hop-song-hac-6-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53612833898",
+      "itemid": 53612833898
+    },
+    {
+      "productId": "hop-song-nguyet-4-6-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/29645127502",
+      "itemid": 29645127502
+    },
+    {
+      "productId": "hut-am",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53612833910",
+      "itemid": 53612833910
+    },
+    {
+      "productId": "khai-phuc-29-35k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49912858953",
+      "itemid": 49912858953
+    },
+    {
+      "productId": "khay-6b-mini-khay-1-banh-lon-100d-5000d",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44712849867",
+      "itemid": 44712849867
+    },
+    {
+      "productId": "khay-trong-sz-9-10-11",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/46362866875",
+      "itemid": 46362866875
+    },
+    {
+      "productId": "khay-tui-pet",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/56962838876",
+      "itemid": 56962838876
+    },
+    {
+      "productId": "khuc-nguyet-vien-cuc-do-4-banh-29-35k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/42281641284",
+      "itemid": 42281641284
+    },
+    {
+      "productId": "kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/57362065871",
+      "itemid": 57362065871
+    },
+    {
+      "productId": "lan-da-3x-nho",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/45812073290",
+      "itemid": 45812073290
+    },
+    {
+      "productId": "lan-vu-re-linh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53412833942",
+      "itemid": 53412833942
+    },
+    {
+      "productId": "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/51112057468",
+      "itemid": 51112057468
+    },
+    {
+      "productId": "nam-su-hong-150-250g-23-29k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/42731904080",
+      "itemid": 42731904080
+    },
+    {
+      "productId": "ngoc-hoa-cam-4-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49912858967",
+      "itemid": 49912858967
+    },
+    {
+      "productId": "nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44512085845",
+      "itemid": 44512085845
+    },
+    {
+      "productId": "nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/46362866815",
+      "itemid": 46362866815
+    },
+    {
+      "productId": "nguyet-yen-1x",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53412833935",
+      "itemid": 53412833935
     },
     {
       "productId": "phu-quy-29-35k",
-      "shopeeUrl": "https://shopee.vn/product/1307955653/53412082834",
-      "shopeeName": "[Mẫu 2026] - combo 10 Vỏ hộp bánh trung thu 2 bánh rẻ in 2 mặt (150-250g)",
-      "itemid": 53412082834,
-      "score": 0.333
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49812858970",
+      "itemid": 49812858970
+    },
+    {
+      "productId": "song-ngu-do-4-banh-tra-doc-36k-44k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/29445127498",
+      "itemid": 29445127498
+    },
+    {
+      "productId": "song-nguyet-4-6-banh",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53512833933",
+      "itemid": 53512833933
+    },
+    {
+      "productId": "thien-hoa-van-nguyet-4-banh-re-175k-24k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44612849856",
+      "itemid": 44612849856
+    },
+    {
+      "productId": "tho-do-3x-nho",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/50712056189",
+      "itemid": 50712056189
+    },
+    {
+      "productId": "tho-xanh-duong-4-banh-29k-35k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/29445127497",
+      "itemid": 29445127497
+    },
+    {
+      "productId": "thu-hoa-4-banh-do-29k-35k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44031632972",
+      "itemid": 44031632972
+    },
+    {
+      "productId": "tui-dung-banh-trung-thu-sz-9-10-11",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/49812858972",
+      "itemid": 49812858972
+    },
+    {
+      "productId": "vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53512833939",
+      "itemid": 53512833939
+    },
+    {
+      "productId": "vo-banh-trung-thu-sen-toa-4-banh-20-25k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44812849870",
+      "itemid": 44812849870
+    },
+    {
+      "productId": "vo-ep-kim-thuc-noi",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/45712108022",
+      "itemid": 45712108022
+    },
+    {
+      "productId": "vo-hop-banh-trung-thu-hon-viet-4-banh-4-banh-tra-6-banh-26k-39k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/51562829887",
+      "itemid": 51562829887
+    },
+    {
+      "productId": "vo-hop-banh-trung-thu-nguyet-anh-4-banh-tra-32-39k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/56862838883",
+      "itemid": 56862838883
+    },
+    {
+      "productId": "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53512833863",
+      "itemid": 53512833863
+    },
+    {
+      "productId": "vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53512833879",
+      "itemid": 53512833879
+    },
+    {
+      "productId": "vo-hop-trung-thu-lan-vu-4-banh-re-16-20k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/53512833857",
+      "itemid": 53512833857
+    },
+    {
+      "productId": "vo-hop-trung-thu-mini-4-banh-6-banh-quai-da-13-18k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44612849857",
+      "itemid": 44612849857
+    },
+    {
+      "productId": "vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44712849946",
+      "itemid": 44712849946
+    },
+    {
+      "productId": "vo-hop-trung-thu-vong-hac-4-banh-26-33k",
+      "shopeeUrl": "https://shopee.vn/product/1307955653/44612849849",
+      "itemid": 44612849849
     }
   ],
-  "unmapped_shopee": [
-    {
-      "itemid": 43781648219,
-      "name": "Mẫu 2026 -  Combo 5 Vỏ trà ép nhũ full mặt",
-      "url": "https://shopee.vn/product/1307955653/43781648219"
-    },
-    {
-      "itemid": 44512085845,
-      "name": "[Mẫu 2026] -combo 5/10  Vỏ hộp trung thu Nguyệt Hoa Viên 4 bánh không nắp rẻ, ép kim túi, hộp con (150-250g)",
-      "url": "https://shopee.vn/product/1307955653/44512085845"
-    },
-    {
-      "itemid": 45712108022,
-      "name": "",
-      "url": "https://shopee.vn/product/1307955653/45712108022"
-    },
-    {
-      "itemid": 45812073290,
-      "name": "",
-      "url": "https://shopee.vn/product/1307955653/45812073290"
-    },
-    {
-      "itemid": 49012099573,
-      "name": "",
-      "url": "https://shopee.vn/product/1307955653/49012099573"
-    },
-    {
-      "itemid": 52412057658,
-      "name": "",
-      "url": "https://shopee.vn/product/1307955653/52412057658"
-    },
-    {
-      "itemid": 52612060994,
-      "name": "",
-      "url": "https://shopee.vn/product/1307955653/52612060994"
-    },
-    {
-      "itemid": 57362065871,
-      "name": "",
-      "url": "https://shopee.vn/product/1307955653/57362065871"
-    }
-  ]
+  "source": "/home/vananh/Downloads/mass_update_basic_info_1307955653_20260626121818.xlsx"
 }
