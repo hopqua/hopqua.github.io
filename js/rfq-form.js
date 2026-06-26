@@ -151,7 +151,12 @@
         el.className = `rfq-status rfq-status--${type || 'info'}`;
     }
 
-    /** POST qua iframe — cách ổn định nhất với Google Apps Script Web App. */
+    function formatSuccessMessage(phone, cfg) {
+        const note = (cfg && cfg.callbackNote) || 'Shop gọi lại trong 15–30 phút (8h–20h, T2–CN)';
+        return `Cảm ơn anh/chị! Shop sẽ gọi ${phone}. ${note}`;
+    }
+
+    /** POST qua iframe — gửi payload JSON + field phẳng cho GAS. */
     function postRfqToGas(url, payload) {
         return new Promise((resolve, reject) => {
             const frameName = `rfq_gas_${Date.now()}`;
@@ -167,13 +172,32 @@
             gasForm.action = url;
             gasForm.target = frameName;
             gasForm.acceptCharset = 'UTF-8';
+            gasForm.enctype = 'application/x-www-form-urlencoded';
             gasForm.style.display = 'none';
 
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'payload';
-            input.value = JSON.stringify(payload);
-            gasForm.appendChild(input);
+            const fields = {
+                payload: JSON.stringify(payload),
+                phone: payload.phone || '',
+                name: payload.name || '',
+                productId: payload.productId || '',
+                productName: payload.productName || '',
+                need: payload.need || '',
+                needLabel: payload.needLabel || '',
+                qtyTier: payload.qtyTier || '',
+                qtyTierLabel: payload.qtyTierLabel || '',
+                qtyDetail: payload.qtyDetail || '',
+                note: payload.note || '',
+                pageUrl: payload.pageUrl || '',
+                submittedAt: payload.submittedAt || '',
+                source: payload.source || '',
+            };
+            Object.keys(fields).forEach((key) => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = fields[key];
+                gasForm.appendChild(input);
+            });
             document.body.appendChild(gasForm);
 
             let settled = false;
@@ -228,11 +252,7 @@
         if (url) {
             try {
                 await postRfqToGas(url, payload);
-                setStatus(
-                    form,
-                    `Cảm ơn anh/chị! Shop sẽ gọi ${data.phone} trong ${cfg.callbackNote || '15–30 phút'}.`,
-                    'success'
-                );
+                setStatus(form, formatSuccessMessage(data.phone, cfg), 'success');
                 form.reset();
                 if (data.productId) {
                     form.querySelector('[name="productId"]').value = data.productId;
@@ -243,7 +263,22 @@
             } catch (err) {
                 console.warn('RFQ iframe submit failed, retry no-cors', err);
                 try {
-                    const body = new URLSearchParams({ payload: JSON.stringify(payload) }).toString();
+                    const body = new URLSearchParams({
+                        payload: JSON.stringify(payload),
+                        phone: payload.phone || '',
+                        name: payload.name || '',
+                        productId: payload.productId || '',
+                        productName: payload.productName || '',
+                        need: payload.need || '',
+                        needLabel: payload.needLabel || '',
+                        qtyTier: payload.qtyTier || '',
+                        qtyTierLabel: payload.qtyTierLabel || '',
+                        qtyDetail: payload.qtyDetail || '',
+                        note: payload.note || '',
+                        pageUrl: payload.pageUrl || '',
+                        submittedAt: payload.submittedAt || '',
+                        source: payload.source || '',
+                    }).toString();
                     await fetch(url, {
                         method: 'POST',
                         mode: 'no-cors',

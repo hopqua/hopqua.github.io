@@ -15,27 +15,79 @@ const SHEET_NAME = 'RFQ';
 const TELEGRAM_BOT_TOKEN = '';
 const TELEGRAM_CHAT_ID = '';
 
+function parseUrlEncoded_(raw) {
+  const out = {};
+  String(raw || '')
+    .split('&')
+    .forEach((pair) => {
+      if (!pair) return;
+      const eq = pair.indexOf('=');
+      const k = decodeURIComponent((eq >= 0 ? pair.slice(0, eq) : pair).replace(/\+/g, ' '));
+      const v = decodeURIComponent((eq >= 0 ? pair.slice(eq + 1) : '').replace(/\+/g, ' '));
+      out[k] = v;
+    });
+  return out;
+}
+
 function parsePayload_(e) {
   if (!e) return {};
-  if (e.parameter && e.parameter.payload) {
-    return JSON.parse(e.parameter.payload);
+  const param = e.parameter || {};
+  let data = {};
+
+  if (param.payload) {
+    try {
+      data = JSON.parse(param.payload);
+    } catch (err) {
+      Logger.log('parse payload JSON: ' + err);
+    }
   }
+
+  if (!data.phone && param.phone) {
+    data = {
+      phone: param.phone || '',
+      name: param.name || '',
+      productId: param.productId || '',
+      productName: param.productName || '',
+      need: param.need || '',
+      needLabel: param.needLabel || '',
+      qtyTier: param.qtyTier || '',
+      qtyTierLabel: param.qtyTierLabel || '',
+      qtyDetail: param.qtyDetail || '',
+      note: param.note || '',
+      pageUrl: param.pageUrl || '',
+      submittedAt: param.submittedAt || '',
+      source: param.source || '',
+    };
+  }
+
   const contents = (e.postData && e.postData.contents) || '';
-  if (!contents) return e.parameter || {};
-  const trimmed = contents.trim();
-  if (trimmed.charAt(0) === '{') {
-    return JSON.parse(trimmed);
+  if (!data.phone && contents) {
+    const trimmed = contents.trim();
+    try {
+      if (trimmed.charAt(0) === '{') {
+        data = JSON.parse(trimmed);
+      } else {
+        const params = parseUrlEncoded_(trimmed);
+        if (params.payload) {
+          data = JSON.parse(params.payload);
+        } else if (params.phone) {
+          data = params;
+        }
+      }
+    } catch (err2) {
+      Logger.log('parse postData: ' + err2);
+    }
   }
-  if (trimmed.indexOf('payload=') === 0) {
-    const raw = decodeURIComponent(trimmed.replace(/^payload=/, '').replace(/\+/g, ' '));
-    return JSON.parse(raw);
-  }
-  return JSON.parse(trimmed);
+
+  return data || {};
 }
 
 function doPost(e) {
   try {
     const data = parsePayload_(e);
+    if (!data.phone) {
+      throw new Error('Thiếu SĐT trong request RFQ');
+    }
     appendRow_(data);
     notifyTelegram_(data);
     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
@@ -80,15 +132,18 @@ function appendRow_(data) {
 
 function notifyTelegram_(data) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
-  const text = [
+  const lines = [
     '📩 RFQ hopqua.github.io',
-    `SĐT: ${data.phone}`,
+    data.phone ? `SĐT: ${data.phone}` : '',
     data.name ? `Tên: ${data.name}` : '',
     data.productName ? `Mẫu: ${data.productName}` : '',
-    `Nhu cầu: ${data.needLabel || data.need}`,
-    `SL: ${data.qtyTierLabel || data.qtyTier}${data.qtyDetail ? ' (' + data.qtyDetail + ')' : ''}`,
+    data.needLabel || data.need ? `Nhu cầu: ${data.needLabel || data.need}` : '',
+    data.qtyTierLabel || data.qtyTier
+      ? `SL: ${data.qtyTierLabel || data.qtyTier}${data.qtyDetail ? ' (' + data.qtyDetail + ')' : ''}`
+      : '',
     data.note ? `Ghi chú: ${data.note}` : '',
-  ].filter(Boolean).join('\n');
+  ].filter(Boolean);
+  const text = lines.join('\n');
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
   const res = UrlFetchApp.fetch(url, {
     method: 'post',
