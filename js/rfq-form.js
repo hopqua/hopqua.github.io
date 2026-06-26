@@ -285,11 +285,7 @@
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
                         body,
                     });
-                    setStatus(
-                        form,
-                        `Cảm ơn anh/chị! Shop sẽ gọi ${data.phone} trong ${cfg.callbackNote || '15–30 phút'}.`,
-                        'success'
-                    );
+                    setStatus(form, formatSuccessMessage(data.phone, cfg), 'success');
                     form.reset();
                     if (data.productId) {
                         form.querySelector('[name="productId"]').value = data.productId;
