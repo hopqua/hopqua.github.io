@@ -24,7 +24,8 @@
         const qty = item.qty ? `<strong>${item.qty}</strong> hộp` : '';
 
         if (item.type === 'rfq' || !item.amountVnd) {
-            return `${who} — yêu cầu báo giá ${qty} <em>${product}</em>`;
+            const note = item.note ? ` · <span class="activity-toast-note">${item.note}</span>` : '';
+            return `${who} — yêu cầu báo giá ${qty} <em>${product}</em>${note}`;
         }
         const amount = fmtVnd(item.amountVnd);
         return `${who} — ${qty} <em>${product}</em> · <strong>${amount}</strong>`;

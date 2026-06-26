@@ -1,6 +1,12 @@
 /** Bài blog hiển thị trên trang chủ — cập nhật khi thêm bài mới trong _posts/ */
 const homeBlogPosts = [
     {
+        title: 'Ưu đãi tháng 6–7/2026: đặt 100 hộp — giá như mua 500',
+        url: '/uu-dai/ban-si/2026/06/25/uu-dai-100-hop-gia-nhu-500.html',
+        date: '2026-06-25',
+        image: 'image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-1.jpg'
+    },
+    {
         title: '18 mẫu hộp bánh Trung Thu hot 2026 — xem ảnh & mua Shopee',
         url: '/18-mau-hot-2026.html',
         date: '2026-06-12',

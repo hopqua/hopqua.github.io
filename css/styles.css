@@ -4072,6 +4072,11 @@ footer .hover\:text-orange-300:hover {
     font-weight: 600;
 }
 
+.activity-toast-note {
+    color: var(--tt-text-muted);
+    font-weight: 500;
+}
+
 .activity-toast-close {
     position: absolute;
     top: 6px;

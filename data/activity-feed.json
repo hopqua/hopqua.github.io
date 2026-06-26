@@ -22,7 +22,7 @@
     { "region": "Bắc Ninh", "role": "đại lý", "product": "Kim Liên Nguyệt", "qty": 8, "amountVnd": 232000 },
     { "region": "TP.HCM", "role": "tiệm bánh", "product": "6 Bánh Mini Kim Sơn", "qty": 10, "amountVnd": 200000 },
     { "region": "Hà Nội", "role": "đại lý", "product": "Hoàng Kim 4–6 bánh", "qty": 200, "amountVnd": 0, "type": "rfq" },
-    { "region": "Đồng Nai", "role": "tiệm bánh", "product": "Bạch Uyển 4 bánh", "qty": 6, "amountVnd": 156000 },
+    { "region": "Đồng Nai", "role": "tiệm bánh", "product": "Bạch Uyển 4 bánh", "qty": 300, "amountVnd": 0, "type": "rfq", "note": "Báo giá sỉ" },
     { "region": "Hà Nội", "role": "đại lý", "product": "4 bánh rẻ", "qty": 500, "amountVnd": 1250000, "type": "order" },
     { "region": "Thanh Hóa", "role": "tiệm bánh", "product": "Lan dạ 3x nhỏ", "qty": 5, "amountVnd": 175000 },
     { "region": "Hà Nội", "role": "khách lẻ", "product": "Khay 6 bánh mini", "qty": 2, "amountVnd": 14000 },
