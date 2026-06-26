@@ -151,6 +151,56 @@
         el.className = `rfq-status rfq-status--${type || 'info'}`;
     }
 
+    /** POST qua iframe — cách ổn định nhất với Google Apps Script Web App. */
+    function postRfqToGas(url, payload) {
+        return new Promise((resolve, reject) => {
+            const frameName = `rfq_gas_${Date.now()}`;
+            const iframe = document.createElement('iframe');
+            iframe.name = frameName;
+            iframe.title = 'RFQ submit';
+            iframe.setAttribute('aria-hidden', 'true');
+            iframe.style.cssText = 'position:absolute;width:0;height:0;border:0;visibility:hidden';
+            document.body.appendChild(iframe);
+
+            const gasForm = document.createElement('form');
+            gasForm.method = 'POST';
+            gasForm.action = url;
+            gasForm.target = frameName;
+            gasForm.acceptCharset = 'UTF-8';
+            gasForm.style.display = 'none';
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'payload';
+            input.value = JSON.stringify(payload);
+            gasForm.appendChild(input);
+            document.body.appendChild(gasForm);
+
+            let settled = false;
+            const finish = (ok) => {
+                if (settled) return;
+                settled = true;
+                window.clearTimeout(timer);
+                setTimeout(() => {
+                    gasForm.remove();
+                    iframe.remove();
+                }, 500);
+                if (ok) resolve();
+                else reject(new Error('RFQ submit timeout'));
+            };
+
+            iframe.addEventListener('load', () => finish(true));
+            const timer = window.setTimeout(() => finish(true), 4000);
+
+            try {
+                gasForm.submit();
+            } catch (err) {
+                finish(false);
+                reject(err);
+            }
+        });
+    }
+
     async function submitRfq(form) {
         const cfg = await loadConfig();
         const data = collectFormData(form);
@@ -177,25 +227,7 @@
         const url = (cfg.submitUrl || '').trim();
         if (url) {
             try {
-                const body = new URLSearchParams({ payload: JSON.stringify(payload) }).toString();
-                const res = await fetch(url, {
-                    method: 'POST',
-                    redirect: 'follow',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-                    body,
-                });
-                if (!res.ok) {
-                    throw new Error(`HTTP ${res.status}`);
-                }
-                let result = null;
-                try {
-                    result = await res.json();
-                } catch (parseErr) {
-                    result = { ok: true };
-                }
-                if (result && result.ok === false) {
-                    throw new Error(result.error || 'Gửi thất bại');
-                }
+                await postRfqToGas(url, payload);
                 setStatus(
                     form,
                     `Cảm ơn anh/chị! Shop sẽ gọi ${data.phone} trong ${cfg.callbackNote || '15–30 phút'}.`,
@@ -209,7 +241,30 @@
                 if (btn) btn.disabled = false;
                 return;
             } catch (err) {
-                console.warn('RFQ submit failed', err);
+                console.warn('RFQ iframe submit failed, retry no-cors', err);
+                try {
+                    const body = new URLSearchParams({ payload: JSON.stringify(payload) }).toString();
+                    await fetch(url, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                        body,
+                    });
+                    setStatus(
+                        form,
+                        `Cảm ơn anh/chị! Shop sẽ gọi ${data.phone} trong ${cfg.callbackNote || '15–30 phút'}.`,
+                        'success'
+                    );
+                    form.reset();
+                    if (data.productId) {
+                        form.querySelector('[name="productId"]').value = data.productId;
+                        form.querySelector('[name="productName"]').value = data.productName;
+                    }
+                    if (btn) btn.disabled = false;
+                    return;
+                } catch (err2) {
+                    console.warn('RFQ no-cors submit failed', err2);
+                }
                 setStatus(
                     form,
                     'Chưa gửi được tự động — mở Zalo để shop nhận ngay.',

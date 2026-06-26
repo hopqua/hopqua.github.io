@@ -90,10 +90,29 @@ function notifyTelegram_(data) {
     data.note ? `Ghi chú: ${data.note}` : '',
   ].filter(Boolean).join('\n');
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-  UrlFetchApp.fetch(url, {
+  const res = UrlFetchApp.fetch(url, {
     method: 'post',
     contentType: 'application/json',
     payload: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text }),
     muteHttpExceptions: true,
   });
+  if (res.getResponseCode() !== 200) {
+    Logger.log('Telegram RFQ lỗi: ' + res.getContentText());
+  }
+}
+
+/** Chạy thử trong Apps Script → ghi 1 dòng test vào Sheet. */
+function testRfq() {
+  const data = {
+    submittedAt: new Date().toISOString(),
+    phone: '0900000099',
+    name: 'Test GAS',
+    productName: 'Test mẫu',
+    needLabel: 'Báo giá sỉ',
+    qtyTierLabel: '1–10 cái',
+    note: 'Test thủ công trong Apps Script',
+    pageUrl: 'https://hopqua.github.io/',
+  };
+  appendRow_(data);
+  notifyTelegram_(data);
 }
