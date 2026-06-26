@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import re
 import shutil
 from dataclasses import dataclass, field
@@ -53,6 +54,12 @@ COL_IMG_START = 18
 
 FEE_PLATFORM = 0.30
 FEE_RETURN = 0.04
+ROUND_STEP = 500
+
+# Giá listing Shopee cố định (không nhân phí sàn) — SKU đặc biệt
+SHOPEE_PRICE_FIXED: dict[str, int] = {
+    "khay-6b-mini-khay-1-banh-lon-100d-5000d": 1000,
+}
 
 FOOTER = (
     "Phụ kiện hộp / khay đựng bánh Trung Thu, hàng có sẵn.\n"
@@ -120,28 +127,61 @@ def parse_manifest() -> dict[str, list[str]]:
     return out
 
 
+def collect_vnd_amounts(text: str) -> list[int]:
+    """Trích mọi mức giá (đồng) từ chuỗi — dùng max làm giá lẻ bán."""
+    if not text:
+        return []
+    amounts: list[int] = []
+    for m in re.finditer(r"([\d.]+)\s*đ", text, re.I):
+        amounts.append(int(m.group(1).replace(".", "")))
+    for m in re.finditer(r"(\d{1,3})\s*[-–]\s*(\d{1,3})\s*k\b", text, re.I):
+        amounts.extend([int(m.group(1)) * 1000, int(m.group(2)) * 1000])
+    for m in re.finditer(r"(\d+)\s*k\b", text, re.I):
+        amounts.append(int(m.group(1)) * 1000)
+    for m in re.finditer(r"(\d+)\s*d\s*[-–]\s*(\d+)\s*d\b", text, re.I):
+        amounts.extend([int(m.group(1)), int(m.group(2))])
+    return amounts
+
+
 def parse_direct_retail_vnd(product: Product) -> int | None:
+    """Giá lẻ bán = mức cao nhất trong khoảng (vd. 29–35k → 35.000đ)."""
+    amounts: list[int] = []
+
     m = re.search(r"Giá lẻ \(1[–-]10 cái\):\s*([\d.]+)\s*đ", product.description, re.I)
     if m:
-        return int(m.group(1).replace(".", ""))
-    m = re.search(r"Từ\s*([\d.]+)\s*đ/cái", product.price_label, re.I)
-    if m:
-        return int(m.group(1).replace(".", ""))
-    nums = [int(x.replace(".", "")) for x in re.findall(r"([\d.]+)\s*đ", product.price_label)]
-    if nums:
-        return min(nums)
-    nums = [int(x.replace(".", "")) for x in re.findall(r"(\d{2,3})\s*k", product.id + " " + product.name, re.I)]
-    if nums:
-        return min(nums) * 1000
+        amounts.append(int(m.group(1).replace(".", "")))
+
+    amounts.extend(collect_vnd_amounts(product.price_label))
+    amounts.extend(collect_vnd_amounts(product.id))
+    amounts.extend(collect_vnd_amounts(product.name))
+
+    if amounts:
+        return max(amounts)
     return None
+
+
+def round_up_step(value: float, step: int = ROUND_STEP) -> int:
+    """Làm tròn lên bội step (vd. 25.350 → 25.500, 29.850 → 30.000)."""
+    return int(math.ceil(value / step) * step)
 
 
 def calc_shopee_price(direct: int) -> tuple[int, int, int, int]:
     fee30 = round(direct * FEE_PLATFORM)
     fee04 = round(direct * FEE_RETURN)
-    # Giá listing = lẻ × (1 + 30%) × (1 + 4% hoàn hàng dự phòng)
-    final = round(direct * (1 + FEE_PLATFORM) * (1 + FEE_RETURN))
+    raw = direct * (1 + FEE_PLATFORM) * (1 + FEE_RETURN)
+    final = round_up_step(raw)
     return final, fee30, fee04, final - direct
+
+
+def resolve_shopee_listing_price(sku: str, direct: int | None) -> tuple[int | None, int, int, int, str]:
+    """Trả về (giá Shopee, fee30, fee04, chênh, ghi chú)."""
+    if sku in SHOPEE_PRICE_FIXED:
+        fixed = SHOPEE_PRICE_FIXED[sku]
+        return fixed, 0, 0, 0, "Giá Shopee cố định"
+    if direct is None:
+        return None, 0, 0, 0, ""
+    shopee, fee30, fee04, delta = calc_shopee_price(direct)
+    return shopee, fee30, fee04, delta, ""
 
 
 def fmt_vnd(n: int | None) -> str:
@@ -333,8 +373,9 @@ def main() -> None:
     csv_rows: list[dict] = []
 
     formula_note = (
-        "Giá Shopee = Giá lẻ (1–10 cái) × 1,30 (phí sàn) × 1,04 (dự phòng hoàn hàng) "
-        f"≈ × {(1 + FEE_PLATFORM) * (1 + FEE_RETURN):.4f}"
+        "Giá lẻ bán = mức cao nhất trong khoảng (vd. 29–35k → 35.000đ). "
+        f"Giá Shopee = lẻ × 1,30 × 1,04 ≈ × {(1 + FEE_PLATFORM) * (1 + FEE_RETURN):.3f}, "
+        f"làm tròn lên bội {ROUND_STEP:,}đ. Một số SKU có giá Shopee cố định.".replace(",", ".")
     )
 
     for row in range(DATA_START_ROW, ws.max_row + 1):
@@ -353,8 +394,10 @@ def main() -> None:
         shopee_price = fee30 = fee04 = None
         note = ""
 
-        if prod and direct:
-            shopee_price, fee30, fee04, _ = calc_shopee_price(direct)
+        if prod and (direct or sku in SHOPEE_PRICE_FIXED):
+            shopee_price, fee30, fee04, _, price_note = resolve_shopee_listing_price(sku, direct)
+            if price_note:
+                note = price_note
             ws.cell(row=row, column=COL_NAME).value = build_shopee_title(old_name, prod)
             ws.cell(row=row, column=COL_DESC).value = build_shopee_description(prod, shopee_price)
             ws.cell(row=row, column=COL_PRICE).value = str(shopee_price)
