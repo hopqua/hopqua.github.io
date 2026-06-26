@@ -1,4 +1,4 @@
-/** Toast góc trái dưới — hoạt động đặt mẫu ẩn danh (không tên/SĐT). */
+/** Toast góc trái dưới — hoạt động đặt mẫu (tên + vùng, không SĐT). */
 (function () {
     const CONTAINER_ID = 'activity-toast-root';
 
@@ -17,18 +17,18 @@
     }
 
     function buildMessage(item) {
-        const who = item.region
-            ? `${item.role ? item.role + ' ' : ''}tại <strong>${item.region}</strong>`
-            : item.role || 'Khách';
+        const name = item.name || 'Khách';
+        const region = item.region ? ` <span class="activity-toast-region">(${item.region})</span>` : '';
+        const who = `<strong>${name}</strong>${region}`;
         const product = item.product || 'hộp Trung Thu';
         const qty = item.qty ? `<strong>${item.qty}</strong> hộp` : '';
 
         if (item.type === 'rfq' || !item.amountVnd) {
             const note = item.note ? ` · <span class="activity-toast-note">${item.note}</span>` : '';
-            return `${who} — yêu cầu báo giá ${qty} <em>${product}</em>${note}`;
+            return `${who} — vừa gửi yêu cầu báo giá ${qty} <em>${product}</em>${note}`;
         }
         const amount = fmtVnd(item.amountVnd);
-        return `${who} — ${qty} <em>${product}</em> · <strong>${amount}</strong>`;
+        return `${who} — vừa đặt ${qty} <em>${product}</em> · <strong>${amount}</strong>`;
     }
 
     function isDisabled(storageKey) {

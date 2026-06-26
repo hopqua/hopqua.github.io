@@ -15,9 +15,27 @@ const SHEET_NAME = 'RFQ';
 const TELEGRAM_BOT_TOKEN = '';
 const TELEGRAM_CHAT_ID = '';
 
+function parsePayload_(e) {
+  if (!e) return {};
+  if (e.parameter && e.parameter.payload) {
+    return JSON.parse(e.parameter.payload);
+  }
+  const contents = (e.postData && e.postData.contents) || '';
+  if (!contents) return e.parameter || {};
+  const trimmed = contents.trim();
+  if (trimmed.charAt(0) === '{') {
+    return JSON.parse(trimmed);
+  }
+  if (trimmed.indexOf('payload=') === 0) {
+    const raw = decodeURIComponent(trimmed.replace(/^payload=/, '').replace(/\+/g, ' '));
+    return JSON.parse(raw);
+  }
+  return JSON.parse(trimmed);
+}
+
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents);
+    const data = parsePayload_(e);
     appendRow_(data);
     notifyTelegram_(data);
     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
@@ -35,11 +53,15 @@ function doGet() {
 function appendRow_(data) {
   const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
   const sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
+  const headerRow = ['thời gian', 'SĐT', 'tên', 'mẫu', 'id mẫu', 'nhu cầu', 'SL khoảng', 'SL cụ thể', 'ghi chú', 'URL', 'trạng thái'];
   if (sh.getLastRow() === 0) {
-    sh.appendRow([
-      'thời gian', 'SĐT', 'tên', 'mẫu', 'id mẫu', 'nhu cầu', 'SL khoảng', 'SL cụ thể',
-      'ghi chú', 'URL', 'trạng thái',
-    ]);
+    sh.appendRow(headerRow);
+  } else {
+    const firstCell = String(sh.getRange(1, 1).getValue() || '').trim();
+    if (firstCell !== 'thời gian') {
+      sh.insertRowBefore(1);
+      sh.getRange(1, 1, 1, headerRow.length).setValues([headerRow]);
+    }
   }
   sh.appendRow([
     data.submittedAt || new Date().toISOString(),

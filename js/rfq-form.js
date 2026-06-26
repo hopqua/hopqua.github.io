@@ -177,12 +177,25 @@
         const url = (cfg.submitUrl || '').trim();
         if (url) {
             try {
-                await fetch(url, {
+                const body = new URLSearchParams({ payload: JSON.stringify(payload) }).toString();
+                const res = await fetch(url, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'text/plain' },
-                    body: JSON.stringify(payload),
+                    redirect: 'follow',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                    body,
                 });
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}`);
+                }
+                let result = null;
+                try {
+                    result = await res.json();
+                } catch (parseErr) {
+                    result = { ok: true };
+                }
+                if (result && result.ok === false) {
+                    throw new Error(result.error || 'Gửi thất bại');
+                }
                 setStatus(
                     form,
                     `Cảm ơn anh/chị! Shop sẽ gọi ${data.phone} trong ${cfg.callbackNote || '15–30 phút'}.`,
@@ -193,9 +206,18 @@
                     form.querySelector('[name="productId"]').value = data.productId;
                     form.querySelector('[name="productName"]').value = data.productName;
                 }
+                if (btn) btn.disabled = false;
                 return;
             } catch (err) {
                 console.warn('RFQ submit failed', err);
+                setStatus(
+                    form,
+                    'Chưa gửi được tự động — mở Zalo để shop nhận ngay.',
+                    'error'
+                );
+                window.open(buildZaloFallbackUrl(data, cfg), '_blank', 'noopener');
+                if (btn) btn.disabled = false;
+                return;
             }
         }
 
