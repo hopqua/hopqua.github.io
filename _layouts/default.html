@@ -18,7 +18,7 @@
   {% if page.layout == 'post' or page.layout == 'post-catalog' %}
     {% assign is_article = true %}
   {% endif %}
-  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <title>{% if page.title %}{{ page.title }} — Vân Thắng{% else %}{{ site.title }}{% endif %}</title>
   <link rel="icon" href="/image/favicon.png" type="image/x-icon">
   <meta name="description" content="{{ seo_desc }}">
   {% if seo_keywords %}<meta name="keywords" content="{{ seo_keywords }}">{% endif %}
@@ -86,19 +86,26 @@
   {% include seo-organization.html %}
   {% include seo-article.html %}
 </head>
-<body>
-  <header class="header-compact">
+<body{% if is_article %} class="blog-article-page"{% elsif page.url == '/blog/' %} class="blog-index-page"{% endif %}>
+  <header class="header-compact{% if is_article %} header-compact--article{% endif %}">
     <div class="container header-compact-inner">
-      <div class="header-compact-brand">
-        <h1><a href="{{ '/' | relative_url }}" class="header-brand-link">{{ site.title }}</a></h1>
-        <p class="header-compact-tagline">Hộp bánh Trung Thu &amp; hộp quà — Vân Thắng</p>
+      {% if is_article %}
+      <div class="header-compact-brand header-compact-brand--article">
+        <a href="{{ '/blog/' | relative_url }}" class="header-article-back">← Blog</a>
+        <a href="{{ '/' | relative_url }}" class="header-brand-short">Vân Thắng</a>
       </div>
+      {% else %}
+      <div class="header-compact-brand">
+        <h1><a href="{{ '/' | relative_url }}" class="header-brand-link">{% if page.url == '/blog/' %}Blog{% else %}{{ site.title }}{% endif %}</a></h1>
+        <p class="header-compact-tagline">{% if page.url == '/blog/' %}Mẹo chọn hộp &amp; cập nhật mùa Trung Thu 2026{% else %}Hộp bánh Trung Thu &amp; hộp quà — Vân Thắng{% endif %}</p>
+      </div>
+      {% endif %}
       <nav class="header-compact-nav" aria-label="Điều hướng">
         <a href="{{ '/' | relative_url }}" class="header-nav-blog">Trang chủ</a>
         <a href="/18-mau-hot-2026.html" class="header-nav-blog header-nav-hot">18 mẫu hot</a>
         <a href="/cap-nhat-2026.html" class="header-nav-blog">Mẫu mới 2026</a>
         <a href="/tim-kiem.html" class="header-nav-blog">Tìm mẫu</a>
-        <a href="{{ '/blog/' | relative_url }}" class="header-nav-blog">Blog</a>
+        <a href="{{ '/blog/' | relative_url }}" class="header-nav-blog{% if page.url == '/blog/' or is_article %} header-nav-active{% endif %}">Blog</a>
         <a href="https://zalo.me/0965671689" target="_blank" rel="noopener" class="header-nav-zalo">Zalo</a>
       </nav>
     </div>

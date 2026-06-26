@@ -1,0 +1,19 @@
+{% assign blog_topic = '' %}
+{% for cat in page.categories %}
+  {% if cat != 'blog' and blog_topic == '' %}
+    {% case cat %}
+      {% when 'ban-si' %}{% assign blog_topic = 'Bán sỉ' %}
+      {% when 'mau-hot' %}{% assign blog_topic = 'Mẫu hot' %}
+      {% when 'huong-dan' %}{% assign blog_topic = 'Hướng dẫn' %}
+      {% when 'uu-dai' %}{% assign blog_topic = 'Ưu đãi' %}
+      {% when 'chon-hop' %}{% assign blog_topic = 'Chọn hộp' %}
+      {% when 'bang-gia' %}{% assign blog_topic = 'Bảng giá' %}
+      {% else %}{% assign blog_topic = cat %}
+    {% endcase %}
+  {% endif %}
+{% endfor %}
+<time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: "%d/%m/%Y" }}</time>
+{% if blog_topic != '' %}
+<span class="blog-meta-dot" aria-hidden="true">·</span>
+<span class="blog-meta-topic">{{ blog_topic }}</span>
+{% endif %}
