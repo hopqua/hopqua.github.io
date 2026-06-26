@@ -225,6 +225,7 @@ class RowReport:
     delta: int | None
     has_product: bool
     has_images: bool
+    web_url: str
     note: str = ""
 
 
@@ -242,7 +243,7 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
         return f"""<tr class="{cls}">
           <td>{r.row}</td>
           <td><code>{r.sku}</code></td>
-          <td>{r.name}</td>
+          <td><a href="{r.web_url}" target="_blank" rel="noopener">{r.name}</a></td>
           <td class="num">{fmt_vnd(r.direct) if r.direct else '—'}</td>
           <td class="num">{fmt_vnd(r.fee30) if r.direct else '—'}</td>
           <td class="num">{fmt_vnd(r.fee04) if r.direct else '—'}</td>
@@ -250,7 +251,7 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
           <td class="num">{fmt_vnd(r.old_price) if r.old_price else '—'}</td>
           <td class="num">{fmt_vnd(r.delta) if r.delta is not None else '—'}</td>
           <td>{'✓' if r.has_images else '✗'}</td>
-          <td>{r.note}</td>
+          <td><a href="{r.web_url}" target="_blank" rel="noopener">Xem SP</a>{(' · ' + r.note) if r.note else ''}</td>
         </tr>"""
 
     html = f"""<!DOCTYPE html>
@@ -295,9 +296,9 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
   <table>
     <thead>
       <tr>
-        <th>#</th><th>SKU</th><th>Tên</th>
+        <th>#</th><th>SKU</th><th>Tên (link web)</th>
         <th>Giá lẻ 1–10</th><th>+30% sàn</th><th>+4% hoàn</th>
-        <th>Giá Shopee</th><th>Giá Excel cũ</th><th>Chênh</th><th>Ảnh</th><th>Ghi chú</th>
+        <th>Giá Shopee</th><th>Giá Excel cũ</th><th>Chênh</th><th>Ảnh</th><th>Web / ghi chú</th>
       </tr>
     </thead>
     <tbody>
@@ -386,6 +387,7 @@ def main() -> None:
                 delta=delta,
                 has_product=bool(prod),
                 has_images=bool(prod and prod.images),
+                web_url=f"{SITE}/product.html?id={sku}",
                 note=note,
             )
         )

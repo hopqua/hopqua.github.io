@@ -106,6 +106,8 @@ def main() -> None:
     page_blocks = [
         make_url_block(f"{BASE_URL}/"),
         make_url_block(f"{BASE_URL}/18-mau-hot-2026.html"),
+        make_url_block(f"{BASE_URL}/tim-kiem.html"),
+        make_url_block(f"{BASE_URL}/cap-nhat-2026.html"),
         make_url_block(f"{BASE_URL}/product.html"),
         make_url_block(f"{BASE_URL}/blog/"),
     ]
