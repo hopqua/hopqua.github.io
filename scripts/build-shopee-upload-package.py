@@ -56,11 +56,6 @@ FEE_PLATFORM = 0.30
 FEE_RETURN = 0.04
 ROUND_STEP = 500
 
-# Giá listing Shopee cố định (không nhân phí sàn) — SKU đặc biệt
-SHOPEE_PRICE_FIXED: dict[str, int] = {
-    "khay-6b-mini-khay-1-banh-lon-100d-5000d": 1000,
-}
-
 FOOTER = (
     "Phụ kiện hộp / khay đựng bánh Trung Thu, hàng có sẵn.\n"
     "Inbox shop để được giá tốt theo số lượng.\n"
@@ -173,15 +168,19 @@ def calc_shopee_price(direct: int) -> tuple[int, int, int, int]:
     return final, fee30, fee04, final - direct
 
 
-def resolve_shopee_listing_price(sku: str, direct: int | None) -> tuple[int | None, int, int, int, str]:
-    """Trả về (giá Shopee, fee30, fee04, chênh, ghi chú)."""
-    if sku in SHOPEE_PRICE_FIXED:
-        fixed = SHOPEE_PRICE_FIXED[sku]
-        return fixed, 0, 0, 0, "Giá Shopee cố định"
+def resolve_shopee_listing_price(direct: int | None) -> tuple[int | None, int, int, int]:
+    """Trả về (giá Shopee, fee30, fee04, chênh so với giá lẻ)."""
     if direct is None:
-        return None, 0, 0, 0, ""
-    shopee, fee30, fee04, delta = calc_shopee_price(direct)
-    return shopee, fee30, fee04, delta, ""
+        return None, 0, 0, 0
+    return calc_shopee_price(direct)
+
+
+def load_shopee_links() -> dict[str, str]:
+    """SKU → URL listing đã có trên shop (từ js/shopee-links.js)."""
+    path = ROOT / "js" / "shopee-links.js"
+    if not path.is_file():
+        return {}
+    return dict(re.findall(r"'([^']+)':\s*'(https://shopee\.vn/product/\d+/\d+)'", path.read_text(encoding="utf-8")))
 
 
 def fmt_vnd(n: int | None) -> str:
@@ -266,6 +265,8 @@ class RowReport:
     has_product: bool
     has_images: bool
     web_url: str
+    on_shopee: bool
+    shopee_url: str
     note: str = ""
 
 
@@ -273,6 +274,13 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
     updated = sum(1 for r in rows if r.has_product and r.direct)
     missing = [r for r in rows if not r.has_product]
     no_price = [r for r in rows if r.has_product and not r.direct]
+    posted = sum(1 for r in rows if r.on_shopee)
+    not_posted = len(rows) - posted
+
+    def shopee_status_cell(r: RowReport) -> str:
+        if r.on_shopee:
+            return f'<span class="badge badge-yes">Đã đăng</span> <a href="{r.shopee_url}" target="_blank" rel="noopener" class="shopee-mini">↗</a>'
+        return '<span class="badge badge-no">Chưa đăng</span>'
 
     def tr(r: RowReport) -> str:
         cls = ""
@@ -280,10 +288,13 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
             cls = "warn"
         elif r.delta and abs(r.delta) > 500:
             cls = "delta"
+        if r.on_shopee:
+            cls = (cls + " on-shopee").strip()
         return f"""<tr class="{cls}">
           <td>{r.row}</td>
           <td><code>{r.sku}</code></td>
           <td><a href="{r.web_url}" target="_blank" rel="noopener">{r.name}</a></td>
+          <td class="center">{shopee_status_cell(r)}</td>
           <td class="num">{fmt_vnd(r.direct) if r.direct else '—'}</td>
           <td class="num">{fmt_vnd(r.fee30) if r.direct else '—'}</td>
           <td class="num">{fmt_vnd(r.fee04) if r.direct else '—'}</td>
@@ -309,8 +320,14 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
     table {{ width: 100%; border-collapse: collapse; background: #fff; font-size: 0.88rem; box-shadow: 0 4px 16px rgba(45,24,16,.08); border-radius: 12px; overflow: hidden; }}
     th, td {{ border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }}
     th {{ background: linear-gradient(135deg, #9b1c31, #6d1222); color: #fff; position: sticky; top: 0; }}
+    tr.on-shopee {{ background: #f0fdf4; }}
     tr.warn {{ background: #fff5f5; }}
     tr.delta {{ background: #fffbeb; }}
+    .center {{ text-align: center; white-space: nowrap; }}
+    .badge {{ display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; }}
+    .badge-yes {{ background: #dcfce7; color: #166534; border: 1px solid #86efac; }}
+    .badge-no {{ background: #f3f4f6; color: #6b7280; border: 1px solid #d1d5db; }}
+    .shopee-mini {{ font-size: 0.85rem; text-decoration: none; margin-left: 2px; }}
     .num {{ text-align: right; white-space: nowrap; }}
     code {{ font-size: 0.8rem; }}
     .stats {{ display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }}
@@ -331,14 +348,16 @@ def write_html_report(rows: list[RowReport], out_path: Path, formula_note: str) 
       <span class="stat">{updated} đã tính giá mới</span>
       <span class="stat">{len(missing)} SKU chưa có trong products.js</span>
       <span class="stat">{len(no_price)} thiếu giá lẻ 1–10</span>
+      <span class="stat">{posted} đã đăng Shopee</span>
+      <span class="stat">{not_posted} chưa đăng Shopee</span>
     </div>
   </div>
   <table>
     <thead>
       <tr>
-        <th>#</th><th>SKU</th><th>Tên (link web)</th>
-        <th>Giá lẻ 1–10</th><th>+30% sàn</th><th>+4% hoàn</th>
-        <th>Giá Shopee</th><th>Giá Excel cũ</th><th>Chênh</th><th>Ảnh</th><th>Web / ghi chú</th>
+        <th>#</th><th>SKU</th><th>Tên (link web)</th><th>Shopee</th>
+        <th>Giá lẻ (max)</th><th>+30% sàn</th><th>+4% hoàn</th>
+        <th>Giá Shopee mới</th><th>Giá Excel cũ</th><th>Chênh</th><th>Ảnh</th><th>Web</th>
       </tr>
     </thead>
     <tbody>
@@ -366,6 +385,7 @@ def main() -> None:
     products = parse_products_js()
     manifest = parse_manifest()
     enrich_images(products, manifest)
+    shopee_links = load_shopee_links()
 
     wb = openpyxl.load_workbook(out_xlsx)
     ws = wb[SHEET]
@@ -375,7 +395,7 @@ def main() -> None:
     formula_note = (
         "Giá lẻ bán = mức cao nhất trong khoảng (vd. 29–35k → 35.000đ). "
         f"Giá Shopee = lẻ × 1,30 × 1,04 ≈ × {(1 + FEE_PLATFORM) * (1 + FEE_RETURN):.3f}, "
-        f"làm tròn lên bội {ROUND_STEP:,}đ. Một số SKU có giá Shopee cố định.".replace(",", ".")
+        f"làm tròn lên bội {ROUND_STEP:,}đ.".replace(",", ".")
     )
 
     for row in range(DATA_START_ROW, ws.max_row + 1):
@@ -393,11 +413,11 @@ def main() -> None:
         direct = parse_direct_retail_vnd(prod) if prod else None
         shopee_price = fee30 = fee04 = None
         note = ""
+        on_shopee = sku in shopee_links
+        shopee_url = shopee_links.get(sku, "")
 
-        if prod and (direct or sku in SHOPEE_PRICE_FIXED):
-            shopee_price, fee30, fee04, _, price_note = resolve_shopee_listing_price(sku, direct)
-            if price_note:
-                note = price_note
+        if prod and direct:
+            shopee_price, fee30, fee04, _ = resolve_shopee_listing_price(direct)
             ws.cell(row=row, column=COL_NAME).value = build_shopee_title(old_name, prod)
             ws.cell(row=row, column=COL_DESC).value = build_shopee_description(prod, shopee_price)
             ws.cell(row=row, column=COL_PRICE).value = str(shopee_price)
@@ -431,6 +451,8 @@ def main() -> None:
                 has_product=bool(prod),
                 has_images=bool(prod and prod.images),
                 web_url=f"{SITE}/product.html?id={sku}",
+                on_shopee=on_shopee,
+                shopee_url=shopee_url,
                 note=note,
             )
         )
@@ -439,10 +461,11 @@ def main() -> None:
                 "web_id": sku,
                 "sku": sku,
                 "ten_shopee": ws.cell(row=row, column=COL_NAME).value or old_name,
-                "gia_le_1_10": direct or "",
+                "da_dang_shopee": "Có" if on_shopee else "Chưa",
+                "gia_le_max": direct or "",
                 "gia_shopee": shopee_price or old_price or "",
-                "shopee_item_id": "",
-                "shopee_url": "",
+                "shopee_item_id": shopee_url.rstrip("/").split("/")[-1] if on_shopee else "",
+                "shopee_url": shopee_url,
                 "link_web": f"{SITE}/product.html?id={sku}",
             }
         )
@@ -465,6 +488,7 @@ def main() -> None:
         sku = row["sku"]
         if sku in existing_links:
             row["shopee_url"], row["shopee_item_id"] = existing_links[sku]
+            row["da_dang_shopee"] = "Có"
 
     with csv_path.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(
@@ -473,7 +497,8 @@ def main() -> None:
                 "web_id",
                 "sku",
                 "ten_shopee",
-                "gia_le_1_10",
+                "da_dang_shopee",
+                "gia_le_max",
                 "gia_shopee",
                 "shopee_item_id",
                 "shopee_url",
