@@ -1,19 +1,17 @@
 /**
  * Google Apps Script — RFQ → Google Sheet (+ Telegram tuỳ chọn)
  *
- * Cách deploy:
- * 1. Tạo Google Sheet, thêm sheet "RFQ" với hàng 1:
- *    thời gian | SĐT | tên | mẫu | id mẫu | nhu cầu | SL khoảng | SL cụ thể | ghi chú | URL | trạng thái
- * 2. Extensions → Apps Script → dán file này
- * 3. Đặt SPREADSHEET_ID, (tuỳ chọn) TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
- *    (chỉ sửa trên console Apps Script — KHÔNG commit token vào Git)
- * 4. Deploy → New deployment → Web app → Execute as: Me, Anyone can access
- * 5. Copy URL Web app → dán vào data/rfq-config.json → submitUrl
+ * Deploy: Web app → Execute as: Me → Anyone can access → New version
  */
 const SPREADSHEET_ID = 'PASTE_SHEET_ID_HERE';
 const SHEET_NAME = 'RFQ';
 const TELEGRAM_BOT_TOKEN = '';
 const TELEGRAM_CHAT_ID = '';
+
+const RFQ_KEYS = [
+  'phone', 'name', 'productId', 'productName', 'need', 'needLabel',
+  'qtyTier', 'qtyTierLabel', 'qtyDetail', 'note', 'pageUrl', 'submittedAt', 'source',
+];
 
 function parseUrlEncoded_(raw) {
   const out = {};
@@ -29,56 +27,54 @@ function parseUrlEncoded_(raw) {
   return out;
 }
 
+function mergeFlat_(target, source) {
+  const out = Object.assign({}, target || {});
+  RFQ_KEYS.forEach((key) => {
+    const val = source && source[key];
+    if (val !== undefined && val !== null && String(val).trim() !== '') {
+      out[key] = String(val).trim();
+    }
+  });
+  return out;
+}
+
 function parsePayload_(e) {
   if (!e) return {};
   const param = e.parameter || {};
   let data = {};
 
-  if (param.payload) {
-    try {
-      data = JSON.parse(param.payload);
-    } catch (err) {
-      Logger.log('parse payload JSON: ' + err);
-    }
-  }
-
-  if (!data.phone && param.phone) {
-    data = {
-      phone: param.phone || '',
-      name: param.name || '',
-      productId: param.productId || '',
-      productName: param.productName || '',
-      need: param.need || '',
-      needLabel: param.needLabel || '',
-      qtyTier: param.qtyTier || '',
-      qtyTierLabel: param.qtyTierLabel || '',
-      qtyDetail: param.qtyDetail || '',
-      note: param.note || '',
-      pageUrl: param.pageUrl || '',
-      submittedAt: param.submittedAt || '',
-      source: param.source || '',
-    };
-  }
-
   const contents = (e.postData && e.postData.contents) || '';
-  if (!data.phone && contents) {
+  if (contents) {
     const trimmed = contents.trim();
     try {
-      if (trimmed.charAt(0) === '{') {
+      if (trimmed.charAt(0) === '{' || trimmed.charAt(0) === '[') {
         data = JSON.parse(trimmed);
       } else {
         const params = parseUrlEncoded_(trimmed);
         if (params.payload) {
-          data = JSON.parse(params.payload);
-        } else if (params.phone) {
-          data = params;
+          try {
+            data = JSON.parse(params.payload);
+          } catch (err) {
+            Logger.log('parse payload in postData: ' + err);
+          }
         }
+        data = mergeFlat_(data, params);
       }
     } catch (err2) {
       Logger.log('parse postData: ' + err2);
     }
   }
 
+  if (param.payload) {
+    try {
+      const fromPayload = JSON.parse(param.payload);
+      data = Object.assign(fromPayload || {}, data);
+    } catch (err3) {
+      Logger.log('parse param.payload: ' + err3);
+    }
+  }
+
+  data = mergeFlat_(data, param);
   return data || {};
 }
 
@@ -90,7 +86,7 @@ function doPost(e) {
     }
     appendRow_(data);
     notifyTelegram_(data);
-    return ContentService.createTextOutput(JSON.stringify({ ok: true }))
+    return ContentService.createTextOutput(JSON.stringify({ ok: true, phone: data.phone }))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (err) {
     return ContentService.createTextOutput(JSON.stringify({ ok: false, error: String(err) }))
@@ -156,7 +152,6 @@ function notifyTelegram_(data) {
   }
 }
 
-/** Chạy thử trong Apps Script → ghi 1 dòng test vào Sheet. */
 function testRfq() {
   const data = {
     submittedAt: new Date().toISOString(),

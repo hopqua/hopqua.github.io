@@ -156,8 +156,39 @@
         return `Cảm ơn anh/chị! Shop sẽ gọi ${phone}. ${note}`;
     }
 
-    /** POST qua iframe — gửi payload JSON + field phẳng cho GAS. */
-    function postRfqToGas(url, payload) {
+    const RFQ_FLAT_KEYS = [
+        'phone', 'name', 'productId', 'productName', 'need', 'needLabel',
+        'qtyTier', 'qtyTierLabel', 'qtyDetail', 'note', 'pageUrl', 'submittedAt', 'source',
+    ];
+
+    function buildRfqFlatFields(payload) {
+        const fields = { payload: JSON.stringify(payload) };
+        RFQ_FLAT_KEYS.forEach((key) => {
+            fields[key] = payload[key] || '';
+        });
+        return fields;
+    }
+
+    /** GAS đọc JSON từ e.postData.contents khi Content-Type: text/plain. */
+    function postRfqJson(url, payload) {
+        const body = JSON.stringify(payload);
+        if (typeof navigator.sendBeacon === 'function') {
+            const sent = navigator.sendBeacon(
+                url,
+                new Blob([body], { type: 'text/plain;charset=utf-8' })
+            );
+            if (sent) return Promise.resolve();
+        }
+        return fetch(url, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body,
+        });
+    }
+
+    /** Fallback: form POST urlencoded + field phẳng (e.parameter trên GAS). */
+    function postRfqForm(url, payload) {
         return new Promise((resolve, reject) => {
             const frameName = `rfq_gas_${Date.now()}`;
             const iframe = document.createElement('iframe');
@@ -175,22 +206,7 @@
             gasForm.enctype = 'application/x-www-form-urlencoded';
             gasForm.style.display = 'none';
 
-            const fields = {
-                payload: JSON.stringify(payload),
-                phone: payload.phone || '',
-                name: payload.name || '',
-                productId: payload.productId || '',
-                productName: payload.productName || '',
-                need: payload.need || '',
-                needLabel: payload.needLabel || '',
-                qtyTier: payload.qtyTier || '',
-                qtyTierLabel: payload.qtyTierLabel || '',
-                qtyDetail: payload.qtyDetail || '',
-                note: payload.note || '',
-                pageUrl: payload.pageUrl || '',
-                submittedAt: payload.submittedAt || '',
-                source: payload.source || '',
-            };
+            const fields = buildRfqFlatFields(payload);
             Object.keys(fields).forEach((key) => {
                 const input = document.createElement('input');
                 input.type = 'hidden';
@@ -210,7 +226,7 @@
                     iframe.remove();
                 }, 500);
                 if (ok) resolve();
-                else reject(new Error('RFQ submit timeout'));
+                else reject(new Error('RFQ form submit timeout'));
             };
 
             iframe.addEventListener('load', () => finish(true));
@@ -223,6 +239,15 @@
                 reject(err);
             }
         });
+    }
+
+    async function postRfqToGas(url, payload) {
+        try {
+            await postRfqJson(url, payload);
+        } catch (err) {
+            console.warn('RFQ JSON submit failed, try form POST', err);
+            await postRfqForm(url, payload);
+        }
     }
 
     async function submitRfq(form) {
@@ -261,41 +286,7 @@
                 if (btn) btn.disabled = false;
                 return;
             } catch (err) {
-                console.warn('RFQ iframe submit failed, retry no-cors', err);
-                try {
-                    const body = new URLSearchParams({
-                        payload: JSON.stringify(payload),
-                        phone: payload.phone || '',
-                        name: payload.name || '',
-                        productId: payload.productId || '',
-                        productName: payload.productName || '',
-                        need: payload.need || '',
-                        needLabel: payload.needLabel || '',
-                        qtyTier: payload.qtyTier || '',
-                        qtyTierLabel: payload.qtyTierLabel || '',
-                        qtyDetail: payload.qtyDetail || '',
-                        note: payload.note || '',
-                        pageUrl: payload.pageUrl || '',
-                        submittedAt: payload.submittedAt || '',
-                        source: payload.source || '',
-                    }).toString();
-                    await fetch(url, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-                        body,
-                    });
-                    setStatus(form, formatSuccessMessage(data.phone, cfg), 'success');
-                    form.reset();
-                    if (data.productId) {
-                        form.querySelector('[name="productId"]').value = data.productId;
-                        form.querySelector('[name="productName"]').value = data.productName;
-                    }
-                    if (btn) btn.disabled = false;
-                    return;
-                } catch (err2) {
-                    console.warn('RFQ no-cors submit failed', err2);
-                }
+                console.warn('RFQ submit failed', err);
                 setStatus(
                     form,
                     'Chưa gửi được tự động — mở Zalo để shop nhận ngay.',
