@@ -117,48 +117,45 @@
 
     <main class="container home-main">
         <div class="home-toolbar">
-            <a href="18-mau-hot-2026.html" class="home-hot-promo">
+            <a href="18-mau-hot-2026.html" class="home-hot-promo home-hot-promo--slim">
                 <span class="home-hot-promo-badge">Hot 2026</span>
-                <span class="home-hot-promo-text"><strong>18 mẫu bán chạy nhất</strong> — xem ảnh, giá &amp; mua Shopee từng sản phẩm</span>
+                <span class="home-hot-promo-text"><strong>18 mẫu bán chạy</strong> — giá &amp; Shopee</span>
                 <span class="home-hot-promo-arrow" aria-hidden="true">→</span>
             </a>
-            <p class="home-toolbar-lead">Chọn mẫu bên dưới — <strong>giá lẻ 1–10 cái</strong>, bấm <strong>Xem chi tiết</strong> hoặc Zalo báo giá sỉ</p>
-            <div class="cap-nhat-rules" aria-label="Cân nặng đóng hàng (chỉ hộp, chưa gồm bánh)">
-                <div class="cap-nhat-rule"><strong>330g</strong>4 bánh</div>
-                <div class="cap-nhat-rule"><strong>250g</strong>4 bánh rẻ</div>
-                <div class="cap-nhat-rule"><strong>50g</strong>1 bánh</div>
-                <div class="cap-nhat-rule"><strong>180g</strong>1 bánh to</div>
-            </div>
-            <details class="pack-dim-ref">
-                <summary>Quy cách kích thước đóng hàng (cm)</summary>
-                <ul class="pack-dim-ref-list">
-                    <li><strong>6 bánh mini</strong> — Khay 24×17 · Túi 25×19</li>
-                    <li><strong>4 bánh rẻ</strong> — Đáy 25×24 · Túi 25,5×24,5 (chênh 0,5 cm)</li>
-                    <li><strong>4 bánh có nắp</strong> — Đáy 26×26 · Túi 30×27,5</li>
-                    <li><strong>4 bánh trà – 6 bánh</strong> — Đáy 27×35,5 · Túi 29×36,5</li>
-                    <li><strong>Bát giác</strong> — Đáy 37,7×37,5 · Túi 38×40</li>
-                    <li><strong>2 bánh rẻ</strong> — 21,5×11</li>
-                    <li><strong>2 bánh đắt (ép nhũ / ép kim)</strong> — Hộp 21,5×11,5×5 · Túi 22,5×14×6</li>
-                </ul>
-            </details>
-            <details class="rfq-banner">
-                <summary>📞 Cần báo giá sỉ 100+ hộp? Để SĐT — shop gọi lại miễn phí</summary>
-                <div id="home-rfq-mount"></div>
-            </details>
-            <div id="rfq-trending"></div>
-            <nav class="catalog-nav catalog-nav-inline" id="catalog-nav" aria-label="Danh mục giá">
-            <a href="18-mau-hot-2026.html" class="catalog-nav-link catalog-nav-link-hot">18 mẫu hot Shopee</a>
-            <a href="cap-nhat-2026.html" class="catalog-nav-link">Mẫu cập nhật 2026</a>
-            <a href="#mau-hot" class="catalog-nav-link">Mẫu hot</a>
-            <a href="#kho-budget" class="catalog-nav-link">Giá tiết kiệm</a>
-            <a href="#kho-mid" class="catalog-nav-link">Tầm trung</a>
-            <a href="#kho-premium" class="catalog-nav-link">Cao cấp</a>
+
+            <nav class="catalog-nav catalog-nav-inline catalog-nav--compact" id="catalog-nav" aria-label="Danh mục giá">
+                <span class="catalog-nav-label">Theo giá:</span>
+                <a href="#mau-hot" class="catalog-nav-link">Mẫu hot</a>
+                <a href="#kho-budget" class="catalog-nav-link">Tiết kiệm</a>
+                <a href="#kho-mid" class="catalog-nav-link">Tầm trung</a>
+                <a href="#kho-premium" class="catalog-nav-link">Cao cấp</a>
             </nav>
+
+            <div class="home-aux-strip">
+                <details class="home-aux-item pack-dim-ref">
+                    <summary>Quy cách kích thước (cm)</summary>
+                    <ul class="pack-dim-ref-list">
+                        <li><strong>6 bánh mini</strong> — Khay 24×17 · Túi 25×19</li>
+                        <li><strong>4 bánh rẻ</strong> — Đáy 25×24 · Túi 25,5×24,5 (chênh 0,5 cm)</li>
+                        <li><strong>4 bánh có nắp</strong> — Đáy 26×26 · Túi 30×27,5</li>
+                        <li><strong>4 bánh trà – 6 bánh</strong> — Đáy 27×35,5 · Túi 29×36,5</li>
+                        <li><strong>Bát giác</strong> — Đáy 37,7×37,5 · Túi 38×40</li>
+                        <li><strong>2 bánh rẻ</strong> — 21,5×11</li>
+                        <li><strong>2 bánh đắt (ép nhũ / ép kim)</strong> — Hộp 21,5×11,5×5 · Túi 22,5×14×6</li>
+                    </ul>
+                </details>
+                <details class="home-aux-item rfq-banner rfq-banner--inline">
+                    <summary>Báo giá sỉ — để SĐT, shop gọi lại</summary>
+                    <div id="home-rfq-mount"></div>
+                </details>
+            </div>
         </div>
 
         <div id="product-catalog" class="home-catalog">
             <!-- Các kệ sản phẩm render bằng JavaScript -->
         </div>
+
+        <div id="rfq-trending" class="home-rfq-trending-slot"></div>
 
         <section class="home-blog-section" aria-label="Bài viết mới">
             <div class="home-blog-header">

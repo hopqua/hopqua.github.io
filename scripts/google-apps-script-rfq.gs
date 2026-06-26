@@ -6,6 +6,7 @@
  *    thời gian | SĐT | tên | mẫu | id mẫu | nhu cầu | SL khoảng | SL cụ thể | ghi chú | URL | trạng thái
  * 2. Extensions → Apps Script → dán file này
  * 3. Đặt SPREADSHEET_ID, (tuỳ chọn) TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID
+ *    (chỉ sửa trên console Apps Script — KHÔNG commit token vào Git)
  * 4. Deploy → New deployment → Web app → Execute as: Me, Anyone can access
  * 5. Copy URL Web app → dán vào data/rfq-config.json → submitUrl
  */

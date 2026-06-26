@@ -2075,7 +2075,118 @@ footer a {
 }
 
 .home-toolbar {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
+}
+
+.home-hot-promo--slim {
+    margin-bottom: 8px;
+    padding: 10px 14px;
+}
+
+.home-hot-promo--slim .home-hot-promo-text {
+    font-size: 0.9rem;
+}
+
+.home-aux-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.home-aux-item {
+    margin: 0;
+    padding: 8px 12px;
+    border: 1px solid var(--tt-gold-border);
+    border-radius: 8px;
+    background: #fff;
+    font-size: 0.88rem;
+}
+
+.home-aux-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--tt-link);
+    list-style: none;
+    line-height: 1.35;
+}
+
+.home-aux-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.home-aux-item[open] summary {
+    margin-bottom: 8px;
+}
+
+.home-aux-item.pack-dim-ref {
+    margin: 0;
+}
+
+.home-aux-item .pack-dim-ref-list {
+    margin-top: 8px;
+    font-size: 0.82rem;
+}
+
+.catalog-nav--compact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 4px;
+    padding: 0;
+}
+
+.catalog-nav-label {
+    font-size: 0.82rem;
+    color: var(--tt-text-muted);
+    font-weight: 600;
+    margin-right: 2px;
+}
+
+.catalog-nav--compact .catalog-nav-link {
+    padding: 5px 10px;
+    font-size: 0.82rem;
+}
+
+.home-rfq-trending-slot {
+    margin: 20px 0 8px;
+}
+
+.home-rfq-trending-slot .rfq-trend {
+    margin: 0;
+    padding: 12px 14px;
+}
+
+.home-rfq-trending-slot .rfq-trend-title {
+    font-size: 0.95rem;
+}
+
+.home-rfq-trending-slot .rfq-trend-chip {
+    padding: 5px 10px;
+    font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+    .home-aux-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .catalog-nav--compact {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+
+    .catalog-nav--compact::-webkit-scrollbar {
+        display: none;
+    }
+
+    .catalog-nav--compact .catalog-nav-link {
+        flex-shrink: 0;
+    }
 }
 
 .home-hot-promo {
@@ -3713,6 +3824,13 @@ footer .hover\:text-orange-300:hover {
     border-radius: 12px;
     border: 1px solid var(--tt-gold-border);
     background: linear-gradient(135deg, var(--tt-gold-pale) 0%, #fff 100%);
+}
+
+.rfq-banner--inline {
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--tt-gold-pale) 0%, #fff 70%);
 }
 
 .rfq-banner summary {
