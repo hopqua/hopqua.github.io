@@ -44,10 +44,11 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
 
         const loadingAttr = isPriority ? 'eager' : 'lazy';
         const fetchPriority = isPriority ? ' fetchpriority="high"' : '';
+        const intro = typeof getProductIntro === 'function'
+            ? getProductIntro(product.description)
+            : product.description;
         const shortDesc =
-            product.description.length > 72
-                ? product.description.substring(0, 72) + '…'
-                : product.description;
+            intro.length > 72 ? intro.substring(0, 72) + '…' : intro;
         const postedMeta = renderProductPostedMeta(product);
 
         productCard.innerHTML = `

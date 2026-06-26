@@ -29,13 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const imagesContainer = document.getElementById('product-images');
     loadProductImages(product, imagesContainer);
 
-    if (product.videos && product.videos.length > 0) {
-        const videoContainer = document.getElementById('product-videos');
-        if (videoContainer) {
-            videoContainer.hidden = false;
-            displayProductVideos(product, videoContainer);
-        }
-    }
+    renderRelatedProductsSection(product);
 
     const communityEl = document.getElementById('product-community');
     if (communityEl && typeof renderCommunityLinksBlock === 'function') {
@@ -123,6 +117,7 @@ function displayProductInfo(product) {
         </div>
         <aside class="pd-sidebar">
             <h1 class="pd-title">${product.name}</h1>
+            ${typeof renderCapNhatVariantPickerHtml === 'function' ? renderCapNhatVariantPickerHtml(product.id) : ''}
             ${postedMeta ? `<p class="pd-posted-meta">${postedMeta}</p>` : ''}
             ${badges || seasonBadge ? `<div class="pd-badges">${badges}${seasonBadge}</div>` : ''}
             <div class="pd-price-box">
@@ -131,7 +126,7 @@ function displayProductInfo(product) {
             </div>
             <div class="pd-desc-box">
                 <h2 class="pd-desc-title">Mô tả</h2>
-                <p class="pd-desc">${product.description}</p>
+                <div class="pd-desc">${renderProductDescriptionHtml(product.description)}</div>
             </div>
             ${renderProductTrustMini()}
             <div class="pd-actions">
@@ -193,18 +188,25 @@ function updateMetaTags(product) {
 
 function resolveGalleryPaths(product) {
     const paths = [];
+    const seen = new Set();
+
+    function add(path) {
+        if (!path || seen.has(path)) return;
+        seen.add(path);
+        paths.push(path);
+    }
 
     if (product.videos && product.videos.length) {
-        paths.push(...product.videos);
+        product.videos.forEach(add);
     }
 
     const manifest = getProductGalleryImages(product.id);
     if (manifest.length) {
-        paths.push(...manifest);
+        manifest.forEach(add);
         return paths;
     }
 
-    paths.push(...buildFallbackImagePaths(product));
+    buildFallbackImagePaths(product).forEach(add);
     return paths;
 }
 
@@ -550,40 +552,6 @@ function navigateNextImage() {
         newIndex = 0;
     }
     displayImage(newIndex);
-}
-
-function displayProductVideos(product, container) {
-    container.innerHTML = '';
-
-    if (!product.videos || product.videos.length === 0) {
-        container.style.display = 'none';
-        return;
-    }
-
-    container.style.display = 'block';
-
-    product.videos.forEach((videoPath) => {
-        const videoDiv = document.createElement('div');
-        videoDiv.className = 'product-video';
-
-        const video = document.createElement('video');
-        video.controls = true;
-        video.preload = 'metadata';
-        video.className = 'video-player';
-
-        video.onerror = function() {
-            videoDiv.remove();
-        };
-
-        const source = document.createElement('source');
-        source.src = videoPath;
-        source.type = 'video/mp4';
-
-        video.appendChild(source);
-        video.appendChild(document.createTextNode('Trình duyệt của bạn không hỗ trợ xem video.'));
-        videoDiv.appendChild(video);
-        container.appendChild(videoDiv);
-    });
 }
 
 function openLightbox(imageSrc, imageAlt) {

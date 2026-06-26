@@ -13,7 +13,11 @@ function getCanonicalProductUrl(product) {
 }
 
 function buildProductMetaDescription(product) {
-    const desc = (product.description || '').replace(/\s+/g, ' ').trim();
+    const rawIntro =
+        typeof getProductIntro === 'function'
+            ? getProductIntro(product.description)
+            : product.description;
+    const desc = (rawIntro || '').replace(/\s+/g, ' ').trim();
     const price = product.price ? ` Giá tham khảo: ${product.price}.` : '';
     const base = desc.length > 105 ? `${desc.substring(0, 105)}…` : desc;
     return `${base}${price} Mua Shopee hoặc Zalo báo giá sỉ.`.substring(0, 160);

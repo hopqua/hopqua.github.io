@@ -1,6 +1,6 @@
 const HOT_18_PRODUCT_IDS = [
     'hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k',
-    'vo-ep-kim-thuc-noi',
+    'thien-hoa-van-nguyet-4-banh-re-175k-24k',
     'thu-hoa-4-banh-do-29k-35k',
     'nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k',
     'bat-giac-tho-quy-toc',
