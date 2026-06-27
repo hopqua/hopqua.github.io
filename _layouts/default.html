@@ -30,6 +30,7 @@
   {% unless og_image contains '://' %}
     {% assign og_image = site.url | append: og_image %}
   {% endunless %}
+  {% include site-fonts.html %}
   <link rel="stylesheet" href="/css/styles.css">
   <style>
     @keyframes pulse-ring {
@@ -61,10 +62,6 @@
         animation: shake 0.5s ease-in-out;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-    }
   </style>
   <!-- Open Graph -->
   <meta property="og:locale" content="vi_VN">
