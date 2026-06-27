@@ -2594,7 +2594,10 @@ footer a {
 
 .pd-details-section {
     grid-area: details;
-    margin-top: 4px;
+    grid-column: 1 / -1;
+    margin-top: 8px;
+    position: relative;
+    z-index: 1;
 }
 
 .pd-details-title {
@@ -2610,13 +2613,15 @@ footer a {
     border-radius: 16px;
     padding: 20px 22px;
     box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
-    max-width: 52rem;
+    max-width: none;
 }
 
 .pd-buy-col.pd-sidebar {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    position: static;
+    align-self: start;
 }
 
 .pd-gallery-card {
@@ -2770,8 +2775,8 @@ footer a {
 }
 
 .pd-sidebar {
-    position: sticky;
-    top: 16px;
+    position: static;
+    top: auto;
     background: #fff;
     border-radius: 16px;
     border: 1px solid #e2e8f0;
