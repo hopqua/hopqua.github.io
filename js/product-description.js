@@ -11,6 +11,9 @@ function normalizeSpecLabel(label) {
     if (key === 'kt' || key === 'kích thước' || key === 'kich thuoc') {
         return 'Kích thước';
     }
+    if (key.startsWith('cân nặng') || key.startsWith('can nang')) {
+        return 'Cân nặng đóng hàng';
+    }
     if (key === 'bao gồm' || key === 'bao gom') {
         return 'Bao gồm';
     }
@@ -26,6 +29,21 @@ function normalizeSpecLabel(label) {
     return label.trim();
 }
 
+function isPricingItem(item) {
+    const label = String(item.label || '').toLowerCase();
+    const value = String(item.value || '').toLowerCase();
+    const combined = `${label} ${value}`;
+    return (
+        /^giá\b/.test(label) ||
+        /^sl\s/.test(label) ||
+        /^trên\s/.test(label) ||
+        /shopee/.test(combined) ||
+        /zalo\s*0/.test(combined) ||
+        /liên hệ/.test(combined) ||
+        (/đ\/cái|đ\/ cái|đ\/sp/.test(value) && /giá|sl|mua/.test(combined))
+    );
+}
+
 function parseSpecLine(line) {
     const text = line.replace(/^[•·]\s*/, '').trim();
     const colonMatch = text.match(/^([^:：]+)[:：]\s*(.+)$/s);
@@ -33,17 +51,18 @@ function parseSpecLine(line) {
     if (colonMatch) {
         return {
             label: normalizeSpecLabel(colonMatch[1]),
-            value: colonMatch[2].trim()
+            value: colonMatch[2].trim(),
         };
     }
 
     const prefixRules = [
+        { pattern: /^cân nặng\b/i, label: 'Cân nặng đóng hàng' },
         { pattern: /^kt\b/i, label: 'Kích thước' },
         { pattern: /^kích thước\b/i, label: 'Kích thước' },
         { pattern: /^bao gồm\b/i, label: 'Bao gồm' },
         { pattern: /^ép kim\b/i, label: 'Ép kim' },
         { pattern: /^chất liệu\b/i, label: 'Chất liệu' },
-        { pattern: /^vách chia\b/i, label: 'Vách chia' }
+        { pattern: /^vách chia\b/i, label: 'Vách chia' },
     ];
 
     for (const rule of prefixRules) {
@@ -102,10 +121,23 @@ function parseSpecBlock(blockText) {
     return { variants, items };
 }
 
+function splitItemsByType(items) {
+    const specs = [];
+    const pricing = [];
+    items.forEach((item) => {
+        if (isPricingItem(item)) {
+            pricing.push(item);
+        } else {
+            specs.push(item);
+        }
+    });
+    return { specs, pricing };
+}
+
 function parseProductDescription(description) {
     const raw = (description || '').trim();
     if (!raw) {
-        return { intro: '', variants: [], items: [] };
+        return { intro: '', variants: [], specs: [], pricing: [] };
     }
 
     const blocks = raw.split(/\n\s*\n/);
@@ -117,9 +149,7 @@ function parseProductDescription(description) {
         if (!trimmed) return;
 
         const lines = trimmed.split('\n').map((l) => l.trim()).filter(Boolean);
-        const hasSpec = lines.some(
-            (l) => /^[•·]/.test(l) || /^【.+】$/.test(l)
-        );
+        const hasSpec = lines.some((l) => /^[•·]/.test(l) || /^【.+】$/.test(l));
 
         if (hasSpec) {
             specBlocks.push(trimmed);
@@ -128,11 +158,13 @@ function parseProductDescription(description) {
         }
     });
 
-    const merged = { intro: introParts.join(' '), variants: [], items: [] };
+    const merged = { intro: introParts.join(' '), variants: [], specs: [], pricing: [] };
     specBlocks.forEach((block) => {
         const parsed = parseSpecBlock(block);
         merged.variants.push(...parsed.variants);
-        merged.items.push(...parsed.items);
+        const split = splitItemsByType(parsed.items);
+        merged.specs.push(...split.specs);
+        merged.pricing.push(...split.pricing);
     });
 
     return merged;
@@ -148,38 +180,56 @@ function getProductIntro(description) {
     return firstLine || '';
 }
 
-function renderSpecRow(item) {
+function renderMetaRow(item) {
     const isSize = item.label === 'Kích thước';
-    const valueClass = isSize ? 'pd-spec-value pd-spec-size' : 'pd-spec-value';
-
+    const ddClass = isSize ? 'pd-meta-dd pd-meta-size' : 'pd-meta-dd';
     return `
-        <div class="pd-spec-row">
-            <dt class="pd-spec-label">${escapeHtml(item.label)}</dt>
-            <dd class="${valueClass}">${escapeHtml(item.value)}</dd>
-        </div>
-    `;
+        <div class="pd-meta-row">
+            <dt class="pd-meta-dt">${escapeHtml(item.label)}</dt>
+            <dd class="${ddClass}">${escapeHtml(item.value)}</dd>
+        </div>`;
 }
 
-function renderSpecList(items) {
+function renderMetaList(items) {
     if (!items.length) return '';
-    return `<dl class="pd-spec-list">${items.map(renderSpecRow).join('')}</dl>`;
+    return `<dl class="pd-meta-dl">${items.map(renderMetaRow).join('')}</dl>`;
+}
+
+function renderPricingList(items) {
+    if (!items.length) return '';
+    const rows = items
+        .map(
+            (item) =>
+                `<li class="pd-pricing-item"><span class="pd-pricing-label">${escapeHtml(item.label)}</span><span class="pd-pricing-value">${escapeHtml(item.value)}</span></li>`
+        )
+        .join('');
+    return `
+        <div class="pd-pricing">
+            <h3 class="pd-pricing-title">Giá theo số lượng</h3>
+            <ul class="pd-pricing-list">${rows}</ul>
+        </div>`;
 }
 
 function renderSpecVariant(variant) {
-    if (!variant.items.length) return '';
+    const split = splitItemsByType(variant.items);
+    if (!split.specs.length && !split.pricing.length) return '';
     return `
         <div class="pd-spec-variant">
             <div class="pd-spec-variant-badge">${escapeHtml(variant.title)}</div>
-            ${renderSpecList(variant.items)}
-        </div>
-    `;
+            ${renderMetaList(split.specs)}
+            ${renderPricingList(split.pricing)}
+        </div>`;
 }
 
 function renderProductDescriptionHtml(description) {
     const parsed = parseProductDescription(description);
-    const hasSpecs = parsed.items.length > 0 || parsed.variants.length > 0;
+    const hasContent =
+        parsed.intro ||
+        parsed.specs.length ||
+        parsed.pricing.length ||
+        parsed.variants.length;
 
-    if (!hasSpecs) {
+    if (!hasContent) {
         return `<p class="pd-desc-intro">${escapeHtml(description || '')}</p>`;
     }
 
@@ -188,28 +238,21 @@ function renderProductDescriptionHtml(description) {
         html += `<p class="pd-desc-intro">${escapeHtml(parsed.intro)}</p>`;
     }
 
-    html += `
-        <div class="pd-specs">
-            <div class="pd-specs-head">
-                <span class="pd-specs-icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                        <line x1="12" y1="22.08" x2="12" y2="12"/>
-                    </svg>
-                </span>
-                <span class="pd-specs-title">Thông số kỹ thuật</span>
-            </div>
-    `;
+    if (parsed.specs.length) {
+        html += `
+            <div class="pd-specs-panel">
+                <h3 class="pd-specs-panel-title">Thông số hộp</h3>
+                ${renderMetaList(parsed.specs)}
+            </div>`;
+    }
+
+    if (parsed.pricing.length) {
+        html += renderPricingList(parsed.pricing);
+    }
 
     parsed.variants.forEach((variant) => {
         html += renderSpecVariant(variant);
     });
 
-    if (parsed.items.length) {
-        html += renderSpecList(parsed.items);
-    }
-
-    html += '</div>';
     return html;
 }

@@ -29,16 +29,32 @@
     function qtyFromPayload(payload) {
         const detail = parseInt(String(payload.qtyDetail || '').trim(), 10);
         if (detail > 0) return detail;
-        return QTY_FROM_TIER[payload.qtyTier] || 10;
+        return QTY_FROM_TIER[payload.qtyTier] || null;
+    }
+
+    function formatQtyLine(item) {
+        if (item.qtyTierLabel) {
+            const detail = item.qtyDetail ? parseInt(String(item.qtyDetail), 10) : 0;
+            if (detail > 0) {
+                return `SL ${item.qtyTierLabel} (${detail} cái)`;
+            }
+            return `SL ${item.qtyTierLabel}`;
+        }
+        if (item.qty) {
+            return `SL ~${item.qty} cái`;
+        }
+        return '';
     }
 
     function rfqPayloadToActivityItem(payload) {
         return {
             name: maskName(payload.name),
             product: payload.productName || 'hộp Trung Thu',
+            needLabel: payload.needLabel || 'Báo giá sỉ',
+            qtyTierLabel: payload.qtyTierLabel || '',
+            qtyDetail: payload.qtyDetail || '',
             qty: qtyFromPayload(payload),
             type: 'rfq',
-            note: payload.needLabel || 'Báo giá',
             real: true,
         };
     }
@@ -48,12 +64,19 @@
         const region = item.region ? ` <span class="activity-toast-region">(${item.region})</span>` : '';
         const who = `<strong>${name}</strong>${region}`;
         const product = item.product || 'hộp Trung Thu';
-        const qty = item.qty ? `<strong>${item.qty}</strong> hộp` : '';
 
         if (item.type === 'rfq' || !item.amountVnd) {
-            const note = item.note ? ` · <span class="activity-toast-note">${item.note}</span>` : '';
-            return `${who} — vừa gửi yêu cầu báo giá ${qty} <em>${product}</em>${note}`;
+            const need = item.needLabel || item.note || 'Báo giá sỉ';
+            const qtyLine = formatQtyLine(item);
+            const parts = [
+                `<span class="activity-toast-need">${need}</span>`,
+                qtyLine ? `<span class="activity-toast-qty">${qtyLine}</span>` : '',
+                product ? `<em>${product}</em>` : '',
+            ].filter(Boolean);
+            return `${who} — vừa gửi yêu cầu · ${parts.join(' · ')}`;
         }
+
+        const qty = item.qty ? `<strong>${item.qty}</strong> hộp` : '';
         const amount = fmtVnd(item.amountVnd);
         return `${who} — vừa đặt ${qty} <em>${product}</em> · <strong>${amount}</strong>`;
     }

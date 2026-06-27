@@ -148,6 +148,9 @@ function getActivityFeed_(limit) {
       items.push({
         name: maskName_(row[2]),
         product: String(row[3] || '').trim() || 'hộp Trung Thu',
+        needLabel: needLabel || 'Báo giá sỉ',
+        qtyTierLabel: String(qtyTierLabel || '').trim(),
+        qtyDetail: qtyDetail ? String(qtyDetail).trim() : '',
         qty: qtyFromRow_(qtyDetail, qtyTierLabel),
         type: 'rfq',
         note: needLabel || note || 'Báo giá',

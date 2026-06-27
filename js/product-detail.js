@@ -115,33 +115,39 @@ function displayProductInfo(product) {
                 <div class="gallery-indicators pd-thumbs" id="gallery-indicators"></div>
             </div>
         </div>
-        <aside class="pd-sidebar">
-            <h1 class="pd-title">${product.name}</h1>
-            ${typeof renderCapNhatVariantPickerHtml === 'function' ? renderCapNhatVariantPickerHtml(product.id) : ''}
-            ${postedMeta ? `<p class="pd-posted-meta">${postedMeta}</p>` : ''}
-            ${badges || seasonBadge ? `<div class="pd-badges">${badges}${seasonBadge}</div>` : ''}
-            <div class="pd-price-box">
-                <span class="pd-price-label">Giá tham khảo</span>
-                <p class="pd-price">${product.price}</p>
+        <aside class="pd-buy-col pd-sidebar">
+            <div class="pd-buy-head">
+                <h1 class="pd-title">${product.name}</h1>
+                ${typeof renderCapNhatVariantPickerHtml === 'function' ? renderCapNhatVariantPickerHtml(product.id) : ''}
+                ${postedMeta ? `<p class="pd-posted-meta">${postedMeta}</p>` : ''}
+                ${badges || seasonBadge ? `<div class="pd-badges">${badges}${seasonBadge}</div>` : ''}
+                <div class="pd-price-box">
+                    <span class="pd-price-label">Giá tham khảo</span>
+                    <p class="pd-price">${product.price}</p>
+                </div>
             </div>
             <div class="pd-rfq-wrap" id="bao-gia">
                 <div id="pd-rfq-mount"></div>
             </div>
-            <div class="pd-actions pd-actions--quick">
-                <a href="${getShopeeUrl(product)}" target="_blank" rel="noopener" class="pd-btn pd-btn-shopee">
-                    Mua lẻ Shopee
-                </a>
-                <a href="${zaloUrl}" target="_blank" rel="noopener" class="pd-btn pd-btn-zalo pd-btn--outline" id="zalo-buy-btn">
-                    Chat Zalo
-                </a>
+            <div class="pd-buy-foot">
+                <div class="pd-actions pd-actions--quick">
+                    <a href="${getShopeeUrl(product)}" target="_blank" rel="noopener" class="pd-btn pd-btn-shopee">
+                        Mua lẻ Shopee
+                    </a>
+                    <a href="${zaloUrl}" target="_blank" rel="noopener" class="pd-btn pd-btn-zalo pd-btn--outline" id="zalo-buy-btn">
+                        Chat Zalo
+                    </a>
+                </div>
+                ${renderProductTrustMini()}
+                <a href="index.html" class="pd-btn pd-btn-outline pd-btn--back">← Xem thêm mẫu khác</a>
             </div>
-            <div class="pd-desc-box">
-                <h2 class="pd-desc-title">Mô tả</h2>
+        </aside>
+        <section class="pd-details-section" aria-labelledby="pd-details-title">
+            <h2 id="pd-details-title" class="pd-details-title">Chi tiết mẫu</h2>
+            <div class="pd-desc-panel">
                 <div class="pd-desc">${renderProductDescriptionHtml(product.description)}</div>
             </div>
-            ${renderProductTrustMini()}
-            <a href="index.html" class="pd-btn pd-btn-outline pd-btn--back">← Xem thêm mẫu khác</a>
-        </aside>
+        </section>
     `;
 
     if (typeof mountRfq === 'function') {
