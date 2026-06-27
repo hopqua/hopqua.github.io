@@ -5,4 +5,3 @@ Disallow: /test.html
 Disallow: /simple-test.html
 
 Sitemap: https://hopqua.github.io/sitemap.xml
-Sitemap: https://hopqua.github.io/sitemap-pages.xml

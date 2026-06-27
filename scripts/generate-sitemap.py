@@ -20,12 +20,19 @@ def iso_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def parse_post_date(path: Path) -> str:
+def parse_post_front_date(path: Path) -> tuple[str, str, str, str]:
+    """Return (yyyy, mm, dd, iso_lastmod) from post front matter date (matches Jekyll permalink)."""
     text = path.read_text(encoding="utf-8")
-    match = re.search(r"^date:\s*([0-9]{4}-[0-9]{2}-[0-9]{2})", text, re.MULTILINE)
+    match = re.search(r"^date:\s*([0-9]{4})-([0-9]{2})-([0-9]{2})", text, re.MULTILINE)
     if match:
-        return f"{match.group(1)}T00:00:00Z"
-    return iso_now()
+        yyyy, mm, dd = match.group(1), match.group(2), match.group(3)
+        return yyyy, mm, dd, f"{yyyy}-{mm}-{dd}T00:00:00Z"
+    yyyy, mm, dd = path.stem[:4], path.stem[5:7], path.stem[8:10]
+    return yyyy, mm, dd, f"{yyyy}-{mm}-{dd}T00:00:00Z"
+
+
+def parse_post_date(path: Path) -> str:
+    return parse_post_front_date(path)[3]
 
 
 def parse_post_categories(path: Path) -> list[str]:
@@ -41,7 +48,7 @@ def parse_post_categories(path: Path) -> list[str]:
 
 def parse_post_url(path: Path) -> str:
     slug = path.stem[11:]
-    yyyy, mm, dd = path.stem[:4], path.stem[5:7], path.stem[8:10]
+    yyyy, mm, dd, _ = parse_post_front_date(path)
     categories = parse_post_categories(path)
     if categories:
         category_path = "/".join(categories)
