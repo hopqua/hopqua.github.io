@@ -2,7 +2,7 @@ title: "Hộp Bánh Trung Thu & Hộp Quà — Vân Thắng"
 description: "Chuyên hộp bánh Trung Thu cao cấp, hộp quà Tết — 70+ mẫu 4–6 bánh, giá sỉ. Mua Shopee longthibo958 hoặc Zalo báo giá 0965671689."
 keywords: "hộp bánh trung thu, hộp quà trung thu, hộp bánh trung thu cao cấp, hộp quà tết, hộp đựng bánh trung thu, mua hộp bánh trung thu shopee, hộp bánh trung thu 2026"
 baseurl: ""
-url: "https://hopqua.github.io"
+url: "https://hopqua.io.vn"
 default_og_image: "/image/hop-lam-cuc-4-6-banh/hop-lam-cuc-4-6-banh-1.jpg"
 
 theme: minima
@@ -17,3 +17,4 @@ include:
   - sitemap-posts.xml
   - sitemap-products.xml
   - robots.txt
+  - CNAME

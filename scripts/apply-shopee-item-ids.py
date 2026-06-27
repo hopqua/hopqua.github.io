@@ -98,7 +98,7 @@ def main() -> None:
         encoding="utf-8",
     )
     print(f"✅ {len(urls)} link trong {OUT_JS} ({added} từ CSV)")
-    print("   Commit & push website để link Shopee hiển thị trên hopqua.github.io")
+    print("   Commit & push website để link Shopee hiển thị trên hopqua.io.vn")
 
 
 if __name__ == "__main__":

@@ -275,7 +275,7 @@
             ...data,
             needLabel: NEED_LABELS[data.need] || data.need,
             qtyTierLabel: QTY_LABELS[data.qtyTier] || data.qtyTier,
-            source: 'hopqua.github.io',
+            source: 'hopqua.io.vn',
         };
 
         const url = (cfg.submitUrl || '').trim();

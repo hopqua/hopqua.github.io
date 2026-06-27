@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
-BASE_URL = "https://hopqua.github.io"
+BASE_URL = "https://hopqua.io.vn"
 POSTS_DIR = ROOT / "_posts"
 PRODUCTS_JS = ROOT / "js" / "products.js"
 SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"

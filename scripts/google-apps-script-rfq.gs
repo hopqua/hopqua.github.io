@@ -206,7 +206,7 @@ function notifyTelegram_(data) {
   const need = data.needLabel || data.need || 'Báo giá sỉ';
   const qtyLine = formatQtyTelegram_(data);
   const lines = [
-    '📩 Yêu cầu mới · hopqua.github.io',
+    '📩 Yêu cầu mới · hopqua.io.vn',
     '',
     data.phone ? '📞 ' + data.phone : '',
     data.name ? '👤 ' + data.name : '',
@@ -238,7 +238,7 @@ function testRfq() {
     needLabel: 'Báo giá sỉ',
     qtyTierLabel: '1–10 cái',
     note: 'Test thủ công trong Apps Script',
-    pageUrl: 'https://hopqua.github.io/',
+    pageUrl: 'https://hopqua.io.vn/',
   };
   appendRow_(data);
   notifyTelegram_(data);

@@ -33,7 +33,7 @@ HOP_QUA = _hop_qua_root()
 DEFAULT_TEMPLATE = HOP_QUA / "Shopee_mass_upload_71sp.xlsx"
 DEFAULT_OUT_DIR = HOP_QUA / "shopee-upload-2026"
 
-SITE = "https://hopqua.github.io"
+SITE = "https://hopqua.io.vn"
 SHOP_ID = 1307955653
 SHEET = "Bản đăng tải"
 DATA_START_ROW = 7

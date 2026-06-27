@@ -19,7 +19,7 @@ const HOT_18_PRODUCT_IDS = [
     'hac-do-re',
 ];
 
-const HOT_18_PAGE_URL = 'https://hopqua.github.io/18-mau-hot-2026.html';
+const HOT_18_PAGE_URL = 'https://hopqua.io.vn/18-mau-hot-2026.html';
 
 function injectHot18ItemListSchema(products) {
     if (!products.length) return;

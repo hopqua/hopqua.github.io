@@ -4,4 +4,4 @@ Disallow: /debug.html
 Disallow: /test.html
 Disallow: /simple-test.html
 
-Sitemap: https://hopqua.github.io/sitemap.xml
+Sitemap: https://hopqua.io.vn/sitemap.xml

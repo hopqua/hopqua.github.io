@@ -19,7 +19,7 @@ Chỉ mở `index.html` bằng trình duyệt **không** hiển thị được b
 2. Cài xong, mở PowerShell trong thư mục dự án:
 
 ```powershell
-cd D:\vanthang\hopqua.github.io
+cd D:\vanthang\hopqua.io.vn
 gem install bundler
 bundle install
 ```
@@ -52,14 +52,14 @@ Sau đó có thể dùng Cách 2 với thư mục `_site`.
 ## Cách 2 — Server tĩnh (nhanh, sau khi `jekyll build`)
 
 ```powershell
-cd D:\vanthang\hopqua.github.io\_site
+cd D:\vanthang\hopqua.io.vn\_site
 npx --yes serve -l 4000
 ```
 
 Hoặc Python:
 
 ```powershell
-cd D:\vanthang\hopqua.github.io\_site
+cd D:\vanthang\hopqua.io.vn\_site
 python -m http.server 4000
 ```
 
@@ -70,7 +70,7 @@ Mở http://localhost:4000
 ## Cách 3 — Chỉ xem trang chủ / SP (không có blog)
 
 ```powershell
-cd D:\vanthang\hopqua.github.io
+cd D:\vanthang\hopqua.io.vn
 python -m http.server 8080
 ```
 
@@ -89,4 +89,4 @@ python -m http.server 8080
 
 ## So với GitHub Pages
 
-Lệnh `jekyll serve` gần giống bản deploy trên `hopqua.github.io`. Nên preview blog bằng Jekyll trước khi push.
+Lệnh `jekyll serve` gần giống bản deploy trên `hopqua.io.vn`. Nên preview blog bằng Jekyll trước khi push.

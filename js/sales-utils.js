@@ -13,7 +13,7 @@ function getShopeeUrl(product) {
     }
     return SHOPEE_SHOP_URL;
 }
-const SITE_ORIGIN = 'https://hopqua.github.io';
+const SITE_ORIGIN = 'https://hopqua.io.vn';
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/Torangesvn/';
 const ZALO_GROUP_1_URL = 'https://zalo.me/g/vffwdx817';
 const ZALO_GROUP_2_URL = 'https://zalo.me/g/qzfgvs076';
