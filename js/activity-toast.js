@@ -47,34 +47,51 @@
     }
 
     function rfqPayloadToActivityItem(payload) {
+        const product = String(payload.productName || '').trim();
         return {
             name: maskName(payload.name),
-            product: payload.productName || 'hộp Trung Thu',
+            product: product || '',
             needLabel: payload.needLabel || 'Báo giá sỉ',
             qtyTierLabel: payload.qtyTierLabel || '',
             qtyDetail: payload.qtyDetail || '',
+            qtyTier: payload.qtyTier || '',
+            note: String(payload.note || '').trim(),
             qty: qtyFromPayload(payload),
             type: 'rfq',
             real: true,
         };
     }
 
+    function buildKicker(item) {
+        if (!item.real) return 'Hoạt động gần đây';
+        if (item.type === 'rfq' || !item.amountVnd) {
+            return item.needLabel || 'Vừa gửi yêu cầu';
+        }
+        return 'Vừa đặt hàng';
+    }
+
     function buildMessage(item) {
         const name = item.name || 'Khách';
         const region = item.region ? ` <span class="activity-toast-region">(${item.region})</span>` : '';
         const who = `<strong>${name}</strong>${region}`;
-        const product = item.product || 'hộp Trung Thu';
 
         if (item.type === 'rfq' || !item.amountVnd) {
-            const need = item.needLabel || item.note || 'Báo giá sỉ';
+            const need = item.needLabel || 'Báo giá sỉ';
             const qtyLine = formatQtyLine(item);
+            const product = item.product;
             const parts = [
                 `<span class="activity-toast-need">${need}</span>`,
                 qtyLine ? `<span class="activity-toast-qty">${qtyLine}</span>` : '',
-                product ? `<em>${product}</em>` : '',
-            ].filter(Boolean);
-            return `${who} — vừa gửi yêu cầu · ${parts.join(' · ')}`;
+            ];
+            if (product) parts.push(`<em>${product}</em>`);
+            const note = String(item.note || '').trim();
+            if (note && note.length <= 48) {
+                parts.push(`<span class="activity-toast-note">${note}</span>`);
+            }
+            return `${who} — ${parts.filter(Boolean).join(' · ')}`;
         }
+
+        const product = item.product || 'hộp Trung Thu';
 
         const qty = item.qty ? `<strong>${item.qty}</strong> hộp` : '';
         const amount = fmtVnd(item.amountVnd);
@@ -119,7 +136,7 @@
         el.setAttribute('role', 'status');
         el.innerHTML = `
             <button type="button" class="activity-toast-close" aria-label="Đóng">×</button>
-            <p class="activity-toast-kicker">${item.real ? 'Vừa gửi yêu cầu' : 'Hoạt động gần đây'}</p>
+            <p class="activity-toast-kicker">${buildKicker(item)}</p>
             <p class="activity-toast-body">${buildMessage(item)}</p>
             <button type="button" class="activity-toast-mute">Không hiện hôm nay</button>
         `;

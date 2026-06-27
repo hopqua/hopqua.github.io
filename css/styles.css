@@ -21,6 +21,12 @@
     --tt-link: #8b1528;
     --tt-link-hover: #6d1222;
     --tt-shadow: rgba(109, 18, 34, 0.18);
+    --tt-border: rgba(232, 200, 114, 0.45);
+    --tt-surface: #ffffff;
+    --tt-radius-md: 14px;
+    --tt-radius-sm: 10px;
+    --tt-shadow-card: 0 8px 24px rgba(109, 18, 34, 0.07);
+
 
     --primary-color: var(--tt-gold);
     --secondary-color: var(--tt-night-mid);
@@ -4958,3 +4964,197 @@ body {
     }
 }
 
+
+/* ========== Site chrome — footer & chat FABs (theme thuần) ========== */
+.site-footer {
+    margin-top: 48px;
+    background: linear-gradient(180deg, var(--tt-night-mid) 0%, var(--tt-night) 100%);
+    color: #f5ebe0;
+    border-top: 3px solid var(--tt-gold);
+    padding: 40px 0 28px;
+}
+
+.site-footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.site-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px 32px;
+}
+
+.site-footer-title {
+    margin: 0 0 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--tt-gold);
+    display: inline-block;
+}
+
+.site-footer-link {
+    display: block;
+    color: #fdecc8;
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.site-footer-link:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.site-footer-link--shopee {
+    color: #ffd4c4;
+}
+
+.site-footer-note,
+.site-footer-contact {
+    margin: 8px 0 0;
+    font-size: 0.88rem;
+    color: #d4c4a8;
+    line-height: 1.5;
+}
+
+.site-footer-contact a {
+    color: #fdecc8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.site-footer-contact a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.site-footer-bottom {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(212, 160, 23, 0.25);
+    text-align: center;
+    font-size: 0.9rem;
+    color: #e8d9c8;
+}
+
+.site-footer-bottom strong {
+    color: #fff;
+}
+
+.site-footer-nav {
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+.site-footer-nav a {
+    color: #fdecc8;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.site-footer-nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.site-chat-fabs {
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right));
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.site-chat-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 6px 20px rgba(26, 21, 32, 0.28);
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-chat-fab:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(26, 21, 32, 0.35);
+}
+
+.site-chat-fab--zalo {
+    background: #0068ff;
+}
+
+.site-chat-fab--zalo img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+}
+
+.site-chat-fab--more {
+    background: var(--tt-night-mid);
+    border: 2px solid var(--tt-gold-border);
+    list-style: none;
+}
+
+.site-chat-fab--more::-webkit-details-marker {
+    display: none;
+}
+
+.site-chat-menu-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.site-chat-fab--messenger {
+    background: #0084ff;
+}
+
+.site-chat-fab--call {
+    background: var(--tt-crimson);
+}
+
+body.pd-body .site-chat-fabs {
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 768px) {
+    .site-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .site-chat-fabs {
+        bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+    }
+
+    body.pd-body .site-chat-fabs {
+        bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .site-chat-fab {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.activity-toast-note {
+    color: var(--tt-text-subtle);
+    font-weight: 500;
+    font-style: italic;
+}

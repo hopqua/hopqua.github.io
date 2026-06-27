@@ -145,15 +145,16 @@ function getActivityFeed_(limit) {
       const needLabel = String(row[5] || '').trim();
       const note = String(row[8] || '').trim();
 
+      const productName = String(row[3] || '').trim();
       items.push({
         name: maskName_(row[2]),
-        product: String(row[3] || '').trim() || 'hộp Trung Thu',
+        product: productName,
         needLabel: needLabel || 'Báo giá sỉ',
         qtyTierLabel: String(qtyTierLabel || '').trim(),
         qtyDetail: qtyDetail ? String(qtyDetail).trim() : '',
+        note: String(note || '').trim(),
         qty: qtyFromRow_(qtyDetail, qtyTierLabel),
         type: 'rfq',
-        note: needLabel || note || 'Báo giá',
         real: true,
       });
     }
@@ -192,18 +193,28 @@ function appendRow_(data) {
   ]);
 }
 
+function formatQtyTelegram_(data) {
+  const tier = data.qtyTierLabel || data.qtyTier || '';
+  const detail = data.qtyDetail ? String(data.qtyDetail).trim() : '';
+  if (!tier && !detail) return '';
+  if (tier && detail) return tier + ' (' + detail + ' cái)';
+  return tier || detail + ' cái';
+}
+
 function notifyTelegram_(data) {
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+  const need = data.needLabel || data.need || 'Báo giá sỉ';
+  const qtyLine = formatQtyTelegram_(data);
   const lines = [
-    '📩 RFQ hopqua.github.io',
-    data.phone ? `SĐT: ${data.phone}` : '',
-    data.name ? `Tên: ${data.name}` : '',
-    data.productName ? `Mẫu: ${data.productName}` : '',
-    data.needLabel || data.need ? `Nhu cầu: ${data.needLabel || data.need}` : '',
-    data.qtyTierLabel || data.qtyTier
-      ? `SL: ${data.qtyTierLabel || data.qtyTier}${data.qtyDetail ? ' (' + data.qtyDetail + ')' : ''}`
-      : '',
-    data.note ? `Ghi chú: ${data.note}` : '',
+    '📩 Yêu cầu mới · hopqua.github.io',
+    '',
+    data.phone ? '📞 ' + data.phone : '',
+    data.name ? '👤 ' + data.name : '',
+    data.productName ? '📦 ' + data.productName : '',
+    '🎯 ' + need,
+    qtyLine ? '📊 SL: ' + qtyLine : '',
+    data.note ? '📝 ' + data.note : '',
+    data.pageUrl ? '🔗 ' + data.pageUrl : '',
   ].filter(Boolean);
   const text = lines.join('\n');
   const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
