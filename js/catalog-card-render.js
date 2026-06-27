@@ -7,6 +7,38 @@ function escapeCatalogHtml(str) {
         .replace(/"/g, '&quot;');
 }
 
+function getCatalogThumbStripImages(product, max = 4) {
+    const id = product.webId || product.id;
+    let gallery = [];
+    if (id && typeof getProductGalleryImages === 'function') {
+        gallery = getProductGalleryImages(id) || [];
+    }
+    if (!gallery.length && product.images && product.images.length) {
+        gallery = product.images.slice();
+    }
+    if (gallery.length >= 2) {
+        return gallery.slice(0, max);
+    }
+    const main = (product.images && product.images[0]) || product.thumbnail;
+    return main ? [main] : [];
+}
+
+function renderCatalogThumbStripHtml(product, max = 4) {
+    const images = getCatalogThumbStripImages(product, max);
+    if (images.length < 2) return '';
+
+    const imgs = images
+        .map((src) => {
+            const thumb = typeof getThumbUrl === 'function' ? getThumbUrl(src) : src;
+            const fallback =
+                typeof toRootAssetUrl === 'function' ? toRootAssetUrl(src) : src;
+            return `<img src="${escapeCatalogHtml(thumb)}" alt="" width="52" height="52" loading="lazy" decoding="async" aria-hidden="true" onerror="this.onerror=null;this.src='${escapeCatalogHtml(fallback)}';">`;
+        })
+        .join('');
+
+    return `<div class="cap-nhat-card-thumbs" aria-hidden="true">${imgs}</div>`;
+}
+
 function catalogProductUrl(row) {
     const id = row.webId || row.id;
     return id ? `/product.html?id=${encodeURIComponent(id)}` : '#';
@@ -62,12 +94,14 @@ function renderCapNhatGroupCardHtml(group) {
         const firstImg = group.variants[0]?.images?.[0] || group.variants[0]?.thumbnail || 'image/favicon.png';
         const thumb = typeof getThumbUrl === 'function' ? getThumbUrl(firstImg) : firstImg;
         const chips = group.variants.map(renderCapNhatVariantChipHtml).join('');
+        const thumbStrip = renderCatalogThumbStripHtml(group.variants[0] || group);
         return `
             <article class="cap-nhat-card cap-nhat-card--group" role="listitem">
                 <figure class="cap-nhat-card-img">
                     <img src="${escapeCatalogHtml(thumb)}" alt="${escapeCatalogHtml(group.folder)}" loading="lazy" decoding="async"
                          onerror="this.onerror=null;this.src='image/favicon.png';">
                 </figure>
+                ${thumbStrip}
                 <div class="cap-nhat-card-body">
                     <h3>${escapeCatalogHtml(group.folder)} <span class="cap-nhat-badge">${group.variantCount} màu</span></h3>
                         <p class="cap-nhat-group-meta">Cân đóng hàng: <strong>${group.packWeightG ? group.packWeightG + 'g' : '—'}</strong>${group.packSizeText ? ` · KT: ${escapeCatalogHtml(group.packSizeText)}` : ''} · ${escapeCatalogHtml(group.priceSummary)}/cái</p>
@@ -93,6 +127,7 @@ function renderCapNhatProductCardHtml(product, options = {}) {
     const loading = options.priorityImage ? 'eager' : 'lazy';
     const fetchP = options.priorityImage ? ' fetchpriority="high"' : '';
     const priceLabel = formatCatalogRetailLabel(product);
+    const thumbStrip = renderCatalogThumbStripHtml(product);
 
     return `
         <article class="cap-nhat-card" role="listitem">
@@ -102,6 +137,7 @@ function renderCapNhatProductCardHtml(product, options = {}) {
                          onerror="this.onerror=null;this.src='${escapeCatalogHtml(fallback)}';">
                 </figure>
             </a>
+            ${thumbStrip}
             <div class="cap-nhat-card-body">
                 <h3><a href="${detail}">${escapeCatalogHtml(title)}</a></h3>
                 <dl class="cap-nhat-meta">

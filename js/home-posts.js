@@ -1,7 +1,9 @@
 /** Bài blog hiển thị trên trang chủ — cập nhật khi thêm bài mới trong _posts/ */
 const homeBlogPosts = [
     {
-        title: 'Ưu đãi tháng 6–7/2026: đặt 100 hộp — giá như mua 500',
+        title: 'Tiệm bánh đặt 100 hộp Trung Thu 2026 — giá sỉ bậc 500 hộp',
+        cardTitle: '100 hộp — giá bậc 500 (ưu đãi sỉ)',
+        tag: 'Ưu đãi sỉ',
         url: '/uu-dai/ban-si/2026/06/25/uu-dai-100-hop-gia-nhu-500.html',
         date: '2026-06-25',
         image: 'image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-1.jpg'
@@ -51,6 +53,10 @@ function renderHomeBlogSection() {
         .map((post) => {
             const thumbSrc = getThumbUrl(post.image);
             const dateLabel = formatBlogDate(post.date);
+            const displayTitle = post.cardTitle || post.title;
+            const tagHtml = post.tag
+                ? `<span class="blog-card-tag blog-card-tag--promo">${post.tag}</span>`
+                : '';
             const mediaHtml = post.image
                 ? `<a href="${post.url}" class="blog-card-media" aria-hidden="true" tabindex="-1">
                         <img src="${thumbSrc}" alt="" width="400" height="250" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${post.image}';">
@@ -60,7 +66,8 @@ function renderHomeBlogSection() {
             return `<article class="blog-card">
                 ${mediaHtml}
                 <time class="blog-card-date" datetime="${post.date}">${dateLabel}</time>
-                <h3 class="blog-card-title"><a href="${post.url}">${post.title}</a></h3>
+                ${tagHtml ? `<p class="blog-card-tags">${tagHtml}</p>` : ''}
+                <h3 class="blog-card-title"><a href="${post.url}">${displayTitle}</a></h3>
                 <a href="${post.url}" class="blog-card-read">Đọc bài →</a>
             </article>`;
         })

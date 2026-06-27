@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const products = HOT_18_PRODUCT_IDS.map((id) => getProductById(id)).filter(Boolean);
-    displayProducts(grid, products, 0, { secondaryAction: 'shopee', showThumbnails: false });
+    displayProducts(grid, products, 0, { secondaryAction: 'shopee', showThumbnails: true });
     injectHot18ItemListSchema(products);
 
     const ctaZalo = document.getElementById('hot-18-cta-zalo');
