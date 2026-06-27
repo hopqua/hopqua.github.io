@@ -2,7 +2,7 @@
 const homeBlogPosts = [
     {
         title: 'Tiệm bánh đặt 100 hộp Trung Thu 2026 — giá sỉ bậc 500 hộp',
-        cardTitle: '100 hộp — giá bậc 500 (ưu đãi sỉ)',
+        cardTitle: '100 hộp cùng mẫu — giá bậc 500',
         tag: 'Ưu đãi sỉ',
         url: '/uu-dai/ban-si/2026/06/25/uu-dai-100-hop-gia-nhu-500.html',
         date: '2026-06-25',

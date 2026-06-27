@@ -70,8 +70,8 @@ textarea {
     padding: 0 15px;
 }
 
-/* Header styles */
-header {
+/* Header styles — chỉ header site (body > header), không áp blog-post-header */
+body > header {
     background-color: var(--tt-gold);
     color: white;
     padding: 20px 0;
@@ -79,21 +79,21 @@ header {
     margin-bottom: 30px;
 }
 
-header h1 {
+body > header h1 {
     font-size: 2rem;
     margin-bottom: 5px;
 }
 
-header p {
+body > header p {
     font-size: 1.1rem;
     opacity: 0.9;
 }
 
-header nav {
+body > header nav {
     margin-top: 15px;
 }
 
-header a.back-btn {
+body > header a.back-btn {
     display: inline-block;
     color: white;
     text-decoration: none;
@@ -105,7 +105,7 @@ header a.back-btn {
     transition: all 0.3s ease;
 }
 
-header a.back-btn:hover {
+body > header a.back-btn:hover {
     background-color: white;
     color: var(--tt-gold);
 }
@@ -133,7 +133,7 @@ header a.back-btn:hover {
     color: var(--tt-gold);
 }
 
-header a[aria-current="page"] {
+body > header a[aria-current="page"] {
     font-weight: 700;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -971,7 +971,7 @@ body {
         var(--tt-cream);
 }
 
-header {
+body > header {
     background: var(--tt-gradient-header);
     box-shadow: 0 12px 32px var(--tt-shadow);
     padding: 26px 0;
@@ -981,7 +981,7 @@ header {
     overflow: hidden;
 }
 
-header::before {
+body > header::before {
     content: '';
     position: absolute;
     top: -18px;
@@ -994,7 +994,7 @@ header::before {
     pointer-events: none;
 }
 
-header::after {
+body > header::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -1018,7 +1018,7 @@ header.header-compact {
     z-index: 1;
 }
 
-header a.back-btn:hover {
+body > header a.back-btn:hover {
     background-color: white;
     color: var(--tt-crimson);
 }
@@ -1056,19 +1056,19 @@ header a.back-btn:hover {
     border-color: rgba(255, 255, 255, 0.5) !important;
 }
 
-header h1 {
+body > header h1 {
     font-size: clamp(1.6rem, 2.8vw, 2.4rem);
     margin-bottom: 8px;
     letter-spacing: -0.02em;
 }
 
-header p {
+body > header p {
     max-width: 900px;
     margin: 0 auto;
     opacity: 0.96;
 }
 
-header nav a {
+body > header nav a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -1082,7 +1082,7 @@ header nav a {
     transition: all 0.25s ease;
 }
 
-header nav a:hover {
+body > header nav a:hover {
     color: var(--tt-crimson-dark);
     background: #fff;
     border-color: #fff;
@@ -1506,6 +1506,14 @@ body.blog-index-page .header-compact-brand h1 {
     margin-bottom: 28px;
     padding-bottom: 20px;
     border-bottom: 2px solid rgba(232, 200, 114, 0.4);
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding-top: 0;
+    text-align: left;
+    color: inherit;
+    overflow: visible;
+    position: static;
 }
 
 .blog-post-title {
@@ -1523,17 +1531,14 @@ body.blog-index-page .header-compact-brand h1 {
     flex-wrap: wrap;
     align-items: center;
     gap: 0 8px;
-    color: var(--tt-text-subtle);
+    color: var(--tt-text-muted);
     font-size: 0.88rem;
     font-weight: 500;
 }
 
-.blog-meta-dot {
-    color: rgba(155, 28, 49, 0.25);
-}
-
 .blog-meta-topic {
-    color: var(--tt-text-muted);
+    color: var(--tt-crimson-dark);
+    font-weight: 600;
 }
 
 .blog-meta-cats {
@@ -1674,7 +1679,7 @@ footer a {
 }
 
 @media (max-width: 768px) {
-    header {
+    body > header {
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
     }
@@ -4671,21 +4676,21 @@ body {
         padding-right: max(12px, env(safe-area-inset-right));
     }
 
-    header {
+    body > header {
         margin-bottom: 16px;
         padding: 12px 0;
     }
 
-    header h1 {
+    body > header h1 {
         font-size: clamp(1.15rem, 4.5vw, 1.5rem);
         line-height: 1.25;
     }
 
-    header p {
+    body > header p {
         font-size: 0.88rem;
     }
 
-    header.header-compact {
+    body > header.header-compact {
         padding: 10px 0;
         margin-bottom: 10px;
     }
@@ -4755,7 +4760,7 @@ body {
     }
 
     .pd-top-nav-link,
-    header a.back-btn {
+    body > header a.back-btn {
         flex-shrink: 0;
         font-size: 0.82rem;
         padding: 6px 12px;
