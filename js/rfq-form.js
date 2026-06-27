@@ -50,7 +50,12 @@
 
     function renderRfqFormHtml(options) {
         const opts = options || {};
-        const variant = opts.variant === 'compact' ? 'rfq-form--compact' : '';
+        const variantMap = {
+            compact: 'rfq-block--compact',
+            product: 'rfq-block--product',
+            hero: 'rfq-block--hero',
+        };
+        const variant = variantMap[opts.variant] || '';
         const productId = opts.productId || '';
         const productName = opts.productName || '';
         const formId = opts.formId || 'rfq-form';

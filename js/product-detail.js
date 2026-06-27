@@ -124,22 +124,23 @@ function displayProductInfo(product) {
                 <span class="pd-price-label">Giá tham khảo</span>
                 <p class="pd-price">${product.price}</p>
             </div>
-            <div class="pd-rfq-wrap" id="pd-rfq-mount"></div>
+            <div class="pd-rfq-wrap" id="bao-gia">
+                <div id="pd-rfq-mount"></div>
+            </div>
+            <div class="pd-actions pd-actions--quick">
+                <a href="${getShopeeUrl(product)}" target="_blank" rel="noopener" class="pd-btn pd-btn-shopee">
+                    Mua lẻ Shopee
+                </a>
+                <a href="${zaloUrl}" target="_blank" rel="noopener" class="pd-btn pd-btn-zalo pd-btn--outline" id="zalo-buy-btn">
+                    Chat Zalo
+                </a>
+            </div>
             <div class="pd-desc-box">
                 <h2 class="pd-desc-title">Mô tả</h2>
                 <div class="pd-desc">${renderProductDescriptionHtml(product.description)}</div>
             </div>
             ${renderProductTrustMini()}
-            <div class="pd-actions">
-                <a href="${zaloUrl}" target="_blank" rel="noopener" class="pd-btn pd-btn-zalo" id="zalo-buy-btn">
-                    <img src="./image/zalo-hd-logo.png" alt="" width="22" height="22" loading="lazy">
-                    Nhắn Zalo báo giá mẫu này
-                </a>
-                <a href="${getShopeeUrl(product)}" target="_blank" rel="noopener" class="pd-btn pd-btn-shopee">
-                    Mua lẻ trên Shopee
-                </a>
-                <a href="index.html" class="pd-btn pd-btn-outline">← Xem thêm mẫu khác</a>
-            </div>
+            <a href="index.html" class="pd-btn pd-btn-outline pd-btn--back">← Xem thêm mẫu khác</a>
         </aside>
     `;
 
@@ -148,14 +149,15 @@ function displayProductInfo(product) {
             formId: 'pd-rfq-form',
             productId: product.id,
             productName: product.name,
+            variant: 'product',
             title: 'Gọi lại báo giá mẫu này',
-            lead: 'Để SĐT — shop Vân Thắng gọi tư vấn giá sỉ & SL. Mua lẻ 1–10 cái: dùng Shopee bên dưới.',
+            lead: 'Để SĐT — shop gọi tư vấn giá sỉ & số lượng. Mua lẻ 1–10 cái: dùng Shopee bên trên.',
         });
     }
 }
 
 function attachZaloTracking(product) {
-    document.querySelectorAll('#zalo-buy-btn, #pd-mobile-zalo').forEach((btn) => {
+    document.querySelectorAll('#zalo-buy-btn').forEach((btn) => {
         btn.addEventListener('click', () => trackZaloClick(product));
     });
 }
@@ -168,7 +170,7 @@ function setupMobileBuyBar(product) {
     bar.hidden = false;
     bar.removeAttribute('aria-hidden');
     bar.innerHTML = `
-        <a href="${zaloUrl}" target="_blank" rel="noopener" class="pd-mobile-btn pd-mobile-zalo" id="pd-mobile-zalo">Zalo báo giá</a>
+        <a href="#bao-gia" class="pd-mobile-btn pd-mobile-rfq">Để SĐT báo giá</a>
         <a href="${getShopeeUrl(product)}" target="_blank" rel="noopener" class="pd-mobile-btn pd-mobile-shopee">Shopee</a>
     `;
 }

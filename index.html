@@ -110,6 +110,7 @@
                 <a href="18-mau-hot-2026.html" class="header-nav-blog header-nav-hot">18 mẫu hot</a>
                 <a href="cap-nhat-2026.html" class="header-nav-blog">Mẫu mới 2026</a>
                 <a href="tim-kiem.html" class="header-nav-blog">Tìm mẫu</a>
+                <a href="#bao-gia" class="header-nav-blog header-nav-rfq">Báo giá</a>
                 <a href="https://zalo.me/0965671689" target="_blank" rel="noopener" class="header-nav-zalo">Zalo</a>
                 <a href="/blog/" class="header-nav-blog">Blog</a>
             </nav>
@@ -139,7 +140,7 @@
                 <a href="#kho-premium" class="catalog-nav-link">Cao cấp</a>
             </nav>
 
-            <div class="home-aux-strip">
+            <div class="home-aux-strip home-aux-strip--solo">
                 <details class="home-aux-item pack-dim-ref">
                     <summary>Quy cách kích thước (cm)</summary>
                     <ul class="pack-dim-ref-list">
@@ -152,10 +153,6 @@
                         <li><strong>2 bánh đắt (ép nhũ / ép kim)</strong> — Hộp 21,5×11,5×5 · Túi 22,5×14×6</li>
                     </ul>
                 </details>
-                <details class="home-aux-item rfq-banner rfq-banner--inline">
-                    <summary>Báo giá sỉ — để SĐT, shop gọi lại</summary>
-                    <div id="home-rfq-mount"></div>
-                </details>
             </div>
         </div>
 
@@ -163,7 +160,12 @@
             <!-- Các kệ sản phẩm render bằng JavaScript -->
         </div>
 
-        <div id="rfq-trending" class="home-rfq-trending-slot"></div>
+        <section id="bao-gia" class="home-rfq-zone" aria-label="Báo giá sỉ — shop gọi lại">
+            <div class="home-rfq-zone-grid">
+                <div class="home-rfq-zone-main" id="home-rfq-mount"></div>
+                <aside class="home-rfq-zone-aside" id="rfq-trending" aria-label="Mẫu được hỏi nhiều"></aside>
+            </div>
+        </section>
 
         <section class="home-blog-section" aria-label="Bài viết mới">
             <div class="home-blog-header">
@@ -174,12 +176,12 @@
         </section>
 
         <section class="home-after-catalog" aria-label="Liên hệ và thông tin thêm">
-            <div class="home-cta-compact">
-                <p>Cần báo giá sỉ hoặc chọn mẫu?</p>
+            <div class="home-cta-compact home-cta-compact--secondary">
+                <p>Mua lẻ 1–10 cái hoặc cần tư vấn nhanh?</p>
                 <div class="home-cta-compact-actions">
                     <a href="https://zalo.me/0965671689?text=Xin%20ch%C3%A0o%20V%C3%A2n%20Th%E1%BA%AFng%2C%20em%20mu%E1%BB%91n%20t%C6%B0%20v%E1%BA%A5n%20h%E1%BB%99p%20b%C3%A1nh%20Trung%20Thu%202026" target="_blank" rel="noopener" class="cta-btn cta-btn-zalo" id="cta-zalo-main">Chat Zalo</a>
                     <a href="https://shopee.vn/longthibo958" target="_blank" rel="noopener" class="cta-btn cta-btn-call">Shopee</a>
-                    <a href="tel:0965671689" class="cta-btn cta-btn-call">Gọi điện</a>
+                    <a href="#bao-gia" class="cta-btn cta-btn-call">Form báo giá ↑</a>
                 </div>
             </div>
 
@@ -306,9 +308,9 @@
             if (typeof mountRfq === 'function') {
                 mountRfq('home-rfq-mount', {
                     formId: 'home-rfq-form',
-                    variant: 'compact',
-                    title: 'Yêu cầu báo giá',
-                    lead: 'Shop gọi lại trong giờ hành chính (8h–20h).',
+                    variant: 'hero',
+                    title: 'Gọi lại báo giá — để SĐT',
+                    lead: 'Shop Vân Thắng gọi tư vấn giá sỉ & chọn mẫu trong 15–30 phút (8h–20h). Mua lẻ 1–10 cái: Shopee.',
                 });
             }
         });

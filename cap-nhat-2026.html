@@ -30,6 +30,7 @@
                 <a href="18-mau-hot-2026.html" class="header-nav-blog header-nav-hot">18 mẫu hot</a>
                 <a href="cap-nhat-2026.html" class="header-nav-blog" aria-current="page">Mẫu mới 2026</a>
                 <a href="tim-kiem.html" class="header-nav-blog">Tìm mẫu</a>
+                <a href="#bao-gia" class="header-nav-blog header-nav-rfq">Báo giá</a>
                 <a href="https://zalo.me/0965671689" target="_blank" rel="noopener" class="header-nav-zalo">Zalo</a>
             </nav>
         </div>
@@ -69,19 +70,21 @@
             </ul>
         </details>
 
-        <div id="rfq-trending"></div>
-
         <section aria-labelledby="cap-nhat-grid-title">
             <h2 id="cap-nhat-grid-title" class="cap-nhat-section-title">Xem ảnh &amp; giá từng mẫu</h2>
             <div class="cap-nhat-grid" id="cap-nhat-grid" role="list"></div>
         </section>
 
-        <section class="home-cta-compact" aria-label="Liên hệ">
-            <p>Cần báo giá sỉ hoặc tư vấn chọn mẫu?</p>
+        <section id="bao-gia" class="home-rfq-zone home-rfq-zone--cap" aria-label="Báo giá sỉ">
+            <div id="cap-rfq-mount"></div>
+        </section>
+
+        <section class="home-cta-compact home-cta-compact--secondary" aria-label="Liên hệ nhanh">
+            <p>Mua lẻ hoặc cần tư vấn nhanh?</p>
             <div class="home-cta-compact-actions">
-                <a href="https://zalo.me/0965671689?text=Xin%20ch%C3%A0o%20V%C3%A2n%20Th%E1%BA%AFng%2C%20em%20mu%E1%BB%91n%20t%C6%B0%20v%E1%BA%A5n%20h%E1%BB%99p%20b%C3%A1nh%20Trung%20Thu%202026" target="_blank" rel="noopener" class="cta-btn cta-btn-zalo">Chat Zalo</a>
+                <a href="https://zalo.me/0965671689" target="_blank" rel="noopener" class="cta-btn cta-btn-zalo">Chat Zalo</a>
                 <a href="https://shopee.vn/longthibo958" target="_blank" rel="noopener sponsored" class="cta-btn cta-btn-call">Shopee</a>
-                <a href="/" class="cta-btn cta-btn-call">Xem toàn bộ mẫu</a>
+                <a href="#bao-gia" class="cta-btn cta-btn-call">Form báo giá ↑</a>
             </div>
         </section>
     </main>
@@ -102,10 +105,21 @@
     <script src="js/catalog-card-render.js" defer></script>
     <script src="js/pack-spec-rules.js" defer></script>
     <script src="js/rfq-form.js" defer></script>
-    <script src="js/rfq-trending.js" defer></script>
     <script src="js/activity-toast.js" defer></script>
     <script src="js/product-search.js" defer></script>
     <script src="js/site-header-search.js" defer></script>
     <script src="js/cap-nhat-page.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof mountRfq === 'function') {
+                mountRfq('cap-rfq-mount', {
+                    formId: 'cap-rfq-form',
+                    variant: 'hero',
+                    title: 'Gọi lại báo giá',
+                    lead: 'Để SĐT — shop gọi tư vấn giá sỉ sau khi anh/chị xem mẫu phía trên.',
+                });
+            }
+        });
+    </script>
 </body>
 </html>
