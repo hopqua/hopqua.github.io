@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate sitemap index + child sitemaps for GitHub Pages."""
+"""Generate sitemap.xml (single urlset) + optional child sitemaps for GitHub Pages."""
 from __future__ import annotations
 
 import re
@@ -131,21 +131,16 @@ def main() -> None:
         product_blocks.append(make_url_block(product_url(pid), now))
     write_urlset(ROOT / "sitemap-products.xml", product_blocks)
 
-    write_sitemap_index(
-        ROOT / "sitemap.xml",
-        [
-            (f"{BASE_URL}/sitemap-pages.xml", now),
-            (f"{BASE_URL}/sitemap-posts.xml", now),
-            (f"{BASE_URL}/sitemap-products.xml", now),
-        ],
-    )
+    # GSC đọc ổn định hơn 1 file urlset (site ~90 URL) thay vì sitemapindex.
+    all_blocks = page_blocks + post_blocks + product_blocks
+    write_urlset(ROOT / "sitemap.xml", all_blocks)
 
     for name in ("sitemap.xml", "sitemap-pages.xml", "sitemap-posts.xml", "sitemap-products.xml"):
         validate_xml(ROOT / name)
 
     print(
         "Generated sitemaps: "
-        f"index + pages({len(page_blocks)}) + posts({len(post_blocks)}) + products({len(product_blocks)})"
+        f"main({len(all_blocks)}) + pages({len(page_blocks)}) + posts({len(post_blocks)}) + products({len(product_blocks)})"
     )
 
 
