@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import html
 import json
 import math
 import re
@@ -252,6 +253,36 @@ def is_on_shopee(
     return sku in all_links
 
 
+STOCK_STATUS_FILE = "stock-status.json"
+
+
+def load_stock_status(out_dir: Path) -> dict[str, bool]:
+    """SKU → còn hàng (true) / hết hàng (false). Sửa file này rồi chạy lại script."""
+    path = out_dir / STOCK_STATUS_FILE
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    out: dict[str, bool] = {}
+    for key, val in data.items():
+        if key.startswith("_"):
+            continue
+        if isinstance(val, bool):
+            out[key] = val
+        elif isinstance(val, dict) and "inStock" in val:
+            out[key] = bool(val["inStock"])
+    return out
+
+
+def resolve_stock_status(sku: str, stock_map: dict[str, bool]) -> tuple[bool, str]:
+    in_stock = stock_map.get(sku, True)
+    return in_stock, "Còn hàng" if in_stock else "Hết hàng"
+
+
 def find_seller_export_file(out_dir: Path) -> Path | None:
     """Tìm file export basic info Seller Centre để đối chiếu đã đăng."""
     names = (
@@ -301,6 +332,23 @@ def abs_url(path: str) -> str:
     if path.startswith("http"):
         return path
     return f"{SITE}/{path.lstrip('/')}"
+
+
+def thumb_url_for_image(path: str) -> str:
+    """URL thumbnail (-thumb.jpg) nếu có, không thì ảnh gốc."""
+    if not path:
+        return ""
+    if re.search(r"-thumb\.jpe?g$", path, re.I):
+        return abs_url(path)
+    if re.search(r"\.jpe?g$", path, re.I):
+        return abs_url(re.sub(r"(\.jpe?g)$", r"-thumb\1", path, flags=re.I))
+    return abs_url(path)
+
+
+def product_thumb_url(prod: Product | None) -> str:
+    if not prod or not prod.images:
+        return ""
+    return thumb_url_for_image(prod.images[0])
 
 
 def sanitize_shopee_text(text: str) -> str:
@@ -386,6 +434,10 @@ class RowReport:
     web_url: str
     on_shopee: bool
     shopee_url: str
+    thumb_url: str = ""
+    image_url: str = ""
+    in_stock: bool = True
+    stock_label: str = ""
     note: str = ""
 
 
@@ -398,12 +450,17 @@ def write_html_report(
     page_title: str = "Báo cáo giá listing Shopee — mùa Trung Thu 2026",
     skip_note: str = "",
     doi_chieu_note: str = "",
+    stock_note: str = "",
 ) -> None:
     updated = sum(1 for r in rows if r.has_product and r.direct)
     missing = [r for r in rows if not r.has_product]
     no_price = [r for r in rows if r.has_product and not r.direct]
     posted = sum(1 for r in rows if r.on_shopee)
     not_posted = len(rows) - posted
+    in_stock_count = sum(1 for r in rows if r.in_stock)
+    out_stock_count = len(rows) - in_stock_count
+    default_stock = {r.sku: r.in_stock for r in rows}
+    default_stock_json = json.dumps(default_stock, ensure_ascii=False)
 
     def shopee_status_cell(r: RowReport) -> str:
         if r.on_shopee:
@@ -418,9 +475,30 @@ def write_html_report(
             cls = "delta"
         if r.on_shopee:
             cls = (cls + " on-shopee").strip()
+        if not r.in_stock:
+            cls = (cls + " out-of-stock").strip()
+        sku_attr = html.escape(r.sku, quote=True)
+        checked = " checked" if r.in_stock else ""
+        stock_cell = (
+            f'<label class="stock-check" title="Tích ✓ = còn hàng">'
+            f'<input type="checkbox" class="stock-cb" data-sku="{sku_attr}"{checked}>'
+            f'<span class="stock-mark" aria-hidden="true">✓</span></label>'
+        )
+        if r.thumb_url:
+            fallback = r.image_url or r.thumb_url
+            img_html = (
+                f'<a href="{r.web_url}" target="_blank" rel="noopener" title="{r.sku}">'
+                f'<img src="{r.thumb_url}" alt="{r.name}" width="80" height="80" loading="lazy" '
+                f'onerror="this.onerror=null;this.src=\'{fallback}\';"></a>'
+            )
+        else:
+            img_html = '<span class="no-img">—</span>'
+        sku_hint = f'<code class="sku-mini" title="{r.sku}">{r.sku[:28]}{"…" if len(r.sku) > 28 else ""}</code>'
+
         return f"""<tr class="{cls}">
           <td>{r.row}</td>
-          <td><code>{r.sku}</code></td>
+          <td class="img-cell">{img_html}{sku_hint}</td>
+          <td class="stock-cell">{stock_cell}</td>
           <td><a href="{r.web_url}" target="_blank" rel="noopener">{r.name}</a></td>
           <td class="center">{shopee_status_cell(r)}</td>
           <td class="num">{fmt_vnd(r.direct) if r.direct else '—'}</td>
@@ -429,11 +507,10 @@ def write_html_report(
           <td class="num"><strong>{fmt_vnd(r.shopee_price) if r.shopee_price else '—'}</strong></td>
           <td class="num">{fmt_vnd(r.old_price) if r.old_price else '—'}</td>
           <td class="num">{fmt_vnd(r.delta) if r.delta is not None else '—'}</td>
-          <td>{'✓' if r.has_images else '✗'}</td>
           <td><a href="{r.web_url}" target="_blank" rel="noopener">Xem SP</a>{(' · ' + r.note) if r.note else ''}</td>
         </tr>"""
 
-    html = f"""<!DOCTYPE html>
+    html_doc = f"""<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -449,18 +526,35 @@ def write_html_report(
     th, td {{ border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }}
     th {{ background: linear-gradient(135deg, #9b1c31, #6d1222); color: #fff; position: sticky; top: 0; }}
     tr.on-shopee {{ background: #f0fdf4; }}
+    tr.out-of-stock {{ background: #fef2f2; }}
+    tr.out-of-stock.on-shopee {{ background: #fff1f2; }}
     tr.warn {{ background: #fff5f5; }}
     tr.delta {{ background: #fffbeb; }}
     .center {{ text-align: center; white-space: nowrap; }}
     .badge {{ display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; }}
     .badge-yes {{ background: #dcfce7; color: #166534; border: 1px solid #86efac; }}
     .badge-no {{ background: #f3f4f6; color: #6b7280; border: 1px solid #d1d5db; }}
+    .stock-cell {{ width: 56px; text-align: center; vertical-align: middle; }}
+    .stock-check {{ display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; cursor: pointer; position: relative; }}
+    .stock-check input {{ position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }}
+    .stock-mark {{ display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 2px solid #d1d5db; border-radius: 6px; background: #fff; color: transparent; font-size: 1.1rem; font-weight: 700; transition: .15s; }}
+    .stock-check input:checked + .stock-mark {{ background: #dcfce7; border-color: #22c55e; color: #166534; }}
+    .stock-check input:focus-visible + .stock-mark {{ outline: 2px solid var(--accent); outline-offset: 2px; }}
+    .stock-toolbar {{ display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 16px; padding: 12px 16px; background: #fff; border: 1px solid var(--border); border-radius: 12px; }}
+    .btn-save {{ background: var(--accent); color: #fff; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; }}
+    .btn-save:hover {{ filter: brightness(1.08); }}
+    .save-status {{ color: #166534; font-size: 0.9rem; font-weight: 600; }}
+    .save-status.err {{ color: #991b1b; }}
     .shopee-mini {{ font-size: 0.85rem; text-decoration: none; margin-left: 2px; }}
     .num {{ text-align: right; white-space: nowrap; }}
     code {{ font-size: 0.8rem; }}
     .stats {{ display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }}
     .stat {{ background: var(--gold); color: var(--text); padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: 0.9rem; }}
     a {{ color: var(--accent); }}
+    .img-cell {{ width: 96px; text-align: center; }}
+    .img-cell img {{ display: block; width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); margin: 0 auto 4px; background: #fff; }}
+    .img-cell .no-img {{ display: block; width: 80px; height: 80px; line-height: 80px; margin: 0 auto 4px; background: #f3f4f6; border-radius: 8px; color: #9ca3af; }}
+    .sku-mini {{ display: block; font-size: 0.68rem; color: #6b7280; word-break: break-all; line-height: 1.25; max-width: 92px; margin: 0 auto; }}
   </style>
 </head>
 <body>
@@ -468,6 +562,7 @@ def write_html_report(
   <div class="meta">
     <p>Ngày tạo: <strong>{date.today().isoformat()}</strong></p>
     {f'<p>{doi_chieu_note}</p>' if doi_chieu_note else ''}
+    {f'<p>{stock_note}</p>' if stock_note else ''}
     {f'<p>{skip_note}</p>' if skip_note else ''}
     <p>Công thức: <strong>{formula_note}</strong></p>
     <p>File Excel sẵn đăng: <strong>{excel_name}</strong> (sheet «Bản đăng tải»)</p>
@@ -480,23 +575,113 @@ def write_html_report(
       <span class="stat">{len(no_price)} thiếu giá lẻ 1–10</span>
       <span class="stat">{posted} đã đăng Shopee</span>
       <span class="stat">{not_posted} chưa đăng Shopee</span>
+      <span class="stat" id="stat-in-stock">{in_stock_count} còn hàng</span>
+      <span class="stat" id="stat-out-stock">{out_stock_count} hết hàng</span>
+    </div>
+    <div class="stock-toolbar">
+      <button type="button" class="btn-save" id="btn-save-stock">Lưu tồn kho</button>
+      <span id="save-status" class="save-status"></span>
+      <span style="color:#6b7280;font-size:0.85rem">Tích ✓ = còn hàng · bỏ tích = hết hàng (ẩn sau)</span>
     </div>
   </div>
-  <table>
+  <table id="stock-table">
     <thead>
       <tr>
-        <th>#</th><th>SKU</th><th>Tên (link web)</th><th>Shopee</th>
+        <th>#</th><th>Ảnh / SKU</th><th title="Tích = còn hàng">✓</th><th>Tên (link web)</th><th>Shopee</th>
         <th>Giá lẻ (max)</th><th>+30% sàn</th><th>+4% hoàn</th>
-        <th>Giá Shopee mới</th><th>Giá Excel cũ</th><th>Chênh</th><th>Ảnh</th><th>Web</th>
+        <th>Giá Shopee mới</th><th>Giá Excel cũ</th><th>Chênh</th><th>Web</th>
       </tr>
     </thead>
     <tbody>
       {''.join(tr(r) for r in rows)}
     </tbody>
   </table>
+  <script>
+    (function () {{
+      const STORAGE_KEY = 'hopqua-shopee-bao-cao-stock';
+      const DEFAULT_STOCK = {default_stock_json};
+      const table = document.getElementById('stock-table');
+      const statusEl = document.getElementById('save-status');
+      const statIn = document.getElementById('stat-in-stock');
+      const statOut = document.getElementById('stat-out-stock');
+
+      function readSaved() {{
+        try {{
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : null;
+        }} catch (_) {{
+          return null;
+        }}
+      }}
+
+      function collectStock() {{
+        const out = {{}};
+        table.querySelectorAll('.stock-cb').forEach(function (cb) {{
+          out[cb.dataset.sku] = cb.checked;
+        }});
+        return out;
+      }}
+
+      function applyRowStyle(row, inStock) {{
+        row.classList.toggle('out-of-stock', !inStock);
+      }}
+
+      function updateStats() {{
+        const stock = collectStock();
+        const vals = Object.values(stock);
+        const inCount = vals.filter(Boolean).length;
+        statIn.textContent = inCount + ' còn hàng';
+        statOut.textContent = (vals.length - inCount) + ' hết hàng';
+      }}
+
+      function applyStock(stock) {{
+        table.querySelectorAll('tbody tr').forEach(function (row) {{
+          const cb = row.querySelector('.stock-cb');
+          if (!cb) return;
+          const sku = cb.dataset.sku;
+          const inStock = Object.prototype.hasOwnProperty.call(stock, sku)
+            ? !!stock[sku]
+            : !!DEFAULT_STOCK[sku];
+          cb.checked = inStock;
+          applyRowStyle(row, inStock);
+        }});
+        updateStats();
+      }}
+
+      table.addEventListener('change', function (e) {{
+        if (!e.target.classList.contains('stock-cb')) return;
+        const row = e.target.closest('tr');
+        applyRowStyle(row, e.target.checked);
+        updateStats();
+        statusEl.textContent = '';
+        statusEl.classList.remove('err');
+      }});
+
+      document.getElementById('btn-save-stock').addEventListener('click', function () {{
+        const stock = collectStock();
+        try {{
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(stock));
+        }} catch (err) {{
+          statusEl.textContent = 'Không lưu được trên trình duyệt: ' + err.message;
+          statusEl.classList.add('err');
+          return;
+        }}
+        const blob = new Blob([JSON.stringify(stock, null, 2)], {{ type: 'application/json' }});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'stock-status.json';
+        a.click();
+        URL.revokeObjectURL(a.href);
+        statusEl.textContent = 'Đã lưu · đã tải stock-status.json';
+        statusEl.classList.remove('err');
+      }});
+
+      applyStock(readSaved() || DEFAULT_STOCK);
+    }})();
+  </script>
 </body>
 </html>"""
-    out_path.write_text(html, encoding="utf-8")
+    out_path.write_text(html_doc, encoding="utf-8")
 
 
 def renumber_reports(rows: list[RowReport]) -> list[RowReport]:
@@ -519,6 +704,10 @@ def renumber_reports(rows: list[RowReport]) -> list[RowReport]:
                 web_url=r.web_url,
                 on_shopee=r.on_shopee,
                 shopee_url=r.shopee_url,
+                thumb_url=r.thumb_url,
+                image_url=r.image_url,
+                in_stock=r.in_stock,
+                stock_label=r.stock_label,
                 note=r.note,
             )
         )
@@ -584,6 +773,12 @@ def main() -> None:
     # URL: ưu tiên export shop (đối chiếu), fallback link trên web
     all_links = {**shopee_links, **export_links}
 
+    stock_map = load_stock_status(args.out_dir)
+    stock_note = (
+        "<strong>Còn hàng:</strong> tích ✓ trên báo cáo → bấm <strong>Lưu tồn kho</strong> "
+        "(lưu trình duyệt + tải <code>stock-status.json</code>)."
+    )
+
     wb = openpyxl.load_workbook(out_xlsx_full)
     ws = wb[SHEET]
     reports: list[RowReport] = []
@@ -639,6 +834,7 @@ def main() -> None:
             ws.cell(row=row, column=COL_DESC).value = sanitize_shopee_text(str(desc_val))
 
         delta = (shopee_price - old_price) if shopee_price is not None and old_price else None
+        in_stock, stock_label = resolve_stock_status(sku, stock_map)
         reports.append(
             RowReport(
                 row=row,
@@ -655,6 +851,10 @@ def main() -> None:
                 web_url=f"{SITE}/product.html?id={sku}",
                 on_shopee=on_shopee,
                 shopee_url=shopee_url,
+                thumb_url=product_thumb_url(prod),
+                image_url=abs_url(prod.images[0]) if prod and prod.images else "",
+                in_stock=in_stock,
+                stock_label=stock_label,
                 note=note,
             )
         )
@@ -707,6 +907,7 @@ def main() -> None:
             page_title="SP chưa đăng Shopee — upload mùa Trung Thu 2026",
             skip_note=skip_posted,
             doi_chieu_note=doi_chieu_note,
+            stock_note=stock_note,
         )
         write_csv_rows(new_csv_rows, csv_path)
         summary = {
@@ -723,7 +924,7 @@ def main() -> None:
         wb.save(out_xlsx_full)
         html_path = args.out_dir / "bao-cao-gia-shopee.html"
         csv_path = args.out_dir / "shopee-item-ids.csv"
-        write_html_report(reports, html_path, formula_note, doi_chieu_note=doi_chieu_note)
+        write_html_report(reports, html_path, formula_note, doi_chieu_note=doi_chieu_note, stock_note=stock_note)
         write_csv_rows(csv_rows, csv_path)
 
         # Gói upload: chỉ SP chưa đăng
@@ -742,6 +943,7 @@ def main() -> None:
             page_title="SP chưa đăng Shopee — upload mùa Trung Thu 2026",
             skip_note=skip_posted,
             doi_chieu_note=doi_chieu_note,
+            stock_note=stock_note,
         )
         write_csv_rows(new_csv_rows, csv_new)
 

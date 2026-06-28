@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import json
 import xml.etree.ElementTree as ET
 import xml.sax.saxutils
 from datetime import datetime, timezone
@@ -13,6 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BASE_URL = "https://hopqua.io.vn"
 POSTS_DIR = ROOT / "_posts"
 PRODUCTS_JS = ROOT / "js" / "products.js"
+STOCK_JSON = ROOT / "data" / "stock-status.json"
 SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
 
 
@@ -56,9 +58,20 @@ def parse_post_url(path: Path) -> str:
     return f"/{yyyy}/{mm}/{dd}/{slug}.html"
 
 
+def load_out_of_stock_ids() -> set[str]:
+    if not STOCK_JSON.is_file():
+        return set()
+    data = json.loads(STOCK_JSON.read_text(encoding="utf-8"))
+    return {k for k, v in data.items() if not k.startswith("_") and v is False}
+
+
 def parse_product_ids() -> list[str]:
+    hidden = load_out_of_stock_ids()
     text = PRODUCTS_JS.read_text(encoding="utf-8")
-    return re.findall(r"\bid:\s*'([^']+)'", text)
+    ids = re.findall(r"\bid:\s*'([^']+)'", text)
+    if hidden:
+        ids = [pid for pid in ids if pid not in hidden]
+    return ids
 
 
 def xml_text(value: str) -> str:

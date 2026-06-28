@@ -12,6 +12,7 @@ from pack_spec_rules import classify_pack_type, pack_size_text, packing_weight
 
 ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_JS = ROOT / "js" / "products.js"
+STOCK_JSON = ROOT / "data" / "stock-status.json"
 IMAGE_DIR = ROOT / "image"
 OUT_JSON = ROOT / "data" / "products-catalog.json"
 
@@ -231,8 +232,18 @@ def build_catalog_item(product: dict) -> dict:
     return item
 
 
+def load_out_of_stock_ids() -> set[str]:
+    if not STOCK_JSON.is_file():
+        return set()
+    data = json.loads(STOCK_JSON.read_text(encoding="utf-8"))
+    return {k for k, v in data.items() if not k.startswith("_") and v is False}
+
+
 def main() -> None:
+    hidden = load_out_of_stock_ids()
     products = parse_products()
+    if hidden:
+        products = [p for p in products if p["id"] not in hidden]
     items = [build_catalog_item(p) for p in products]
     payload = {
         "version": 1,
