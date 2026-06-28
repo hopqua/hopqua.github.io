@@ -92,37 +92,54 @@ function injectSiteSearchBar() {
 }
 
 function updateSuggestions(query, suggestEl) {
-    if (typeof searchProducts !== 'function' || typeof getAllProducts !== 'function') {
+    if (typeof searchProducts !== 'function') {
         suggestEl.hidden = true;
         return;
     }
-    const q = query.trim();
-    if (q.length < 2) {
-        suggestEl.hidden = true;
-        suggestEl.innerHTML = '';
-        return;
-    }
-    const results = searchProducts(q).slice(0, 6);
-    if (!results.length) {
-        suggestEl.hidden = false;
-        suggestEl.innerHTML = '<p class="site-search-suggest-empty">Không thấy mẫu phù hợp</p>';
-        return;
-    }
-    suggestEl.innerHTML = results
-        .map((p) => {
-            const url = `/product.html?id=${encodeURIComponent(p.id)}`;
-            const thumb = p.thumbnail
-                ? p.thumbnail.startsWith('http')
-                    ? p.thumbnail
-                    : `/${p.thumbnail.replace(/^\//, '')}`
-                : '';
-            return `<a class="site-search-suggest-item" href="${url}">
+
+    const render = () => {
+        const q = query.trim();
+        if (q.length < 2) {
+            suggestEl.hidden = true;
+            suggestEl.innerHTML = '';
+            return;
+        }
+        const results = searchProducts(q).slice(0, 6);
+        if (!results.length) {
+            suggestEl.hidden = false;
+            suggestEl.innerHTML = '<p class="site-search-suggest-empty">Không thấy mẫu phù hợp</p>';
+            return;
+        }
+        suggestEl.innerHTML = results
+            .map((p) => {
+                const url = `/product.html?id=${encodeURIComponent(p.id)}`;
+                const thumb = p.thumbnail
+                    ? p.thumbnail.startsWith('http')
+                        ? p.thumbnail
+                        : `/${p.thumbnail.replace(/^\//, '')}`
+                    : '';
+                return `<a class="site-search-suggest-item" href="${url}">
                 ${thumb ? `<img src="${thumb}" alt="" width="40" height="40" loading="lazy">` : ''}
                 <span><strong>${escapeHtml(p.name)}</strong><em>${escapeHtml(p.price)}</em></span>
             </a>`;
-        })
-        .join('');
-    suggestEl.hidden = false;
+            })
+            .join('');
+        suggestEl.hidden = false;
+    };
+
+    if (
+        typeof loadCatalogProducts === 'function' &&
+        typeof getCatalogProducts === 'function' &&
+        !getCatalogProducts().length &&
+        typeof getAllProducts !== 'function'
+    ) {
+        loadCatalogProducts().then(render).catch(() => {
+            suggestEl.hidden = true;
+        });
+        return;
+    }
+
+    render();
 }
 
 function escapeHtml(str) {

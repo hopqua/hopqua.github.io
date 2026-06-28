@@ -6,6 +6,7 @@ import argparse
 import csv
 import re
 import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -351,6 +352,9 @@ def main() -> None:
         js_text = append_new_products(js_text, new_blocks, args.batch)
         PRODUCTS_JS.write_text(js_text, encoding="utf-8")
         print(f"\nĐã ghi {PRODUCTS_JS}")
+        catalog_script = Path(__file__).resolve().parent / "build-products-catalog.py"
+        if catalog_script.is_file():
+            subprocess.run([sys.executable, str(catalog_script)], check=False)
 
     print(f"\nTóm tắt: {news} sản phẩm mới, {merges} lần gộp ảnh.")
 

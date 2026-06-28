@@ -77,14 +77,6 @@ const productImageManifest = {
     ],
     'hop-2-banh-re': [
             "image/cap-nhat-2026/2-banh-re/2-banh-re-1.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-2.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-3.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-4.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-5.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-6.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-7.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-8.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-9.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-10.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-11.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-12.jpg",
@@ -95,11 +87,19 @@ const productImageManifest = {
             "image/cap-nhat-2026/2-banh-re/2-banh-re-17.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-18.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-19.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-2.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-20.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-21.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-22.jpg",
             "image/cap-nhat-2026/2-banh-re/2-banh-re-23.jpg",
-            "image/cap-nhat-2026/2-banh-re/2-banh-re-24.jpg"
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-24.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-3.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-4.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-5.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-6.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-7.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-8.jpg",
+            "image/cap-nhat-2026/2-banh-re/2-banh-re-9.jpg"
     ],
     'hop-6-banh-mini-tho-ngoc-do': [
             "image/hop-6-banh-mini-tho-ngoc-do/hop-6-banh-mini-tho-ngoc-do-1.jpg",
@@ -349,6 +349,8 @@ const productImageManifest = {
     ],
     'vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k': [
             "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-1.jpg",
+            "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-10.jpg",
+            "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-11.jpg",
             "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-2.jpg",
             "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-3.jpg",
             "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-4.jpg",
@@ -356,9 +358,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-6.jpg",
             "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-7.jpg",
             "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-8.jpg",
-            "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-9.jpg",
-            "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-10.jpg",
-            "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-11.jpg"
+            "image/cap-nhat-2026/bach-uyen-4-banh/bach-uyen-4-banh-9.jpg"
     ],
     'vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k': [
             "image/18-06-2025/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k/vo-hop-trung-thu-hong-nguyet-vien-cam-4-banh-re-16k-20k-1.jpg",
@@ -430,6 +430,8 @@ const productImageManifest = {
     ],
     'hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k': [
             "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-1.jpg",
+            "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-10.jpg",
+            "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-11.jpg",
             "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-2.jpg",
             "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-3.jpg",
             "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-4.jpg",
@@ -437,9 +439,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-6.jpg",
             "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-7.jpg",
             "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-8.jpg",
-            "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-9.jpg",
-            "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-10.jpg",
-            "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-11.jpg"
+            "image/cap-nhat-2026/hoang-kim-4-banh-6-banh/hoang-kim-4-banh-6-banh-9.jpg"
     ],
     'hop-1-banh-to-tho-do-300-600g-23k-28k': [
             "image/cap-nhat-2026/1-banh-to-tho-o/1-banh-to-tho-o-1.jpg",
@@ -470,6 +470,10 @@ const productImageManifest = {
     ],
     'khuc-nguyet-vien-cuc-do-4-banh-29-35k': [
             "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-1.jpg",
+            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-10.jpg",
+            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-11.jpg",
+            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-12.jpg",
+            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-13.jpg",
             "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-2.jpg",
             "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-3.jpg",
             "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-4.jpg",
@@ -477,11 +481,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-6.jpg",
             "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-7.jpg",
             "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-8.jpg",
-            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-9.jpg",
-            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-10.jpg",
-            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-11.jpg",
-            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-12.jpg",
-            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-13.jpg"
+            "image/cap-nhat-2026/khuc-nguyet-vien-4-banh/khuc-nguyet-vien-4-banh-9.jpg"
     ],
     'kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k': [
             "image/cap-nhat-2026/kim-nguyet-xanh-la-4-banh/kim-nguyet-xanh-la-4-banh-1.jpg",
@@ -501,6 +501,9 @@ const productImageManifest = {
     ],
     'nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k': [
             "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-1.jpg",
+            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-10.jpg",
+            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-11.jpg",
+            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-12.jpg",
             "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-2.jpg",
             "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-3.jpg",
             "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-4.jpg",
@@ -508,21 +511,10 @@ const productImageManifest = {
             "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-6.jpg",
             "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-7.jpg",
             "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-8.jpg",
-            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-9.jpg",
-            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-10.jpg",
-            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-11.jpg",
-            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-12.jpg"
+            "image/cap-nhat-2026/4-banh-re-nguyet-hoa-vien/4-banh-re-nguyet-hoa-vien-9.jpg"
     ],
     'nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k': [
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-1.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-2.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-3.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-4.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-5.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-6.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-7.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-8.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-9.jpg",
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-10.jpg",
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-11.jpg",
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-12.jpg",
@@ -532,10 +524,24 @@ const productImageManifest = {
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-16.jpg",
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-17.jpg",
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-18.jpg",
-            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-19.jpg"
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-19.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-2.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-3.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-4.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-5.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-6.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-7.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-8.jpg",
+            "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-9.jpg"
     ],
     'song-ngu-do-4-banh-tra-doc-36k-44k': [
             "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-1.jpg",
+            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-10.jpg",
+            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-11.jpg",
+            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-12.jpg",
+            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-13.jpg",
+            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-14.jpg",
+            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-15.jpg",
             "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-2.jpg",
             "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-3.jpg",
             "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-4.jpg",
@@ -543,13 +549,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-6.jpg",
             "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-7.jpg",
             "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-8.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-9.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-10.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-11.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-12.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-13.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-14.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-15.jpg"
+            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-9.jpg"
     ],
     'thien-hoa-van-nguyet-4-banh-re-175k-24k': [
             "image/cap-nhat-2026/4-banh-re-thien-hoa-van-nguyet-o-xanh-la/4-banh-re-thien-hoa-van-nguyet-o-xanh-la-1.jpg",
@@ -578,6 +578,8 @@ const productImageManifest = {
     ],
     '2-banh-re-5-mau': [
             "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-1.jpg",
+            "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-10.jpg",
+            "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-11.jpg",
             "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-2.jpg",
             "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-3.jpg",
             "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-4.jpg",
@@ -585,9 +587,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-6.jpg",
             "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-7.jpg",
             "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-8.jpg",
-            "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-9.jpg",
-            "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-10.jpg",
-            "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-11.jpg"
+            "image/cap-nhat-2026/2-banh-ep-kim/2-banh-ep-kim-9.jpg"
     ],
     '6-banh-mini-mem-san-2-ma-sll-19k': [
             "image/11-06-2026/6-banh-mini-mem-san-2-ma-sll-19k/6-banh-mini-mem-san-2-ma-sll-19k-1.jpg",
@@ -634,6 +634,11 @@ const productImageManifest = {
     ],
     'hop-cung-gap-gon-6x': [
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-1.jpg",
+            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-10.jpg",
+            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-11.jpg",
+            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-12.jpg",
+            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-13.jpg",
+            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-14.jpg",
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-2.jpg",
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-3.jpg",
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-4.jpg",
@@ -641,12 +646,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-6.jpg",
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-7.jpg",
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-8.jpg",
-            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-9.jpg",
-            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-10.jpg",
-            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-11.jpg",
-            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-12.jpg",
-            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-13.jpg",
-            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-14.jpg"
+            "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-9.jpg"
     ],
     'pet-dung-banh': [
             "image/11-06-2026/khay-tui-pet/khay-tui-pet-1.jpg",
@@ -705,6 +705,14 @@ const productImageManifest = {
             "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-7.jpg",
             "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-8.jpg",
             "image/11-06-2026/vo-ep-kim-thuc-noi/vo-ep-kim-thuc-noi-9.jpg"
+    ],
+    'hop-cung-4-banh-tra-xanh-duong-gap-gon-tui-xach': [
+            "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-1.jpg",
+            "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-2.jpg",
+            "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-3.jpg",
+            "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-4.jpg",
+            "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-5.jpg",
+            "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-6.jpg"
     ],
 };
 

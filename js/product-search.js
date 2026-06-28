@@ -19,7 +19,16 @@ function getProductSearchHaystack(product) {
             product.id,
             product.price,
             product.category,
-            typeof getProductBoxCategoryLabel === 'function' ? getProductBoxCategoryLabel(product) : '',
+            product.boxType && typeof BOX_CATEGORY_LABELS !== 'undefined'
+                ? BOX_CATEGORY_LABELS[product.boxType] || ''
+                : typeof getProductBoxCategoryLabel === 'function'
+                  ? getProductBoxCategoryLabel(product)
+                  : '',
+            product.boxMaterial && typeof BOX_MATERIAL_LABELS !== 'undefined'
+                ? BOX_MATERIAL_LABELS[product.boxMaterial] || ''
+                : typeof getProductBoxMaterialLabel === 'function'
+                  ? getProductBoxMaterialLabel(product)
+                  : '',
             product.season,
             product.folder,
             (product.description || '').slice(0, 400),
@@ -27,8 +36,18 @@ function getProductSearchHaystack(product) {
     );
 }
 
+function getSearchProductSource() {
+    if (typeof getAllProducts === 'function') {
+        return getAllProducts();
+    }
+    if (typeof getCatalogProducts === 'function') {
+        return getCatalogProducts();
+    }
+    return [];
+}
+
 function searchProducts(query, sourceList) {
-    const list = sourceList || (typeof getAllProducts === 'function' ? getAllProducts() : []);
+    const list = sourceList || getSearchProductSource();
     const normalizedQuery = normalizeSearchText(query);
     if (!normalizedQuery) {
         return [];

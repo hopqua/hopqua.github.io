@@ -28,6 +28,9 @@ jobs:
       - name: Generate sitemap
         run: python scripts/generate-sitemap.py
 
+      - name: Build products catalog JSON
+        run: python scripts/build-products-catalog.py
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:

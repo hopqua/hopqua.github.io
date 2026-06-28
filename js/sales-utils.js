@@ -34,6 +34,11 @@ const BOX_CATEGORY_SUBTITLES = {
     'phu-kien-banh': 'Khay túi, pét, gói hút ẩm, dao nĩa',
 };
 
+const BOX_MATERIAL_LABELS = {
+    'hop-cung': 'Hộp cứng',
+    'hop-giay-mem': 'Giấy mềm',
+};
+
 const PHU_KIEN_BANH_IDS = new Set([
     'khay-trong-sz-9-10-11',
     'tui-dung-banh-trung-thu-sz-9-10-11',
@@ -99,6 +104,33 @@ function getProductBoxCategory(product) {
 
 function getProductBoxCategoryLabel(product) {
     return BOX_CATEGORY_LABELS[getProductBoxCategory(product)] || '';
+}
+
+/** Hộp cứng — id/folder/tên/mô tả có hop-cung; loại trừ giấy mềm ghi rõ. */
+function isProductHopCung(product) {
+    if (!product) return false;
+    if (getProductBoxCategory(product) === 'phu-kien-banh') return false;
+
+    const text = normBoxText(`${product.name || ''} ${product.id || ''} ${product.folder || ''}`);
+    const desc = normBoxText(product.description || '');
+    const blob = `${text} ${desc}`;
+
+    if (/hang giay mem|giay mem|hop giay mem/.test(blob)) {
+        return false;
+    }
+    return /hop[\s-]*cung|hop cung/.test(blob);
+}
+
+function getProductBoxMaterial(product) {
+    if (!product || getProductBoxCategory(product) === 'phu-kien-banh') {
+        return null;
+    }
+    return isProductHopCung(product) ? 'hop-cung' : 'hop-giay-mem';
+}
+
+function getProductBoxMaterialLabel(product) {
+    const material = getProductBoxMaterial(product);
+    return material ? BOX_MATERIAL_LABELS[material] || '' : '';
 }
 
 const TIER_LABELS = {
@@ -233,7 +265,9 @@ function getProductBadges(product) {
     const text = `${product.name} ${product.id}`.toLowerCase();
     if (/4\s*banh|4-banh/.test(text)) badges.push({ label: '4 bánh', className: 'badge-4' });
     if (/6\s*banh|6-banh/.test(text)) badges.push({ label: '6 bánh', className: 'badge-6' });
-    if (/hop\s*cung|cung\s*6|cung\s*4/.test(text)) badges.push({ label: 'Hộp cứng', className: 'badge-hard' });
+    if (getProductBoxMaterial(product) === 'hop-cung') {
+        badges.push({ label: 'Hộp cứng', className: 'badge-hard' });
+    }
     return badges;
 }
 
@@ -268,7 +302,7 @@ function getHotProducts(limit = 12) {
     return [...withDate, ...featured].slice(0, limit);
 }
 
-function filterCatalogProducts({ tier = 'all', boxType = 'all' } = {}) {
+function filterCatalogProducts({ tier = 'all', boxType = 'all', boxMaterial = 'all' } = {}) {
     let list = getAllProducts();
 
     if (tier && tier !== 'all') {
@@ -276,6 +310,9 @@ function filterCatalogProducts({ tier = 'all', boxType = 'all' } = {}) {
     }
     if (boxType && boxType !== 'all') {
         list = list.filter((p) => getProductBoxCategory(p) === boxType);
+    }
+    if (boxMaterial && boxMaterial !== 'all') {
+        list = list.filter((p) => getProductBoxMaterial(p) === boxMaterial);
     }
 
     return list;

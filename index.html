@@ -161,6 +161,14 @@
                         <button type="button" class="catalog-filter-pill" data-filter-type="phu-kien-banh">Phụ kiện</button>
                     </div>
                 </div>
+                <div class="catalog-filter-group">
+                    <span class="catalog-filter-label">Chất liệu:</span>
+                    <div class="catalog-filter-pills" role="group" aria-label="Lọc theo chất liệu hộp">
+                        <button type="button" class="catalog-filter-pill is-active" data-filter-material="all">Tất cả</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-material="hop-cung">Hộp cứng</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-material="hop-giay-mem">Giấy mềm</button>
+                    </div>
+                </div>
             </div>
 
             <div class="home-aux-strip home-aux-strip--solo">
@@ -185,6 +193,9 @@
                 <button type="button" class="catalog-filter-reset" id="catalog-filter-reset" hidden>Bỏ lọc</button>
             </div>
             <div class="cap-nhat-grid" id="catalog-grid" role="list"></div>
+            <div class="catalog-load-more-wrap" id="catalog-load-more-wrap" hidden>
+                <button type="button" class="catalog-load-more" id="catalog-load-more">Xem thêm mẫu</button>
+            </div>
             <p class="catalog-empty" id="catalog-empty" hidden>
                 Không có mẫu phù hợp. Thử chọn <strong>Tất cả</strong> hoặc bấm <strong>Bỏ lọc</strong>.
             </p>
@@ -235,8 +246,7 @@
     </main>
     <div id="site-footer-mount"></div>
 
-<script src="js/products.js" defer></script>
-    <script src="js/product-images-manifest.js" defer></script>
+<script src="js/catalog-home.js" defer></script>
     <script src="js/image-utils.js" defer></script>
     <script src="js/sales-utils.js" defer></script>
     <script src="js/catalog-card-render.js" defer></script>
