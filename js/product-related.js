@@ -50,7 +50,10 @@ function getProductLineType(product) {
     if (/(^|[^0-9])1 banh|hop-1-banh|1-banh|cho be|50g \(1 banh\)/.test(text + ' ' + desc)) {
         return '1-banh';
     }
-    if (product.category === 'phụ kiện') {
+    if (typeof getProductBoxCategory === 'function' && getProductBoxCategory(product) === 'phu-kien-banh') {
+        return 'phu-kien';
+    }
+    if (product.category === 'phụ kiện bánh' || product.category === 'phụ kiện' || product.category === 'Khay túi, pét đựng bánh') {
         return 'phu-kien';
     }
     return 'other';

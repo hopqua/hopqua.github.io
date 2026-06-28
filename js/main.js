@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     const catalogRoot = document.getElementById('product-catalog');
-    if (!catalogRoot) return;
-
-    initLazyCatalog(catalogRoot);
-    setupTierNav();
+    if (catalogRoot) {
+        initCatalogFilters();
+    }
 
     const ctaZalo = document.getElementById('cta-zalo-main');
     if (ctaZalo) {
@@ -32,94 +31,93 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-function initLazyCatalog(catalogRoot) {
-    const sections = getCatalogSections();
-    const sectionEntries = [];
-    let globalIndex = 0;
+function initCatalogFilters() {
+    const filtersEl = document.getElementById('catalog-filters');
+    const grid = document.getElementById('catalog-grid');
+    const meta = document.getElementById('catalog-results-meta');
+    const empty = document.getElementById('catalog-empty');
+    const resetBtn = document.getElementById('catalog-filter-reset');
 
-    sections.forEach((section, index) => {
-        const sectionEl = document.createElement('section');
-        sectionEl.className = 'catalog-section';
-        sectionEl.id = section.id;
-        sectionEl.dataset.catalogIndex = String(index);
-        catalogRoot.appendChild(sectionEl);
+    if (!filtersEl || !grid || typeof getAllProducts !== 'function' || typeof displayProducts !== 'function') {
+        return;
+    }
 
-        sectionEntries.push({
-            sectionEl,
-            section,
-            startIndex: globalIndex,
+    let activeTier = 'all';
+    let activeType = 'all';
+
+    function syncActivePills() {
+        filtersEl.querySelectorAll('[data-filter-tier]').forEach((btn) => {
+            btn.classList.toggle('is-active', btn.dataset.filterTier === activeTier);
         });
-        globalIndex += section.products.length;
+        filtersEl.querySelectorAll('[data-filter-type]').forEach((btn) => {
+            btn.classList.toggle('is-active', btn.dataset.filterType === activeType);
+        });
+    }
+
+    function buildResultsLabel(list) {
+        const parts = [];
+        if (activeTier !== 'all' && typeof TIER_LABELS !== 'undefined') {
+            parts.push(TIER_LABELS[activeTier]);
+        }
+        if (activeType !== 'all' && typeof BOX_CATEGORY_LABELS !== 'undefined') {
+            parts.push(BOX_CATEGORY_LABELS[activeType]);
+        }
+        const filterText = parts.length ? parts.join(' · ') : 'Tất cả mẫu';
+        return `${list.length} mẫu — ${filterText}`;
+    }
+
+    function applyFilters() {
+        const list =
+            typeof filterCatalogProducts === 'function'
+                ? filterCatalogProducts({ tier: activeTier, boxType: activeType })
+                : getAllProducts();
+
+        grid.innerHTML = '';
+        const hasFilter = activeTier !== 'all' || activeType !== 'all';
+
+        if (resetBtn) {
+            resetBtn.hidden = !hasFilter;
+        }
+
+        if (!list.length) {
+            if (meta) meta.textContent = '0 mẫu — thử bộ lọc khác';
+            if (empty) empty.hidden = false;
+            return;
+        }
+
+        if (empty) empty.hidden = true;
+        if (meta) meta.textContent = buildResultsLabel(list);
+        displayProducts(grid, list, 0, { layout: 'cap-nhat' });
+    }
+
+    function resetFilters() {
+        activeTier = 'all';
+        activeType = 'all';
+        syncActivePills();
+        applyFilters();
+    }
+
+    filtersEl.addEventListener('click', (e) => {
+        const tierBtn = e.target.closest('[data-filter-tier]');
+        const typeBtn = e.target.closest('[data-filter-type]');
+
+        if (tierBtn) {
+            activeTier = tierBtn.dataset.filterTier || 'all';
+            syncActivePills();
+            applyFilters();
+            return;
+        }
+
+        if (typeBtn) {
+            activeType = typeBtn.dataset.filterType || 'all';
+            syncActivePills();
+            applyFilters();
+        }
     });
 
-    window.__catalogSections = sectionEntries;
+    if (resetBtn) {
+        resetBtn.addEventListener('click', resetFilters);
+    }
 
-    if (!sectionEntries.length) return;
-
-    renderCatalogSection(sectionEntries[0].sectionEl, sectionEntries[0].section, sectionEntries[0].startIndex);
-    sectionEntries[0].sectionEl.dataset.catalogLoaded = 'true';
-
-    sectionEntries.slice(1).forEach((entry) => {
-        renderCatalogPlaceholder(entry.sectionEl, entry.section);
-        observeWhenNear(entry.sectionEl, () => {
-            ensureCatalogSectionLoaded(entry.sectionEl);
-        });
-    });
-}
-
-function ensureCatalogSectionLoaded(sectionEl) {
-    if (!sectionEl || sectionEl.dataset.catalogLoaded === 'true') return;
-
-    const index = Number(sectionEl.dataset.catalogIndex);
-    const entries = window.__catalogSections;
-    if (!entries || Number.isNaN(index) || !entries[index]) return;
-
-    sectionEl.dataset.catalogLoaded = 'true';
-    const { section, startIndex } = entries[index];
-    renderCatalogSection(sectionEl, section, startIndex);
-}
-
-function renderCatalogPlaceholder(sectionEl, section) {
-    const subtitleHtml = section.subtitle
-        ? `<p class="catalog-section-subtitle">${section.subtitle}</p>`
-        : '';
-
-    sectionEl.innerHTML = `
-        <h2 class="catalog-section-title">${section.title}</h2>
-        ${subtitleHtml}
-        <div class="catalog-section-skeleton" aria-busy="true" aria-label="Đang tải danh sách mẫu"></div>
-    `;
-}
-
-function renderCatalogSection(sectionEl, section, globalStartIndex) {
-    const subtitleHtml = section.subtitle
-        ? `<p class="catalog-section-subtitle">${section.subtitle}</p>`
-        : '';
-
-    sectionEl.innerHTML = `
-        <h2 class="catalog-section-title">${section.title}</h2>
-        ${subtitleHtml}
-        <div class="cap-nhat-grid" role="list"></div>
-    `;
-
-    const grid = sectionEl.querySelector('.cap-nhat-grid');
-    displayProducts(grid, section.products, globalStartIndex, { layout: 'cap-nhat' });
-}
-
-function setupTierNav() {
-    const nav = document.getElementById('catalog-nav');
-    if (!nav) return;
-
-    nav.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener('click', (e) => {
-            const target = document.querySelector(anchor.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                if (typeof ensureCatalogSectionLoaded === 'function') {
-                    ensureCatalogSectionLoaded(target);
-                }
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
+    applyFilters();
 }

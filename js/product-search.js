@@ -19,6 +19,7 @@ function getProductSearchHaystack(product) {
             product.id,
             product.price,
             product.category,
+            typeof getProductBoxCategoryLabel === 'function' ? getProductBoxCategoryLabel(product) : '',
             product.season,
             product.folder,
             (product.description || '').slice(0, 400),

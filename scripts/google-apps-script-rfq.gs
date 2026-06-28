@@ -1,11 +1,25 @@
 /**
- * Google Apps Script — RFQ → Google Sheet (+ Telegram tuỳ chọn)
+ * Google Apps Script — RFQ → Google Sheet (+ Telegram)
  *
- * Deploy: Web app → Execute as: Me → Anyone can access → New version
+ * Deploy:
+ * 1. Sheet tab tên "RFQ"
+ * 2. Dán TOÀN BỘ file này → Save (đừng chỉ sửa TELEGRAM_CHAT_IDS rồi giữ notifyTelegram_ cũ)
+ * 3. Deploy → Manage deployments → Edit → Version: New version
+ *    Execute as: Me | Who has access: Anyone
+ * 4. Chạy testTelegramOnly → Executions phải ok: true
+ *
+ * LỖI THƯỜNG GẶP: notifyTelegram_ cũ có dòng
+ *   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+ * TELEGRAM_CHAT_ID = '' → Telegram KHÔNG BAO GIỜ GỬI dù TELEGRAM_CHAT_IDS đã điền.
  */
 const SPREADSHEET_ID = 'PASTE_SHEET_ID_HERE';
 const SHEET_NAME = 'RFQ';
 const TELEGRAM_BOT_TOKEN = '';
+/** Một hoặc nhiều chat (cá nhân hoặc nhóm -100...). Ưu tiên hơn TELEGRAM_CHAT_ID. */
+const TELEGRAM_CHAT_IDS = [
+  // '1189117330',
+];
+/** Giữ tương thích cũ — chỉ dùng nếu TELEGRAM_CHAT_IDS rỗng */
 const TELEGRAM_CHAT_ID = '';
 
 const RFQ_KEYS = [
@@ -201,8 +215,39 @@ function formatQtyTelegram_(data) {
   return tier || detail + ' cái';
 }
 
+function getTelegramChatIds_() {
+  const ids = (TELEGRAM_CHAT_IDS || []).filter(function (id) {
+    return id !== undefined && id !== null && String(id).trim() !== '';
+  });
+  if (ids.length) return ids.map(String);
+  if (TELEGRAM_CHAT_ID) return [String(TELEGRAM_CHAT_ID)];
+  return [];
+}
+
+function sendTelegramMessage_(text) {
+  if (!TELEGRAM_BOT_TOKEN) {
+    return [{ chatId: '', ok: false, error: 'Thiếu TELEGRAM_BOT_TOKEN' }];
+  }
+  const chatIds = getTelegramChatIds_();
+  if (!chatIds.length) {
+    return [{ chatId: '', ok: false, error: 'Thiếu TELEGRAM_CHAT_IDS hoặc TELEGRAM_CHAT_ID' }];
+  }
+  const url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage';
+  return chatIds.map(function (chatId) {
+    const res = UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({ chat_id: chatId, text: text }),
+      muteHttpExceptions: true,
+    });
+    const ok = res.getResponseCode() === 200;
+    const body = res.getContentText();
+    if (!ok) Logger.log('Telegram lỗi chat ' + chatId + ': ' + body);
+    return { chatId: chatId, ok: ok, response: body };
+  });
+}
+
 function notifyTelegram_(data) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
   const need = data.needLabel || data.need || 'Báo giá sỉ';
   const qtyLine = formatQtyTelegram_(data);
   const lines = [
@@ -216,17 +261,15 @@ function notifyTelegram_(data) {
     data.note ? '📝 ' + data.note : '',
     data.pageUrl ? '🔗 ' + data.pageUrl : '',
   ].filter(Boolean);
-  const text = lines.join('\n');
-  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-  const res = UrlFetchApp.fetch(url, {
-    method: 'post',
-    contentType: 'application/json',
-    payload: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text }),
-    muteHttpExceptions: true,
-  });
-  if (res.getResponseCode() !== 200) {
-    Logger.log('Telegram RFQ lỗi: ' + res.getContentText());
-  }
+  sendTelegramMessage_(lines.join('\n'));
+}
+
+/** Chạy trong Apps Script để test Telegram (không ghi Sheet). Xem Execution log. */
+function testTelegramOnly() {
+  const results = sendTelegramMessage_(
+    '✅ Test Telegram hopqua.io.vn — ' + new Date().toISOString()
+  );
+  Logger.log(JSON.stringify(results, null, 2));
 }
 
 function testRfq() {

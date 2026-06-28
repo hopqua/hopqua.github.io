@@ -2383,6 +2383,145 @@ footer a {
     }
 }
 
+/* Bộ lọc catalog trang chủ */
+.catalog-filters {
+    position: sticky;
+    top: 0;
+    z-index: 25;
+    margin: 0 -12px 12px;
+    padding: 10px 12px 12px;
+    background: rgba(255, 248, 240, 0.96);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(232, 200, 114, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.catalog-filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.catalog-filter-label {
+    font-size: 0.82rem;
+    color: var(--tt-text-muted);
+    font-weight: 600;
+    min-width: 2.5rem;
+    flex-shrink: 0;
+}
+
+.catalog-filter-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
+    min-width: 0;
+}
+
+.catalog-filter-pill {
+    border: 1px solid rgba(232, 200, 114, 0.65);
+    background: #fff;
+    color: var(--tt-crimson-dark);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+}
+
+.catalog-filter-pill:hover {
+    border-color: var(--tt-gold);
+    background: var(--tt-gold-pale);
+}
+
+.catalog-filter-pill.is-active {
+    background: var(--tt-crimson);
+    border-color: var(--tt-crimson);
+    color: #fff;
+}
+
+.catalog-filter-pill.is-active:hover {
+    background: var(--tt-crimson-dark);
+    border-color: var(--tt-crimson-dark);
+}
+
+.catalog-results-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.catalog-results-meta {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--tt-text-muted);
+    font-weight: 500;
+}
+
+.catalog-filter-reset {
+    border: none;
+    background: transparent;
+    color: var(--tt-crimson);
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    padding: 4px 0;
+}
+
+.catalog-filter-reset:hover {
+    color: var(--tt-crimson-dark);
+}
+
+.catalog-empty {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--tt-text-muted);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+    .catalog-filters {
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .catalog-filters::-webkit-scrollbar {
+        display: none;
+    }
+
+    .catalog-filter-group {
+        flex-wrap: nowrap;
+    }
+
+    .catalog-filter-pills {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+
+    .catalog-filter-pills::-webkit-scrollbar {
+        display: none;
+    }
+
+    .catalog-filter-pill {
+        flex-shrink: 0;
+    }
+}
+
 .home-hot-promo {
     display: flex;
     align-items: center;

@@ -18,6 +18,89 @@ const FACEBOOK_PAGE_URL = 'https://www.facebook.com/Torangesvn/';
 const ZALO_GROUP_1_URL = 'https://zalo.me/g/vffwdx817';
 const ZALO_GROUP_2_URL = 'https://zalo.me/g/qzfgvs076';
 
+const BOX_CATEGORY_LABELS = {
+    'hop-4-banh': 'Hộp 4 bánh',
+    'hop-6-banh': 'Hộp 6 bánh',
+    'hop-1-banh': 'Hộp 1 bánh',
+    mini: 'Mini',
+    'phu-kien-banh': 'Phụ kiện bánh',
+};
+
+const BOX_CATEGORY_SUBTITLES = {
+    'hop-4-banh': 'Mẫu đựng 4 bánh — gồm cả 4 bánh rẻ và mẫu 4–6 bánh linh hoạt',
+    'hop-6-banh': 'Mẫu đựng 6 bánh — khay lớn, phù hợp set quà',
+    'hop-1-banh': 'Hộp 1 bánh, 2 bánh — quà lẻ và set nhỏ',
+    mini: 'Hộp 6 bánh mini — size nhỏ gọn',
+    'phu-kien-banh': 'Khay túi, pét, gói hút ẩm, dao nĩa',
+};
+
+const PHU_KIEN_BANH_IDS = new Set([
+    'khay-trong-sz-9-10-11',
+    'tui-dung-banh-trung-thu-sz-9-10-11',
+    'pet-dung-banh',
+    'hut-am',
+    'dao-nia-mau-trang-hong-xanh-duong',
+]);
+
+function normBoxText(str) {
+    return String(str || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, ' ');
+}
+
+function getProductBoxCategory(product) {
+    if (!product) return 'other';
+
+    if (PHU_KIEN_BANH_IDS.has(product.id)) return 'phu-kien-banh';
+    if (
+        product.category === 'phụ kiện bánh' ||
+        product.category === 'phụ kiện' ||
+        product.category === 'Khay túi, pét đựng bánh'
+    ) {
+        return 'phu-kien-banh';
+    }
+
+    const text = normBoxText(`${product.name} ${product.id}`);
+    const desc = normBoxText(product.description || '');
+    const blob = `${text} ${desc}`;
+
+    if (/6 banh mini|6b mini|6-banh-mini|6 mini|300g \(6 banh mini\)/.test(blob)) {
+        return 'mini';
+    }
+    if (/2 banh|hop-2-banh|2-banh|20g \(2 banh/.test(blob)) {
+        return 'hop-1-banh';
+    }
+    if (/1 banh to|banh-to|300g|600g|180g \(1 banh to\)/.test(blob)) {
+        return 'hop-1-banh';
+    }
+    if (/150-250g|150g|250g/.test(blob) && !/4 banh|6 banh|4b|6b/.test(blob)) {
+        return 'hop-1-banh';
+    }
+    if (/(^|[^0-9])1 banh|hop-1-banh|1-banh|cho be|50g \(1 banh\)/.test(blob)) {
+        return 'hop-1-banh';
+    }
+    if (/4[\s-]*6 banh|4-6-banh|hop-lam-cuc/.test(text)) {
+        return 'hop-4-banh';
+    }
+    if (/6 banh|6-banh|hop-cung-6|hop-6-banh|330g \(6 banh\)/.test(blob)) {
+        return 'hop-6-banh';
+    }
+    if (/4 banh re|4b re|4-ban?h-re|250g \(4 banh re\)/.test(blob)) {
+        return 'hop-4-banh';
+    }
+    if (/4 banh|4-banh|4b-|330g \(4 banh\)/.test(blob)) {
+        return 'hop-4-banh';
+    }
+
+    return 'hop-4-banh';
+}
+
+function getProductBoxCategoryLabel(product) {
+    return BOX_CATEGORY_LABELS[getProductBoxCategory(product)] || '';
+}
+
 const TIER_LABELS = {
     budget: 'Giá tiết kiệm (dưới 25.000đ)',
     mid: 'Tầm trung (25.000đ – 50.000đ)',
@@ -185,23 +268,43 @@ function getHotProducts(limit = 12) {
     return [...withDate, ...featured].slice(0, limit);
 }
 
+function filterCatalogProducts({ tier = 'all', boxType = 'all' } = {}) {
+    let list = getAllProducts();
+
+    if (tier && tier !== 'all') {
+        list = list.filter((p) => getProductTier(p) === tier);
+    }
+    if (boxType && boxType !== 'all') {
+        list = list.filter((p) => getProductBoxCategory(p) === boxType);
+    }
+
+    return list;
+}
+
 function getCatalogSections() {
     const hot = getHotProducts(12);
     const hotIds = new Set(hot.map((p) => p.id));
     const rest = getAllProducts().filter((p) => !hotIds.has(p.id));
 
     const sections = [
-        { id: 'mau-hot', title: 'Mẫu mới & nổi bật 2026', subtitle: 'Ưu tiên đặt sớm mùa Trung Thu — tư vấn Zalo trong vài phút', products: hot }
+        {
+            id: 'mau-hot',
+            title: 'Mẫu mới & nổi bật 2026',
+            subtitle: 'Ưu tiên đặt sớm mùa Trung Thu — tư vấn Zalo trong vài phút',
+            products: hot,
+        },
     ];
 
-    ['budget', 'mid', 'premium'].forEach((tier) => {
-        const tierProducts = rest.filter((p) => getProductTier(p) === tier);
-        if (tierProducts.length) {
+    const categoryOrder = ['hop-4-banh', 'hop-6-banh', 'hop-1-banh', 'mini', 'phu-kien-banh'];
+
+    categoryOrder.forEach((catId) => {
+        const catProducts = rest.filter((p) => getProductBoxCategory(p) === catId);
+        if (catProducts.length) {
             sections.push({
-                id: `kho-${tier}`,
-                title: TIER_LABELS[tier],
-                subtitle: '',
-                products: tierProducts
+                id: catId,
+                title: BOX_CATEGORY_LABELS[catId],
+                subtitle: BOX_CATEGORY_SUBTITLES[catId] || '',
+                products: catProducts,
             });
         }
     });

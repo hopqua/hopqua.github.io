@@ -140,13 +140,28 @@
                 </a>
             </div>
 
-            <nav class="catalog-nav catalog-nav-inline catalog-nav--compact" id="catalog-nav" aria-label="Danh mục giá">
-                <span class="catalog-nav-label">Theo giá:</span>
-                <a href="#mau-hot" class="catalog-nav-link">Mẫu hot</a>
-                <a href="#kho-budget" class="catalog-nav-link">Tiết kiệm</a>
-                <a href="#kho-mid" class="catalog-nav-link">Tầm trung</a>
-                <a href="#kho-premium" class="catalog-nav-link">Cao cấp</a>
-            </nav>
+            <div class="catalog-filters" id="catalog-filters" aria-label="Lọc sản phẩm">
+                <div class="catalog-filter-group">
+                    <span class="catalog-filter-label">Giá:</span>
+                    <div class="catalog-filter-pills" role="group" aria-label="Lọc theo giá">
+                        <button type="button" class="catalog-filter-pill is-active" data-filter-tier="all">Tất cả</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-tier="budget">Tiết kiệm</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-tier="mid">Tầm trung</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-tier="premium">Cao cấp</button>
+                    </div>
+                </div>
+                <div class="catalog-filter-group">
+                    <span class="catalog-filter-label">Loại:</span>
+                    <div class="catalog-filter-pills" role="group" aria-label="Lọc theo loại hộp">
+                        <button type="button" class="catalog-filter-pill is-active" data-filter-type="all">Tất cả</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-type="hop-4-banh">4 bánh</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-type="hop-6-banh">6 bánh</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-type="hop-1-banh">1 bánh</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-type="mini">Mini</button>
+                        <button type="button" class="catalog-filter-pill" data-filter-type="phu-kien-banh">Phụ kiện</button>
+                    </div>
+                </div>
+            </div>
 
             <div class="home-aux-strip home-aux-strip--solo">
                 <details class="home-aux-item pack-dim-ref">
@@ -165,7 +180,14 @@
         </div>
 
         <div id="product-catalog" class="home-catalog">
-            <!-- Các kệ sản phẩm render bằng JavaScript -->
+            <div class="catalog-results-bar">
+                <p class="catalog-results-meta" id="catalog-results-meta" aria-live="polite">Đang tải mẫu…</p>
+                <button type="button" class="catalog-filter-reset" id="catalog-filter-reset" hidden>Bỏ lọc</button>
+            </div>
+            <div class="cap-nhat-grid" id="catalog-grid" role="list"></div>
+            <p class="catalog-empty" id="catalog-empty" hidden>
+                Không có mẫu phù hợp. Thử chọn <strong>Tất cả</strong> hoặc bấm <strong>Bỏ lọc</strong>.
+            </p>
         </div>
 
         <section id="bao-gia" class="home-rfq-zone" aria-label="Báo giá sỉ — shop gọi lại">

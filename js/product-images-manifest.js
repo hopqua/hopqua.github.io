@@ -10,18 +10,6 @@ const productImageManifest = {
             "image/nam-su-hong-150-250g-23-29k/nam-su-hong-150-250g-23-29k-1.jpg",
             "image/nam-su-hong-150-250g-23-29k/nam-su-hong-150-250g-23-29k-2.jpg"
     ],
-    'khay-6b-mini-khay-1-banh-lon-100d-5000d': [
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-1.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-10.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-2.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-3.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-4.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-5.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-6.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-7.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-8.jpg",
-            "image/khay-6b-mini-khay-1-banh-lon-100d-5000d/khay-6b-mini-khay-1-banh-lon-100d-5000d-9.jpg"
-    ],
     'khai-phuc-29-35k': [
             "image/khai-phuc-29-35k/khai-phuc-29-35k-1.jpg",
             "image/khai-phuc-29-35k/khai-phuc-29-35k-2.jpg",
@@ -660,7 +648,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-13.jpg",
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-14.jpg"
     ],
-    'khay-tui-pet': [
+    'pet-dung-banh': [
             "image/11-06-2026/khay-tui-pet/khay-tui-pet-1.jpg",
             "image/11-06-2026/khay-tui-pet/khay-tui-pet-10.jpg",
             "image/11-06-2026/khay-tui-pet/khay-tui-pet-11.jpg",
