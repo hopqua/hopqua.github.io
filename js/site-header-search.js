@@ -118,9 +118,13 @@ function updateSuggestions(query, suggestEl) {
                         ? p.thumbnail
                         : `/${p.thumbnail.replace(/^\//, '')}`
                     : '';
+                const priceLabel =
+                    typeof formatCatalogRetailLabel === 'function'
+                        ? formatCatalogRetailLabel(p)
+                        : p.price;
                 return `<a class="site-search-suggest-item" href="${url}">
                 ${thumb ? `<img src="${thumb}" alt="" width="40" height="40" loading="lazy">` : ''}
-                <span><strong>${escapeHtml(p.name)}</strong><em>${escapeHtml(p.price)}</em></span>
+                <span><strong>${escapeHtml(p.name)}</strong><em>${escapeHtml(priceLabel)}</em></span>
             </a>`;
             })
             .join('');

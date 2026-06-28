@@ -89,7 +89,8 @@ def main() -> None:
 
     stock, hidden = load_out_of_stock(src)
     DATA_JSON.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(src, DATA_JSON)
+    if src.resolve() != DATA_JSON.resolve():
+        shutil.copy2(src, DATA_JSON)
     if SHOPEE_DIR.is_dir():
         shutil.copy2(src, SHOPEE_DIR / "stock-status.json")
 

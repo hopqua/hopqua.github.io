@@ -64,14 +64,30 @@ function formatCatalogRetailLabel(product) {
     }
     const price = (product.price || '').trim();
     if (!price || /liên hệ/i.test(price)) return 'Liên hệ báo giá';
+
+    // Chuẩn sau apply-gia-le: "Từ 35.000đ/cái · SL 1–10" — không parse "1" từ SL
+    const singleMatch = price.match(/Từ\s+([\d.]+)\s*(?:đ)?(?:\s*\/cái)?/i);
+    if (singleMatch) {
+        const n = parseInt(singleMatch[1].replace(/\./g, ''), 10);
+        if (n > 0) return `Từ ${n.toLocaleString('vi-VN')}đ/cái`;
+    }
+
+    // Giá lẻ trong mô tả (trang chi tiết / catalog cũ)
+    const desc = product.description || '';
+    const descMatch = desc.match(/Giá lẻ \(1[–-]10 cái\):\s*([\d.]+)\s*đ/i);
+    if (descMatch) {
+        const n = parseInt(descMatch[1].replace(/\./g, ''), 10);
+        if (n > 0) return `Từ ${n.toLocaleString('vi-VN')}đ/cái`;
+    }
+
     const numbers = (price.match(/\d[\d.]*/g) || [])
         .map((n) => parseInt(n.replace(/\./g, ''), 10))
         .filter((n) => n > 0);
     if (!numbers.length) return price;
-    let max = Math.max(...numbers);
+    let min = Math.min(...numbers);
     const text = `${product.id || ''} ${product.name || ''} ${price}`.toLowerCase();
-    if (max < 1000 && /k/.test(text)) max *= 1000;
-    const fmt = `${max.toLocaleString('vi-VN')}đ`;
+    if (min < 1000 && /k/.test(text)) min *= 1000;
+    const fmt = `${min.toLocaleString('vi-VN')}đ`;
     return `Từ ${fmt}/cái`;
 }
 
@@ -114,7 +130,7 @@ function renderCapNhatGroupCardHtml(group) {
 }
 
 function renderCapNhatProductCardHtml(product, options = {}) {
-    const rawImg = (product.images && product.images[0]) || product.thumbnail || 'image/favicon.png';
+    const rawImg = product.thumbnail || (product.images && product.images[0]) || 'image/favicon.png';
     const img = typeof getThumbUrl === 'function' ? getThumbUrl(rawImg) : rawImg;
     const fallback =
         typeof toRootAssetUrl === 'function'

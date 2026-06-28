@@ -65,6 +65,10 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
         const shortDesc =
             intro.length > 72 ? intro.substring(0, 72) + '…' : intro;
         const postedMeta = renderProductPostedMeta(product);
+        const priceLabel =
+            typeof formatCatalogRetailLabel === 'function'
+                ? formatCatalogRetailLabel(product)
+                : product.price;
 
         productCard.innerHTML = `
             <a href="${detailUrl}" class="product-card-link">
@@ -77,7 +81,7 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
                 <div class="product-info">
                     <h3>${product.name}</h3>
                     ${postedMeta}
-                    <p class="product-price">${product.price}</p>
+                    <p class="product-price">${priceLabel}</p>
                     <p class="product-short-desc">${shortDesc}</p>
                 </div>
             </a>

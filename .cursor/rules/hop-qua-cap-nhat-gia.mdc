@@ -1,0 +1,71 @@
+---
+description: Quy trình cập nhật giá lẻ / Shopee — hopqua.io.vn & báo cáo upload
+globs: du-an/vo-anh/hop-qua/website/source/**/*,du-an/vo-anh/hop-qua/shopee-upload-2026/**/*
+alwaysApply: false
+---
+
+# Cập nhật giá — hộp bánh Vân Thắng
+
+## Nguồn chuẩn (theo thứ tự ưu tiên)
+
+| Bước | File | Vai trò |
+|------|------|---------|
+| 1 | `shopee-upload-2026/gia-le-cap-nhat.json` | Giá lẻ (`prices`) + Shopee (`shopee_prices`) — **chuẩn** |
+| 2 | `shopee-upload-2026/gia-le-cap-nhat.csv` | Cùng dữ liệu, sửa bằng Excel |
+| 3 | `js/products.js` | Hiển thị web + mô tả SP |
+| 4 | `data/products-catalog.json` | Catalog trang chủ (lazy load) |
+
+Sửa giá trên **`bao-cao-gia-shopee.html`** → bấm **Lưu giá** → copy JSON/CSV vào `shopee-upload-2026/`.
+
+## Công thức Shopee (listing 1–10 cái)
+
+```
+Giá Shopee = giá lẻ × 1,30 × 1,04 — làm tròn LÊN bội 500đ
+```
+
+Script: `build-shopee-upload-package.py` (`FEE_PLATFORM=0.30`, `FEE_RETURN=0.04`, `ROUND_STEP=500`).
+
+## Cột CSV (`gia-le-cap-nhat.csv`)
+
+| Cột | Áp vào web |
+|-----|------------|
+| `sku` | `products.js` → `id` |
+| `ten` | `products.js` → `name` |
+| `gia_le_vnd` | `price` + bullet «Giá lẻ» trong `description` |
+| `gia_shopee_vnd` | bullet «Giá tham khảo Shopee» |
+
+Script `apply-gia-le-cap-nhat.py` **ưu tiên CSV** (có tên), tự chạy `build-products-catalog.py` + `build-cap-nhat-catalog.py`.
+
+## Quy trình sau khi đổi giá
+
+```bash
+cd ~/huong-dan/du-an/vo-anh/hop-qua/website/source
+
+# 1. Áp giá lẻ + mô tả → products.js
+python3 scripts/apply-gia-le-cap-nhat.py
+
+# 2. Catalog trang chủ (directRetailFmt từ gia-le-cap-nhat.json)
+python3 scripts/build-products-catalog.py
+
+# 3. Excel + báo cáo HTML Shopee
+python3 scripts/build-shopee-upload-package.py
+```
+
+**Không** sửa tay `bao-cao-gia-shopee.html` hay `products-catalog.json` — chạy script.
+
+## Định dạng hiển thị trang chủ
+
+- `products.js` → `price`: `Từ 35.000đ/cái · SL 1–10` (một mức, không khoảng)
+- Catalog card: `formatCatalogRetailLabel()` trong `catalog-card-render.js`
+  - Ưu tiên `directRetailFmt` từ `products-catalog.json`
+  - **Không** parse số từ `SL 1–10` (tránh hiển thị **1đ/cái**)
+
+## Ẩn SP hết hàng
+
+- `shopee-upload-2026/stock-status.json` → `false` = hết hàng
+- `build-products-catalog.py` bỏ SP `false` khỏi catalog trang chủ
+- Báo cáo Shopee: chỉ giữ SKU có trong `gia-le-cap-nhat.csv`
+
+## Deploy
+
+Push `main` GitHub Pages → `hopqua.io.vn`. Test local: `python3 -m http.server` tại `website/source/`.

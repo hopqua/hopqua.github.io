@@ -26,6 +26,35 @@ else:
 OUT_IMG = Path(__file__).resolve().parents[1] / "image" / "cap-nhat-2026"
 OUT_JSON = Path(__file__).resolve().parents[1] / "data" / "cap-nhat-catalog.json"
 
+
+def _hop_qua_root() -> Path:
+    here = Path(__file__).resolve()
+    for parent in here.parents:
+        candidate = parent / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+        if candidate.is_file():
+            return parent
+        candidate = parent / "hop-qua" / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+        if candidate.is_file():
+            return parent / "hop-qua"
+    return Path("/home/vananh/huong-dan/du-an/vo-anh/hop-qua")
+
+
+def load_gia_le_by_sku() -> dict[str, int]:
+    path = _hop_qua_root() / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    raw = data.get("prices") if isinstance(data, dict) else None
+    if not isinstance(raw, dict):
+        return {}
+    return {str(k): int(v) for k, v in raw.items() if v}
+
+
+GIA_LE_BY_SKU = load_gia_le_by_sku()
+
 WEIGHT_RULES = {
     "4_banh": 330,
     "4_banh_re": 250,
@@ -236,6 +265,9 @@ def product_row(label: str, path: Path, excel: list[dict]) -> dict | None:
     w, wtype = packing_weight(label)
     pack_type = classify_pack_type(label)
     retail = ex["price"] if ex else None
+    web_id = WEB_ID_N.get(fk)
+    if web_id and web_id in GIA_LE_BY_SKU:
+        retail = GIA_LE_BY_SKU[web_id]
     fee_add = round(retail * 0.30) if retail else None
     price_with_fee = retail + fee_add if retail else None
     platform = round(retail * 1.30) if retail else None
@@ -247,7 +279,7 @@ def product_row(label: str, path: Path, excel: list[dict]) -> dict | None:
         "id": slug,
         "folder": label,
         "variantLabel": variant_label,
-        "webId": WEB_ID_N.get(fk),
+        "webId": web_id,
         "images": images,
         "excelMatch": ex["name"] if ex else None,
         "shopeeRetail": retail,

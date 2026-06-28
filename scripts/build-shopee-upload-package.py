@@ -254,6 +254,155 @@ def is_on_shopee(
 
 
 STOCK_STATUS_FILE = "stock-status.json"
+PRICE_OVERRIDES_FILE = "gia-le-cap-nhat.json"
+
+
+def load_price_overrides(out_dir: Path) -> dict[str, int]:
+    """SKU → giá lẻ (đồng) từ file anh sửa trên báo cáo HTML."""
+    path = out_dir / PRICE_OVERRIDES_FILE
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    raw = data.get("prices") if isinstance(data, dict) else None
+    if not isinstance(raw, dict):
+        raw = data if isinstance(data, dict) else {}
+    out: dict[str, int] = {}
+    for key, val in raw.items():
+        if key.startswith("_"):
+            continue
+        try:
+            n = int(val)
+            if n > 0:
+                out[str(key)] = n
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
+@dataclass
+class GiaLeCsvRow:
+    sku: str
+    ten: str
+    gia_le: int
+    gia_shopee: int | None = None
+
+
+def load_gia_le_csv(path: Path) -> list[GiaLeCsvRow]:
+    """Đọc gia-le-cap-nhat.csv — thứ tự dòng = thứ tự báo cáo."""
+    if not path.is_file():
+        return []
+    out: list[GiaLeCsvRow] = []
+    with path.open(encoding="utf-8", newline="") as f:
+        for row in csv.DictReader(f):
+            sku = str(row.get("sku") or "").strip()
+            if not sku:
+                continue
+            try:
+                gia_le = int(float(row.get("gia_le_vnd") or 0))
+            except (TypeError, ValueError):
+                continue
+            gia_shopee: int | None = None
+            raw_sp = row.get("gia_shopee_vnd")
+            if raw_sp not in (None, ""):
+                try:
+                    gia_shopee = int(float(raw_sp))
+                except (TypeError, ValueError):
+                    gia_shopee = None
+            out.append(
+                GiaLeCsvRow(
+                    sku=sku,
+                    ten=str(row.get("ten") or sku).strip(),
+                    gia_le=gia_le,
+                    gia_shopee=gia_shopee,
+                )
+            )
+    return out
+
+
+def load_shopee_prices_json(out_dir: Path) -> dict[str, int]:
+    """SKU → giá Shopee từ gia-le-cap-nhat.json (nếu có)."""
+    path = out_dir / PRICE_OVERRIDES_FILE
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    raw = data.get("shopee_prices") if isinstance(data, dict) else None
+    if not isinstance(raw, dict):
+        return {}
+    out: dict[str, int] = {}
+    for key, val in raw.items():
+        if key.startswith("_"):
+            continue
+        try:
+            n = int(val)
+            if n > 0:
+                out[str(key)] = n
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
+def filter_reports_by_gia_le(
+    reports: list[RowReport],
+    gia_rows: list[GiaLeCsvRow],
+    shopee_prices: dict[str, int],
+) -> list[RowReport]:
+    """Chỉ giữ SKU có trong CSV; tên + giá lẻ/Shopee theo file anh sửa."""
+    by_sku = {r.sku: r for r in reports}
+    out: list[RowReport] = []
+    for i, g in enumerate(gia_rows, start=1):
+        base = by_sku.get(g.sku)
+        if not base:
+            continue
+        direct = g.gia_le
+        fee30 = round(direct * FEE_PLATFORM) if direct else 0
+        fee04 = round(direct * FEE_RETURN) if direct else 0
+        shopee = shopee_prices.get(g.sku) or g.gia_shopee
+        if shopee is None and direct:
+            shopee, fee30, fee04, _ = resolve_shopee_listing_price(direct)
+        delta = (
+            (shopee - base.old_price)
+            if shopee is not None and base.old_price
+            else base.delta
+        )
+        out.append(
+            RowReport(
+                row=i,
+                sku=g.sku,
+                name=g.ten,
+                direct=direct,
+                fee30=fee30,
+                fee04=fee04,
+                shopee_price=shopee,
+                old_price=base.old_price,
+                delta=delta,
+                has_product=base.has_product,
+                has_images=base.has_images,
+                web_url=base.web_url,
+                on_shopee=base.on_shopee,
+                shopee_url=base.shopee_url,
+                thumb_url=base.thumb_url,
+                image_url=base.image_url,
+                in_stock=base.in_stock,
+                stock_label=base.stock_label,
+                note=base.note,
+            )
+        )
+    return out
+
+
+def write_gia_le_csv(rows: list[RowReport], out_path: Path) -> None:
+    """Mẫu CSV sửa giá bằng Excel — chạy apply-gia-le-cap-nhat.py sau khi sửa."""
+    with out_path.open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["sku", "ten", "gia_le_vnd", "gia_shopee_vnd", "ghi_chu"])
+        for r in rows:
+            w.writerow([r.sku, r.name, r.direct or "", r.shopee_price or "", ""])
 
 
 def load_stock_status(out_dir: Path) -> dict[str, bool]:
@@ -461,6 +610,11 @@ def write_html_report(
     out_stock_count = len(rows) - in_stock_count
     default_stock = {r.sku: r.in_stock for r in rows}
     default_stock_json = json.dumps(default_stock, ensure_ascii=False)
+    default_prices = {r.sku: r.direct for r in rows if r.direct}
+    default_prices_json = json.dumps(default_prices, ensure_ascii=False)
+    fee_platform = FEE_PLATFORM
+    fee_return = FEE_RETURN
+    round_step = ROUND_STEP
 
     def shopee_status_cell(r: RowReport) -> str:
         if r.on_shopee:
@@ -495,18 +649,31 @@ def write_html_report(
             img_html = '<span class="no-img">—</span>'
         sku_hint = f'<code class="sku-mini" title="{r.sku}">{r.sku[:28]}{"…" if len(r.sku) > 28 else ""}</code>'
 
-        return f"""<tr class="{cls}">
+        direct_val = r.direct if r.direct else ""
+        old_excel = r.old_price if r.old_price else ""
+        name_attr = html.escape(r.name, quote=True)
+        price_input = (
+            f'<input type="number" class="price-input" data-sku="{sku_attr}" '
+            f'value="{direct_val}" min="0" step="500" data-old-excel="{old_excel}" '
+            f'aria-label="Giá lẻ {name_attr}" title="Giá lẻ 1–10 (đồng)">'
+        )
+        fee30_disp = fmt_vnd(r.fee30) if r.direct else "—"
+        fee04_disp = fmt_vnd(r.fee04) if r.direct else "—"
+        shopee_disp = fmt_vnd(r.shopee_price) if r.shopee_price else "—"
+        delta_disp = fmt_vnd(r.delta) if r.delta is not None else "—"
+
+        return f"""<tr class="{cls}" data-sku="{sku_attr}" data-name="{name_attr}">
           <td>{r.row}</td>
           <td class="img-cell">{img_html}{sku_hint}</td>
           <td class="stock-cell">{stock_cell}</td>
           <td><a href="{r.web_url}" target="_blank" rel="noopener">{r.name}</a></td>
           <td class="center">{shopee_status_cell(r)}</td>
-          <td class="num">{fmt_vnd(r.direct) if r.direct else '—'}</td>
-          <td class="num">{fmt_vnd(r.fee30) if r.direct else '—'}</td>
-          <td class="num">{fmt_vnd(r.fee04) if r.direct else '—'}</td>
-          <td class="num"><strong>{fmt_vnd(r.shopee_price) if r.shopee_price else '—'}</strong></td>
-          <td class="num">{fmt_vnd(r.old_price) if r.old_price else '—'}</td>
-          <td class="num">{fmt_vnd(r.delta) if r.delta is not None else '—'}</td>
+          <td class="num price-cell">{price_input}</td>
+          <td class="num fee30-cell">{fee30_disp}</td>
+          <td class="num fee04-cell">{fee04_disp}</td>
+          <td class="num"><strong class="shopee-price-cell">{shopee_disp}</strong></td>
+          <td class="num excel-old-cell">{fmt_vnd(r.old_price) if r.old_price else '—'}</td>
+          <td class="num delta-cell">{delta_disp}</td>
           <td><a href="{r.web_url}" target="_blank" rel="noopener">Xem SP</a>{(' · ' + r.note) if r.note else ''}</td>
         </tr>"""
 
@@ -555,6 +722,12 @@ def write_html_report(
     .img-cell img {{ display: block; width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); margin: 0 auto 4px; background: #fff; }}
     .img-cell .no-img {{ display: block; width: 80px; height: 80px; line-height: 80px; margin: 0 auto 4px; background: #f3f4f6; border-radius: 8px; color: #9ca3af; }}
     .sku-mini {{ display: block; font-size: 0.68rem; color: #6b7280; word-break: break-all; line-height: 1.25; max-width: 92px; margin: 0 auto; }}
+    .price-input {{ width: 6.5rem; text-align: right; font: inherit; font-weight: 600; padding: 6px 8px; border: 2px solid #f0c14b; border-radius: 8px; background: #fffbeb; }}
+    .price-input:focus {{ outline: 2px solid var(--accent); border-color: var(--accent); background: #fff; }}
+    .price-input:placeholder-shown {{ font-weight: 400; }}
+    tr.price-changed .price-input {{ border-color: #f59e0b; background: #fef3c7; }}
+    .btn-save-secondary {{ background: #fff; color: var(--accent); border: 2px solid var(--accent); }}
+    .btn-save-secondary:hover {{ background: #fff5f5; }}
   </style>
 </head>
 <body>
@@ -578,6 +751,12 @@ def write_html_report(
       <span class="stat" id="stat-in-stock">{in_stock_count} còn hàng</span>
       <span class="stat" id="stat-out-stock">{out_stock_count} hết hàng</span>
     </div>
+    <p><strong>Giá lẻ:</strong> sửa ô vàng cột «Giá lẻ» → tự tính Shopee · bấm <strong>Lưu giá</strong> tải <code>gia-le-cap-nhat.json</code> + <code>gia-le-cap-nhat.csv</code> (hoặc sửa CSV rồi chạy <code>apply-gia-le-cap-nhat.py</code>).</p>
+    <div class="stock-toolbar">
+      <button type="button" class="btn-save btn-save-secondary" id="btn-save-prices">Lưu giá</button>
+      <span id="price-save-status" class="save-status"></span>
+      <span style="color:#6b7280;font-size:0.85rem">Giá lẻ (đồng) · Shopee = lẻ × 1,30 × 1,04, làm tròn lên 500đ</span>
+    </div>
     <div class="stock-toolbar">
       <button type="button" class="btn-save" id="btn-save-stock">Lưu tồn kho</button>
       <span id="save-status" class="save-status"></span>
@@ -588,7 +767,7 @@ def write_html_report(
     <thead>
       <tr>
         <th>#</th><th>Ảnh / SKU</th><th title="Tích = còn hàng">✓</th><th>Tên (link web)</th><th>Shopee</th>
-        <th>Giá lẻ (max)</th><th>+30% sàn</th><th>+4% hoàn</th>
+        <th>Giá lẻ (nhập)</th><th>+30% sàn</th><th>+4% hoàn</th>
         <th>Giá Shopee mới</th><th>Giá Excel cũ</th><th>Chênh</th><th>Web</th>
       </tr>
     </thead>
@@ -598,16 +777,164 @@ def write_html_report(
   </table>
   <script>
     (function () {{
-      const STORAGE_KEY = 'hopqua-shopee-bao-cao-stock';
+      const STORAGE_STOCK = 'hopqua-shopee-bao-cao-stock';
+      const STORAGE_PRICES = 'hopqua-shopee-bao-cao-prices';
       const DEFAULT_STOCK = {default_stock_json};
+      const DEFAULT_PRICES = {default_prices_json};
+      const FEE_PLATFORM = {fee_platform};
+      const FEE_RETURN = {fee_return};
+      const ROUND_STEP = {round_step};
       const table = document.getElementById('stock-table');
       const statusEl = document.getElementById('save-status');
+      const priceStatusEl = document.getElementById('price-save-status');
       const statIn = document.getElementById('stat-in-stock');
       const statOut = document.getElementById('stat-out-stock');
 
+      function fmtVnd(n) {{
+        if (n === null || n === undefined || n === '' || isNaN(n)) return '—';
+        return Number(n).toLocaleString('vi-VN') + 'đ';
+      }}
+
+      function calcShopee(direct) {{
+        const d = parseInt(direct, 10);
+        if (!d || d <= 0) return null;
+        const fee30 = Math.round(d * FEE_PLATFORM);
+        const fee04 = Math.round(d * FEE_RETURN);
+        const raw = d * (1 + FEE_PLATFORM) * (1 + FEE_RETURN);
+        const shopee = Math.ceil(raw / ROUND_STEP) * ROUND_STEP;
+        return {{ fee30, fee04, shopee }};
+      }}
+
+      function recalcRow(row) {{
+        const input = row.querySelector('.price-input');
+        if (!input) return;
+        const direct = parseInt(input.value, 10);
+        const calc = calcShopee(direct);
+        const fee30El = row.querySelector('.fee30-cell');
+        const fee04El = row.querySelector('.fee04-cell');
+        const shopeeEl = row.querySelector('.shopee-price-cell');
+        const deltaEl = row.querySelector('.delta-cell');
+        const oldExcel = parseInt(input.dataset.oldExcel || '0', 10) || 0;
+        if (!calc) {{
+          if (fee30El) fee30El.textContent = '—';
+          if (fee04El) fee04El.textContent = '—';
+          if (shopeeEl) shopeeEl.textContent = '—';
+          if (deltaEl) deltaEl.textContent = '—';
+          row.classList.remove('delta', 'price-changed');
+          return;
+        }}
+        if (fee30El) fee30El.textContent = fmtVnd(calc.fee30);
+        if (fee04El) fee04El.textContent = fmtVnd(calc.fee04);
+        if (shopeeEl) shopeeEl.textContent = fmtVnd(calc.shopee);
+        const delta = oldExcel ? calc.shopee - oldExcel : null;
+        if (deltaEl) deltaEl.textContent = delta !== null ? fmtVnd(delta) : '—';
+        row.classList.toggle('delta', delta !== null && Math.abs(delta) > 500);
+        const sku = input.dataset.sku;
+        const orig = DEFAULT_PRICES[sku];
+        row.classList.toggle('price-changed', orig && direct !== orig);
+      }}
+
+      function recalcAll() {{
+        table.querySelectorAll('tbody tr').forEach(recalcRow);
+      }}
+
+      function readSavedPrices() {{
+        try {{
+          const raw = localStorage.getItem(STORAGE_PRICES);
+          return raw ? JSON.parse(raw) : null;
+        }} catch (_) {{
+          return null;
+        }}
+      }}
+
+      function collectPrices() {{
+        const prices = {{}};
+        const shopee_prices = {{}};
+        const items = [];
+        table.querySelectorAll('tbody tr').forEach(function (row) {{
+          const input = row.querySelector('.price-input');
+          if (!input) return;
+          const sku = input.dataset.sku;
+          const direct = parseInt(input.value, 10);
+          if (!direct || direct <= 0) return;
+          const calc = calcShopee(direct);
+          prices[sku] = direct;
+          if (calc) shopee_prices[sku] = calc.shopee;
+          items.push({{
+            sku: sku,
+            ten: row.dataset.name || '',
+            gia_le_vnd: direct,
+            gia_shopee_vnd: calc ? calc.shopee : '',
+          }});
+        }});
+        return {{ prices, shopee_prices, items }};
+      }}
+
+      function applyPrices(saved) {{
+        if (!saved) return;
+        table.querySelectorAll('.price-input').forEach(function (input) {{
+          const sku = input.dataset.sku;
+          if (Object.prototype.hasOwnProperty.call(saved, sku)) {{
+            input.value = saved[sku];
+          }}
+        }});
+        recalcAll();
+      }}
+
+      function downloadBlob(filename, content, mime) {{
+        const blob = new Blob([content], {{ type: mime }});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(a.href);
+      }}
+
+      function toCsv(items) {{
+        const esc = function (s) {{
+          const t = String(s ?? '');
+          return /[",\\n]/.test(t) ? '"' + t.replace(/"/g, '""') + '"' : t;
+        }};
+        const lines = ['sku,ten,gia_le_vnd,gia_shopee_vnd,ghi_chu'];
+        items.forEach(function (it) {{
+          lines.push([it.sku, it.ten, it.gia_le_vnd, it.gia_shopee_vnd, ''].map(esc).join(','));
+        }});
+        return lines.join('\\n') + '\\n';
+      }}
+
+      table.addEventListener('input', function (e) {{
+        if (!e.target.classList.contains('price-input')) return;
+        recalcRow(e.target.closest('tr'));
+        priceStatusEl.textContent = '';
+        priceStatusEl.classList.remove('err');
+      }});
+
+      document.getElementById('btn-save-prices').addEventListener('click', function () {{
+        const {{ prices, shopee_prices, items }} = collectPrices();
+        const payload = {{
+          updated: new Date().toISOString().slice(0, 10),
+          note: 'Giá lẻ 1–10 (đồng). Chạy: python3 scripts/apply-gia-le-cap-nhat.py',
+          prices: prices,
+          shopee_prices: shopee_prices,
+        }};
+        try {{
+          localStorage.setItem(STORAGE_PRICES, JSON.stringify(prices));
+        }} catch (err) {{
+          priceStatusEl.textContent = 'Không lưu trình duyệt: ' + err.message;
+          priceStatusEl.classList.add('err');
+          return;
+        }}
+        downloadBlob('gia-le-cap-nhat.json', JSON.stringify(payload, null, 2), 'application/json');
+        setTimeout(function () {{
+          downloadBlob('gia-le-cap-nhat.csv', toCsv(items), 'text/csv;charset=utf-8');
+        }}, 200);
+        priceStatusEl.textContent = 'Đã lưu · tải gia-le-cap-nhat.json + .csv';
+        priceStatusEl.classList.remove('err');
+      }});
+
       function readSaved() {{
         try {{
-          const raw = localStorage.getItem(STORAGE_KEY);
+          const raw = localStorage.getItem(STORAGE_STOCK);
           return raw ? JSON.parse(raw) : null;
         }} catch (_) {{
           return null;
@@ -660,22 +987,19 @@ def write_html_report(
       document.getElementById('btn-save-stock').addEventListener('click', function () {{
         const stock = collectStock();
         try {{
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(stock));
+          localStorage.setItem(STORAGE_STOCK, JSON.stringify(stock));
         }} catch (err) {{
           statusEl.textContent = 'Không lưu được trên trình duyệt: ' + err.message;
           statusEl.classList.add('err');
           return;
         }}
-        const blob = new Blob([JSON.stringify(stock, null, 2)], {{ type: 'application/json' }});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'stock-status.json';
-        a.click();
-        URL.revokeObjectURL(a.href);
+        downloadBlob('stock-status.json', JSON.stringify(stock, null, 2), 'application/json');
         statusEl.textContent = 'Đã lưu · đã tải stock-status.json';
         statusEl.classList.remove('err');
       }});
 
+      applyPrices(readSavedPrices() || DEFAULT_PRICES);
+      recalcAll();
       applyStock(readSaved() || DEFAULT_STOCK);
     }})();
   </script>
@@ -774,6 +1098,7 @@ def main() -> None:
     all_links = {**shopee_links, **export_links}
 
     stock_map = load_stock_status(args.out_dir)
+    price_overrides = load_price_overrides(args.out_dir)
     stock_note = (
         "<strong>Còn hàng:</strong> tích ✓ trên báo cáo → bấm <strong>Lưu tồn kho</strong> "
         "(lưu trình duyệt + tải <code>stock-status.json</code>)."
@@ -803,6 +1128,8 @@ def main() -> None:
 
         prod = products.get(sku)
         direct = parse_direct_retail_vnd(prod) if prod else None
+        if sku in price_overrides:
+            direct = price_overrides[sku]
         shopee_price = fee30 = fee04 = None
         note = ""
         on_shopee = is_on_shopee(sku, export_links, export_item_ids, all_links)
@@ -872,6 +1199,23 @@ def main() -> None:
             }
         )
 
+    gia_csv_path = args.out_dir / "gia-le-cap-nhat.csv"
+    gia_rows = load_gia_le_csv(gia_csv_path)
+    if gia_rows:
+        shopee_from_json = load_shopee_prices_json(args.out_dir)
+        allowed = {g.sku for g in gia_rows}
+        reports = filter_reports_by_gia_le(reports, gia_rows, shopee_from_json)
+        csv_rows = [r for r in csv_rows if r["sku"] in allowed]
+        csv_by_sku = {r["sku"]: r for r in csv_rows}
+        for g in gia_rows:
+            row = csv_by_sku.get(g.sku)
+            if row:
+                row["ten_shopee"] = g.ten
+                row["gia_le_max"] = g.gia_le
+                sp = shopee_from_json.get(g.sku) or g.gia_shopee
+                if sp:
+                    row["gia_shopee"] = sp
+
     posted_excel_rows = sorted((r.row for r in reports if r.on_shopee), reverse=True)
     new_reports = [r for r in reports if not r.on_shopee]
 
@@ -925,6 +1269,7 @@ def main() -> None:
         html_path = args.out_dir / "bao-cao-gia-shopee.html"
         csv_path = args.out_dir / "shopee-item-ids.csv"
         write_html_report(reports, html_path, formula_note, doi_chieu_note=doi_chieu_note, stock_note=stock_note)
+        write_gia_le_csv(reports, args.out_dir / "gia-le-cap-nhat.csv")
         write_csv_rows(csv_rows, csv_path)
 
         # Gói upload: chỉ SP chưa đăng

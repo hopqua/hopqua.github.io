@@ -28,7 +28,7 @@ def classify_pack_type(label: str) -> str | None:
     t = norm(label.replace("/", " "))
     if re.search(r"\bkhay\b", t):
         return "6_banh_mini"
-    if re.search(r"2 bánh ép kim|2 banh ep kim|ép nhũ|ep nhu", t):
+    if re.search(r"2 bánh ép kim|2 banh ep kim|ép nhũ|ep nhu|2 bánh đắt|hộp đôi", t):
         return "2_banh_dat"
     if re.search(r"2 bánh rẻ|2 banh re", t):
         return "2_banh_re"
@@ -82,8 +82,8 @@ def packing_weight(label: str) -> tuple[int | None, str]:
     data = _load()
     w = data.get("weightRules", {})
     t = norm(label.replace("/", " "))
-    if re.search(r"2 bánh ép kim|ép nhũ", t):
-        return w.get("2_banh_ep_kim", 50), "2 bánh ép kim"
+    if re.search(r"2 bánh ép kim|ép nhũ|2 bánh đắt|hộp đôi", t) and not re.search(r"2 bánh rẻ", t):
+        return w.get("2_banh_dat", w.get("2_banh_ep_kim", 100)), "2 bánh đắt"
     if re.search(r"2 bánh rẻ", t):
         return w.get("2_banh_re", 20), "2 bánh rẻ"
     if re.search(r"1 bánh to|300g|600g|bánh to", t):

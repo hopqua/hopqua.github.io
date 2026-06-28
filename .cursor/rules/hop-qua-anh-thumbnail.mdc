@@ -1,0 +1,44 @@
+---
+description: Đổi ảnh đại diện (thumbnail) sản phẩm hopqua.io.vn
+globs: du-an/vo-anh/hop-qua/website/source/**/*
+alwaysApply: false
+---
+
+# Ảnh đại diện sản phẩm
+
+## File cần sửa (theo thứ tự)
+
+| # | File | Việc |
+|---|------|------|
+| 1 | `js/products.js` | `thumbnail: 'image/.../ten-anh.jpg'` (ảnh gốc, **không** `-thumb`) |
+| 2 | `js/product-images-manifest.js` | Đưa cùng ảnh đó lên **dòng đầu** mảng gallery của `id` SP |
+| 3 | Chạy script | `python3 scripts/build-products-catalog.py` |
+
+Trang chủ dùng `thumbnail` + `products-catalog.json` (tự sinh). Trang chi tiết dùng `product-images-manifest.js` (ảnh đầu mảng = ảnh mở đầu).
+
+## Ví dụ — Hộp Cứng 6 Bánh Mini
+
+- **id:** `hop-cung-6-banh-mini-75-100g-36k-45k`
+- **thumbnail:** `image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-2.jpg`
+
+## Ảnh thumb tự động
+
+Site gọi `getThumbUrl()` → thêm hậu tố `-thumb` trước `.jpg` (vd. `...-2-thumb.jpg`). File thumb phải có trong cùng thư mục — tạo bằng:
+
+```bash
+cd website/source
+python3 scripts/optimize-images.py
+```
+
+## Kiểm tra local
+
+```bash
+cd website/source
+python3 -m http.server 8765
+```
+
+Mở `http://localhost:8765/` và `product.html?id=<sku>` — F5 cứng (Ctrl+Shift+R) nếu vẫn thấy ảnh cũ.
+
+## Deploy
+
+Push `main` GitHub Pages → `hopqua.io.vn`.

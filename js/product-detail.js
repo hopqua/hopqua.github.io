@@ -122,8 +122,8 @@ function displayProductInfo(product) {
                 ${postedMeta ? `<p class="pd-posted-meta">${postedMeta}</p>` : ''}
                 ${badges || seasonBadge ? `<div class="pd-badges">${badges}${seasonBadge}</div>` : ''}
                 <div class="pd-price-box">
-                    <span class="pd-price-label">Giá tham khảo</span>
-                    <p class="pd-price">${product.price}</p>
+                    <span class="pd-price-label">Giá lẻ (1–10 cái)</span>
+                    <p class="pd-price">${typeof formatCatalogRetailLabel === 'function' ? formatCatalogRetailLabel(product) : product.price}</p>
                 </div>
             </div>
             <div class="pd-rfq-wrap" id="bao-gia">

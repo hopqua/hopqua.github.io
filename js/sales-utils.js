@@ -21,6 +21,7 @@ const ZALO_GROUP_2_URL = 'https://zalo.me/g/qzfgvs076';
 const BOX_CATEGORY_LABELS = {
     'hop-4-banh': 'Hộp 4 bánh',
     'hop-6-banh': 'Hộp 6 bánh',
+    'hop-2-banh': 'Hộp 2 bánh',
     'hop-1-banh': 'Hộp 1 bánh',
     mini: 'Mini',
     'phu-kien-banh': 'Phụ kiện bánh',
@@ -29,7 +30,8 @@ const BOX_CATEGORY_LABELS = {
 const BOX_CATEGORY_SUBTITLES = {
     'hop-4-banh': 'Mẫu đựng 4 bánh — gồm cả 4 bánh rẻ và mẫu 4–6 bánh linh hoạt',
     'hop-6-banh': 'Mẫu đựng 6 bánh — khay lớn, phù hợp set quà',
-    'hop-1-banh': 'Hộp 1 bánh, 2 bánh — quà lẻ và set nhỏ',
+    'hop-2-banh': 'Hộp 2 bánh rẻ & ép nhũ/kim — quà lẻ, set nhỏ',
+    'hop-1-banh': 'Hộp 1 bánh — quà lẻ và set nhỏ',
     mini: 'Hộp 6 bánh mini — size nhỏ gọn',
     'phu-kien-banh': 'Khay túi, pét, gói hút ẩm, dao nĩa',
 };
@@ -74,8 +76,8 @@ function getProductBoxCategory(product) {
     if (/6 banh mini|6b mini|6-banh-mini|6 mini|300g \(6 banh mini\)/.test(blob)) {
         return 'mini';
     }
-    if (/2 banh|hop-2-banh|2-banh|20g \(2 banh/.test(blob)) {
-        return 'hop-1-banh';
+    if (/2 banh|hop-2-banh|2-banh|20g \(2 banh|100g \(2 banh dat\)/.test(blob)) {
+        return 'hop-2-banh';
     }
     if (/1 banh to|banh-to|300g|600g|180g \(1 banh to\)/.test(blob)) {
         return 'hop-1-banh';
@@ -332,7 +334,7 @@ function getCatalogSections() {
         },
     ];
 
-    const categoryOrder = ['hop-4-banh', 'hop-6-banh', 'hop-1-banh', 'mini', 'phu-kien-banh'];
+    const categoryOrder = ['hop-4-banh', 'hop-6-banh', 'hop-2-banh', 'hop-1-banh', 'mini', 'phu-kien-banh'];
 
     categoryOrder.forEach((catId) => {
         const catProducts = rest.filter((p) => getProductBoxCategory(p) === catId);

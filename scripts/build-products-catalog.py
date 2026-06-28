@@ -16,6 +16,21 @@ STOCK_JSON = ROOT / "data" / "stock-status.json"
 IMAGE_DIR = ROOT / "image"
 OUT_JSON = ROOT / "data" / "products-catalog.json"
 
+
+def _hop_qua_root() -> Path:
+    here = Path(__file__).resolve()
+    for parent in here.parents:
+        candidate = parent / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+        if candidate.is_file():
+            return parent
+        candidate = parent / "hop-qua" / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+        if candidate.is_file():
+            return parent / "hop-qua"
+    return Path("/home/vananh/huong-dan/du-an/vo-anh/hop-qua")
+
+
+GIA_LE_JSON = _hop_qua_root() / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+
 PHU_KIEN_BANH_IDS = {
     "khay-trong-sz-9-10-11",
     "tui-dung-banh-trung-thu-sz-9-10-11",
@@ -71,10 +86,47 @@ def infer_price_from_slug(product: dict) -> int:
     return 30000
 
 
+def fmt_vnd(n: int) -> str:
+    return f"{n:,}".replace(",", ".") + "đ"
+
+
+def load_gia_le_prices() -> dict[str, int]:
+    """Giá lẻ chuẩn từ báo cáo Shopee (gia-le-cap-nhat.json)."""
+    if not GIA_LE_JSON.is_file():
+        return {}
+    try:
+        data = json.loads(GIA_LE_JSON.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    raw = data.get("prices") if isinstance(data, dict) else None
+    if not isinstance(raw, dict):
+        return {}
+    out: dict[str, int] = {}
+    for key, val in raw.items():
+        if str(key).startswith("_"):
+            continue
+        try:
+            n = int(val)
+            if n > 0:
+                out[str(key)] = n
+        except (TypeError, ValueError):
+            continue
+    return out
+
+
 def parse_price_min(product: dict) -> int:
     price_text = (product.get("price") or "").lower()
     if "liên hệ" in price_text:
         return infer_price_from_slug(product)
+
+    single = re.search(r"Từ\s+([\d.]+)\s*đ", product.get("price") or "", re.I)
+    if single:
+        return int(single.group(1).replace(".", ""))
+
+    desc = product.get("description") or ""
+    desc_m = re.search(r"Giá lẻ \(1[–-]10 cái\):\s*([\d.]+)\s*đ", desc, re.I)
+    if desc_m:
+        return int(desc_m.group(1).replace(".", ""))
 
     numbers: list[int] = []
     for raw in re.findall(r"\d[\d.]*", product.get("price") or ""):
@@ -118,8 +170,8 @@ def get_product_box_category(product: dict) -> str:
 
     if re.search(r"6 banh mini|6b mini|6-banh-mini|6 mini|300g \(6 banh mini\)", blob):
         return "mini"
-    if re.search(r"2 banh|hop-2-banh|2-banh|20g \(2 banh", blob):
-        return "hop-1-banh"
+    if re.search(r"2 banh|hop-2-banh|2-banh|20g \(2 banh|100g \(2 banh dat\)", blob):
+        return "hop-2-banh"
     if re.search(r"1 banh to|banh-to|300g|600g|180g \(1 banh to\)", blob):
         return "hop-1-banh"
     if re.search(r"150-250g|150g|250g", blob) and not re.search(r"4 banh|6 banh|4b|6b", blob):
@@ -195,7 +247,7 @@ def list_product_images(folder: str, max_images: int = 4) -> list[str]:
     return images
 
 
-def build_catalog_item(product: dict) -> dict:
+def build_catalog_item(product: dict, gia_le: dict[str, int]) -> dict:
     label = f"{product['id']} {product['name']}"
     pack_type = classify_pack_type(label)
     pack_g = parse_pack_weight_g(product)
@@ -206,6 +258,9 @@ def build_catalog_item(product: dict) -> dict:
             pack_size = m.group(1).strip()
 
     images = list_product_images(product.get("folder") or product["id"])
+    thumb = (product.get("thumbnail") or "").strip()
+    if thumb:
+        images = [thumb] + [u for u in images if u != thumb]
     desc = (product.get("description") or "")[:320]
 
     item = {
@@ -229,6 +284,9 @@ def build_catalog_item(product: dict) -> dict:
         item["packSizeText"] = pack_size
     if len(images) >= 2:
         item["images"] = images
+    pid = product["id"]
+    if pid in gia_le:
+        item["directRetailFmt"] = fmt_vnd(gia_le[pid])
     return item
 
 
@@ -241,10 +299,11 @@ def load_out_of_stock_ids() -> set[str]:
 
 def main() -> None:
     hidden = load_out_of_stock_ids()
+    gia_le = load_gia_le_prices()
     products = parse_products()
     if hidden:
         products = [p for p in products if p["id"] not in hidden]
-    items = [build_catalog_item(p) for p in products]
+    items = [build_catalog_item(p, gia_le) for p in products]
     payload = {
         "version": 1,
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

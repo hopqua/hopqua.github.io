@@ -453,8 +453,8 @@ const productImageManifest = {
             "image/26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-2.jpg"
     ],
     'hop-cung-6-banh-mini-75-100g-36k-45k': [
-            "image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-1.jpg",
             "image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-2.jpg",
+            "image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-1.jpg",
             "image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-3.jpg",
             "image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-4.jpg",
             "image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-5.jpg",
@@ -535,21 +535,15 @@ const productImageManifest = {
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-9.jpg"
     ],
     'song-ngu-do-4-banh-tra-doc-36k-44k': [
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-1.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-10.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-11.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-12.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-13.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-14.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-15.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-2.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-3.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-4.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-5.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-6.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-7.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-8.jpg",
-            "image/cap-nhat-2026/nguyet-lien-hoa-4-banh-tra-6-banh/nguyet-lien-hoa-4-banh-tra-6-banh-9.jpg"
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-1.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-2.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-3.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-4.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-5.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-6.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-7.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-8.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-9.jpg"
     ],
     'thien-hoa-van-nguyet-4-banh-re-175k-24k': [
             "image/cap-nhat-2026/4-banh-re-thien-hoa-van-nguyet-o-xanh-la/4-banh-re-thien-hoa-van-nguyet-o-xanh-la-1.jpg",
@@ -626,11 +620,19 @@ const productImageManifest = {
             "image/cap-nhat-2026/hop-cung-hac-van-nguyet/hop-cung-hac-van-nguyet-4.jpg"
     ],
     'hac-vu-nguyet-ca-4-banh-6-banh': [
-            "image/cap-nhat-2026/hac-vu-nguyet-ca-4-banh-tra-6-banh/hac-vu-nguyet-ca-4-banh-tra-6-banh-1.jpg",
-            "image/cap-nhat-2026/hac-vu-nguyet-ca-4-banh-tra-6-banh/hac-vu-nguyet-ca-4-banh-tra-6-banh-2.jpg",
-            "image/cap-nhat-2026/hac-vu-nguyet-ca-4-banh-tra-6-banh/hac-vu-nguyet-ca-4-banh-tra-6-banh-3.jpg",
-            "image/cap-nhat-2026/hac-vu-nguyet-ca-4-banh-tra-6-banh/hac-vu-nguyet-ca-4-banh-tra-6-banh-4.jpg",
-            "image/cap-nhat-2026/hac-vu-nguyet-ca-4-banh-tra-6-banh/hac-vu-nguyet-ca-4-banh-tra-6-banh-5.jpg"
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-1.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-10.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-11.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-12.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-13.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-2.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-3.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-4.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-5.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-6.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-7.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-8.jpg",
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-9.jpg"
     ],
     'hop-cung-gap-gon-6x': [
             "image/cap-nhat-2026/hop-cung-gap-gon-4-banh-tra-6-banh/hop-cung-gap-gon-4-banh-tra-6-banh-1.jpg",
@@ -713,6 +715,43 @@ const productImageManifest = {
             "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-4.jpg",
             "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-5.jpg",
             "image/cap-nhat-2026/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke/hop-cung-trung-thu-4-banh-kem-vo-tra-xanh-duong-gap-gon-canh-mo-2-ben-ke-6.jpg"
+    ],
+    '2-banh-hac-valy-hop-doi-tui-xach': [
+            "image/thang-6-2026/2-banh-hac-valy-hop-doi-tui-xach/2-banh-hac-valy-hop-doi-tui-xach-1.jpg",
+            "image/thang-6-2026/2-banh-hac-valy-hop-doi-tui-xach/2-banh-hac-valy-hop-doi-tui-xach-2.jpg",
+            "image/thang-6-2026/2-banh-hac-valy-hop-doi-tui-xach/2-banh-hac-valy-hop-doi-tui-xach-3.jpg",
+            "image/thang-6-2026/2-banh-hac-valy-hop-doi-tui-xach/2-banh-hac-valy-hop-doi-tui-xach-4.jpg"
+    ],
+    '2-banh-kim-nguyet-vu-long-hop-doi-tui-xach': [
+            "image/thang-6-2026/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach-1.jpg",
+            "image/thang-6-2026/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach-2.jpg",
+            "image/thang-6-2026/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach-3.jpg",
+            "image/thang-6-2026/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach-4.jpg",
+            "image/thang-6-2026/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach-5.jpg",
+            "image/thang-6-2026/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach/2-banh-kim-nguyet-vu-long-hop-doi-tui-xach-6.jpg"
+    ],
+    'hac-nguyet-vien-4-banh-tra-34k-42k': [
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-1.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-10.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-11.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-12.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-13.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-14.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-15.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-2.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-3.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-4.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-5.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-6.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-7.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-8.jpg",
+            "image/thang-6-2026/hac-nguyet-vien-4-banh-tra-34k-42k/hac-nguyet-vien-4-banh-tra-34k-42k-9.jpg"
+    ],
+    'nguyet-lien-ca-4-banh-tra-6-banh-34k-42k': [
+            "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-1.jpg",
+            "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-2.jpg",
+            "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-3.jpg",
+            "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-4.jpg"
     ],
 };
 

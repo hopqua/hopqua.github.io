@@ -6,7 +6,7 @@ const PACK_DIMENSION_RULES = {
     '4_banh_tra_6_banh': { label: '4 bánh trà – 6 bánh', sizeText: 'Đáy 27×35,5 cm · Túi 29×36,5 cm' },
     bat_giac: { label: 'Bát giác', sizeText: 'Đáy 37,7×37,5 cm · Túi 38×40 cm' },
     '2_banh_re': { label: '2 bánh rẻ', sizeText: '21,5×11 cm' },
-    '2_banh_dat': { label: '2 bánh đắt (ép nhũ / ép kim)', sizeText: 'Hộp 21,5×11,5×5 cm · Túi 22,5×14×6 cm' },
+    '2_banh_dat': { label: '2 bánh đắt (ép nhũ / ép kim / hộp đôi)', sizeText: 'Hộp 21,5×11,5×5 cm · Túi 22,5×14×6 cm' },
 };
 
 function normPackLabel(s) {
@@ -21,7 +21,7 @@ function normPackLabel(s) {
 function classifyPackType(label) {
     const t = normPackLabel(label);
     if (/\bkhay\b/.test(t)) return '6_banh_mini';
-    if (/2 bánh ép kim|2 banh ep kim|ép nhũ|ep nhu/.test(t)) return '2_banh_dat';
+    if (/2 bánh ép kim|2 banh ep kim|ép nhũ|ep nhu|2 bánh đắt|hộp đôi/.test(t)) return '2_banh_dat';
     if (/2 bánh rẻ|2 banh re/.test(t)) return '2_banh_re';
     if (/bát giác|bat giac/.test(t)) return 'bat_giac';
     if (/6 bánh mini|6 banh mini|6 mini/.test(t)) return '6_banh_mini';

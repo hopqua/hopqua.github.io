@@ -38,7 +38,7 @@
       "sizeText": "21,5×11 cm"
     },
     "2_banh_dat": {
-      "label": "2 bánh đắt (ép nhũ / ép kim)",
+      "label": "2 bánh đắt (ép nhũ / ép kim / hộp đôi)",
       "sizeText": "Hộp 21,5×11,5×5 cm · Túi 22,5×14×6 cm",
       "hop": "21,5×11,5×5",
       "tui": "22,5×14×6"
@@ -50,7 +50,8 @@
     "1_banh": 50,
     "1_banh_to": 180,
     "2_banh_re": 20,
-    "2_banh_ep_kim": 50,
+    "2_banh_dat": 100,
+    "2_banh_ep_kim": 100,
     "6_banh_mini": 300
   }
 }
