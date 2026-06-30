@@ -274,7 +274,7 @@ const products = [
         name: 'Vỏ hộp 4 bánh rẻ đỏ XD',
         folder: 'cap-nhat-2026/4-banh-re-xanh-la',
         thumbnail: 'image/cap-nhat-2026/4-banh-re-xanh-la/4-banh-re-xanh-la-1.jpg',
-        price: 'Từ 5.000đ/cái · SL 1–10',
+        price: 'Từ 18.000đ/cái -25.000đ/cái',
         description: 'Vỏ hộp 4 bánh màu đỏ thiết kế đơn giản, giá cả hợp lý.\n\n•Cân nặng đóng hàng: 250g (4 bánh rẻ)\n•Kích thước: Đáy 25×24 cm · Túi 25,5×24,5 cm (chênh 0,5 cm)\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 7.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',

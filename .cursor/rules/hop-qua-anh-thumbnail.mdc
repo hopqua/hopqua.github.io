@@ -12,9 +12,9 @@ alwaysApply: false
 |---|------|------|
 | 1 | `js/products.js` | `thumbnail: 'image/.../ten-anh.jpg'` (ảnh gốc, **không** `-thumb`) |
 | 2 | `js/product-images-manifest.js` | Đưa cùng ảnh đó lên **dòng đầu** mảng gallery của `id` SP |
-| 3 | Chạy script | `python3 scripts/build-products-catalog.py` |
+| 3 | Chạy script | `python3 scripts/build-products-catalog.py` (sinh luôn `js/product-og-map.js` cho preview link) |
 
-Trang chủ dùng `thumbnail` + `products-catalog.json` (tự sinh). Trang chi tiết dùng `product-images-manifest.js` (ảnh đầu mảng = ảnh mở đầu).
+Trang chủ dùng `thumbnail` + `products-catalog.json` (tự sinh). Trang chi tiết dùng `product-images-manifest.js` (ảnh đầu mảng = ảnh mở đầu). **Preview link** (`product.html?id=…` chia sẻ Zalo/Facebook): `js/product-og-map.js` + `js/product-og-head.js` trong `<head>`.
 
 ## Ví dụ — Hộp Cứng 6 Bánh Mini
 

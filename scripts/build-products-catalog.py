@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
+import sys
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
@@ -314,6 +316,12 @@ def main() -> None:
     OUT_JSON.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     size_kb = OUT_JSON.stat().st_size / 1024
     print(f"✅ {OUT_JSON} — {len(items)} mẫu, {size_kb:.1f} KB")
+
+    og_script = ROOT / "scripts" / "build-product-og-map.py"
+    if og_script.is_file():
+        subprocess.run([sys.executable, str(og_script)], check=True)
+    else:
+        print(f"⚠️ Bỏ qua OG map — chưa có {og_script.name}")
 
 
 if __name__ == "__main__":

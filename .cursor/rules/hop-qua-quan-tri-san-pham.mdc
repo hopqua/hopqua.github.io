@@ -1,0 +1,72 @@
+---
+description: File quản trị SP hopqua.io.vn — ảnh, mô tả, giá, hiện/ẩn web
+globs: du-an/vo-anh/hop-qua/shopee-upload-2026/quan-tri-san-pham.*,du-an/vo-anh/hop-qua/website/source/scripts/*quan-tri*
+alwaysApply: false
+---
+
+# Quản trị sản phẩm — hopqua.io.vn
+
+## File anh sửa
+
+| File | Mục đích |
+|------|----------|
+| `shopee-upload-2026/quan-tri-san-pham.html` | Bảng chỉnh trực tiếp (mở Live Server) |
+| `shopee-upload-2026/quan-tri-san-pham.json` | **Gửi em** sau khi bấm «Lưu & tải file» |
+| `shopee-upload-2026/quan-tri-san-pham.csv` | Cùng dữ liệu, sửa Excel nếu thích |
+
+Mở HTML: `http://127.0.0.1:5500/du-an/vo-anh/hop-qua/shopee-upload-2026/quan-tri-san-pham.html`
+
+## Cột / trường
+
+| Trường | Áp vào |
+|--------|--------|
+| `ten` | `products.js` → `name` |
+| `gia_le_vnd` | `price` + bullet «Giá lẻ» trong `description` |
+| `gia_shopee_vnd` | bullet «Giá Shopee» + `gia-le-cap-nhat.json` |
+| `thumbnail` | `products.js` → `thumbnail` |
+| `images` | `product-images-manifest.js` (gallery) |
+| `mo_ta_ngan` | đầu `description` |
+| `mo_ta_chi_tiet` | phần còn lại `description` |
+| `con_hang` | `data/stock-status.json` (`false` = ẩn catalog) |
+
+## Quy trình anh → em
+
+1. Mở `quan-tri-san-pham.html`, sửa tên / giá / ảnh / mô tả / tích «Hiện web»
+2. **Lưu & tải file** → copy `quan-tri-san-pham.json` vào `shopee-upload-2026/`
+3. Gửi em (hoặc agent chạy):
+
+```bash
+cd ~/huong-dan/du-an/vo-anh/hop-qua/website/source
+python3 scripts/apply-quan-tri-san-pham.py
+python3 scripts/build-products-catalog.py   # tự chạy nếu apply xong
+git push origin main   # deploy hopqua.io.vn
+```
+
+`--dry-run` chỉ in số SP sẽ cập nhật, không ghi file.
+
+## Web admin NAS (khuyên dùng — sửa từ cafe)
+
+- Code: `du-an/nas/nas-apps/12-hop-qua-admin/`
+- LAN: `http://192.168.1.16:8787`
+- Sửa → **Lưu (apply)** → **Deploy GitHub** — không cần gửi JSON
+- Cài: `bash ~/nas-apps/12-hop-qua-admin/install.sh` trên NAS
+- Tunnel: xem `12-hop-qua-admin/README.md`
+
+## Tạo lại bảng (sau khi em sửa web)
+
+```bash
+python3 scripts/build-quan-tri-san-pham.py
+```
+
+Sinh lại HTML/JSON/CSV từ `products.js` + manifest + stock + giá.
+
+## Lưu ý ảnh
+
+- Đường dẫn tương đối từ `website/source/` (vd. `images/products/hop-cung/...jpg`)
+- Preview HTML dùng `-thumb.jpg` nếu có
+- Thêm ảnh mới: upload file vào thư mục `images/`, ghi path trong gallery
+
+## Không sửa tay
+
+- `products-catalog.json` — chạy `build-products-catalog.py`
+- `quan-tri-san-pham.html` — chạy `build-quan-tri-san-pham.py`
