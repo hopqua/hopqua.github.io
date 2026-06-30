@@ -10,11 +10,12 @@ alwaysApply: false
 
 | File | Mục đích |
 |------|----------|
-| `shopee-upload-2026/quan-tri-san-pham.html` | Bảng chỉnh trực tiếp (mở Live Server) |
+| `shopee-upload-2026/quan-tri-san-pham.html` | Shell giao diện (dữ liệu từ `.json`) |
+| `shopee-upload-2026/chay-quan-tri.sh` | **Mở trên máy** — Lưu & Apply local |
 | `shopee-upload-2026/quan-tri-san-pham.json` | **Gửi em** sau khi bấm «Lưu & tải file» |
 | `shopee-upload-2026/quan-tri-san-pham.csv` | Cùng dữ liệu, sửa Excel nếu thích |
 
-Mở HTML: `http://127.0.0.1:5500/du-an/vo-anh/hop-qua/shopee-upload-2026/quan-tri-san-pham.html`
+Mở HTML: chạy `./chay-quan-tri.sh` → `http://127.0.0.1:8876/quan-tri-san-pham.html`
 
 ## Cột / trường
 
@@ -31,8 +32,8 @@ Mở HTML: `http://127.0.0.1:5500/du-an/vo-anh/hop-qua/shopee-upload-2026/quan-t
 
 ## Quy trình anh → em
 
-1. Mở `quan-tri-san-pham.html`, sửa tên / giá / ảnh / mô tả / tích «Hiện web»
-2. **Lưu & tải file** → copy `quan-tri-san-pham.json` vào `shopee-upload-2026/`
+1. Chạy `./chay-quan-tri.sh` trong `shopee-upload-2026/`, sửa tên / giá / ảnh / mô tả / tích «Hiện web»
+2. **Lưu & Apply** (server local) hoặc **Lưu file** → copy JSON vào `shopee-upload-2026/`
 3. Gửi em (hoặc agent chạy):
 
 ```bash
@@ -69,4 +70,4 @@ Sinh lại HTML/JSON/CSV từ `products.js` + manifest + stock + giá.
 ## Không sửa tay
 
 - `products-catalog.json` — chạy `build-products-catalog.py`
-- `quan-tri-san-pham.html` — chạy `build-quan-tri-san-pham.py`
+- `quan-tri-san-pham.html` — chạy `build-quan-tri-san-pham.py` (shell; logic ở `assets/quan-tri-admin.js`)
