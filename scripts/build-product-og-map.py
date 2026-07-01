@@ -9,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_JS = ROOT / "js" / "products.js"
+SEO_JSON = ROOT / "data" / "products-seo.json"
 OUT_JS = ROOT / "js" / "product-og-map.js"
 SITE_ORIGIN = "https://hopqua.io.vn"
 
@@ -55,17 +56,41 @@ def parse_products() -> list[dict]:
     return out
 
 
-def build_map(products: list[dict]) -> dict[str, dict[str, str]]:
+def load_seo_overrides() -> dict[str, dict[str, str]]:
+    if not SEO_JSON.is_file():
+        return {}
+    try:
+        data = json.loads(SEO_JSON.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    items = data.get("items") if isinstance(data, dict) else {}
+    if not isinstance(items, dict):
+        return {}
+    return {str(k): v for k, v in items.items() if isinstance(v, dict)}
+
+
+def build_map(products: list[dict], seo: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
     og: dict[str, dict[str, str]] = {}
     for p in products:
         thumb = (p.get("thumbnail") or "").lstrip("/")
         if not thumb:
             continue
-        og[p["id"]] = {
+        override = seo.get(p["id"], {})
+        desc = (override.get("description") or "").strip() or meta_description(
+            p["name"], p["description"], p["price"]
+        )
+        entry: dict[str, str] = {
             "n": p["name"],
             "t": thumb,
-            "d": meta_description(p["name"], p["description"], p["price"]),
+            "d": desc,
         }
+        title = (override.get("title") or "").strip()
+        kw = (override.get("keywords") or "").strip()
+        if title:
+            entry["st"] = title
+        if kw:
+            entry["kw"] = kw
+        og[p["id"]] = entry
     return og
 
 
@@ -82,7 +107,8 @@ def write_js(og_map: dict[str, dict[str, str]]) -> None:
 
 def main() -> None:
     products = parse_products()
-    og_map = build_map(products)
+    seo = load_seo_overrides()
+    og_map = build_map(products, seo)
     write_js(og_map)
     size_kb = OUT_JS.stat().st_size / 1024
     print(f"✅ {OUT_JS} — {len(og_map)} sản phẩm, {size_kb:.1f} KB")

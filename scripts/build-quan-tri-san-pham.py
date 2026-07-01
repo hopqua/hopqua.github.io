@@ -42,6 +42,9 @@ class AdminProduct:
     gia_le_vnd: int | None
     gia_le_max_vnd: int | None
     gia_shopee_vnd: int | None
+    seo_title: str
+    seo_description: str
+    seo_keywords: str
     thumbnail: str
     images: list[str]
     con_hang: bool
@@ -164,6 +167,18 @@ def parse_gia_le_range(desc: str, price_label: str) -> tuple[int | None, int | N
     return single, None
 
 
+def load_seo_overrides() -> dict[str, dict[str, str]]:
+    path = ROOT / "data" / "products-seo.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    items = data.get("items") if isinstance(data, dict) else {}
+    return {str(k): v for k, v in (items or {}).items() if isinstance(v, dict)}
+
+
 def parse_gia_le_from_desc(desc: str, price_label: str) -> int | None:
     m = re.search(r"Giá lẻ \(1[–-]10 cái\):\s*([\d.]+)\s*đ", desc, re.I)
     if m:
@@ -191,6 +206,7 @@ def collect_products() -> list[AdminProduct]:
     thumbs = parse_thumbnail_map()
     stock = load_stock()
     gia_le, gia_shopee, gia_mins = load_gia_le()
+    seo_map = load_seo_overrides()
     text = PRODUCTS_JS.read_text(encoding="utf-8")
     rows: list[AdminProduct] = []
 
@@ -231,6 +247,7 @@ def collect_products() -> list[AdminProduct]:
                     price_max = slug_hi
         shopee = gia_shopee.get(sku)
         in_stock = stock.get(sku, True)
+        seo = seo_map.get(sku, {})
 
         rows.append(
             AdminProduct(
@@ -241,6 +258,9 @@ def collect_products() -> list[AdminProduct]:
                 gia_le_vnd=price_min,
                 gia_le_max_vnd=price_max,
                 gia_shopee_vnd=shopee,
+                seo_title=(seo.get("title") or "").strip(),
+                seo_description=(seo.get("description") or "").strip(),
+                seo_keywords=(seo.get("keywords") or "").strip(),
                 thumbnail=thumb,
                 images=imgs,
                 con_hang=in_stock,
@@ -305,6 +325,9 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
                 "gia_le_vnd": r.gia_le_vnd,
                 "gia_le_max_vnd": r.gia_le_max_vnd,
                 "gia_shopee_vnd": r.gia_shopee_vnd,
+                "seo_title": r.seo_title,
+                "seo_description": r.seo_description,
+                "seo_keywords": r.seo_keywords,
                 "thumbnail": r.thumbnail,
                 "images": r.images,
                 "con_hang": r.con_hang,
@@ -330,6 +353,9 @@ def write_json_csv(rows: list[AdminProduct]) -> None:
                 "gia_le_vnd",
                 "gia_le_max_vnd",
                 "gia_shopee_vnd",
+                "seo_title",
+                "seo_description",
+                "seo_keywords",
                 "thumbnail",
                 "images",
                 "con_hang",
@@ -345,6 +371,9 @@ def write_json_csv(rows: list[AdminProduct]) -> None:
                     r.gia_le_vnd or "",
                     r.gia_le_max_vnd or "",
                     r.gia_shopee_vnd or "",
+                    r.seo_title,
+                    r.seo_description,
+                    r.seo_keywords,
                     r.thumbnail,
                     "|".join(r.images),
                     "true" if r.con_hang else "false",
@@ -354,68 +383,31 @@ def write_json_csv(rows: list[AdminProduct]) -> None:
 
 
 def write_html(rows: list[AdminProduct]) -> None:
-    """HTML shell — dữ liệu SP nạp từ quan-tri-san-pham.json (assets/quan-tri-admin.js)."""
+    """Chỉ cập nhật số liệu trên HTML shell — không ghi đè layout (assets/quan-tri-admin.js)."""
     count = len(rows)
     in_stock = sum(1 for r in rows if r.con_hang)
-
-    doc = f"""<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản trị sản phẩm — hopqua.io.vn</title>
-  <link rel="stylesheet" href="assets/quan-tri-admin.css">
-</head>
-<body class="server-off">
-  <h1>Quản trị sản phẩm — hopqua.io.vn</h1>
-  <div class="meta">
-    <p>Cập nhật: <strong id="meta-date">{date.today().isoformat()}</strong>
-      · <span class="stat" id="stat-count">{count} sản phẩm</span>
-      <span class="stat" id="stat-stock">{in_stock} hiện web</span>
-      <span class="stat" id="stat-hidden">{count - in_stock} ẩn</span>
-      <span class="stat stat-muted" id="stat-changed" style="display:none">0 đã sửa</span></p>
-    <p>Sửa <strong>tên, giá, ảnh, mô tả, hiện/ẩn web</strong> → <strong>Lưu &amp; Apply</strong> cập nhật
-      <code>website/source/</code> (products.js, ảnh, giá).</p>
-    <p class="hint" id="server-hint">Đang kiểm tra server local…</p>
-    <div class="toolbar">
-      <input type="search" id="search" placeholder="Tìm tên hoặc SKU…" autocomplete="off">
-      <label><input type="checkbox" id="only-stock"> Chỉ hiện web</label>
-      <label><input type="checkbox" id="only-changed"> Chỉ đã sửa</label>
-      <button type="button" class="btn btn-secondary" id="btn-calc-shopee">Tính Shopee (tất cả)</button>
-      <button type="button" class="btn btn-secondary" id="btn-calc-empty">Tính Shopee (còn trống)</button>
-      <button type="button" class="btn" id="btn-save">Lưu file</button>
-      <button type="button" class="btn server-only" id="btn-apply">Lưu &amp; Apply</button>
-      <a class="btn btn-secondary server-only" id="btn-preview-web" href="#" target="_blank" rel="noopener" style="display:none">Xem web local</a>
-      <button type="button" class="btn btn-secondary" id="btn-refresh">Tải lại</button>
-      <button type="button" class="btn btn-secondary" id="btn-import">Nạp JSON…</button>
-      <input type="file" id="import-file" accept=".json,application/json" hidden>
-    </div>
-    <div id="status" class="status"></div>
-  </div>
-  <div id="loading">Đang tải sản phẩm…</div>
-  <div class="table-wrap">
-    <table id="admin-table" style="display:none">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Ảnh</th>
-          <th>Hiện</th>
-          <th>Tên SP</th>
-          <th>Giá từ</th>
-          <th>đến</th>
-          <th>Shopee</th>
-          <th>Thumbnail</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="tbody"></tbody>
-    </table>
-  </div>
-  <script src="assets/quan-tri-admin.js"></script>
-</body>
-</html>"""
-    OUT_HTML.write_text(doc, encoding="utf-8")
-
+    if not OUT_HTML.is_file():
+        return
+    text = OUT_HTML.read_text(encoding="utf-8")
+    text = re.sub(
+        r'(<span class="stat" id="stat-count">)[^<]*(</span>)',
+        rf"\g<1>{count} sản phẩm\g<2>",
+        text,
+        count=1,
+    )
+    text = re.sub(
+        r'(<span class="stat" id="stat-stock">)[^<]*(</span>)',
+        rf"\g<1>{in_stock} hiện web\g<2>",
+        text,
+        count=1,
+    )
+    text = re.sub(
+        r'(<span class="stat" id="stat-hidden">)[^<]*(</span>)',
+        rf"\g<1>{count - in_stock} ẩn\g<2>",
+        text,
+        count=1,
+    )
+    OUT_HTML.write_text(text, encoding="utf-8")
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)

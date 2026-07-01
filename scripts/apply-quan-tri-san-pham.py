@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_JS = ROOT / "js" / "products.js"
 MANIFEST_JS = ROOT / "js" / "product-images-manifest.js"
 STOCK_JSON = ROOT / "data" / "stock-status.json"
+SEO_JSON = ROOT / "data" / "products-seo.json"
 
 FEE_PLATFORM = 0.30
 FEE_RETURN = 0.04
@@ -149,6 +150,11 @@ def load_csv(path: Path) -> list[dict]:
                     "thumbnail": (row.get("thumbnail") or "").strip(),
                     "images": images,
                     "con_hang": str(row.get("con_hang") or "true").lower() in ("1", "true", "yes", "có", "co"),
+                    "seo_title": (row.get("seo_title") or "").strip(),
+                    "seo_description": (row.get("seo_description") or "").strip(),
+                    "seo_keywords": (row.get("seo_keywords") or "").strip(),
+                    "xoa": str(row.get("xoa") or "").lower() in ("1", "true", "yes"),
+                    "folder": (row.get("folder") or "").strip(),
                 }
             )
     return rows
@@ -186,14 +192,135 @@ def patch_manifest(manifest_text: str, sku: str, images: list[str]) -> str:
     return prefix + "\n" + block + ",\n" + manifest_text[insert_at:]
 
 
-def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[str]]:
+def remove_product_block(text: str, sku: str) -> str:
+    m = re.search(rf"\n(\s*)\{{[^\{{]*?id:\s*'{re.escape(sku)}'", text)
+    if not m:
+        return text
+    start = m.start()
+    idx = text.find("{", start)
+    depth = 0
+    for i in range(idx, len(text)):
+        ch = text[i]
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                end = i + 1
+                if end < len(text) and text[end] == ",":
+                    end += 1
+                return text[:start] + text[end:]
+    return text
+
+
+def remove_manifest_entry(manifest: str, sku: str) -> str:
+    pattern = rf"\n    '{re.escape(sku)}':\s*\[[\s\S]*?\],?"
+    return re.sub(pattern, "", manifest, count=1)
+
+
+def render_new_product_block(item: dict, price_label: str, desc: str) -> str:
+    sku = item["sku"]
+    folder = (item.get("folder") or sku).strip()
+    thumb = (item.get("thumbnail") or f"image/{folder}/{sku}-1.jpg").strip()
+    name = (item.get("ten") or sku.replace("-", " ")).strip()
+    return f"""    {{
+        id: '{_escape_js_str(sku)}',
+        name: '{_escape_js_str(name)}',
+        folder: '{_escape_js_str(folder)}',
+        thumbnail: '{_escape_js_str(thumb)}',
+        price: '{_escape_js_str(price_label)}',
+        description: '{_escape_js_str(desc)}',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    }}"""
+
+
+def append_product_block(text: str, block: str) -> str:
+    marker = "\n];\n\n// Hàm lấy sản phẩm theo ID"
+    insert_at = text.find(marker)
+    if insert_at == -1:
+        raise RuntimeError("Không tìm thấy kết thúc mảng products trong products.js")
+    chunk = ",\n    // Thêm từ quan-tri-san-pham\n" + block
+    return text[:insert_at] + chunk + text[insert_at:]
+
+
+def _write_seo_json(items: list[dict]) -> None:
+    seo_items: dict[str, dict[str, str]] = {}
+    for item in items:
+        if item.get("xoa"):
+            continue
+        sku = item["sku"]
+        title = (item.get("seo_title") or "").strip()
+        desc = (item.get("seo_description") or "").strip()
+        kw = (item.get("seo_keywords") or "").strip()
+        if title or desc or kw:
+            seo_items[sku] = {
+                k: v
+                for k, v in (
+                    ("title", title),
+                    ("description", desc),
+                    ("keywords", kw),
+                )
+                if v
+            }
+    payload = {
+        "updated": __import__("datetime").date.today().isoformat(),
+        "note": "Sinh từ quan-tri-san-pham.json — override SEO trang SP",
+        "items": seo_items,
+    }
+    SEO_JSON.parent.mkdir(parents=True, exist_ok=True)
+    SEO_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[str], int, int]:
     text = PRODUCTS_JS.read_text(encoding="utf-8")
     manifest = MANIFEST_JS.read_text(encoding="utf-8") if MANIFEST_JS.is_file() else ""
     stock: dict[str, bool] = {}
     updated = 0
+    added = 0
+    removed = 0
     missing: list[str] = []
 
-    for item in items:
+    active_items = [i for i in items if not i.get("xoa")]
+    delete_skus = [i["sku"] for i in items if i.get("xoa")]
+
+    for sku in delete_skus:
+        if re.search(rf"id:\s*'{re.escape(sku)}'", text):
+            text = remove_product_block(text, sku)
+            if manifest:
+                manifest = remove_manifest_entry(manifest, sku)
+            removed += 1
+
+    for item in active_items:
+        sku = item["sku"]
+        if re.search(rf"id:\s*'{re.escape(sku)}'", text):
+            continue
+        price_min, price_max = normalize_price_fields(item)
+        shopee = _as_int(item.get("gia_shopee_vnd"))
+        price_label = build_price_label(price_min, price_max)
+        intro = item.get("mo_ta_ngan") or ""
+        chi_tiet = item.get("mo_ta_chi_tiet") or ""
+        desc = build_description(intro, chi_tiet, price_min, price_max, shopee)
+        if not price_label:
+            price_label = "Liên hệ báo giá"
+        if not desc.strip():
+            desc = intro or f"Mẫu hộp bánh trung thu {item.get('ten') or sku}."
+        block = render_new_product_block(item, price_label, desc)
+        text = append_product_block(text, block)
+        thumb = (item.get("thumbnail") or "").strip()
+        images = item.get("images") or []
+        if isinstance(images, str):
+            images = [p.strip() for p in images.replace("|", "\n").splitlines() if p.strip()]
+        if images and manifest:
+            if thumb and thumb in images:
+                images = [thumb] + [u for u in images if u != thumb]
+            elif thumb:
+                images = [thumb] + images
+            manifest = patch_manifest(manifest, sku, images)
+        added += 1
+
+    for item in active_items:
         sku = item["sku"]
         if not re.search(rf"id:\s*'{re.escape(sku)}'", text):
             missing.append(sku)
@@ -240,7 +367,8 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
         stock[sku] = bool(item.get("con_hang", True))
         updated += 1
 
-    if not dry_run and updated:
+    changed = updated + added + removed
+    if not dry_run and changed:
         PRODUCTS_JS.write_text(text, encoding="utf-8")
         if manifest and MANIFEST_JS.is_file():
             MANIFEST_JS.write_text(manifest, encoding="utf-8")
@@ -249,9 +377,10 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
             STOCK_JSON.write_text(json.dumps(stock, ensure_ascii=False, indent=2), encoding="utf-8")
             out_stock = _hop_qua_root() / "shopee-upload-2026" / "stock-status.json"
             out_stock.write_text(json.dumps(stock, ensure_ascii=False, indent=2), encoding="utf-8")
-        _write_gia_le_from_items(items)
+        _write_gia_le_from_items(active_items)
+        _write_seo_json(active_items)
 
-    return updated, missing
+    return updated, missing, added, removed
 
 
 def _write_gia_le_from_items(items: list[dict]) -> None:
@@ -301,13 +430,23 @@ def main() -> None:
     if not items:
         raise SystemExit("Không có sản phẩm trong file")
 
-    updated, missing = apply_products(items, dry_run=args.dry_run)
-    print(f"{'[dry-run] ' if args.dry_run else ''}✅ Cập nhật {updated} SP từ {source.name}")
+    updated, missing, added, removed = apply_products(items, dry_run=args.dry_run)
+    parts = [f"{'[dry-run] ' if args.dry_run else ''}✅ Cập nhật {updated} SP"]
+    if added:
+        parts.append(f"thêm {added}")
+    if removed:
+        parts.append(f"xóa {removed}")
+    print(" · ".join(parts) + f" từ {source.name}")
     if missing:
-        print(f"⚠️  {len(missing)} SKU không có trong products.js: {', '.join(missing[:6])}{'…' if len(missing) > 6 else ''}")
+        print(f"⚠️  {len(missing)} SKU không patch được: {', '.join(missing[:6])}{'…' if len(missing) > 6 else ''}")
 
-    if not args.dry_run and updated:
-        for script in ("build-products-catalog.py", "build-quan-tri-san-pham.py"):
+    if not args.dry_run and (updated + added + removed):
+        for script in (
+            "build-products-catalog.py",
+            "build-product-og-map.py",
+            "generate-sitemap.py",
+            "build-quan-tri-san-pham.py",
+        ):
             path = ROOT / "scripts" / script
             if path.is_file():
                 subprocess.run([sys.executable, str(path)], check=False)

@@ -753,6 +753,25 @@ const productImageManifest = {
             "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-3.jpg",
             "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-4.jpg"
     ],
+    'bach-uyen-4-banh-cuc-sang-2026': [
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-1.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-2.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-3.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-4.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-5.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-6.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-7.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-video-1.mp4",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-8.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-9.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-10.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-11.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-12.jpg",
+            "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-13.jpg"
+    ],
+    'bach-uyen-cuc-sang-4-banh': [
+            "image/bach-uyen-cuc-sang-4-banh/bach-uyen-cuc-sang-4-banh-1.jpg"
+    ],
 };
 
 function getManifestImages(productId) {

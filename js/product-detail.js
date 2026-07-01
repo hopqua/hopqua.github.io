@@ -182,13 +182,17 @@ function setupMobileBuyBar(product) {
 }
 
 function updateMetaTags(product) {
-    const metaDesc = buildProductMetaDescription(product);
+    const og = window.PRODUCT_OG_MAP && window.PRODUCT_OG_MAP[product.id];
+    const metaDesc = (og && og.d) || buildProductMetaDescription(product);
     const canonicalProductUrl = getCanonicalProductUrl(product);
     const canonicalImageUrl = getAbsoluteUrl(product.thumbnail);
-    const pageTitle = `${product.name} | Hộp Bánh Trung Thu Vân Thắng`;
+    const pageTitle = (og && og.st)
+        ? `${og.st} | Hộp Bánh Trung Thu Vân Thắng`
+        : `${product.name} | Hộp Bánh Trung Thu Vân Thắng`;
 
     document.title = pageTitle;
     setMetaContent('#meta-description', metaDesc);
+    if (og && og.kw) setMetaContent('meta[name="keywords"]', og.kw);
     setMetaContent('meta[property="og:title"]', pageTitle);
     setMetaContent('meta[property="og:description"]', metaDesc);
     setMetaContent('meta[property="og:image"]', canonicalImageUrl);

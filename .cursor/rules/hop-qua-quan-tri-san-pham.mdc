@@ -29,20 +29,18 @@ Mở HTML: chạy `./chay-quan-tri.sh` → `http://127.0.0.1:8876/quan-tri-san-p
 | `images` | `product-images-manifest.js` (gallery) |
 | `mo_ta_ngan` | đầu `description` |
 | `mo_ta_chi_tiet` | phần còn lại `description` |
+| `seo_title` / `seo_description` / `seo_keywords` | `data/products-seo.json` + OG |
+| `xoa: true` | Xóa SP khỏi `products.js` (Apply) |
+| Nút **+ Thêm SP** | Thêm SP mới vào web (Apply) |
+| Thả ảnh trong **Chi tiết ▾** | `image/{folder}/` — tự đặt tên, nén, `-thumb.jpg` |
+| **Push live** / **Apply + Push** | git commit + push → hopqua.io.vn (~1–3 phút build) |
 | `con_hang` | `data/stock-status.json` (`false` = ẩn catalog) |
 
 ## Quy trình anh → em
 
-1. Chạy `./chay-quan-tri.sh` trong `shopee-upload-2026/`, sửa tên / giá / ảnh / mô tả / tích «Hiện web»
-2. **Lưu & Apply** (server local) hoặc **Lưu file** → copy JSON vào `shopee-upload-2026/`
-3. Gửi em (hoặc agent chạy):
-
-```bash
-cd ~/huong-dan/du-an/vo-anh/hop-qua/website/source
-python3 scripts/apply-quan-tri-san-pham.py
-python3 scripts/build-products-catalog.py   # tự chạy nếu apply xong
-git push origin main   # deploy hopqua.io.vn
-```
+1. Chạy `./chay-quan-tri.sh`, sửa SP → mở **Chi tiết ▾** → kéo thả ảnh
+2. **Lưu & Apply** → F5 web local (`8877`)
+3. **Push live** hoặc **Apply + Push** (một nút, không cần terminal)
 
 `--dry-run` chỉ in số SP sẽ cập nhật, không ghi file.
 

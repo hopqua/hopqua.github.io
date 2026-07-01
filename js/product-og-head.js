@@ -16,12 +16,13 @@
         if (el) el.setAttribute('content', value);
     }
 
-    var pageTitle = p.n + ' | Hộp Bánh Trung Thu Vân Thắng';
+    var pageTitle = ((p.st || p.n) + ' | Hộp Bánh Trung Thu Vân Thắng');
     var productUrl = site + '/product.html?id=' + encodeURIComponent(id);
     var imageUrl = site + '/' + String(p.t).replace(/^\//, '');
 
     document.title = pageTitle;
     setMeta('#meta-description', p.d);
+    if (p.kw) setMeta('meta[name="keywords"]', p.kw);
     setMeta('meta[property="og:title"]', pageTitle);
     setMeta('meta[property="og:description"]', p.d);
     setMeta('meta[property="og:image"]', imageUrl);

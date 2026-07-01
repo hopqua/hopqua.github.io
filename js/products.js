@@ -883,6 +883,30 @@ const products = [
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: 'bach-uyen-cuc-sang-4-banh',
+        name: 'Bạch Uyển cực sang 4 bánh',
+        folder: 'bach-uyen-cuc-sang-4-banh',
+        thumbnail: 'image/bach-uyen-cuc-sang-4-banh/bach-uyen-cuc-sang-4-banh-1.jpg',
+        price: 'Liên hệ báo giá',
+        description: 'Mẫu hộp bánh trung thu Bạch Uyển cực sang 4 bánh.',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: 'bach-uyen-4-banh-cuc-sang-2026',
+        name: 'Bạch Uyển 4 bánh cực sang 2026',
+        folder: 'bach-uyen-4-banh-cuc-sang-2026',
+        thumbnail: 'image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-1.jpg',
+        price: 'Từ 28.500đ đến 36.000đ',
+        description: 'Bạch uyển 4 bánh siêu đẹp cực sang\n\n•Giá lẻ (1–10 cái): 28.500đ – 36.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 49.000đ/cái (tính theo mức cao nhất)',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
     }
 ];
 
