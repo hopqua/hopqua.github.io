@@ -769,9 +769,6 @@ const productImageManifest = {
             "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-12.jpg",
             "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-13.jpg"
     ],
-    'bach-uyen-cuc-sang-4-banh': [
-            "image/bach-uyen-cuc-sang-4-banh/bach-uyen-cuc-sang-4-banh-1.jpg"
-    ],
 };
 
 function getManifestImages(productId) {

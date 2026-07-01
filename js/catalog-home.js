@@ -5,6 +5,47 @@ const CATALOG_PAGE_SIZE = 24;
 let catalogProducts = null;
 let catalogLoadPromise = null;
 
+function parsePostedFromFolder(folder) {
+    if (!folder) return '';
+    const m = String(folder).match(/^(\d{1,2})-(\d{1,2})-(\d{4})\//);
+    if (!m) return '';
+    return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
+}
+
+function catalogPostedAt(product) {
+    return product.postedAt || parsePostedFromFolder(product.folder) || '';
+}
+
+function isCatalogRecent(product) {
+    if (product.isNew) return true;
+    const posted = catalogPostedAt(product);
+    if (!posted) return false;
+    const d = new Date(`${posted}T12:00:00`);
+    if (Number.isNaN(d.getTime())) return false;
+    const today = new Date();
+    today.setHours(12, 0, 0, 0);
+    const diffDays = Math.floor((today - d) / (24 * 60 * 60 * 1000));
+    return diffDays >= 0 && diffDays <= 60;
+}
+
+function sortCatalogForHome(list) {
+    return list.slice().sort((a, b) => {
+        const aFav = !!a.thich;
+        const bFav = !!b.thich;
+        if (aFav !== bFav) return aFav ? -1 : 1;
+        if (aFav && bFav && (a.thuTu || 9999) !== (b.thuTu || 9999)) {
+            return (a.thuTu || 9999) - (b.thuTu || 9999);
+        }
+        const aNew = isCatalogRecent(a);
+        const bNew = isCatalogRecent(b);
+        if (aNew !== bNew) return aNew ? -1 : 1;
+        const ap = catalogPostedAt(a);
+        const bp = catalogPostedAt(b);
+        if (ap !== bp) return bp.localeCompare(ap);
+        return (a.name || a.id || '').localeCompare(b.name || b.id || '', 'vi');
+    });
+}
+
 function expandCatalogProduct(item) {
     if (!item) return item;
     return {
@@ -22,6 +63,10 @@ function expandCatalogProduct(item) {
         packWeightG: item.packWeightG,
         packSizeText: item.packSizeText,
         images: item.images,
+        thich: !!item.thich,
+        thuTu: item.thuTu,
+        postedAt: item.postedAt || '',
+        isNew: !!item.isNew,
     };
 }
 
@@ -39,7 +84,7 @@ function loadCatalogProducts() {
             return r.json();
         })
         .then((data) => {
-            catalogProducts = (data.products || []).map(expandCatalogProduct);
+            catalogProducts = sortCatalogForHome((data.products || []).map(expandCatalogProduct));
             return catalogProducts;
         })
         .catch((err) => {

@@ -885,17 +885,6 @@ const products = [
         videos: []
     },
     // Thêm từ quan-tri-san-pham
-    {
-        id: 'bach-uyen-cuc-sang-4-banh',
-        name: 'Bạch Uyển cực sang 4 bánh',
-        folder: 'bach-uyen-cuc-sang-4-banh',
-        thumbnail: 'image/bach-uyen-cuc-sang-4-banh/bach-uyen-cuc-sang-4-banh-1.jpg',
-        price: 'Liên hệ báo giá',
-        description: 'Mẫu hộp bánh trung thu Bạch Uyển cực sang 4 bánh.',
-        category: 'hộp bánh trung thu',
-        season: 'trung thu',
-        videos: []
-    },
     // Thêm từ quan-tri-san-pham
     {
         id: 'bach-uyen-4-banh-cuc-sang-2026',

@@ -168,11 +168,20 @@ function renderCapNhatProductCardHtml(product, options = {}) {
     const fetchP = options.priorityImage ? ' fetchpriority="high"' : '';
     const priceLabel = formatCatalogRetailLabel(product);
     const thumbStrip = renderCatalogThumbStripHtml(product);
+    const badges = [];
+    if (product.thich) badges.push('<span class="cap-nhat-badge cap-nhat-badge-featured">★ Ưu tiên</span>');
+    if (product.isNew || (typeof isRecentlyPosted === 'function' && isRecentlyPosted(product))) {
+        badges.push('<span class="cap-nhat-badge cap-nhat-badge-new">Mới</span>');
+    }
+    const badgeHtml = badges.length
+        ? `<div class="cap-nhat-badges">${badges.join('')}</div>`
+        : '';
 
     return `
-        <article class="cap-nhat-card" role="listitem">
+        <article class="cap-nhat-card${product.thich ? ' is-featured' : ''}" role="listitem">
             <a href="${detail}" class="cap-nhat-card-link">
                 <figure class="cap-nhat-card-img">
+                    ${badgeHtml}
                     <img src="${escapeCatalogHtml(img)}" alt="${escapeCatalogHtml(title)}" loading="${loading}" decoding="async"${fetchP}
                          onerror="this.onerror=null;this.src='${escapeCatalogHtml(fallback)}';">
                 </figure>

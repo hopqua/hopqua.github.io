@@ -332,6 +332,9 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
                 "images": r.images,
                 "con_hang": r.con_hang,
                 "folder": r.folder,
+                "thich": getattr(r, "thich", False),
+                "ngay_dang": getattr(r, "ngay_dang", ""),
+                "thu_tu": getattr(r, "thu_tu", None),
             }
             for r in rows
         ],

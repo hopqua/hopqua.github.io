@@ -155,6 +155,9 @@ def load_csv(path: Path) -> list[dict]:
                     "seo_keywords": (row.get("seo_keywords") or "").strip(),
                     "xoa": str(row.get("xoa") or "").lower() in ("1", "true", "yes"),
                     "folder": (row.get("folder") or "").strip(),
+                    "thich": str(row.get("thich") or "").lower() in ("1", "true", "yes", "có", "co"),
+                    "ngay_dang": (row.get("ngay_dang") or "").strip()[:10],
+                    "thu_tu": int(row["thu_tu"]) if str(row.get("thu_tu") or "").strip().isdigit() else None,
                 }
             )
     return rows
@@ -223,13 +226,15 @@ def render_new_product_block(item: dict, price_label: str, desc: str) -> str:
     folder = (item.get("folder") or sku).strip()
     thumb = (item.get("thumbnail") or f"image/{folder}/{sku}-1.jpg").strip()
     name = (item.get("ten") or sku.replace("-", " ")).strip()
+    ngay = (item.get("ngay_dang") or "").strip()[:10]
+    posted_line = f"\n        postedAt: '{_escape_js_str(ngay)}'," if ngay else ""
     return f"""    {{
         id: '{_escape_js_str(sku)}',
         name: '{_escape_js_str(name)}',
         folder: '{_escape_js_str(folder)}',
         thumbnail: '{_escape_js_str(thumb)}',
         price: '{_escape_js_str(price_label)}',
-        description: '{_escape_js_str(desc)}',
+        description: '{_escape_js_str(desc)}',{posted_line}
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -364,6 +369,12 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
             if patched:
                 text = patched
 
+        ngay = (item.get("ngay_dang") or "").strip()[:10]
+        if ngay:
+            patched = patch_field(text, sku, "postedAt", ngay)
+            if patched:
+                text = patched
+
         stock[sku] = bool(item.get("con_hang", True))
         updated += 1
 
@@ -379,8 +390,42 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
             out_stock.write_text(json.dumps(stock, ensure_ascii=False, indent=2), encoding="utf-8")
         _write_gia_le_from_items(active_items)
         _write_seo_json(active_items)
+        _write_home_priority(items)
 
     return updated, missing, added, removed
+
+
+def _write_home_priority(items: list[dict]) -> None:
+    """Snapshot thích / thứ tự cho trang chủ."""
+    active = [i for i in items if not i.get("xoa")]
+    order: list[str] = []
+    meta_items: dict[str, dict] = {}
+    for item in active:
+        sku = item["sku"]
+        order.append(sku)
+        entry: dict = {}
+        if item.get("thich"):
+            entry["thich"] = True
+            try:
+                entry["thuTu"] = int(item.get("thu_tu") or 9999)
+            except (TypeError, ValueError):
+                entry["thuTu"] = 9999
+        ngay = (item.get("ngay_dang") or "").strip()[:10]
+        if ngay:
+            entry["postedAt"] = ngay
+        if item.get("moi"):
+            entry["isNew"] = True
+        meta_items[sku] = entry
+    payload = {
+        "version": 1,
+        "updated": __import__("datetime").date.today().isoformat(),
+        "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
+        "order": order,
+        "items": meta_items,
+    }
+    path = ROOT / "data" / "products-home-priority.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def _write_gia_le_from_items(items: list[dict]) -> None:

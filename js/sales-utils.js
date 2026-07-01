@@ -263,6 +263,7 @@ function isRecentlyPosted(product, withinDays = 60) {
 
 function getProductBadges(product) {
     const badges = [];
+    if (product.thich) badges.push({ label: 'Ưu tiên', className: 'badge-featured' });
     if (isRecentlyPosted(product)) badges.push({ label: 'Mới', className: 'badge-new' });
     const text = `${product.name} ${product.id}`.toLowerCase();
     if (/4\s*banh|4-banh/.test(text)) badges.push({ label: '4 bánh', className: 'badge-4' });

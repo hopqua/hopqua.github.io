@@ -32,6 +32,8 @@ def _hop_qua_root() -> Path:
 
 
 GIA_LE_JSON = _hop_qua_root() / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+ADMIN_JSON = _hop_qua_root() / "shopee-upload-2026" / "quan-tri-san-pham.json"
+HOME_PRIORITY_JSON = ROOT / "data" / "products-home-priority.json"
 
 PHU_KIEN_BANH_IDS = {
     "khay-trong-sz-9-10-11",
@@ -292,6 +294,123 @@ def build_catalog_item(product: dict, gia_le: dict[str, int]) -> dict:
     return item
 
 
+def enrich_catalog_item(item: dict, meta: dict) -> dict:
+    sku = item["id"]
+    home = (meta.get("items") or {}).get(sku) or {}
+    posted = home.get("postedAt") or parse_posted_from_folder(item.get("folder") or "")
+    if home.get("thich"):
+        item["thich"] = True
+        item["thuTu"] = int(home.get("thuTu") or 9999)
+    if posted:
+        item["postedAt"] = posted
+    if home.get("isNew") or _is_recent_posted(posted):
+        item["isNew"] = True
+    return item
+
+
+def write_home_priority_snapshot(meta: dict) -> None:
+    payload = {
+        "version": 1,
+        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+        "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
+        "order": meta.get("order") or [],
+        "items": meta.get("items") or {},
+    }
+    HOME_PRIORITY_JSON.parent.mkdir(parents=True, exist_ok=True)
+    HOME_PRIORITY_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def parse_posted_from_folder(folder: str) -> str | None:
+    if not folder:
+        return None
+    m = re.match(r"^(\d{1,2})-(\d{1,2})-(\d{4})/", folder.replace("\\", "/"))
+    if not m:
+        return None
+    return f"{m.group(3)}-{m.group(2).zfill(2)}-{m.group(1).zfill(2)}"
+
+
+def _posted_sort_key(iso: str | None) -> int:
+    if not iso or len(iso) < 10:
+        return 0
+    try:
+        return -int(iso.replace("-", ""))
+    except ValueError:
+        return 0
+
+
+def _is_recent_posted(iso: str | None, within_days: int = 60) -> bool:
+    if not iso or len(iso) < 10:
+        return False
+    try:
+        posted = datetime.strptime(iso[:10], "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return False
+    today = datetime.now(timezone.utc).replace(hour=12, minute=0, second=0, microsecond=0)
+    diff = (today - posted).days
+    return 0 <= diff <= within_days
+
+
+def load_admin_home_meta() -> dict:
+    """Thích / ngày đăng / thứ tự từ quan-tri-san-pham.json."""
+    if not ADMIN_JSON.is_file():
+        return {"order": [], "items": {}}
+    try:
+        data = json.loads(ADMIN_JSON.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {"order": [], "items": {}}
+    products = data.get("products") if isinstance(data, dict) else None
+    if not isinstance(products, list):
+        return {"order": [], "items": {}}
+    order: list[str] = []
+    items: dict[str, dict] = {}
+    for p in products:
+        if not isinstance(p, dict):
+            continue
+        sku = (p.get("sku") or "").strip()
+        if not sku or p.get("xoa"):
+            continue
+        order.append(sku)
+        entry: dict = {}
+        if p.get("thich"):
+            entry["thich"] = True
+            try:
+                entry["thuTu"] = int(p.get("thu_tu") or 9999)
+            except (TypeError, ValueError):
+                entry["thuTu"] = 9999
+        ngay = (p.get("ngay_dang") or "").strip()
+        if ngay:
+            entry["postedAt"] = ngay[:10]
+        if p.get("moi"):
+            entry["isNew"] = True
+        items[sku] = entry
+    return {"order": order, "items": items}
+
+
+def home_display_rank(product: dict, meta: dict) -> tuple:
+    sku = product["id"]
+    item = (meta.get("items") or {}).get(sku) or {}
+    thich = bool(item.get("thich"))
+    thu_tu = int(item.get("thuTu") or 9999)
+    posted = item.get("postedAt") or parse_posted_from_folder(product.get("folder") or "")
+    is_new = bool(item.get("isNew")) or _is_recent_posted(posted)
+    if thich:
+        tier = 0
+    elif is_new:
+        tier = 1
+    else:
+        tier = 2
+    order = meta.get("order") or []
+    try:
+        admin_idx = order.index(sku)
+    except ValueError:
+        admin_idx = 9999
+    return (tier, thu_tu if thich else admin_idx, _posted_sort_key(posted), sku)
+
+
+def sort_products_for_home(products: list[dict], meta: dict) -> list[dict]:
+    return sorted(products, key=lambda p: home_display_rank(p, meta))
+
+
 def load_out_of_stock_ids() -> set[str]:
     if not STOCK_JSON.is_file():
         return set()
@@ -302,10 +421,13 @@ def load_out_of_stock_ids() -> set[str]:
 def main() -> None:
     hidden = load_out_of_stock_ids()
     gia_le = load_gia_le_prices()
+    home_meta = load_admin_home_meta()
     products = parse_products()
     if hidden:
         products = [p for p in products if p["id"] not in hidden]
-    items = [build_catalog_item(p, gia_le) for p in products]
+    products = sort_products_for_home(products, home_meta)
+    items = [enrich_catalog_item(build_catalog_item(p, gia_le), home_meta) for p in products]
+    write_home_priority_snapshot(home_meta)
     payload = {
         "version": 1,
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
