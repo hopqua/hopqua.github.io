@@ -40,6 +40,7 @@ class AdminProduct:
     mo_ta_ngan: str
     mo_ta_chi_tiet: str
     gia_le_vnd: int | None
+    gia_le_max_vnd: int | None
     gia_shopee_vnd: int | None
     thumbnail: str
     images: list[str]
@@ -114,17 +115,53 @@ def load_stock() -> dict[str, bool]:
     return {}
 
 
-def load_gia_le() -> tuple[dict[str, int], dict[str, int]]:
+def load_gia_le() -> tuple[dict[str, int], dict[str, int], dict[str, int]]:
     path = OUT_DIR / "gia-le-cap-nhat.json"
     if not path.is_file():
-        return {}, {}
+        return {}, {}, {}
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
-        return {}, {}
+        return {}, {}, {}
     prices = {str(k): int(v) for k, v in (data.get("prices") or {}).items() if v}
     shopee = {str(k): int(v) for k, v in (data.get("shopee_prices") or {}).items() if v}
-    return prices, shopee
+    mins = {str(k): int(v) for k, v in (data.get("price_mins") or {}).items() if v}
+    return prices, shopee, mins
+
+
+def _parse_vnd_num(s: str) -> int | None:
+    if not s:
+        return None
+    n = int(s.replace(".", ""))
+    return n if n > 0 else None
+
+
+def parse_gia_le_range(desc: str, price_label: str) -> tuple[int | None, int | None]:
+    """Đọc khoảng giá từ price label hoặc bullet mô tả."""
+    m = re.search(
+        r"Giá lẻ \(1[–-]10 cái\):\s*([\d.]+)\s*đ\s*[–-]\s*([\d.]+)\s*đ",
+        desc,
+        re.I,
+    )
+    if m:
+        lo = _parse_vnd_num(m.group(1))
+        hi = _parse_vnd_num(m.group(2))
+        if lo and hi and hi > lo:
+            return lo, hi
+
+    m = re.search(
+        r"Từ\s+([\d.]+)\s*đ\s*(?:đến|–|-)\s*([\d.]+)\s*đ",
+        price_label,
+        re.I,
+    )
+    if m:
+        lo = _parse_vnd_num(m.group(1))
+        hi = _parse_vnd_num(m.group(2))
+        if lo and hi and hi > lo:
+            return lo, hi
+
+    single = parse_gia_le_from_desc(desc, price_label)
+    return single, None
 
 
 def parse_gia_le_from_desc(desc: str, price_label: str) -> int | None:
@@ -137,11 +174,23 @@ def parse_gia_le_from_desc(desc: str, price_label: str) -> int | None:
     return None
 
 
+def infer_range_from_slug(sku: str, name: str = "") -> tuple[int | None, int | None]:
+    """Gợi ý khoảng từ SKU/tên, vd. phu-quy-29-35k → 29k–35k."""
+    text = f"{sku} {name}".lower()
+    m = re.search(r"(\d{1,3})\s*[-–]\s*(\d{1,3})\s*k\b", text)
+    if m:
+        lo = int(m.group(1)) * 1000
+        hi = int(m.group(2)) * 1000
+        if hi > lo:
+            return lo, hi
+    return None, None
+
+
 def collect_products() -> list[AdminProduct]:
     manifest = parse_manifest()
     thumbs = parse_thumbnail_map()
     stock = load_stock()
-    gia_le, gia_shopee = load_gia_le()
+    gia_le, gia_shopee, gia_mins = load_gia_le()
     text = PRODUCTS_JS.read_text(encoding="utf-8")
     rows: list[AdminProduct] = []
 
@@ -162,7 +211,24 @@ def collect_products() -> list[AdminProduct]:
         elif not thumb and imgs:
             thumb = imgs[0]
 
-        direct = gia_le.get(sku) or parse_gia_le_from_desc(desc, price_label)
+        price_min, price_max = parse_gia_le_range(desc, price_label)
+        if sku in gia_mins:
+            price_min = gia_mins[sku]
+        listing = gia_le.get(sku)
+        if listing:
+            if price_min and listing > price_min:
+                price_max = price_max or listing
+            elif not price_min:
+                price_min = listing
+        if not price_max:
+            slug_lo, slug_hi = infer_range_from_slug(sku, name)
+            if slug_lo and slug_hi and slug_hi > slug_lo:
+                if not price_min or price_min >= slug_hi:
+                    price_min, price_max = slug_lo, slug_hi
+                elif price_min <= slug_lo:
+                    price_min, price_max = slug_lo, slug_hi
+                else:
+                    price_max = slug_hi
         shopee = gia_shopee.get(sku)
         in_stock = stock.get(sku, True)
 
@@ -172,7 +238,8 @@ def collect_products() -> list[AdminProduct]:
                 ten=name,
                 mo_ta_ngan=intro,
                 mo_ta_chi_tiet=chi_tiet,
-                gia_le_vnd=direct,
+                gia_le_vnd=price_min,
+                gia_le_max_vnd=price_max,
                 gia_shopee_vnd=shopee,
                 thumbnail=thumb,
                 images=imgs,
@@ -236,6 +303,7 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
                 "mo_ta_ngan": r.mo_ta_ngan,
                 "mo_ta_chi_tiet": r.mo_ta_chi_tiet,
                 "gia_le_vnd": r.gia_le_vnd,
+                "gia_le_max_vnd": r.gia_le_max_vnd,
                 "gia_shopee_vnd": r.gia_shopee_vnd,
                 "thumbnail": r.thumbnail,
                 "images": r.images,
@@ -260,6 +328,7 @@ def write_json_csv(rows: list[AdminProduct]) -> None:
                 "ten",
                 "mo_ta_ngan",
                 "gia_le_vnd",
+                "gia_le_max_vnd",
                 "gia_shopee_vnd",
                 "thumbnail",
                 "images",
@@ -274,6 +343,7 @@ def write_json_csv(rows: list[AdminProduct]) -> None:
                     r.ten,
                     r.mo_ta_ngan,
                     r.gia_le_vnd or "",
+                    r.gia_le_max_vnd or "",
                     r.gia_shopee_vnd or "",
                     r.thumbnail,
                     "|".join(r.images),
@@ -315,6 +385,7 @@ def write_html(rows: list[AdminProduct]) -> None:
       <button type="button" class="btn btn-secondary" id="btn-calc-empty">Tính Shopee (còn trống)</button>
       <button type="button" class="btn" id="btn-save">Lưu file</button>
       <button type="button" class="btn server-only" id="btn-apply">Lưu &amp; Apply</button>
+      <a class="btn btn-secondary server-only" id="btn-preview-web" href="#" target="_blank" rel="noopener" style="display:none">Xem web local</a>
       <button type="button" class="btn btn-secondary" id="btn-refresh">Tải lại</button>
       <button type="button" class="btn btn-secondary" id="btn-import">Nạp JSON…</button>
       <input type="file" id="import-file" accept=".json,application/json" hidden>
@@ -330,7 +401,8 @@ def write_html(rows: list[AdminProduct]) -> None:
           <th>Ảnh</th>
           <th>Hiện</th>
           <th>Tên SP</th>
-          <th>Giá lẻ</th>
+          <th>Giá từ</th>
+          <th>đến</th>
           <th>Shopee</th>
           <th>Thumbnail</th>
           <th></th>

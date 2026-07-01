@@ -65,19 +65,39 @@ function formatCatalogRetailLabel(product) {
     const price = (product.price || '').trim();
     if (!price || /liên hệ/i.test(price)) return 'Liên hệ báo giá';
 
+    const fmtVnd = (n) => `${n.toLocaleString('vi-VN')}đ`;
+
+    // Khoảng: "Từ 9.500đ đến 14.000đ"
+    const rangeLabel = price.match(
+        /Từ\s+([\d.]+)\s*đ?\s*(?:đến|–|-)\s*([\d.]+)\s*đ/i
+    );
+    if (rangeLabel) {
+        const lo = parseInt(rangeLabel[1].replace(/\./g, ''), 10);
+        const hi = parseInt(rangeLabel[2].replace(/\./g, ''), 10);
+        if (lo > 0 && hi > lo) return `${fmtVnd(lo)} – ${fmtVnd(hi)}/cái`;
+    }
+
+    const desc = product.description || '';
+    const descRange = desc.match(
+        /Giá lẻ \(1[–-]10 cái\):\s*([\d.]+)\s*đ\s*[–-]\s*([\d.]+)\s*đ/i
+    );
+    if (descRange) {
+        const lo = parseInt(descRange[1].replace(/\./g, ''), 10);
+        const hi = parseInt(descRange[2].replace(/\./g, ''), 10);
+        if (lo > 0 && hi > lo) return `${fmtVnd(lo)} – ${fmtVnd(hi)}/cái`;
+    }
+
     // Chuẩn sau apply-gia-le: "Từ 35.000đ/cái · SL 1–10" — không parse "1" từ SL
     const singleMatch = price.match(/Từ\s+([\d.]+)\s*(?:đ)?(?:\s*\/cái)?/i);
     if (singleMatch) {
         const n = parseInt(singleMatch[1].replace(/\./g, ''), 10);
-        if (n > 0) return `Từ ${n.toLocaleString('vi-VN')}đ/cái`;
+        if (n > 0) return `Từ ${fmtVnd(n)}/cái`;
     }
 
-    // Giá lẻ trong mô tả (trang chi tiết / catalog cũ)
-    const desc = product.description || '';
     const descMatch = desc.match(/Giá lẻ \(1[–-]10 cái\):\s*([\d.]+)\s*đ/i);
     if (descMatch) {
         const n = parseInt(descMatch[1].replace(/\./g, ''), 10);
-        if (n > 0) return `Từ ${n.toLocaleString('vi-VN')}đ/cái`;
+        if (n > 0) return `Từ ${fmtVnd(n)}/cái`;
     }
 
     const numbers = (price.match(/\d[\d.]*/g) || [])
@@ -85,10 +105,14 @@ function formatCatalogRetailLabel(product) {
         .filter((n) => n > 0);
     if (!numbers.length) return price;
     let min = Math.min(...numbers);
+    let max = Math.max(...numbers);
     const text = `${product.id || ''} ${product.name || ''} ${price}`.toLowerCase();
-    if (min < 1000 && /k/.test(text)) min *= 1000;
-    const fmt = `${min.toLocaleString('vi-VN')}đ`;
-    return `Từ ${fmt}/cái`;
+    if (min < 1000 && /k/.test(text)) {
+        min *= 1000;
+        max *= 1000;
+    }
+    if (max > min) return `${fmtVnd(min)} – ${fmtVnd(max)}/cái`;
+    return `Từ ${fmtVnd(min)}/cái`;
 }
 
 function renderCapNhatVariantChipHtml(v) {

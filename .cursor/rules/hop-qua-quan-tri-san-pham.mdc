@@ -22,7 +22,8 @@ Mở HTML: chạy `./chay-quan-tri.sh` → `http://127.0.0.1:8876/quan-tri-san-p
 | Trường | Áp vào |
 |--------|--------|
 | `ten` | `products.js` → `name` |
-| `gia_le_vnd` | `price` + bullet «Giá lẻ» trong `description` |
+| `gia_le_vnd` | Giá lẻ **từ** (min) → `price` + bullet «Giá lẻ» |
+| `gia_le_max_vnd` | Giá **đến** (max) — trống = giá cố định |
 | `gia_shopee_vnd` | bullet «Giá Shopee» + `gia-le-cap-nhat.json` |
 | `thumbnail` | `products.js` → `thumbnail` |
 | `images` | `product-images-manifest.js` (gallery) |

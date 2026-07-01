@@ -46,6 +46,77 @@ def calc_shopee_ref(direct: int) -> int:
     return int(__import__("math").ceil(raw / ROUND_STEP) * ROUND_STEP)
 
 
+def _as_int(v) -> int | None:
+    if v is None or v == "":
+        return None
+    try:
+        n = int(v)
+        return n if n > 0 else None
+    except (TypeError, ValueError):
+        return None
+
+
+def normalize_price_fields(item: dict) -> tuple[int | None, int | None]:
+    """Trả về (min, max). gia_le_vnd = min (tương thích cũ)."""
+    price_min = _as_int(item.get("gia_le_min_vnd")) or _as_int(item.get("gia_le_vnd"))
+    price_max = _as_int(item.get("gia_le_max_vnd"))
+    if price_min and price_max and price_max <= price_min:
+        price_max = None
+    return price_min, price_max
+
+
+def build_price_label(price_min: int | None, price_max: int | None) -> str:
+    if price_min and price_max and price_max > price_min:
+        return f"Từ {fmt_vnd(price_min)} đến {fmt_vnd(price_max)}"
+    if price_max and price_max > 0:
+        return f"Từ {fmt_vnd(price_max)}/cái · SL 1–10"
+    if price_min and price_min > 0:
+        return f"Từ {fmt_vnd(price_min)}/cái · SL 1–10"
+    return ""
+
+
+def build_description(
+    intro: str,
+    chi_tiet: str,
+    price_min: int | None,
+    price_max: int | None,
+    shopee: int | None,
+) -> str:
+    parts: list[str] = []
+    if intro.strip():
+        parts.append(intro.strip())
+    if chi_tiet.strip():
+        if parts:
+            parts.append("")
+        parts.append(chi_tiet.strip())
+    desc = "\n".join(parts)
+    retail_base = price_max if price_max and price_max > (price_min or 0) else price_min
+    if not retail_base or retail_base <= 0:
+        return desc
+
+    sp = shopee or calc_shopee_ref(retail_base)
+    if price_min and price_max and price_max > price_min:
+        line_retail = (
+            f"•Giá lẻ (1–10 cái): {fmt_vnd(price_min)} – {fmt_vnd(price_max)}/cái "
+            f"— mua trực tiếp, không qua sàn TMĐT"
+        )
+    else:
+        line_retail = (
+            f"•Giá lẻ (1–10 cái): {fmt_vnd(retail_base)}/cái — mua trực tiếp, không qua sàn TMĐT"
+        )
+    line_shopee = f"•Giá tham khảo mua qua Shopee: {fmt_vnd(sp)}/cái (tính theo mức cao nhất)"
+
+    if re.search(r"Giá lẻ \(1[–-]10 cái\):", desc, re.I):
+        desc = re.sub(r"•?Giá lẻ \(1[–-]10 cái\):[^\n]*", line_retail, desc, count=1, flags=re.I)
+    else:
+        desc = desc.rstrip() + ("\n\n" if desc else "") + line_retail
+    if re.search(r"Giá tham khảo mua qua Shopee:", desc, re.I):
+        desc = re.sub(r"•?Giá tham khảo mua qua Shopee:[^\n]*", line_shopee, desc, count=1, flags=re.I)
+    else:
+        desc = desc.rstrip() + "\n" + line_shopee
+    return desc
+
+
 def load_json(path: Path) -> list[dict]:
     data = json.loads(path.read_text(encoding="utf-8"))
     products = data.get("products") if isinstance(data, dict) else data
@@ -63,7 +134,8 @@ def load_csv(path: Path) -> list[dict]:
                 continue
             images_raw = (row.get("images") or "").strip()
             images = [p.strip() for p in images_raw.replace("|", "\n").splitlines() if p.strip()]
-            gia_le = row.get("gia_le_vnd") or ""
+            gia_le = row.get("gia_le_vnd") or row.get("gia_le_min_vnd") or ""
+            gia_max = row.get("gia_le_max_vnd") or ""
             gia_sp = row.get("gia_shopee_vnd") or ""
             rows.append(
                 {
@@ -72,6 +144,7 @@ def load_csv(path: Path) -> list[dict]:
                     "mo_ta_ngan": (row.get("mo_ta_ngan") or "").strip(),
                     "mo_ta_chi_tiet": (row.get("mo_ta_chi_tiet") or "").strip(),
                     "gia_le_vnd": int(gia_le) if str(gia_le).strip().isdigit() else None,
+                    "gia_le_max_vnd": int(gia_max) if str(gia_max).strip().isdigit() else None,
                     "gia_shopee_vnd": int(gia_sp) if str(gia_sp).strip().isdigit() else None,
                     "thumbnail": (row.get("thumbnail") or "").strip(),
                     "images": images,
@@ -79,30 +152,6 @@ def load_csv(path: Path) -> list[dict]:
                 }
             )
     return rows
-
-
-def build_description(intro: str, chi_tiet: str, direct: int | None, shopee: int | None) -> str:
-    parts: list[str] = []
-    if intro.strip():
-        parts.append(intro.strip())
-    if chi_tiet.strip():
-        if parts:
-            parts.append("")
-        parts.append(chi_tiet.strip())
-    desc = "\n".join(parts)
-    if direct and direct > 0:
-        sp = shopee or calc_shopee_ref(direct)
-        line_retail = f"•Giá lẻ (1–10 cái): {fmt_vnd(direct)}/cái — mua trực tiếp, không qua sàn TMĐT"
-        line_shopee = f"•Giá tham khảo mua qua Shopee: {fmt_vnd(sp)}/cái (tính theo mức cao nhất)"
-        if re.search(r"Giá lẻ \(1[–-]10 cái\):", desc, re.I):
-            desc = re.sub(r"•?Giá lẻ \(1[–-]10 cái\):[^\n]*", line_retail, desc, count=1, flags=re.I)
-        else:
-            desc = desc.rstrip() + ("\n\n" if desc else "") + line_retail
-        if re.search(r"Giá tham khảo mua qua Shopee:", desc, re.I):
-            desc = re.sub(r"•?Giá tham khảo mua qua Shopee:[^\n]*", line_shopee, desc, count=1, flags=re.I)
-        else:
-            desc = desc.rstrip() + "\n" + line_shopee
-    return desc
 
 
 def _escape_js_str(s: str) -> str:
@@ -171,28 +220,18 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
                 images = [thumb] + images
             manifest = patch_manifest(manifest, sku, images)
 
-        direct = item.get("gia_le_vnd")
-        shopee = item.get("gia_shopee_vnd")
-        if direct:
-            try:
-                direct = int(direct)
-            except (TypeError, ValueError):
-                direct = None
-        if shopee:
-            try:
-                shopee = int(shopee)
-            except (TypeError, ValueError):
-                shopee = None
+        price_min, price_max = normalize_price_fields(item)
+        shopee = _as_int(item.get("gia_shopee_vnd"))
 
-        if direct and direct > 0:
-            price_label = f"Từ {fmt_vnd(direct)}/cái · SL 1–10"
+        price_label = build_price_label(price_min, price_max)
+        if price_label:
             patched = patch_field(text, sku, "price", price_label)
             if patched:
                 text = patched
 
         intro = item.get("mo_ta_ngan") or ""
         chi_tiet = item.get("mo_ta_chi_tiet") or ""
-        desc = build_description(intro, chi_tiet, direct, shopee)
+        desc = build_description(intro, chi_tiet, price_min, price_max, shopee)
         if desc:
             patched = patch_field(text, sku, "description", desc)
             if patched:
@@ -217,29 +256,28 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
 
 def _write_gia_le_from_items(items: list[dict]) -> None:
     prices: dict[str, int] = {}
+    price_mins: dict[str, int] = {}
     shopee: dict[str, int] = {}
     for item in items:
         sku = item["sku"]
-        d = item.get("gia_le_vnd")
-        s = item.get("gia_shopee_vnd")
-        if d:
-            try:
-                prices[sku] = int(d)
-            except (TypeError, ValueError):
-                pass
+        price_min, price_max = normalize_price_fields(item)
+        listing = price_max or price_min
+        s = _as_int(item.get("gia_shopee_vnd"))
+        if price_min:
+            price_mins[sku] = price_min
+        if listing:
+            prices[sku] = listing
         if s:
-            try:
-                shopee[sku] = int(s)
-            except (TypeError, ValueError):
-                pass
-        elif sku in prices:
-            shopee[sku] = calc_shopee_ref(prices[sku])
+            shopee[sku] = s
+        elif listing:
+            shopee[sku] = calc_shopee_ref(listing)
     if not prices:
         return
     payload = {
         "updated": __import__("datetime").date.today().isoformat(),
-        "note": "Sinh từ quan-tri-san-pham.json",
+        "note": "Sinh từ quan-tri-san-pham.json · prices=max (hoặc đơn), price_mins=min",
         "prices": prices,
+        "price_mins": price_mins,
         "shopee_prices": shopee,
     }
     GIA_LE_JSON.parent.mkdir(parents=True, exist_ok=True)
