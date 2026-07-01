@@ -17,8 +17,8 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
 
     productsToDisplay.forEach((product, localIndex) => {
         const globalIndex = globalStartIndex + localIndex;
-        const fullThumb = toRootAssetUrl(product.thumbnail);
-        const cardThumb = getThumbUrl(product.thumbnail);
+        const fullThumb = toRootAssetUrl(pickProductThumbnail(product));
+        const cardThumb = getThumbUrl(pickProductThumbnail(product));
         const isPriority = globalIndex < 2;
         const badges = getProductBadges(product);
         const zaloUrl = buildZaloUrl(product);
@@ -101,9 +101,11 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
 }
 
 function getProductThumbnailImages(product) {
+    const hero = pickProductThumbnail(product);
     const gallery = getProductGalleryImages(product.id);
     if (gallery.length >= 2) {
-        return gallery.slice(0, 3);
+        const list = hero && !gallery.includes(hero) ? [hero, ...gallery] : gallery.slice();
+        return list.slice(0, 3);
     }
-    return [product.thumbnail];
+    return hero ? [hero] : [];
 }

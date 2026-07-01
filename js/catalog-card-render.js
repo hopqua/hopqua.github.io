@@ -9,18 +9,33 @@ function escapeCatalogHtml(str) {
 
 function getCatalogThumbStripImages(product, max = 4) {
     const id = product.webId || product.id;
+    const hero = pickProductThumbnail(product);
     let gallery = [];
-    if (id && typeof getProductGalleryImages === 'function') {
+
+    if (product.images && product.images.length >= 2) {
+        gallery = product.images.slice();
+    } else if (id && typeof getProductGalleryImages === 'function') {
         gallery = getProductGalleryImages(id) || [];
     }
-    if (!gallery.length && product.images && product.images.length) {
-        gallery = product.images.slice();
+
+    if (hero && gallery.length) {
+        gallery = [hero, ...gallery.filter((p) => p && p !== hero)];
+    } else if (hero && !gallery.length) {
+        gallery = [hero];
     }
-    if (gallery.length >= 2) {
-        return gallery.slice(0, max);
+
+    const unique = [];
+    const seen = new Set();
+    gallery.forEach((src) => {
+        if (!src || seen.has(src)) return;
+        seen.add(src);
+        unique.push(src);
+    });
+
+    if (unique.length >= 2) {
+        return unique.slice(0, max);
     }
-    const main = (product.images && product.images[0]) || product.thumbnail;
-    return main ? [main] : [];
+    return hero ? [hero] : [];
 }
 
 function renderCatalogThumbStripHtml(product, max = 4) {
@@ -154,12 +169,12 @@ function renderCapNhatGroupCardHtml(group) {
 }
 
 function renderCapNhatProductCardHtml(product, options = {}) {
-    const rawImg = product.thumbnail || (product.images && product.images[0]) || 'image/favicon.png';
+    const rawImg = pickProductThumbnail(product) || 'image/favicon.png';
     const img = typeof getThumbUrl === 'function' ? getThumbUrl(rawImg) : rawImg;
     const fallback =
         typeof toRootAssetUrl === 'function'
-            ? toRootAssetUrl(product.thumbnail || rawImg || 'image/favicon.png')
-            : product.thumbnail || rawImg || 'image/favicon.png';
+            ? toRootAssetUrl(pickProductThumbnail(product) || rawImg || 'image/favicon.png')
+            : pickProductThumbnail(product) || rawImg || 'image/favicon.png';
     const detail = catalogProductUrl(product);
     const packG = parsePackWeightG(product);
     const sizeText = typeof getPackSizeText === 'function' ? getPackSizeText(product) : (product.packSizeText || '');

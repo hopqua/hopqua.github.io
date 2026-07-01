@@ -222,6 +222,13 @@ function resolveGalleryPaths(product) {
         product.videos.forEach(add);
     }
 
+    if (product.thumbnail) {
+        add(product.thumbnail);
+    } else {
+        const hero = typeof pickProductThumbnail === 'function' ? pickProductThumbnail(product) : '';
+        if (hero) add(hero);
+    }
+
     const manifest = getProductGalleryImages(product.id);
     if (manifest.length) {
         manifest.forEach(add);
