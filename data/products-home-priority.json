@@ -3,7 +3,6 @@
   "updated": "2026-07-09",
   "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
   "order": [
-    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem",
     "6-banh-mini-mem-san-2-ma-sll-19k",
     "hut-am",
     "1b-mini-sll-3k",
@@ -22,6 +21,7 @@
     "vo-hop-trung-thu-mini-4-banh-6-banh-quai-da-13-18k",
     "vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k",
     "vo-hop-trung-thu-vong-hac-4-banh-26-33k",
+    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem",
     "2-banh-hac-valy-hop-doi-tui-xach",
     "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach",
     "2-banh-re-5-mau",
@@ -83,9 +83,6 @@
     "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k"
   ],
   "items": {
-    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {
-      "postedAt": "2026-07-09"
-    },
     "6-banh-mini-mem-san-2-ma-sll-19k": {
       "postedAt": "2026-06-11"
     },
@@ -140,6 +137,7 @@
     "vo-hop-trung-thu-vong-hac-4-banh-26-33k": {
       "postedAt": "2025-06-18"
     },
+    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {},
     "2-banh-hac-valy-hop-doi-tui-xach": {},
     "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach": {},
     "2-banh-re-5-mau": {},
