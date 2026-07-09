@@ -769,6 +769,13 @@ const productImageManifest = {
             "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-12.jpg",
             "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-13.jpg"
     ],
+    'mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem': [
+            "image/moi-mrd2qb6i/moi-mrd2qb6i-1.jpg",
+            "image/moi-mrd2qb6i/moi-mrd2qb6i-video-1.mp4",
+            "image/moi-mrd2qb6i/moi-mrd2qb6i-2.jpg",
+            "image/moi-mrd2qb6i/moi-mrd2qb6i-3.jpg",
+            "image/moi-mrd2qb6i/moi-mrd2qb6i-4.jpg"
+    ],
 };
 
 function getManifestImages(productId) {

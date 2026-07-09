@@ -1,8 +1,9 @@
 {
   "version": 1,
-  "updated": "2026-07-01",
+  "updated": "2026-07-09",
   "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
   "order": [
+    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem",
     "6-banh-mini-mem-san-2-ma-sll-19k",
     "hut-am",
     "1b-mini-sll-3k",
@@ -82,6 +83,9 @@
     "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k"
   ],
   "items": {
+    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {
+      "postedAt": "2026-07-09"
+    },
     "6-banh-mini-mem-san-2-ma-sll-19k": {
       "postedAt": "2026-06-11"
     },

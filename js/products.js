@@ -896,6 +896,19 @@ const products = [
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: 'mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem',
+        name: '[Mẫu 2026] vỏ bánh trung thu Nguyệt Liên Hoa ép nhũ 7 màu lóng lánh 4b kèm vỏ trà/6 bánh (125-250g)',
+        folder: 'moi-mrd2qb6i',
+        thumbnail: 'image/moi-mrd2qb6i/moi-mrd2qb6i-1.jpg',
+        price: 'Từ 35.000đ đến 41.000đ',
+        description: '*** Lưu ý:\n\n- Hộp không gồm bánh bên trong\n\n- CÁC SẢN PHẨM HỘP KHI VẬN CHUYỂN SẼ TRONG TRẠNG THÁI THÁO RỜI ĐỂ VIỆC VẬN CHUYỂN DỄ DÀNG VÀ KHÔNG BỊ HƯ HỎNG HỘP. TRÊN HỘP SẼ CÓ CÁC NẾP GẤP SẴN ĐỂ GIÚP QUÝ KHÁCH XẾP HỘP DỄ HƠN.\n\nNhận sỉ và lẻ hộp trung thu\n\nMua số lượng lớn nhận giá sỉ ADD ZALO nhắn tin shop (giá rẻ hơn)\n\n•Giá lẻ (1–10 cái): 35.000đ – 41.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 55.500đ/cái (tính theo mức cao nhất)',
+        postedAt: '2025-06-18',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
     }
 ];
 
