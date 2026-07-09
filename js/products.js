@@ -207,8 +207,8 @@ const products = [
         name: 'Hộp quà 1.6 cho bé',
         folder: 'cap-nhat-2026/1-banh-cho-be',
         thumbnail: 'image/cap-nhat-2026/1-banh-cho-be/1-banh-cho-be-1.jpg',
-        price: 'Từ 5.000đ/cái · SL 1–10',
-        description: 'Hộp quà trung thu đặc biệt thiết kế cho trẻ em, với họa tiết vui nhộn và màu sắc bắt mắt.\n\n•Cân nặng đóng hàng: 50g (1 bánh)\n•Giá lẻ (1–10 cái): 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 7.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        price: 'Từ 3.000đ đến 5.000đ',
+        description: 'Hộp quà trung thu đặc biệt thiết kế cho trẻ em, với họa tiết vui nhộn và màu sắc bắt mắt.\n\n•Cân nặng đóng hàng: 50g (1 bánh)\n•Giá lẻ (1–10 cái): 3.000đ – 5.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 7.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp quà trung thu',
         season: 'trung thu',
         videos: []
@@ -806,8 +806,8 @@ const products = [
         name: 'Thỏ đỏ 3x nhỏ',
         folder: 'cap-nhat-2026/tho-o-4-banh',
         thumbnail: 'image/cap-nhat-2026/tho-o-4-banh/tho-o-4-banh-1.jpg',
-        price: 'Từ 35.000đ/cái · SL 1–10',
-        description: 'Mẫu hộp bánh trung thu thỏ đỏ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Giá lẻ (1–10 cái): 35.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 47.500đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
+        price: 'Từ 29.000đ đến 39.000đ',
+        description: 'Mẫu hộp bánh trung thu thỏ đỏ 3x nhỏ, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Giá lẻ (1–10 cái): 29.000đ – 39.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 47.500đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
