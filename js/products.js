@@ -757,7 +757,7 @@ const products = [
         id: 'hac-vu-nguyet-ca-4-banh-6-banh',
         name: 'Hạc vũ nguyệt ca 4 bánh 6 bánh',
         folder: 'thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh',
-        thumbnail: 'image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-1.jpg',
+        thumbnail: 'image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-10.jpg',
         price: 'Từ 32.000đ đến 42.000đ',
         description: 'Mẫu hộp bánh trung thu hạc vũ nguyệt ca 4 bánh 6 bánh, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Giá lẻ (1–10 cái): 32.000đ – 42.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 57.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',

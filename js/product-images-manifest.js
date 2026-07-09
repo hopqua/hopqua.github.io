@@ -620,7 +620,6 @@ const productImageManifest = {
             "image/cap-nhat-2026/hop-cung-hac-van-nguyet/hop-cung-hac-van-nguyet-4.jpg"
     ],
     'hac-vu-nguyet-ca-4-banh-6-banh': [
-            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-1.jpg",
             "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-10.jpg",
             "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-11.jpg",
             "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-12.jpg",
