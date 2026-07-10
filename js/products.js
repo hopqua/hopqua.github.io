@@ -491,7 +491,7 @@ const products = [
         id: 'bat-giac-hao-quang-anh-trang-36k-44k',
         name: 'Bát Giác Hào Quang Ánh Trăng',
         folder: '26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k',
-        thumbnail: 'image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg',
+        thumbnail: 'image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-2.jpg',
         price: 'Từ 36.000đ đến 44.000đ',
         description: 'Mẫu hộp bánh trung thu bát giác hào quang ánh trăng 36k 44k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Kích thước: Đáy 37,7×37,5 cm · Túi 38×40 cm\n•Bao gồm: đáy, nắp, vách chia, túi, hộp con\n•Ép kim nắp hộp, hộp con\n•Vách chia bồi sóng\n•Chất liệu giấy ivr350\n\n•Giá lẻ (1–10 cái): 36.000đ – 44.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 59.500đ/cái (tính theo mức cao nhất)',
         category: 'hộp bánh trung thu',

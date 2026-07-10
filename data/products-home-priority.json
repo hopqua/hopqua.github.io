@@ -101,6 +101,8 @@
       "postedAt": "2026-06-11"
     },
     "bat-giac-hao-quang-anh-trang-36k-44k": {
+      "thich": true,
+      "thuTu": -1,
       "postedAt": "2026-05-26"
     },
     "hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k": {
@@ -138,28 +140,70 @@
     },
     "2026-nguyet-lien-ngu-2-banh-doc": {},
     "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {},
-    "2-banh-hac-valy-hop-doi-tui-xach": {},
-    "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach": {},
-    "2-banh-re-5-mau": {},
-    "6-banh-mini-kim-son-cam-20k-26k": {},
+    "2-banh-hac-valy-hop-doi-tui-xach": {
+      "thich": true,
+      "thuTu": -6
+    },
+    "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach": {
+      "thich": true,
+      "thuTu": -5
+    },
+    "2-banh-re-5-mau": {
+      "thich": true,
+      "thuTu": -2
+    },
+    "6-banh-mini-kim-son-cam-20k-26k": {
+      "thich": true,
+      "thuTu": -3
+    },
     "6b-mini-san-hn-3x": {},
-    "bach-uyen-4-banh-cuc-sang-2026": {},
-    "bat-giac-tho-quy-toc": {},
-    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k": {},
+    "bach-uyen-4-banh-cuc-sang-2026": {
+      "thich": true,
+      "thuTu": -4
+    },
+    "bat-giac-tho-quy-toc": {
+      "thich": true,
+      "thuTu": -7
+    },
+    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k": {
+      "thich": true,
+      "thuTu": -8
+    },
     "dao-nia-mau-trang-hong-xanh-duong": {},
     "hac-nguyet-vien-4-banh-tra-34k-42k": {},
-    "hac-vu-nguyet-ca-4-banh-6-banh": {},
+    "hac-vu-nguyet-ca-4-banh-6-banh": {
+      "thich": true,
+      "thuTu": -9
+    },
     "hoa-vien-do-4-banh-re": {},
-    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k": {},
+    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k": {
+      "thich": true,
+      "thuTu": -10
+    },
     "hop-1-banh": {},
-    "hop-1-banh-to-tho-do-300-600g-23k-28k": {},
-    "hop-2-banh-re": {},
+    "hop-1-banh-to-tho-do-300-600g-23k-28k": {
+      "thich": true,
+      "thuTu": -11
+    },
+    "hop-2-banh-re": {
+      "thich": true,
+      "thuTu": -12
+    },
     "hop-6-banh-mini-tho-ngoc-do": {},
     "hop-6-banh-mini-tho-ngoc-vang": {},
     "hop-cong-tuoc-150-250g-28-33k": {},
-    "hop-cung-6-banh-mini-75-100g-36k-45k": {},
-    "hop-cung-gap-gon-6x": {},
-    "hop-cung-4-banh-tra-xanh-duong-gap-gon-tui-xach": {},
+    "hop-cung-6-banh-mini-75-100g-36k-45k": {
+      "thich": true,
+      "thuTu": 1
+    },
+    "hop-cung-gap-gon-6x": {
+      "thich": true,
+      "thuTu": -13
+    },
+    "hop-cung-4-banh-tra-xanh-duong-gap-gon-tui-xach": {
+      "thich": true,
+      "thuTu": 1
+    },
     "hop-duat-van-14-17k": {},
     "ho-diep-29-35k": {},
     "khai-phuc-29-35k": {},

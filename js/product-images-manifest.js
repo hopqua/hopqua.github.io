@@ -413,13 +413,13 @@ const productImageManifest = {
             "image/cap-nhat-2026/6-banh-mini-cam/6-banh-mini-cam-6.jpg"
     ],
     'bat-giac-hao-quang-anh-trang-36k-44k': [
-            "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg",
             "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-2.jpg",
             "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-3.jpg",
             "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-4.jpg",
             "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-5.jpg",
             "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-6.jpg",
-            "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-7.jpg"
+            "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-7.jpg",
+            "image/26-5-2026/bat-giac-hao-quang-anh-trang-36k-44k/bat-giac-hao-quang-anh-trang-36k-44k-1.jpg"
     ],
     'cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k': [
             "image/cap-nhat-2026/cuc-nguyet-inh-4-banh-tra/cuc-nguyet-inh-4-banh-tra-1.jpg",
