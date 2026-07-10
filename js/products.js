@@ -757,7 +757,7 @@ const products = [
         id: 'hac-vu-nguyet-ca-4-banh-6-banh',
         name: 'Hạc vũ nguyệt ca 4 bánh 6 bánh',
         folder: 'thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh',
-        thumbnail: 'image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-1.jpg',
+        thumbnail: 'image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-10.jpg',
         price: 'Từ 32.000đ đến 42.000đ',
         description: 'Mẫu hộp bánh trung thu hạc vũ nguyệt ca 4 bánh 6 bánh, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Giá lẻ (1–10 cái): 32.000đ – 42.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 57.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
@@ -931,6 +931,45 @@ const products = [
         thumbnail: 'image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-1.jpg',
         price: 'Từ 29.000đ đến 35.000đ',
         description: '•Giá lẻ (1–10 cái): 29.000đ – 35.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 47.500đ/cái (tính theo mức cao nhất)',
+        postedAt: '2026-07-10',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: 'kim-nguyet-4-banh-tra-6-banh',
+        name: 'Kim nguyệt 4 bánh trà/ 6 bánh',
+        folder: 'moi-mreme4id',
+        thumbnail: 'image/moi-mreme4id/moi-mreme4id-1.jpg',
+        price: 'Liên hệ báo giá',
+        description: 'Vỏ hộp bánh trung thu Kim nguyệt 4 bánh trà/ 6 bánh',
+        postedAt: '2026-07-10',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: '2-banh-dung-doc',
+        name: '2 Bánh đựng dọc',
+        folder: '2-banh-dung-doc',
+        thumbnail: 'image/moi-mrery2am/moi-mrery2am-1.jpg',
+        price: 'Liên hệ báo giá',
+        description: 'Mẫu hộp bánh trung thu 2 Bánh đựng dọc.',
+        postedAt: '2026-07-10',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: '2026-nguyet-lien-ngu-2-banh-doc',
+        name: '[2026] Nguyệt Liên Ngư 2 Bánh dọc',
+        folder: '2026-nguyet-lien-ngu-2-banh-doc',
+        thumbnail: 'image/2026-nguyet-lien-ngu-2-banh-doc/2026-nguyet-lien-ngu-2-banh-doc-1.jpg',
+        price: 'Từ 10.500đ đến 15.000đ',
+        description: 'Nguyệt liên ngư 2 bánh dễ dàng\n\n•Giá lẻ (1–10 cái): 10.500đ – 15.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 20.500đ/cái (tính theo mức cao nhất)',
         postedAt: '2026-07-10',
         category: 'hộp bánh trung thu',
         season: 'trung thu',

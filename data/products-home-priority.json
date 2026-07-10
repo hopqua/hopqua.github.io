@@ -4,6 +4,7 @@
   "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
   "order": [
     "kim-nguyet-4b-tra-6b",
+    "2026-nguyet-lien-ngu-2-banh-doc",
     "tho-xanh-ngoc-4b",
     "6-banh-mini-mem-san-2-ma-sll-19k",
     "hut-am",
@@ -86,6 +87,9 @@
   ],
   "items": {
     "kim-nguyet-4b-tra-6b": {
+      "postedAt": "2026-07-10"
+    },
+    "2026-nguyet-lien-ngu-2-banh-doc": {
       "postedAt": "2026-07-10"
     },
     "tho-xanh-ngoc-4b": {

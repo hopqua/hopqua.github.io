@@ -27,10 +27,10 @@ def _hop_qua_root() -> Path:
     return Path("/home/vananh/huong-dan/du-an/vo-anh/hop-qua")
 
 
-OUT_DIR = _hop_qua_root() / "shopee-upload-2026"
-OUT_HTML = OUT_DIR / "quan-tri-san-pham.html"
-OUT_JSON = OUT_DIR / "quan-tri-san-pham.json"
-OUT_CSV = OUT_DIR / "quan-tri-san-pham.csv"
+OUT_DIR = _hop_qua_root() / "shopee-upload-2026" / "quan-tri"
+OUT_HTML = OUT_DIR / "app" / "quan-tri-san-pham.html"
+OUT_JSON = OUT_DIR / "data" / "quan-tri-san-pham.json"
+OUT_CSV = OUT_DIR / "data" / "quan-tri-san-pham.csv"
 
 
 @dataclass
@@ -119,8 +119,16 @@ def load_stock() -> dict[str, bool]:
 
 
 def load_gia_le() -> tuple[dict[str, int], dict[str, int], dict[str, int]]:
-    path = OUT_DIR / "gia-le-cap-nhat.json"
-    if not path.is_file():
+    path = None
+    for p in (
+        OUT_DIR / "data" / "gia-le-cap-nhat.json",
+        OUT_DIR / "gia-le-cap-nhat.json",
+        _hop_qua_root() / "shopee-upload-2026" / "gia-le-cap-nhat.json",
+    ):
+        if p.is_file():
+            path = p
+            break
+    if not path:
         return {}, {}, {}
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -343,9 +351,11 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
 
 def write_json_csv(rows: list[AdminProduct]) -> None:
     payload = rows_to_payload(rows)
+    OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     import csv
 
+    OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
     with OUT_CSV.open("w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         w.writerow(
@@ -414,6 +424,7 @@ def write_html(rows: list[AdminProduct]) -> None:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_HTML.parent.mkdir(parents=True, exist_ok=True)
     rows = collect_products()
     write_json_csv(rows)
     write_html(rows)
