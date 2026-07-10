@@ -50,6 +50,9 @@ class AdminProduct:
     con_hang: bool
     folder: str
     web_url: str
+    ngay_dang: str = ""
+    thich: bool = False
+    thu_tu: int | None = None
 
 
 def parse_field(block: str, name: str) -> str:
@@ -209,12 +212,47 @@ def infer_range_from_slug(sku: str, name: str = "") -> tuple[int | None, int | N
     return None, None
 
 
+def load_existing_admin_meta() -> dict[str, dict]:
+    """Giữ ngay_dang, thích… khi rebuild JSON từ products.js."""
+    if not OUT_JSON.is_file():
+        return {}
+    try:
+        data = json.loads(OUT_JSON.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    out: dict[str, dict] = {}
+    for p in data.get("products") or []:
+        sku = str(p.get("sku") or "").strip()
+        if not sku:
+            continue
+        out[sku] = {
+            k: p[k]
+            for k in ("ngay_dang", "thich", "thu_tu", "status", "shopee_item_id", "tags")
+            if p.get(k) not in (None, "", [])
+        }
+    return out
+
+
+def load_home_priority_meta() -> dict[str, dict]:
+    path = ROOT / "data" / "products-home-priority.json"
+    if not path.is_file():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    items = data.get("items") if isinstance(data, dict) else {}
+    return {str(k): v for k, v in (items or {}).items() if isinstance(v, dict)}
+
+
 def collect_products() -> list[AdminProduct]:
     manifest = parse_manifest()
     thumbs = parse_thumbnail_map()
     stock = load_stock()
     gia_le, gia_shopee, gia_mins = load_gia_le()
     seo_map = load_seo_overrides()
+    admin_meta = load_existing_admin_meta()
+    home_meta = load_home_priority_meta()
     text = PRODUCTS_JS.read_text(encoding="utf-8")
     rows: list[AdminProduct] = []
 
@@ -256,6 +294,17 @@ def collect_products() -> list[AdminProduct]:
         shopee = gia_shopee.get(sku)
         in_stock = stock.get(sku, True)
         seo = seo_map.get(sku, {})
+        posted = parse_field(block, "postedAt")
+        meta = admin_meta.get(sku, {})
+        home = home_meta.get(sku, {})
+        ngay = (posted or meta.get("ngay_dang") or home.get("postedAt") or "").strip()[:10]
+        thich = bool(meta.get("thich") or home.get("thich"))
+        thu_tu = meta.get("thu_tu")
+        if thu_tu is None and home.get("thuTu") is not None:
+            try:
+                thu_tu = int(home["thuTu"])
+            except (TypeError, ValueError):
+                thu_tu = None
 
         rows.append(
             AdminProduct(
@@ -274,6 +323,9 @@ def collect_products() -> list[AdminProduct]:
                 con_hang=in_stock,
                 folder=folder,
                 web_url=f"{SITE}/product.html?id={sku}",
+                ngay_dang=ngay,
+                thich=thich,
+                thu_tu=thu_tu,
             )
         )
 
@@ -340,9 +392,9 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
                 "images": r.images,
                 "con_hang": r.con_hang,
                 "folder": r.folder,
-                "thich": getattr(r, "thich", False),
-                "ngay_dang": getattr(r, "ngay_dang", ""),
-                "thu_tu": getattr(r, "thu_tu", None),
+                "thich": r.thich,
+                "ngay_dang": r.ngay_dang,
+                "thu_tu": r.thu_tu,
             }
             for r in rows
         ],

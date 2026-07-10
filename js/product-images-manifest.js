@@ -790,13 +790,6 @@ const productImageManifest = {
             "image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-4.jpg",
             "image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-5.jpg"
     ],
-    'kim-nguyet-4-banh-tra-6-banh': [
-            "image/moi-mreme4id/moi-mreme4id-1.jpg",
-            "image/moi-mreme4id/moi-mreme4id-2.jpg",
-            "image/moi-mreme4id/moi-mreme4id-3.jpg",
-            "image/moi-mreme4id/moi-mreme4id-4.jpg",
-            "image/moi-mreme4id/moi-mreme4id-5.jpg"
-    ],
     '2026-nguyet-lien-ngu-2-banh-doc': [
             "image/2026-nguyet-lien-ngu-2-banh-doc/2026-nguyet-lien-ngu-2-banh-doc-1.jpg",
             "image/2026-nguyet-lien-ngu-2-banh-doc/2026-nguyet-lien-ngu-2-banh-doc-2.jpg",

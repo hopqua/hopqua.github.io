@@ -3,14 +3,76 @@
   "updated": "2026-07-10",
   "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
   "order": [
+    "2-banh-re-5-mau",
+    "6-banh-mini-kim-son-cam-20k-26k",
+    "6b-mini-san-hn-3x",
+    "bat-giac-tho-quy-toc",
+    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k",
+    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k",
+    "hop-1-banh-to-tho-do-300-600g-23k-28k",
+    "hop-2-banh-re",
+    "hop-cung-6-banh-mini-75-100g-36k-45k",
+    "hop-cung-gap-gon-6x",
+    "hop-cung-4-banh-tra-xanh-duong-gap-gon-tui-xach",
+    "hop-qua-16-cho-be",
+    "khuc-nguyet-vien-cuc-do-4-banh-29-35k",
+    "kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k",
+    "lan-da-3x-nho",
+    "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k",
+    "nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k",
+    "nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k",
+    "thien-hoa-van-nguyet-4-banh-re-175k-24k",
+    "tho-do-3x-nho",
+    "thu-hoa-4-banh-do-29k-35k",
+    "4b-re-do-xd",
+    "4b-re-sen-phu-quy",
+    "hac-do-re",
+    "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k",
     "6-banh-mini-mem-san-2-ma-sll-19k",
     "hut-am",
     "1b-mini-sll-3k",
     "pet-dung-banh",
+    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem",
     "vo-ep-kim-thuc-noi",
+    "2-banh-hac-valy-hop-doi-tui-xach",
+    "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach",
+    "hac-nguyet-vien-4-banh-tra-34k-42k",
+    "hac-vu-nguyet-ca-4-banh-6-banh",
+    "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k",
+    "song-ngu-do-4-banh-tra-doc-36k-44k",
     "bat-giac-hao-quang-anh-trang-36k-44k",
     "hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k",
     "tho-xanh-duong-4-banh-29k-35k",
+    "2026-nguyet-lien-ngu-2-banh-doc",
+    "bach-uyen-4-banh-cuc-sang-2026",
+    "dao-nia-mau-trang-hong-xanh-duong",
+    "hoa-vien-do-4-banh-re",
+    "hop-1-banh",
+    "hop-6-banh-mini-tho-ngoc-do",
+    "hop-6-banh-mini-tho-ngoc-vang",
+    "hop-cong-tuoc-150-250g-28-33k",
+    "hop-duat-van-14-17k",
+    "ho-diep-29-35k",
+    "khai-phuc-29-35k",
+    "hop-lam-cuc-4-6-banh",
+    "hop-lan-vu-4-banh",
+    "hop-lien-ngu-4-banh",
+    "hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac",
+    "phu-quy-29-35k",
+    "hop-sen-phu-quy-4-banh-re",
+    "hop-song-hac-6-banh",
+    "hop-song-nguyet-4-6-banh",
+    "khay-trong-sz-9-10-11",
+    "kim-nguyet-4b-tra-6b",
+    "nam-su-hong-150-250g-23-29k",
+    "ngoc-hoa-cam-4-banh",
+    "song-nguyet-4-6-banh",
+    "tho-xanh-ngoc-4b",
+    "tui-dung-banh-trung-thu-sz-9-10-11",
+    "hoa-vien-re-do",
+    "hong-nguyet-vien-cam",
+    "lan-vu-re-linh",
+    "nguyet-yen-1x",
     "vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k",
     "vo-banh-trung-thu-sen-toa-4-banh-20-25k",
     "vo-hop-banh-trung-thu-hon-viet-4-banh-4-banh-tra-6-banh-26k-39k",
@@ -19,72 +81,84 @@
     "vo-hop-trung-thu-lan-vu-4-banh-re-16-20k",
     "vo-hop-trung-thu-mini-4-banh-6-banh-quai-da-13-18k",
     "vo-hop-trung-thu-nguyet-yen-4-banh-re-16-20k",
-    "vo-hop-trung-thu-vong-hac-4-banh-26-33k",
-    "2026-nguyet-lien-ngu-2-banh-doc",
-    "2-banh-hac-valy-hop-doi-tui-xach",
-    "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach",
-    "2-banh-re-5-mau",
-    "6-banh-mini-kim-son-cam-20k-26k",
-    "6b-mini-san-hn-3x",
-    "bach-uyen-4-banh-cuc-sang-2026",
-    "bat-giac-tho-quy-toc",
-    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k",
-    "dao-nia-mau-trang-hong-xanh-duong",
-    "hac-nguyet-vien-4-banh-tra-34k-42k",
-    "hac-vu-nguyet-ca-4-banh-6-banh",
-    "hoa-vien-do-4-banh-re",
-    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k",
-    "hop-1-banh",
-    "hop-1-banh-to-tho-do-300-600g-23k-28k",
-    "hop-2-banh-re",
-    "hop-6-banh-mini-tho-ngoc-do",
-    "hop-6-banh-mini-tho-ngoc-vang",
-    "hop-cong-tuoc-150-250g-28-33k",
-    "hop-cung-6-banh-mini-75-100g-36k-45k",
-    "hop-cung-gap-gon-6x",
-    "hop-cung-4-banh-tra-xanh-duong-gap-gon-tui-xach",
-    "hop-duat-van-14-17k",
-    "ho-diep-29-35k",
-    "khai-phuc-29-35k",
-    "hop-lam-cuc-4-6-banh",
-    "hop-lan-vu-4-banh",
-    "hop-lien-ngu-4-banh",
-    "hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac",
-    "hop-qua-16-cho-be",
-    "phu-quy-29-35k",
-    "hop-sen-phu-quy-4-banh-re",
-    "hop-song-hac-6-banh",
-    "hop-song-nguyet-4-6-banh",
-    "khay-trong-sz-9-10-11",
-    "khuc-nguyet-vien-cuc-do-4-banh-29-35k",
-    "kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k",
-    "kim-nguyet-4-banh-tra-6-banh",
-    "kim-nguyet-4b-tra-6b",
-    "lan-da-3x-nho",
-    "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k",
-    "nam-su-hong-150-250g-23-29k",
-    "ngoc-hoa-cam-4-banh",
-    "nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k",
-    "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k",
-    "nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k",
-    "song-nguyet-4-6-banh",
-    "song-ngu-do-4-banh-tra-doc-36k-44k",
-    "thien-hoa-van-nguyet-4-banh-re-175k-24k",
-    "tho-do-3x-nho",
-    "tho-xanh-ngoc-4b",
-    "thu-hoa-4-banh-do-29k-35k",
-    "tui-dung-banh-trung-thu-sz-9-10-11",
-    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem",
-    "4b-re-do-xd",
-    "4b-re-sen-phu-quy",
-    "hac-do-re",
-    "hoa-vien-re-do",
-    "hong-nguyet-vien-cam",
-    "lan-vu-re-linh",
-    "nguyet-yen-1x",
-    "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k"
+    "vo-hop-trung-thu-vong-hac-4-banh-26-33k"
   ],
   "items": {
+    "2-banh-re-5-mau": {
+      "postedAt": "2026-06-15"
+    },
+    "6-banh-mini-kim-son-cam-20k-26k": {
+      "postedAt": "2026-07-01"
+    },
+    "6b-mini-san-hn-3x": {
+      "postedAt": "2026-06-15"
+    },
+    "bat-giac-tho-quy-toc": {
+      "postedAt": "2026-06-15"
+    },
+    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k": {
+      "postedAt": "2026-07-10"
+    },
+    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k": {
+      "postedAt": "2026-06-15"
+    },
+    "hop-1-banh-to-tho-do-300-600g-23k-28k": {
+      "postedAt": "2026-06-15"
+    },
+    "hop-2-banh-re": {
+      "postedAt": "2026-06-15"
+    },
+    "hop-cung-6-banh-mini-75-100g-36k-45k": {
+      "postedAt": "2026-06-15"
+    },
+    "hop-cung-gap-gon-6x": {
+      "postedAt": "2026-06-15"
+    },
+    "hop-cung-4-banh-tra-xanh-duong-gap-gon-tui-xach": {
+      "postedAt": "2026-06-15"
+    },
+    "hop-qua-16-cho-be": {
+      "postedAt": "2026-06-15"
+    },
+    "khuc-nguyet-vien-cuc-do-4-banh-29-35k": {
+      "postedAt": "2026-06-15"
+    },
+    "kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k": {
+      "postedAt": "2026-06-15"
+    },
+    "lan-da-3x-nho": {
+      "postedAt": "2026-06-15"
+    },
+    "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k": {
+      "postedAt": "2026-06-15"
+    },
+    "nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k": {
+      "postedAt": "2026-06-15"
+    },
+    "nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k": {
+      "postedAt": "2026-06-15"
+    },
+    "thien-hoa-van-nguyet-4-banh-re-175k-24k": {
+      "postedAt": "2026-06-15"
+    },
+    "tho-do-3x-nho": {
+      "postedAt": "2026-06-15"
+    },
+    "thu-hoa-4-banh-do-29k-35k": {
+      "postedAt": "2026-06-15"
+    },
+    "4b-re-do-xd": {
+      "postedAt": "2026-06-15"
+    },
+    "4b-re-sen-phu-quy": {
+      "postedAt": "2026-06-15"
+    },
+    "hac-do-re": {
+      "postedAt": "2026-06-15"
+    },
+    "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k": {
+      "postedAt": "2026-06-15"
+    },
     "6-banh-mini-mem-san-2-ma-sll-19k": {
       "postedAt": "2026-06-11"
     },
@@ -97,8 +171,27 @@
     "pet-dung-banh": {
       "postedAt": "2026-06-11"
     },
+    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {},
     "vo-ep-kim-thuc-noi": {
       "postedAt": "2026-06-11"
+    },
+    "2-banh-hac-valy-hop-doi-tui-xach": {
+      "postedAt": "2026-07-02"
+    },
+    "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach": {
+      "postedAt": "2026-06-01"
+    },
+    "hac-nguyet-vien-4-banh-tra-34k-42k": {
+      "postedAt": "2026-06-01"
+    },
+    "hac-vu-nguyet-ca-4-banh-6-banh": {
+      "postedAt": "2026-07-10"
+    },
+    "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k": {
+      "postedAt": "2026-06-01"
+    },
+    "song-ngu-do-4-banh-tra-doc-36k-44k": {
+      "postedAt": "2026-06-01"
     },
     "bat-giac-hao-quang-anh-trang-36k-44k": {
       "postedAt": "2026-05-26"
@@ -109,6 +202,36 @@
     "tho-xanh-duong-4-banh-29k-35k": {
       "postedAt": "2026-05-26"
     },
+    "2026-nguyet-lien-ngu-2-banh-doc": {},
+    "bach-uyen-4-banh-cuc-sang-2026": {},
+    "dao-nia-mau-trang-hong-xanh-duong": {},
+    "hoa-vien-do-4-banh-re": {},
+    "hop-1-banh": {},
+    "hop-6-banh-mini-tho-ngoc-do": {},
+    "hop-6-banh-mini-tho-ngoc-vang": {},
+    "hop-cong-tuoc-150-250g-28-33k": {},
+    "hop-duat-van-14-17k": {},
+    "ho-diep-29-35k": {},
+    "khai-phuc-29-35k": {},
+    "hop-lam-cuc-4-6-banh": {},
+    "hop-lan-vu-4-banh": {},
+    "hop-lien-ngu-4-banh": {},
+    "hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac": {},
+    "phu-quy-29-35k": {},
+    "hop-sen-phu-quy-4-banh-re": {},
+    "hop-song-hac-6-banh": {},
+    "hop-song-nguyet-4-6-banh": {},
+    "khay-trong-sz-9-10-11": {},
+    "kim-nguyet-4b-tra-6b": {},
+    "nam-su-hong-150-250g-23-29k": {},
+    "ngoc-hoa-cam-4-banh": {},
+    "song-nguyet-4-6-banh": {},
+    "tho-xanh-ngoc-4b": {},
+    "tui-dung-banh-trung-thu-sz-9-10-11": {},
+    "hoa-vien-re-do": {},
+    "hong-nguyet-vien-cam": {},
+    "lan-vu-re-linh": {},
+    "nguyet-yen-1x": {},
     "vo-banh-trung-thu-nguyet-tho-minh-4-banh-28-35k": {
       "postedAt": "2025-06-18"
     },
@@ -135,77 +258,6 @@
     },
     "vo-hop-trung-thu-vong-hac-4-banh-26-33k": {
       "postedAt": "2025-06-18"
-    },
-    "2026-nguyet-lien-ngu-2-banh-doc": {},
-    "2-banh-hac-valy-hop-doi-tui-xach": {
-      "postedAt": "2026-07-02"
-    },
-    "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach": {},
-    "2-banh-re-5-mau": {},
-    "6-banh-mini-kim-son-cam-20k-26k": {
-      "postedAt": "2026-07-01"
-    },
-    "6b-mini-san-hn-3x": {},
-    "bach-uyen-4-banh-cuc-sang-2026": {},
-    "bat-giac-tho-quy-toc": {},
-    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k": {
-      "postedAt": "2026-07-10"
-    },
-    "dao-nia-mau-trang-hong-xanh-duong": {},
-    "hac-nguyet-vien-4-banh-tra-34k-42k": {},
-    "hac-vu-nguyet-ca-4-banh-6-banh": {
-      "postedAt": "2026-07-10"
-    },
-    "hoa-vien-do-4-banh-re": {},
-    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k": {},
-    "hop-1-banh": {},
-    "hop-1-banh-to-tho-do-300-600g-23k-28k": {},
-    "hop-2-banh-re": {},
-    "hop-6-banh-mini-tho-ngoc-do": {},
-    "hop-6-banh-mini-tho-ngoc-vang": {},
-    "hop-cong-tuoc-150-250g-28-33k": {},
-    "hop-cung-6-banh-mini-75-100g-36k-45k": {},
-    "hop-cung-gap-gon-6x": {},
-    "hop-cung-4-banh-tra-xanh-duong-gap-gon-tui-xach": {},
-    "hop-duat-van-14-17k": {},
-    "ho-diep-29-35k": {},
-    "khai-phuc-29-35k": {},
-    "hop-lam-cuc-4-6-banh": {},
-    "hop-lan-vu-4-banh": {},
-    "hop-lien-ngu-4-banh": {},
-    "hop-ngu-long-nguyet-hoi-4-banh-hinh-bat-giac": {},
-    "hop-qua-16-cho-be": {},
-    "phu-quy-29-35k": {},
-    "hop-sen-phu-quy-4-banh-re": {},
-    "hop-song-hac-6-banh": {},
-    "hop-song-nguyet-4-6-banh": {},
-    "khay-trong-sz-9-10-11": {},
-    "khuc-nguyet-vien-cuc-do-4-banh-29-35k": {},
-    "kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k": {},
-    "kim-nguyet-4-banh-tra-6-banh": {},
-    "kim-nguyet-4b-tra-6b": {},
-    "lan-da-3x-nho": {},
-    "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k": {},
-    "nam-su-hong-150-250g-23-29k": {},
-    "ngoc-hoa-cam-4-banh": {},
-    "nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k": {},
-    "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k": {},
-    "nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k": {},
-    "song-nguyet-4-6-banh": {},
-    "song-ngu-do-4-banh-tra-doc-36k-44k": {},
-    "thien-hoa-van-nguyet-4-banh-re-175k-24k": {},
-    "tho-do-3x-nho": {},
-    "tho-xanh-ngoc-4b": {},
-    "thu-hoa-4-banh-do-29k-35k": {},
-    "tui-dung-banh-trung-thu-sz-9-10-11": {},
-    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {},
-    "4b-re-do-xd": {},
-    "4b-re-sen-phu-quy": {},
-    "hac-do-re": {},
-    "hoa-vien-re-do": {},
-    "hong-nguyet-vien-cam": {},
-    "lan-vu-re-linh": {},
-    "nguyet-yen-1x": {},
-    "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k": {}
+    }
   }
 }

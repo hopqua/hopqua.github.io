@@ -181,15 +181,57 @@ def _escape_js_str(s: str) -> str:
     return s.replace("\\", "\\\\").replace("'", "\\'").replace("\n", "\\n")
 
 
-def patch_field(text: str, sku: str, field: str, value: str) -> str | None:
-    pattern = (
-        rf"(id:\s*'{re.escape(sku)}'[\s\S]*?"
-        rf"{re.escape(field)}:\s*)'((?:\\'|[^'])*)'"
-    )
-    m = re.search(pattern, text)
+def _product_block_span(text: str, sku: str) -> tuple[int, int] | None:
+    m = re.search(rf"\{{\s*\n\s*id:\s*'{re.escape(sku)}'", text)
     if not m:
         return None
-    return text[: m.start(2)] + _escape_js_str(value) + text[m.end(2) :]
+    start = m.start()
+    depth = 0
+    for i in range(m.start(), len(text)):
+        ch = text[i]
+        if ch == "{":
+            depth += 1
+        elif ch == "}":
+            depth -= 1
+            if depth == 0:
+                return start, i + 1
+    return None
+
+
+def patch_field(text: str, sku: str, field: str, value: str) -> str | None:
+    span = _product_block_span(text, sku)
+    if not span:
+        return None
+    start, end = span
+    block = text[start:end]
+    pattern = rf"({re.escape(field)}:\s*)'((?:\\'|[^'])*)'"
+    m = re.search(pattern, block)
+    if not m:
+        return None
+    new_block = block[: m.start(2)] + _escape_js_str(value) + block[m.end(2) :]
+    return text[:start] + new_block + text[end:]
+
+
+def insert_posted_at(text: str, sku: str, ngay: str) -> str | None:
+    """Thêm postedAt khi SP cũ trong products.js chưa có field."""
+    span = _product_block_span(text, sku)
+    if not span:
+        return None
+    start, end = span
+    block = text[start:end]
+    if re.search(r"postedAt:\s*'", block):
+        return None
+    line = f"\n        postedAt: '{_escape_js_str(ngay)}',"
+    for anchor in ("category:", "season:", "videos:"):
+        m = re.search(rf"(\n\s+{re.escape(anchor)})", block)
+        if m:
+            new_block = block[: m.start(1)] + line + block[m.start(1) :]
+            return text[:start] + new_block + text[end:]
+    m = re.search(r"(description:\s*'((?:\\'|[^'])*)',)", block)
+    if m:
+        new_block = block[: m.end(1)] + line + block[m.end(1) :]
+        return text[:start] + new_block + text[end:]
+    return None
 
 
 def patch_manifest(manifest_text: str, sku: str, images: list[str]) -> str:
@@ -388,6 +430,10 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
             patched = patch_field(text, sku, "postedAt", ngay)
             if patched:
                 text = patched
+            else:
+                inserted = insert_posted_at(text, sku, ngay)
+                if inserted:
+                    text = inserted
 
         stock[sku] = bool(item.get("con_hang", True))
         updated += 1

@@ -2,6 +2,11 @@
   "updated": "2026-07-10",
   "note": "Sinh từ quan-tri-san-pham.json — override SEO trang SP",
   "items": {
+    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {
+      "title": "[Mẫu 2026] vỏ bánh trung thu Nguyệt Liên Hoa ép nhũ 7 màu ló",
+      "description": "Mua Shopee hoặc Zalo báo giá sỉ.",
+      "keywords": "hộp bánh trung thu, [mẫu 2026] vỏ bánh trung thu nguyệt liên hoa ép nhũ 7 màu lóng lánh 4b kèm vỏ trà/6 bánh (125-250g),"
+    },
     "2026-nguyet-lien-ngu-2-banh-doc": {
       "title": "[2026] Nguyệt Liên Ngư 2 Bánh dọc",
       "description": "Giá tham khảo: 10.500đ – 15.000đ/cái. Mua Shopee hoặc Zalo báo giá sỉ.",
@@ -12,11 +17,6 @@
       "description": "Bạch uyển 4 bánh siêu đẹp cực sang Mua Shopee hoặc Zalo báo giá sỉ.",
       "keywords": "hộp bánh trung thu, bạch uyển 4 bánh cực sang 2026, hộp quà trung thu, mua sỉ hộp bánh"
     },
-    "kim-nguyet-4-banh-tra-6-banh": {
-      "title": "Kim nguyệt 4 bánh trà/ 6 bánh",
-      "description": "Mua Shopee hoặc Zalo báo giá sỉ.",
-      "keywords": "hộp bánh trung thu, kim nguyệt 4 bánh trà/ 6 bánh, hộp quà trung thu, mua sỉ hộp bánh"
-    },
     "kim-nguyet-4b-tra-6b": {
       "title": "Kim nguyệt 4b trà/6b",
       "description": "Mua Shopee hoặc Zalo báo giá sỉ.",
@@ -26,11 +26,6 @@
       "title": "Thỏ xanh ngọc 4b",
       "description": "Giá tham khảo: 29.000đ – 35.000đ/cái. Mua Shopee hoặc Zalo báo giá sỉ.",
       "keywords": "hộp bánh trung thu, thỏ xanh ngọc 4b, hộp quà trung thu, mua sỉ hộp bánh"
-    },
-    "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {
-      "title": "[Mẫu 2026] vỏ bánh trung thu Nguyệt Liên Hoa ép nhũ 7 màu ló",
-      "description": "Mua Shopee hoặc Zalo báo giá sỉ.",
-      "keywords": "hộp bánh trung thu, [mẫu 2026] vỏ bánh trung thu nguyệt liên hoa ép nhũ 7 màu lóng lánh 4b kèm vỏ trà/6 bánh (125-250g),"
     }
   }
 }
