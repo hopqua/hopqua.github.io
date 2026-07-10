@@ -24,18 +24,32 @@ ROUND_STEP = 500
 def _hop_qua_root() -> Path:
     here = Path(__file__).resolve()
     for parent in here.parents:
+        candidate = parent / "shopee-upload-2026" / "quan-tri" / "data" / "quan-tri-san-pham.json"
+        if candidate.is_file():
+            return parent
         candidate = parent / "shopee-upload-2026" / "quan-tri-san-pham.json"
         if candidate.is_file():
             return parent
-        candidate = parent / "hop-qua" / "shopee-upload-2026" / "quan-tri-san-pham.json"
+        candidate = parent / "hop-qua" / "shopee-upload-2026" / "quan-tri" / "data" / "quan-tri-san-pham.json"
         if candidate.is_file():
             return parent / "hop-qua"
     return Path("/home/vananh/huong-dan/du-an/vo-anh/hop-qua")
 
 
-DEFAULT_JSON = _hop_qua_root() / "shopee-upload-2026" / "quan-tri-san-pham.json"
-DEFAULT_CSV = _hop_qua_root() / "shopee-upload-2026" / "quan-tri-san-pham.csv"
-GIA_LE_JSON = _hop_qua_root() / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+def _resolve_data_file(name: str) -> Path:
+    root = _hop_qua_root()
+    primary = root / "shopee-upload-2026" / "quan-tri" / "data" / name
+    if primary.is_file():
+        return primary
+    legacy = root / "shopee-upload-2026" / name
+    if legacy.is_file():
+        return legacy
+    return primary
+
+
+DEFAULT_JSON = _resolve_data_file("quan-tri-san-pham.json")
+DEFAULT_CSV = _resolve_data_file("quan-tri-san-pham.csv")
+GIA_LE_JSON = _resolve_data_file("gia-le-cap-nhat.json")
 
 
 def fmt_vnd(n: int) -> str:

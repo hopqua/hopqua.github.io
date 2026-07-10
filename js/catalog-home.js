@@ -25,7 +25,7 @@ function isCatalogRecent(product) {
     const today = new Date();
     today.setHours(12, 0, 0, 0);
     const diffDays = Math.floor((today - d) / (24 * 60 * 60 * 1000));
-    return diffDays >= 0 && diffDays <= 60;
+    return diffDays >= 0 && diffDays <= 30;
 }
 
 function sortCatalogForHome(list) {

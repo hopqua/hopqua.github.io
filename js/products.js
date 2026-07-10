@@ -537,7 +537,7 @@ const products = [
         id: 'hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k',
         name: 'Hộp Cứng gấp gọn xanh lá – Trắng xanh cắt CNC 4 Bánh Kèm hộp trà – 6 Bánh',
         folder: '26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k',
-        thumbnail: 'image/26-5-2026/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-1.jpg',
+        thumbnail: 'image/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k/hop-cung-4-banh-kem-hop-tra-xanh-la-65k-75k-1.jpg',
         price: 'Từ 75.000đ/cái · SL 1–10',
         description: 'Mẫu hộp bánh trung thu hộp cứng 4 bánh kem hộp tra xanh lá 65k 75k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP\n\n•Giá lẻ (1–10 cái): 75.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 101.500đ/cái (tính theo mức cao nhất)',
         category: 'hộp bánh trung thu',
@@ -551,17 +551,6 @@ const products = [
         thumbnail: 'image/cap-nhat-2026/hop-cung-6-banh-mini-o/hop-cung-6-banh-mini-o-2.jpg',
         price: 'Từ 36.000đ đến 45.000đ',
         description: 'Mẫu hộp bánh trung thu hộp cứng 6 bánh mini 75 100g 36k 45k, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 300g (6 bánh mini)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n•Bao gồm: đáy, nắp, túi, thanh chia\n•Ép kim mặt hộp, in 2 mặt\n•Chất liệu giấy ivr350\n•Giá lẻ (1–10 cái): 36.000đ – 45.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 61.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
-        category: 'hộp bánh trung thu',
-        season: 'trung thu',
-        videos: []
-    },
-    {
-        id: 'hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k',
-        name: 'Hộp Cứng Quai Trúc Xanh Dương 4 Bánh Kem Tra 80',
-        folder: '26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k',
-        thumbnail: 'image/26-5-2026/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k/hop-cung-quai-truc-xanh-duong-4-banh-kem-tra-80-90k-1.jpg',
-        price: 'Từ 80.000đ đến 90.000đ',
-        description: 'Hộp cứng quai trúc xanh dương, 4 bánh kem trà — mẫu cao cấp, phù hợp quà tặng và bán lẻ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Khay 24×17 cm · Túi 25×19 cm\n• Bao gồm: nắp, túi, đáy, vách chia, hộp con, hộp trà, quai trúc\n•Ép kim mặt hộp, hộp con\n•Chất liệu giấy ivr350 CAO CẤP\n\n•Giá lẻ (1–10 cái): 80.000đ – 90.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 122.000đ/cái (tính theo mức cao nhất)',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
@@ -739,17 +728,6 @@ const products = [
         price: 'Từ 50.000đ/cái · SL 1–10',
         description: 'Gói hút ẩm bánh Trung Thu — 1 bịch gồm 200 gói nhỏ.\n\n•Giá lẻ: 50.000đ/bịch\n•Mua thùng (số lượng lớn): inbox shop hoặc nhắn Zalo 0965671689\n\n•Giá lẻ (1–10 cái): 50.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 68.000đ/cái (tính theo mức cao nhất)',
         category: 'phụ kiện bánh',
-        season: 'trung thu',
-        videos: []
-    },
-                    {
-        id: 'hac-van-nguyet-3x',
-        name: 'Hộp cứng gấp gọn Hạc vân nguyệt Xanh Dương – Quai Trúc 4 bánh kèm trà',
-        folder: 'cap-nhat-2026/hop-cung-hac-van-nguyet',
-        thumbnail: 'image/cap-nhat-2026/hop-cung-hac-van-nguyet/hop-cung-hac-van-nguyet-1.jpg',
-        price: 'Từ 80.000đ đến 90.000đ',
-        description: 'Mẫu hộp bánh trung thu hạc vân nguyệt 3x, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (4 bánh)\n•Kích thước: Đáy 26×26 cm · Túi 30×27,5 cm\n•Giá lẻ (1–10 cái): 80.000đ – 90.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 122.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
-        category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
     },

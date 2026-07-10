@@ -22,17 +22,31 @@ OUT_JSON = ROOT / "data" / "products-catalog.json"
 def _hop_qua_root() -> Path:
     here = Path(__file__).resolve()
     for parent in here.parents:
+        candidate = parent / "shopee-upload-2026" / "quan-tri" / "data" / "gia-le-cap-nhat.json"
+        if candidate.is_file():
+            return parent
         candidate = parent / "shopee-upload-2026" / "gia-le-cap-nhat.json"
         if candidate.is_file():
             return parent
-        candidate = parent / "hop-qua" / "shopee-upload-2026" / "gia-le-cap-nhat.json"
+        candidate = parent / "hop-qua" / "shopee-upload-2026" / "quan-tri" / "data" / "gia-le-cap-nhat.json"
         if candidate.is_file():
             return parent / "hop-qua"
     return Path("/home/vananh/huong-dan/du-an/vo-anh/hop-qua")
 
 
-GIA_LE_JSON = _hop_qua_root() / "shopee-upload-2026" / "gia-le-cap-nhat.json"
-ADMIN_JSON = _hop_qua_root() / "shopee-upload-2026" / "quan-tri-san-pham.json"
+def _resolve_data_file(name: str) -> Path:
+    root = _hop_qua_root()
+    primary = root / "shopee-upload-2026" / "quan-tri" / "data" / name
+    if primary.is_file():
+        return primary
+    legacy = root / "shopee-upload-2026" / name
+    if legacy.is_file():
+        return legacy
+    return primary
+
+
+GIA_LE_JSON = _resolve_data_file("gia-le-cap-nhat.json")
+ADMIN_JSON = _resolve_data_file("quan-tri-san-pham.json")
 HOME_PRIORITY_JSON = ROOT / "data" / "products-home-priority.json"
 
 PHU_KIEN_BANH_IDS = {
@@ -338,7 +352,7 @@ def _posted_sort_key(iso: str | None) -> int:
         return 0
 
 
-def _is_recent_posted(iso: str | None, within_days: int = 60) -> bool:
+def _is_recent_posted(iso: str | None, within_days: int = 30) -> bool:
     if not iso or len(iso) < 10:
         return False
     try:

@@ -250,7 +250,7 @@ function isNew2026(product) {
     return product.folder && product.folder.startsWith('26-5-2026/');
 }
 
-function isRecentlyPosted(product, withinDays = 60) {
+function isRecentlyPosted(product, withinDays = 30) {
     const postedAt = getProductPostedAt(product);
     if (!postedAt) return isNew2026(product);
 
