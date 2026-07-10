@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ctaZalo.addEventListener('click', () => trackZaloClick(null));
     }
 
-    const headerZalo = document.querySelector('.header-nav-zalo');
+    const headerZalo = document.querySelector('.header-nav-zalo, .site-nav-zalo');
     if (headerZalo) {
         headerZalo.addEventListener('click', () => trackZaloClick(null));
     }

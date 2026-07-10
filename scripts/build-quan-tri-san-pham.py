@@ -53,6 +53,8 @@ class AdminProduct:
     ngay_dang: str = ""
     thich: bool = False
     thu_tu: int | None = None
+    status: str = ""
+    shopee_item_id: str = ""
 
 
 def parse_field(block: str, name: str) -> str:
@@ -227,7 +229,18 @@ def load_existing_admin_meta() -> dict[str, dict]:
             continue
         out[sku] = {
             k: p[k]
-            for k in ("ngay_dang", "thich", "thu_tu", "status", "shopee_item_id", "tags")
+            for k in (
+                "ngay_dang",
+                "thich",
+                "thu_tu",
+                "status",
+                "shopee_item_id",
+                "shopee_url",
+                "tags",
+                "seo_title",
+                "seo_description",
+                "seo_keywords",
+            )
             if p.get(k) not in (None, "", [])
         }
     return out
@@ -306,6 +319,12 @@ def collect_products() -> list[AdminProduct]:
             except (TypeError, ValueError):
                 thu_tu = None
 
+        seo_title = (seo.get("title") or meta.get("seo_title") or "").strip()
+        seo_description = (seo.get("description") or meta.get("seo_description") or "").strip()
+        seo_keywords = (seo.get("keywords") or meta.get("seo_keywords") or "").strip()
+        status = (meta.get("status") or "").strip()
+        shopee_item_id = str(meta.get("shopee_item_id") or "").strip()
+
         rows.append(
             AdminProduct(
                 sku=sku,
@@ -315,9 +334,9 @@ def collect_products() -> list[AdminProduct]:
                 gia_le_vnd=price_min,
                 gia_le_max_vnd=price_max,
                 gia_shopee_vnd=shopee,
-                seo_title=(seo.get("title") or "").strip(),
-                seo_description=(seo.get("description") or "").strip(),
-                seo_keywords=(seo.get("keywords") or "").strip(),
+                seo_title=seo_title,
+                seo_description=seo_description,
+                seo_keywords=seo_keywords,
                 thumbnail=thumb,
                 images=imgs,
                 con_hang=in_stock,
@@ -326,6 +345,8 @@ def collect_products() -> list[AdminProduct]:
                 ngay_dang=ngay,
                 thich=thich,
                 thu_tu=thu_tu,
+                status=status,
+                shopee_item_id=shopee_item_id,
             )
         )
 
@@ -395,6 +416,8 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
                 "thich": r.thich,
                 "ngay_dang": r.ngay_dang,
                 "thu_tu": r.thu_tu,
+                "status": r.status,
+                "shopee_item_id": r.shopee_item_id,
             }
             for r in rows
         ],

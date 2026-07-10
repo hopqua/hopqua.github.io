@@ -3,11 +3,13 @@
   "updated": "2026-07-10",
   "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
   "order": [
-    "2-banh-re-5-mau",
+    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k",
+    "hac-vu-nguyet-ca-4-banh-6-banh",
+    "2-banh-hac-valy-hop-doi-tui-xach",
     "6-banh-mini-kim-son-cam-20k-26k",
+    "2-banh-re-5-mau",
     "6b-mini-san-hn-3x",
     "bat-giac-tho-quy-toc",
-    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k",
     "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k",
     "hop-1-banh-to-tho-do-300-600g-23k-28k",
     "hop-2-banh-re",
@@ -34,10 +36,8 @@
     "pet-dung-banh",
     "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem",
     "vo-ep-kim-thuc-noi",
-    "2-banh-hac-valy-hop-doi-tui-xach",
     "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach",
     "hac-nguyet-vien-4-banh-tra-34k-42k",
-    "hac-vu-nguyet-ca-4-banh-6-banh",
     "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k",
     "song-ngu-do-4-banh-tra-doc-36k-44k",
     "bat-giac-hao-quang-anh-trang-36k-44k",
@@ -84,20 +84,26 @@
     "vo-hop-trung-thu-vong-hac-4-banh-26-33k"
   ],
   "items": {
-    "2-banh-re-5-mau": {
-      "postedAt": "2026-06-15"
+    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k": {
+      "postedAt": "2026-07-10"
+    },
+    "hac-vu-nguyet-ca-4-banh-6-banh": {
+      "postedAt": "2026-07-10"
+    },
+    "2-banh-hac-valy-hop-doi-tui-xach": {
+      "postedAt": "2026-07-02"
     },
     "6-banh-mini-kim-son-cam-20k-26k": {
       "postedAt": "2026-07-01"
+    },
+    "2-banh-re-5-mau": {
+      "postedAt": "2026-06-15"
     },
     "6b-mini-san-hn-3x": {
       "postedAt": "2026-06-15"
     },
     "bat-giac-tho-quy-toc": {
       "postedAt": "2026-06-15"
-    },
-    "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k": {
-      "postedAt": "2026-07-10"
     },
     "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k": {
       "postedAt": "2026-06-15"
@@ -175,17 +181,11 @@
     "vo-ep-kim-thuc-noi": {
       "postedAt": "2026-06-11"
     },
-    "2-banh-hac-valy-hop-doi-tui-xach": {
-      "postedAt": "2026-07-02"
-    },
     "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach": {
       "postedAt": "2026-06-01"
     },
     "hac-nguyet-vien-4-banh-tra-34k-42k": {
       "postedAt": "2026-06-01"
-    },
-    "hac-vu-nguyet-ca-4-banh-6-banh": {
-      "postedAt": "2026-07-10"
     },
     "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k": {
       "postedAt": "2026-06-01"
