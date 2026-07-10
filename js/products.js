@@ -900,7 +900,7 @@ const products = [
     // Thêm từ quan-tri-san-pham
     {
         id: 'mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem',
-        name: '[Mẫu 2026] vỏ bánh trung thu Nguyệt Liên Hoa ép nhũ 7 màu lóng lánh 4b kèm vỏ trà/6 bánh (125-250g)',
+        name: 'Vỏ bánh trung thu Nguyệt Liên Hoa 4btrà/6 bánh',
         folder: 'moi-mrd2qb6i',
         thumbnail: 'image/moi-mrd2qb6i/moi-mrd2qb6i-1.jpg',
         price: 'Từ 35.000đ đến 41.000đ',
@@ -950,18 +950,6 @@ const products = [
         videos: []
     },
     // Thêm từ quan-tri-san-pham
-    {
-        id: '2-banh-dung-doc',
-        name: '2 Bánh đựng dọc',
-        folder: '2-banh-dung-doc',
-        thumbnail: 'image/moi-mrery2am/moi-mrery2am-1.jpg',
-        price: 'Liên hệ báo giá',
-        description: 'Mẫu hộp bánh trung thu 2 Bánh đựng dọc.',
-        postedAt: '2026-07-10',
-        category: 'hộp bánh trung thu',
-        season: 'trung thu',
-        videos: []
-    },
     // Thêm từ quan-tri-san-pham
     {
         id: '2026-nguyet-lien-ngu-2-banh-doc',

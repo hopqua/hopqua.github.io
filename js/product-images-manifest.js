@@ -797,9 +797,6 @@ const productImageManifest = {
             "image/moi-mreme4id/moi-mreme4id-4.jpg",
             "image/moi-mreme4id/moi-mreme4id-5.jpg"
     ],
-    '2-banh-dung-doc': [
-            "image/moi-mrery2am/moi-mrery2am-1.jpg"
-    ],
     '2026-nguyet-lien-ngu-2-banh-doc': [
             "image/2026-nguyet-lien-ngu-2-banh-doc/2026-nguyet-lien-ngu-2-banh-doc-1.jpg",
             "image/2026-nguyet-lien-ngu-2-banh-doc/2026-nguyet-lien-ngu-2-banh-doc-2.jpg",

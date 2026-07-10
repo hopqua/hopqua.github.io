@@ -3,9 +3,7 @@
   "updated": "2026-07-10",
   "note": "Thích + thứ tự trang chủ — sinh từ quan-tri-san-pham.json",
   "order": [
-    "kim-nguyet-4b-tra-6b",
-    "2026-nguyet-lien-ngu-2-banh-doc",
-    "tho-xanh-ngoc-4b",
+    "kim-nguyet-4-banh-tra-6-banh",
     "6-banh-mini-mem-san-2-ma-sll-19k",
     "hut-am",
     "1b-mini-sll-3k",
@@ -86,13 +84,7 @@
     "vo-hop-trung-thu-bach-lien-xanh-4-banh-26-33k"
   ],
   "items": {
-    "kim-nguyet-4b-tra-6b": {
-      "postedAt": "2026-07-10"
-    },
-    "2026-nguyet-lien-ngu-2-banh-doc": {
-      "postedAt": "2026-07-10"
-    },
-    "tho-xanh-ngoc-4b": {
+    "kim-nguyet-4-banh-tra-6-banh": {
       "postedAt": "2026-07-10"
     },
     "6-banh-mini-mem-san-2-ma-sll-19k": {
@@ -153,18 +145,36 @@
     "2-banh-hac-valy-hop-doi-tui-xach": {},
     "2-banh-kim-nguyet-vu-long-hop-doi-tui-xach": {},
     "2-banh-re-5-mau": {},
-    "6-banh-mini-kim-son-cam-20k-26k": {},
+    "6-banh-mini-kim-son-cam-20k-26k": {
+      "thich": true,
+      "thuTu": -1
+    },
     "6b-mini-san-hn-3x": {},
-    "bach-uyen-4-banh-cuc-sang-2026": {},
-    "bat-giac-tho-quy-toc": {},
+    "bach-uyen-4-banh-cuc-sang-2026": {
+      "thich": true,
+      "thuTu": 1
+    },
+    "bat-giac-tho-quy-toc": {
+      "thich": true,
+      "thuTu": 1
+    },
     "cuc-nguyet-dinh-4-banh-kem-hop-tra-do-36k-44k": {},
     "dao-nia-mau-trang-hong-xanh-duong": {},
     "hac-nguyet-vien-4-banh-tra-34k-42k": {},
-    "hac-vu-nguyet-ca-4-banh-6-banh": {},
+    "hac-vu-nguyet-ca-4-banh-6-banh": {
+      "thich": true,
+      "thuTu": -2
+    },
     "hoa-vien-do-4-banh-re": {},
-    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k": {},
+    "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k": {
+      "thich": true,
+      "thuTu": -3
+    },
     "hop-1-banh": {},
-    "hop-1-banh-to-tho-do-300-600g-23k-28k": {},
+    "hop-1-banh-to-tho-do-300-600g-23k-28k": {
+      "thich": true,
+      "thuTu": -4
+    },
     "hop-2-banh-re": {},
     "hop-6-banh-mini-tho-ngoc-do": {},
     "hop-6-banh-mini-tho-ngoc-vang": {},
@@ -186,19 +196,49 @@
     "hop-song-hac-6-banh": {},
     "hop-song-nguyet-4-6-banh": {},
     "khay-trong-sz-9-10-11": {},
-    "khuc-nguyet-vien-cuc-do-4-banh-29-35k": {},
-    "kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k": {},
-    "lan-da-3x-nho": {},
-    "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k": {},
+    "khuc-nguyet-vien-cuc-do-4-banh-29-35k": {
+      "thich": true,
+      "thuTu": -5
+    },
+    "kim-lien-nguyet-xanh-la-4-banh-6-banh-29k-44k": {
+      "thich": true,
+      "thuTu": -6
+    },
+    "lan-da-3x-nho": {
+      "thich": true,
+      "thuTu": -7
+    },
+    "lien-nguyet-dinh-4-banh-kem-hop-tra-6-banh-33k-40k": {
+      "thich": true,
+      "thuTu": -8
+    },
     "nam-su-hong-150-250g-23-29k": {},
     "ngoc-hoa-cam-4-banh": {},
-    "nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k": {},
-    "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k": {},
-    "nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k": {},
+    "nguyet-hoa-vien-doxanh-duong-4-banh-re-185k-25k": {
+      "thich": true,
+      "thuTu": -9
+    },
+    "nguyet-lien-ca-4-banh-tra-6-banh-34k-42k": {
+      "thich": true,
+      "thuTu": -10
+    },
+    "nguyet-lien-ngu-4-banh-tra-6-banh-37k-44k": {
+      "thich": true,
+      "thuTu": -11
+    },
     "song-nguyet-4-6-banh": {},
-    "song-ngu-do-4-banh-tra-doc-36k-44k": {},
-    "thien-hoa-van-nguyet-4-banh-re-175k-24k": {},
-    "tho-do-3x-nho": {},
+    "song-ngu-do-4-banh-tra-doc-36k-44k": {
+      "thich": true,
+      "thuTu": -12
+    },
+    "thien-hoa-van-nguyet-4-banh-re-175k-24k": {
+      "thich": true,
+      "thuTu": -13
+    },
+    "tho-do-3x-nho": {
+      "thich": true,
+      "thuTu": -14
+    },
     "thu-hoa-4-banh-do-29k-35k": {},
     "tui-dung-banh-trung-thu-sz-9-10-11": {},
     "4b-re-do-xd": {},
