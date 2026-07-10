@@ -401,24 +401,23 @@ def load_admin_home_meta() -> dict:
 
 
 def home_display_rank(product: dict, meta: dict) -> tuple:
+    """★ thích trước; còn lại theo ngày đăng mới nhất (SP up sau lên đầu)."""
     sku = product["id"]
     item = (meta.get("items") or {}).get(sku) or {}
     thich = bool(item.get("thich"))
     thu_tu = int(item.get("thuTu") or 9999)
     posted = item.get("postedAt") or parse_posted_from_folder(product.get("folder") or "")
-    is_new = bool(item.get("isNew")) or _is_recent_posted(posted)
-    if thich:
-        tier = 0
-    elif is_new:
-        tier = 1
-    else:
-        tier = 2
     order = meta.get("order") or []
     try:
         admin_idx = order.index(sku)
     except ValueError:
         admin_idx = 9999
-    return (tier, thu_tu if thich else admin_idx, _posted_sort_key(posted), sku)
+    posted_key = _posted_sort_key(posted)
+    if thich:
+        return (0, thu_tu, posted_key, -admin_idx, sku)
+    if posted_key:
+        return (1, posted_key, -admin_idx, sku)
+    return (1, 0, -admin_idx, sku)
 
 
 def sort_products_for_home(products: list[dict], meta: dict) -> list[dict]:

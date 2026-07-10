@@ -36,9 +36,6 @@ function sortCatalogForHome(list) {
         if (aFav && bFav && (a.thuTu || 9999) !== (b.thuTu || 9999)) {
             return (a.thuTu || 9999) - (b.thuTu || 9999);
         }
-        const aNew = isCatalogRecent(a);
-        const bNew = isCatalogRecent(b);
-        if (aNew !== bNew) return aNew ? -1 : 1;
         const ap = catalogPostedAt(a);
         const bp = catalogPostedAt(b);
         if (ap !== bp) return bp.localeCompare(ap);
