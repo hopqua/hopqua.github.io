@@ -1,7 +1,17 @@
 {
-  "updated": "2026-07-09",
+  "updated": "2026-07-10",
   "note": "Sinh từ quan-tri-san-pham.json — override SEO trang SP",
   "items": {
+    "kim-nguyet-4b-tra-6b": {
+      "title": "Kim nguyệt 4b trà/6b",
+      "description": "Mua Shopee hoặc Zalo báo giá sỉ.",
+      "keywords": "hộp bánh trung thu, kim nguyệt 4b trà/6b, hộp quà trung thu, mua sỉ hộp bánh"
+    },
+    "tho-xanh-ngoc-4b": {
+      "title": "Thỏ xanh ngọc 4b",
+      "description": "Giá tham khảo: 29.000đ – 35.000đ/cái. Mua Shopee hoặc Zalo báo giá sỉ.",
+      "keywords": "hộp bánh trung thu, thỏ xanh ngọc 4b, hộp quà trung thu, mua sỉ hộp bánh"
+    },
     "mau-2026-vo-banh-trung-thu-nguyet-lien-hoa-ep-nhu-7-mau-long-lanh-4b-kem": {
       "title": "[Mẫu 2026] vỏ bánh trung thu Nguyệt Liên Hoa ép nhũ 7 màu ló",
       "description": "Mua Shopee hoặc Zalo báo giá sỉ.",

@@ -620,6 +620,7 @@ const productImageManifest = {
             "image/cap-nhat-2026/hop-cung-hac-van-nguyet/hop-cung-hac-van-nguyet-4.jpg"
     ],
     'hac-vu-nguyet-ca-4-banh-6-banh': [
+            "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-1.jpg",
             "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-10.jpg",
             "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-11.jpg",
             "image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-12.jpg",
@@ -750,7 +751,8 @@ const productImageManifest = {
             "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-1.jpg",
             "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-2.jpg",
             "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-3.jpg",
-            "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-4.jpg"
+            "image/thang-6-2026/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-4.jpg",
+            "image/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k/nguyet-lien-ca-4-banh-tra-6-banh-34k-42k-video-1.mp4"
     ],
     'bach-uyen-4-banh-cuc-sang-2026': [
             "image/bach-uyen-4-banh-cuc-sang-2026/bach-uyen-4-banh-cuc-sang-2026-1.jpg",
@@ -774,6 +776,20 @@ const productImageManifest = {
             "image/moi-mrd2qb6i/moi-mrd2qb6i-2.jpg",
             "image/moi-mrd2qb6i/moi-mrd2qb6i-3.jpg",
             "image/moi-mrd2qb6i/moi-mrd2qb6i-4.jpg"
+    ],
+    'kim-nguyet-4b-tra-6b': [
+            "image/kim-nguyet-4b-tra-6b/kim-nguyet-4b-tra-6b-1.jpg",
+            "image/kim-nguyet-4b-tra-6b/kim-nguyet-4b-tra-6b-2.jpg",
+            "image/kim-nguyet-4b-tra-6b/kim-nguyet-4b-tra-6b-3.jpg",
+            "image/kim-nguyet-4b-tra-6b/kim-nguyet-4b-tra-6b-4.jpg",
+            "image/kim-nguyet-4b-tra-6b/kim-nguyet-4b-tra-6b-5.jpg"
+    ],
+    'tho-xanh-ngoc-4b': [
+            "image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-1.jpg",
+            "image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-2.jpg",
+            "image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-3.jpg",
+            "image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-4.jpg",
+            "image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-5.jpg"
     ],
 };
 

@@ -757,7 +757,7 @@ const products = [
         id: 'hac-vu-nguyet-ca-4-banh-6-banh',
         name: 'Hạc vũ nguyệt ca 4 bánh 6 bánh',
         folder: 'thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh',
-        thumbnail: 'image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-10.jpg',
+        thumbnail: 'image/thang-6-2026/hac-vu-nguyet-ca-4-banh-6-banh/hac-vu-nguyet-ca-4-banh-6-banh-1.jpg',
         price: 'Từ 32.000đ đến 42.000đ',
         description: 'Mẫu hộp bánh trung thu hạc vũ nguyệt ca 4 bánh 6 bánh, phù hợp cửa hàng bánh, đại lý và khách mua sỉ.\n\n•Cân nặng đóng hàng: 330g (6 bánh)\n•Kích thước: Đáy 27×35,5 cm · Túi 29×36,5 cm\n•Giá lẻ (1–10 cái): 32.000đ – 42.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 57.000đ/cái (tính theo mức cao nhất)\n•SL 11–99: inbox shop Shopee hoặc nhắn Zalo — giá giảm theo số lượng\n•SL 100–1.000 cái: nhắn Zalo 0965671689 báo giá sỉ (nhiều mức giá theo ngưỡng)\n•Trên 1.000 cái: liên hệ Zalo để chốt giá tốt nhất',
         category: 'hộp bánh trung thu',
@@ -906,6 +906,32 @@ const products = [
         price: 'Từ 35.000đ đến 41.000đ',
         description: '*** Lưu ý:\n\n- Hộp không gồm bánh bên trong\n\n- CÁC SẢN PHẨM HỘP KHI VẬN CHUYỂN SẼ TRONG TRẠNG THÁI THÁO RỜI ĐỂ VIỆC VẬN CHUYỂN DỄ DÀNG VÀ KHÔNG BỊ HƯ HỎNG HỘP. TRÊN HỘP SẼ CÓ CÁC NẾP GẤP SẴN ĐỂ GIÚP QUÝ KHÁCH XẾP HỘP DỄ HƠN.\n\nNhận sỉ và lẻ hộp trung thu\n\nMua số lượng lớn nhận giá sỉ ADD ZALO nhắn tin shop (giá rẻ hơn)\n\n•Giá lẻ (1–10 cái): 35.000đ – 41.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 55.500đ/cái (tính theo mức cao nhất)',
         postedAt: '2025-06-18',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: 'kim-nguyet-4b-tra-6b',
+        name: 'Kim nguyệt 4b trà/6b',
+        folder: 'kim-nguyet-4b-tra-6b',
+        thumbnail: 'image/kim-nguyet-4b-tra-6b/kim-nguyet-4b-tra-6b-1.jpg',
+        price: 'Từ 37.000đ đến 45.000đ',
+        description: '•Giá lẻ (1–10 cái): 37.000đ – 45.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 61.000đ/cái (tính theo mức cao nhất)',
+        postedAt: '2026-07-10',
+        category: 'hộp bánh trung thu',
+        season: 'trung thu',
+        videos: []
+    },
+    // Thêm từ quan-tri-san-pham
+    {
+        id: 'tho-xanh-ngoc-4b',
+        name: 'Thỏ xanh ngọc 4b',
+        folder: 'tho-xanh-ngoc-4b',
+        thumbnail: 'image/tho-xanh-ngoc-4b/tho-xanh-ngoc-4b-1.jpg',
+        price: 'Từ 29.000đ đến 35.000đ',
+        description: '•Giá lẻ (1–10 cái): 29.000đ – 35.000đ/cái — mua trực tiếp, không qua sàn TMĐT\n•Giá tham khảo mua qua Shopee: 47.500đ/cái (tính theo mức cao nhất)',
+        postedAt: '2026-07-10',
         category: 'hộp bánh trung thu',
         season: 'trung thu',
         videos: []
