@@ -15,6 +15,7 @@ PRODUCTS_JS = ROOT / "js" / "products.js"
 MANIFEST_JS = ROOT / "js" / "product-images-manifest.js"
 STOCK_JSON = ROOT / "data" / "stock-status.json"
 SEO_JSON = ROOT / "data" / "products-seo.json"
+HOME_LANDING_JSON = ROOT / "data" / "home-landing.json"
 
 FEE_PLATFORM = 0.30
 FEE_RETURN = 0.04
@@ -133,11 +134,19 @@ def build_description(
 
 
 def load_json(path: Path) -> list[dict]:
+    products, _ = load_admin_json(path)
+    return products
+
+
+def load_admin_json(path: Path) -> tuple[list[dict], dict | None]:
+    if path.suffix.lower() != ".json":
+        return load_csv(path), None
     data = json.loads(path.read_text(encoding="utf-8"))
     products = data.get("products") if isinstance(data, dict) else data
     if not isinstance(products, list):
         raise SystemExit("JSON phải có key 'products': [ ... ]")
-    return products
+    trang_chu = data.get("trang_chu") if isinstance(data.get("trang_chu"), dict) else None
+    return products, trang_chu
 
 
 def load_csv(path: Path) -> list[dict]:
@@ -334,7 +343,11 @@ def _write_seo_json(items: list[dict]) -> None:
     SEO_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[str], int, int]:
+def apply_products(
+    items: list[dict],
+    dry_run: bool = False,
+    trang_chu: dict | None = None,
+) -> tuple[int, list[str], int, int]:
     text = PRODUCTS_JS.read_text(encoding="utf-8")
     manifest = MANIFEST_JS.read_text(encoding="utf-8") if MANIFEST_JS.is_file() else ""
     stock: dict[str, bool] = {}
@@ -452,7 +465,172 @@ def apply_products(items: list[dict], dry_run: bool = False) -> tuple[int, list[
         _write_seo_json(active_items)
         _write_home_priority(items)
 
+    if not dry_run:
+        _write_home_landing(trang_chu)
+
     return updated, missing, added, removed
+
+
+HOME_LANDING_SECTION_META: dict[str, dict] = {
+    "mau-hot": {
+        "anchorId": "mau-hot",
+        "gridId": "landing-hot-grid",
+        "fallback_filter": None,
+        "view_all": {
+            "type": "link",
+            "href": "/18-mau-hot-2026.html",
+            "label": "Xem tất cả 18 mẫu hot →",
+        },
+    },
+    "hop-4-banh": {
+        "anchorId": "hop-4-banh",
+        "gridId": "landing-hop-4-grid",
+        "fallback_filter": {"boxType": "hop-4-banh"},
+        "view_all": {
+            "type": "filter",
+            "filter": {"boxType": "hop-4-banh"},
+            "label": "Xem thêm hộp 4 bánh →",
+        },
+    },
+    "hop-6-banh": {
+        "anchorId": "hop-6-banh",
+        "gridId": "landing-hop-6-grid",
+        "fallback_filter": {"boxType": ["hop-6-banh", "mini"]},
+        "view_all": {
+            "type": "filter",
+            "filter": {"boxType": "hop-6-banh"},
+            "label": "Xem thêm hộp 6 bánh →",
+        },
+    },
+    "hop-cung": {
+        "anchorId": "hop-cung",
+        "gridId": "landing-hop-cung-grid",
+        "fallback_filter": {"boxMaterial": "hop-cung"},
+        "view_all": {
+            "type": "filter",
+            "filter": {"boxMaterial": "hop-cung"},
+            "label": "Xem thêm hộp cứng →",
+        },
+    },
+    "phu-kien": {
+        "anchorId": "phu-kien",
+        "gridId": "landing-phu-kien-grid",
+        "fallback_filter": {"boxType": "phu-kien-banh"},
+        "view_all": {
+            "type": "filter",
+            "filter": {"boxType": "phu-kien-banh"},
+            "label": "Xem thêm phụ kiện →",
+        },
+    },
+}
+
+HOME_LANDING_DEFAULT_COPY: dict[str, dict] = {
+    "mau-hot": {
+        "eyebrow": "– Món quà được đề cử –",
+        "title": "Chào đón Trung Thu 2026",
+        "subtitle": "Sản phẩm hot cho mùa Trung Thu — Hoàng Kim, hộp cứng, 6 mini bán chạy nhất.",
+        "product_ids": [
+            "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k",
+            "thien-hoa-van-nguyet-4-banh-re-175k-24k",
+            "hop-cung-gap-gon-6x",
+            "6-banh-mini-kim-son-cam-20k-26k",
+        ],
+        "limit": 4,
+    },
+    "hop-4-banh": {
+        "eyebrow": "– Hộp quà Trung Thu –",
+        "title": "Hộp 4 bánh",
+        "subtitle": "Vỏ hộp đựng 4 bánh truyền thống — ép kim, hoa văn nguyệt hoa, thỏ quý tộc…",
+        "product_ids": [],
+        "limit": 4,
+    },
+    "hop-6-banh": {
+        "eyebrow": "– Set quà gia đình –",
+        "title": "Hộp 6 bánh & mini",
+        "subtitle": "Hộp 6 bánh và 6 mini — phù hợp set quà gia đình, tiệm bánh và đại lý.",
+        "product_ids": [],
+        "limit": 4,
+    },
+    "hop-cung": {
+        "eyebrow": "– Hộp quà cao cấp –",
+        "title": "Hộp cứng cao cấp",
+        "subtitle": "Hộp cứng gấp gọn, sang trọng — tặng đối tác, doanh nghiệp và khách VIP.",
+        "product_ids": [],
+        "limit": 4,
+    },
+    "phu-kien": {
+        "eyebrow": "– Đủ bộ đóng hàng –",
+        "title": "Phụ kiện bánh Trung Thu",
+        "subtitle": "Khay, túi, dao nĩa, hút ẩm — phụ kiện đi kèm hộp bánh mùa Trung Thu.",
+        "product_ids": [],
+        "limit": 4,
+    },
+}
+
+
+def _merge_home_landing_section(key: str, admin_section: dict | None) -> dict:
+    meta = HOME_LANDING_SECTION_META[key]
+    defaults = HOME_LANDING_DEFAULT_COPY[key]
+    src = admin_section if isinstance(admin_section, dict) else {}
+    product_ids = src.get("product_ids")
+    if not isinstance(product_ids, list):
+        product_ids = defaults.get("product_ids") or []
+    limit = src.get("limit") or defaults.get("limit") or 4
+    try:
+        limit = max(1, min(int(limit), 12))
+    except (TypeError, ValueError):
+        limit = 4
+    fallback = src.get("fallback_filter")
+    if fallback is None:
+        fallback = meta.get("fallback_filter")
+    return {
+        "key": key,
+        "anchorId": meta["anchorId"],
+        "gridId": meta["gridId"],
+        "eyebrow": (src.get("eyebrow") or defaults.get("eyebrow") or "").strip(),
+        "title": (src.get("title") or defaults.get("title") or "").strip(),
+        "subtitle": (src.get("subtitle") or defaults.get("subtitle") or "").strip(),
+        "productIds": [str(x).strip() for x in product_ids if str(x).strip()],
+        "fallbackFilter": fallback,
+        "limit": limit,
+        "viewAll": src.get("view_all") or meta.get("view_all"),
+    }
+
+
+def _write_home_landing(trang_chu: dict | None) -> None:
+    admin_sections: dict[str, dict] = {}
+    if isinstance(trang_chu, dict):
+        for section in trang_chu.get("sections") or []:
+            if isinstance(section, dict) and section.get("key"):
+                admin_sections[str(section["key"])] = section
+    elif HOME_LANDING_JSON.is_file():
+        try:
+            existing = json.loads(HOME_LANDING_JSON.read_text(encoding="utf-8"))
+            for section in existing.get("sections") or []:
+                if isinstance(section, dict) and section.get("key"):
+                    admin_sections[str(section["key"])] = {
+                        "eyebrow": section.get("eyebrow"),
+                        "title": section.get("title"),
+                        "subtitle": section.get("subtitle"),
+                        "product_ids": section.get("productIds") or [],
+                        "limit": section.get("limit"),
+                        "fallback_filter": section.get("fallbackFilter"),
+                        "view_all": section.get("viewAll"),
+                    }
+        except json.JSONDecodeError:
+            pass
+
+    payload = {
+        "version": 1,
+        "updated": __import__("datetime").date.today().isoformat(),
+        "note": "Khối sản phẩm trang chủ — sinh từ quan-tri-san-pham.json (trang_chu)",
+        "sections": [
+            _merge_home_landing_section(key, admin_sections.get(key))
+            for key in HOME_LANDING_SECTION_META
+        ],
+    }
+    HOME_LANDING_JSON.parent.mkdir(parents=True, exist_ok=True)
+    HOME_LANDING_JSON.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def _write_home_priority(items: list[dict]) -> None:
@@ -531,11 +709,14 @@ def main() -> None:
             "Mở quan-tri-san-pham.html → Lưu & tải file → đặt vào shopee-upload-2026/"
         )
 
-    items = load_csv(source) if source.suffix.lower() == ".csv" else load_json(source)
+    items = load_csv(source) if source.suffix.lower() == ".csv" else None
+    trang_chu = None
+    if items is None:
+        items, trang_chu = load_admin_json(source)
     if not items:
         raise SystemExit("Không có sản phẩm trong file")
 
-    updated, missing, added, removed = apply_products(items, dry_run=args.dry_run)
+    updated, missing, added, removed = apply_products(items, dry_run=args.dry_run, trang_chu=trang_chu)
     parts = [f"{'[dry-run] ' if args.dry_run else ''}✅ Cập nhật {updated} SP"]
     if added:
         parts.append(f"thêm {added}")
@@ -545,7 +726,7 @@ def main() -> None:
     if missing:
         print(f"⚠️  {len(missing)} SKU không patch được: {', '.join(missing[:6])}{'…' if len(missing) > 6 else ''}")
 
-    if not args.dry_run and (updated + added + removed):
+    if not args.dry_run and (updated + added + removed or trang_chu):
         for script in (
             "build-products-catalog.py",
             "generate-sitemap.py",

@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "updated": "2026-07-11",
+  "note": "Khối sản phẩm trang chủ — sinh từ quan-tri-san-pham.json (trang_chu)",
+  "sections": [
+    {
+      "key": "mau-hot",
+      "anchorId": "mau-hot",
+      "gridId": "landing-hot-grid",
+      "eyebrow": "– Món quà được đề cử –",
+      "title": "Chào đón Trung Thu 2026",
+      "subtitle": "Sản phẩm hot cho mùa Trung Thu — Hoàng Kim, hộp cứng, 6 mini bán chạy nhất.",
+      "productIds": [
+        "hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k",
+        "thien-hoa-van-nguyet-4-banh-re-175k-24k",
+        "hop-cung-gap-gon-6x",
+        "6-banh-mini-kim-son-cam-20k-26k"
+      ],
+      "fallbackFilter": null,
+      "limit": 4,
+      "viewAll": {
+        "type": "link",
+        "href": "/18-mau-hot-2026.html",
+        "label": "Xem tất cả 18 mẫu hot →"
+      }
+    },
+    {
+      "key": "hop-4-banh",
+      "anchorId": "hop-4-banh",
+      "gridId": "landing-hop-4-grid",
+      "eyebrow": "– Hộp quà Trung Thu –",
+      "title": "Hộp 4 bánh",
+      "subtitle": "Vỏ hộp đựng 4 bánh truyền thống — ép kim, hoa văn nguyệt hoa, thỏ quý tộc…",
+      "productIds": [],
+      "fallbackFilter": {
+        "boxType": "hop-4-banh"
+      },
+      "limit": 4,
+      "viewAll": {
+        "type": "filter",
+        "filter": {
+          "boxType": "hop-4-banh"
+        },
+        "label": "Xem thêm hộp 4 bánh →"
+      }
+    },
+    {
+      "key": "hop-6-banh",
+      "anchorId": "hop-6-banh",
+      "gridId": "landing-hop-6-grid",
+      "eyebrow": "– Set quà gia đình –",
+      "title": "Hộp 6 bánh & mini",
+      "subtitle": "Hộp 6 bánh và 6 mini — phù hợp set quà gia đình, tiệm bánh và đại lý.",
+      "productIds": [],
+      "fallbackFilter": {
+        "boxType": [
+          "hop-6-banh",
+          "mini"
+        ]
+      },
+      "limit": 4,
+      "viewAll": {
+        "type": "filter",
+        "filter": {
+          "boxType": "hop-6-banh"
+        },
+        "label": "Xem thêm hộp 6 bánh →"
+      }
+    },
+    {
+      "key": "hop-cung",
+      "anchorId": "hop-cung",
+      "gridId": "landing-hop-cung-grid",
+      "eyebrow": "– Hộp quà cao cấp –",
+      "title": "Hộp cứng cao cấp",
+      "subtitle": "Hộp cứng gấp gọn, sang trọng — tặng đối tác, doanh nghiệp và khách VIP.",
+      "productIds": [],
+      "fallbackFilter": {
+        "boxMaterial": "hop-cung"
+      },
+      "limit": 4,
+      "viewAll": {
+        "type": "filter",
+        "filter": {
+          "boxMaterial": "hop-cung"
+        },
+        "label": "Xem thêm hộp cứng →"
+      }
+    },
+    {
+      "key": "phu-kien",
+      "anchorId": "phu-kien",
+      "gridId": "landing-phu-kien-grid",
+      "eyebrow": "– Đủ bộ đóng hàng –",
+      "title": "Phụ kiện bánh Trung Thu",
+      "subtitle": "Khay, túi, dao nĩa, hút ẩm — phụ kiện đi kèm hộp bánh mùa Trung Thu.",
+      "productIds": [],
+      "fallbackFilter": {
+        "boxType": "phu-kien-banh"
+      },
+      "limit": 4,
+      "viewAll": {
+        "type": "filter",
+        "filter": {
+          "boxType": "phu-kien-banh"
+        },
+        "label": "Xem thêm phụ kiện →"
+      }
+    }
+  ]
+}

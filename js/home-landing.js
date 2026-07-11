@@ -1,41 +1,102 @@
-/** Landing trang chủ — layout kiểu shop (hopqua.com.vn) cho hộp Trung Thu. */
-const LANDING_HOT_IDS = [
-    'hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k',
-    'thien-hoa-van-nguyet-4-banh-re-175k-24k',
-    'hop-cung-gap-gon-6x',
-    '6-banh-mini-kim-son-cam-20k-26k',
-];
+/** Landing trang chủ — khối sản phẩm từ data/home-landing.json (quản trị). */
+const HOME_LANDING_JSON_URL = 'data/home-landing.json';
 
-const LANDING_SECTIONS = [
-    {
-        gridId: 'landing-hop-4-grid',
-        title: 'Hộp 4 bánh',
-        subtitle: 'Vỏ hộp đựng 4 bánh — nhiều mẫu ép kim, hoa văn truyền thống',
-        filter: { boxType: 'hop-4-banh' },
-        viewAllLabel: 'Xem thêm hộp 4 bánh',
-    },
-    {
-        gridId: 'landing-hop-6-grid',
-        title: 'Hộp 6 bánh & mini',
-        subtitle: 'Hộp 6 bánh, 6 mini — phù hợp set quà gia đình & tiệm bánh',
-        filter: { boxType: ['hop-6-banh', 'mini'] },
-        viewAllLabel: 'Xem thêm hộp 6 bánh',
-    },
-    {
-        gridId: 'landing-hop-cung-grid',
-        title: 'Hộp cứng cao cấp',
-        subtitle: 'Hộp cứng gấp gọn, sang trọng — tặng đối tác & khách VIP',
-        filter: { boxMaterial: 'hop-cung' },
-        viewAllLabel: 'Xem thêm hộp cứng',
-    },
-    {
-        gridId: 'landing-phu-kien-grid',
-        title: 'Phụ kiện bánh Trung Thu',
-        subtitle: 'Khay, túi, dao nĩa, hút ẩm — đủ bộ đóng hàng',
-        filter: { boxType: 'phu-kien-banh' },
-        viewAllLabel: 'Xem thêm phụ kiện',
-    },
-];
+const HOME_LANDING_DEFAULTS = {
+    sections: [
+        {
+            key: 'mau-hot',
+            anchorId: 'mau-hot',
+            gridId: 'landing-hot-grid',
+            eyebrow: '– Món quà được đề cử –',
+            title: 'Chào đón Trung Thu 2026',
+            subtitle:
+                'Sản phẩm hot cho mùa Trung Thu — Hoàng Kim, hộp cứng, 6 mini bán chạy nhất.',
+            productIds: [
+                'hoang-kim-hang-giay-mem-cao-cap-mau-gold-4-banh-6-banh-61k-70k',
+                'thien-hoa-van-nguyet-4-banh-re-175k-24k',
+                'hop-cung-gap-gon-6x',
+                '6-banh-mini-kim-son-cam-20k-26k',
+            ],
+            fallbackFilter: null,
+            limit: 4,
+        },
+        {
+            key: 'hop-4-banh',
+            anchorId: 'hop-4-banh',
+            gridId: 'landing-hop-4-grid',
+            eyebrow: '– Hộp quà Trung Thu –',
+            title: 'Hộp 4 bánh',
+            subtitle:
+                'Vỏ hộp đựng 4 bánh truyền thống — ép kim, hoa văn nguyệt hoa, thỏ quý tộc…',
+            productIds: [],
+            fallbackFilter: { boxType: 'hop-4-banh' },
+            limit: 4,
+        },
+        {
+            key: 'hop-6-banh',
+            anchorId: 'hop-6-banh',
+            gridId: 'landing-hop-6-grid',
+            eyebrow: '– Set quà gia đình –',
+            title: 'Hộp 6 bánh & mini',
+            subtitle:
+                'Hộp 6 bánh và 6 mini — phù hợp set quà gia đình, tiệm bánh và đại lý.',
+            productIds: [],
+            fallbackFilter: { boxType: ['hop-6-banh', 'mini'] },
+            limit: 4,
+        },
+        {
+            key: 'hop-cung',
+            anchorId: 'hop-cung',
+            gridId: 'landing-hop-cung-grid',
+            eyebrow: '– Hộp quà cao cấp –',
+            title: 'Hộp cứng cao cấp',
+            subtitle: 'Hộp cứng gấp gọn, sang trọng — tặng đối tác, doanh nghiệp và khách VIP.',
+            productIds: [],
+            fallbackFilter: { boxMaterial: 'hop-cung' },
+            limit: 4,
+        },
+        {
+            key: 'phu-kien',
+            anchorId: 'phu-kien',
+            gridId: 'landing-phu-kien-grid',
+            eyebrow: '– Đủ bộ đóng hàng –',
+            title: 'Phụ kiện bánh Trung Thu',
+            subtitle: 'Khay, túi, dao nĩa, hút ẩm — phụ kiện đi kèm hộp bánh mùa Trung Thu.',
+            productIds: [],
+            fallbackFilter: { boxType: 'phu-kien-banh' },
+            limit: 4,
+        },
+    ],
+};
+
+function normalizeHomeLandingConfig(raw) {
+    const defaults = HOME_LANDING_DEFAULTS.sections;
+    const byKey = {};
+    defaults.forEach((section) => {
+        byKey[section.key] = { ...section };
+    });
+
+    (raw && raw.sections ? raw.sections : []).forEach((section) => {
+        const key = section.key;
+        if (!key || !byKey[key]) return;
+        byKey[key] = {
+            ...byKey[key],
+            ...section,
+            productIds: Array.isArray(section.productIds)
+                ? section.productIds.filter(Boolean)
+                : byKey[key].productIds,
+        };
+    });
+
+    return { sections: defaults.map((section) => byKey[section.key]) };
+}
+
+function loadHomeLandingConfig() {
+    return fetch(HOME_LANDING_JSON_URL)
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null)
+        .then((data) => normalizeHomeLandingConfig(data));
+}
 
 function renderShopTileHtml(product, options = {}) {
     if (!product || typeof escapeCatalogHtml !== 'function') return '';
@@ -100,7 +161,69 @@ function matchLandingFilter(product, filter) {
 }
 
 function pickLandingProducts(allProducts, filter, limit = 4) {
-    return allProducts.filter((p) => matchLandingFilter(p, filter)).slice(0, limit);
+    let list = allProducts.filter((p) => matchLandingFilter(p, filter));
+    if (typeof sortCatalogForHome === 'function') {
+        list = sortCatalogForHome(list);
+    }
+    return list.slice(0, limit);
+}
+
+function resolveLandingProducts(allProducts, section) {
+    const limit = section.limit || 4;
+    const ids = section.productIds || [];
+    const byId = new Map(allProducts.map((p) => [p.id, p]));
+
+    if (ids.length) {
+        const picked = ids.map((id) => byId.get(id)).filter(Boolean);
+        if (picked.length >= limit) {
+            return picked.slice(0, limit);
+        }
+        if (picked.length && !section.fallbackFilter) {
+            return picked;
+        }
+        if (picked.length && section.fallbackFilter) {
+            const seen = new Set(picked.map((p) => p.id));
+            const extra = pickLandingProducts(allProducts, section.fallbackFilter, limit).filter(
+                (p) => !seen.has(p.id)
+            );
+            return picked.concat(extra).slice(0, limit);
+        }
+    }
+
+    if (section.fallbackFilter) {
+        return pickLandingProducts(allProducts, section.fallbackFilter, limit);
+    }
+
+    return allProducts.slice(0, limit);
+}
+
+function applyLandingSectionCopy(section) {
+    const root = document.getElementById(section.anchorId);
+    if (!root) return;
+
+    const eyebrow = root.querySelector('.landing-section-eyebrow');
+    const title = root.querySelector('.landing-section-title');
+    const subtitle = root.querySelector('.landing-section-sub');
+
+    if (eyebrow && section.eyebrow) eyebrow.textContent = section.eyebrow;
+    if (title && section.title) title.textContent = section.title;
+    if (subtitle && section.subtitle) subtitle.textContent = section.subtitle;
+
+    const viewAll = section.viewAll;
+    if (!viewAll || !viewAll.label) return;
+
+    const actions = root.querySelector('.landing-section-actions');
+    if (!actions) return;
+
+    if (viewAll.type === 'link' && viewAll.href) {
+        actions.innerHTML = `<a href="${viewAll.href}" class="landing-view-all">${escapeCatalogHtml(viewAll.label)}</a>`;
+        return;
+    }
+
+    if (viewAll.type === 'filter' && viewAll.filter) {
+        const filterJson = JSON.stringify(viewAll.filter).replace(/'/g, '&#39;');
+        actions.innerHTML = `<button type="button" class="landing-view-all" data-landing-filter='${filterJson}'>${escapeCatalogHtml(viewAll.label)}</button>`;
+    }
 }
 
 function renderLandingGrid(gridId, products) {
@@ -174,34 +297,26 @@ function bindLandingViewAllButtons() {
 function initHomeLanding() {
     if (typeof loadCatalogProducts !== 'function') return;
 
-    loadCatalogProducts()
-        .then((products) => {
-            let hotProducts = LANDING_HOT_IDS.map((id) =>
-                products.find((p) => p.id === id)
-            ).filter(Boolean);
-
-            if (!hotProducts.length) {
-                hotProducts = products.slice(0, 4);
-            }
-
-            renderLandingGrid('landing-hot-grid', hotProducts);
-
-            LANDING_SECTIONS.forEach((section) => {
-                const list = pickLandingProducts(products, section.filter, 4);
+    Promise.all([loadCatalogProducts(), loadHomeLandingConfig()])
+        .then(([products, config]) => {
+            config.sections.forEach((section) => {
+                applyLandingSectionCopy(section);
+                const list = resolveLandingProducts(products, section);
                 renderLandingGrid(section.gridId, list);
             });
+            bindLandingViewAllButtons();
         })
         .catch(() => {
-            ['landing-hot-grid', ...LANDING_SECTIONS.map((s) => s.gridId)].forEach((id) => {
+            const gridIds = HOME_LANDING_DEFAULTS.sections.map((s) => s.gridId);
+            gridIds.forEach((id) => {
                 const grid = document.getElementById(id);
                 if (grid) {
                     grid.innerHTML =
                         '<p class="landing-grid-empty">Không tải được mẫu — <a href="#danh-muc">xem danh mục</a>.</p>';
                 }
             });
+            bindLandingViewAllButtons();
         });
-
-    bindLandingViewAllButtons();
 }
 
 document.addEventListener('DOMContentLoaded', initHomeLanding);

@@ -8,17 +8,21 @@ function injectSiteSearchBar() {
     }
 
     const compactInner = document.querySelector('.header-compact-inner');
+    const landingBar = document.querySelector('.site-header-bar');
     const legacyHeader = document.querySelector('header .container');
-    const host = compactInner || legacyHeader;
+    const host = compactInner || landingBar || legacyHeader;
     if (!host) {
         return;
     }
 
     const initialQ = typeof getSearchQueryFromUrl === 'function' ? getSearchQueryFromUrl() : '';
-    const action = compactInner ? '/tim-kiem.html' : 'tim-kiem.html';
+    const action = '/tim-kiem.html';
 
     const wrap = document.createElement('div');
     wrap.className = 'site-search-wrap';
+    if (landingBar) {
+        wrap.classList.add('site-search-wrap--landing');
+    }
     wrap.innerHTML = `
         <form id="site-search-form" class="site-search-form" action="${action}" method="get" role="search">
             <label class="sr-only" for="site-search-input">Tìm sản phẩm</label>
@@ -49,6 +53,13 @@ function injectSiteSearchBar() {
             compactInner.insertBefore(wrap, nav);
         } else {
             compactInner.appendChild(wrap);
+        }
+    } else if (landingBar) {
+        const nav = landingBar.querySelector('.site-header-nav');
+        if (nav) {
+            landingBar.insertBefore(wrap, nav);
+        } else {
+            landingBar.appendChild(wrap);
         }
     } else {
         const nav = legacyHeader.querySelector('nav');
@@ -112,7 +123,10 @@ function updateSuggestions(query, suggestEl) {
         }
         suggestEl.innerHTML = results
             .map((p) => {
-                const url = `/p/${encodeURIComponent(p.id)}/`;
+                const url =
+                    typeof catalogProductUrl === 'function'
+                        ? catalogProductUrl(p)
+                        : `/p/${encodeURIComponent(p.id)}/`;
                 const thumb = p.thumbnail
                     ? p.thumbnail.startsWith('http')
                         ? p.thumbnail
@@ -140,6 +154,15 @@ function updateSuggestions(query, suggestEl) {
         loadCatalogProducts().then(render).catch(() => {
             suggestEl.hidden = true;
         });
+        return;
+    }
+
+    if (
+        typeof loadCatalogProducts === 'function' &&
+        typeof getCatalogProducts === 'function' &&
+        !getCatalogProducts().length
+    ) {
+        loadCatalogProducts().then(render).catch(render);
         return;
     }
 

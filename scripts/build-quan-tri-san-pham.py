@@ -400,7 +400,7 @@ def thumb_full_local(path: str) -> str:
 
 
 def rows_to_payload(rows: list[AdminProduct]) -> dict:
-    return {
+    payload = {
         "version": 1,
         "updated": date.today().isoformat(),
         "note": "Gửi file này cho agent · chạy: python3 scripts/apply-quan-tri-san-pham.py",
@@ -431,6 +431,14 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
             for r in rows
         ],
     }
+    if OUT_JSON.is_file():
+        try:
+            existing = json.loads(OUT_JSON.read_text(encoding="utf-8"))
+            if isinstance(existing.get("trang_chu"), dict):
+                payload["trang_chu"] = existing["trang_chu"]
+        except json.JSONDecodeError:
+            pass
+    return payload
 
 
 def write_json_csv(rows: list[AdminProduct]) -> None:

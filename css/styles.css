@@ -5600,6 +5600,17 @@ body.landing-page > header.site-header {
     color: var(--tt-crimson-dark);
 }
 
+.site-header-bar .site-search-wrap--landing {
+    flex: 1 1 220px;
+    min-width: 0;
+    max-width: min(420px, 100%);
+    margin: 0 8px;
+}
+
+.site-header-bar .site-search-wrap--landing .site-search-form {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
 .site-header-nav a.site-nav-zalo {
     background: #0068ff;
     border-color: rgba(255, 255, 255, 0.45);
@@ -5963,7 +5974,19 @@ body.landing-page > header.site-header {
         gap: 10px;
     }
 
+    .site-header-bar .site-search-wrap--landing {
+        order: 2;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+    }
+
+    .site-header-bar .site-header-brand {
+        order: 1;
+    }
+
     .site-header-nav {
+        order: 3;
         flex-wrap: nowrap;
         overflow-x: auto;
         justify-content: flex-start;
