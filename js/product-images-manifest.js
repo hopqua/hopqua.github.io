@@ -234,15 +234,15 @@ const productImageManifest = {
             "image/cap-nhat-2026/nguyet-lien-ngu-4-banh-tra-6-banh/nguyet-lien-ngu-4-banh-tra-6-banh-9.jpg"
     ],
     'song-ngu-do-4-banh-tra-doc-36k-44k': [
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-1.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-2.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-3.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-4.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-5.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-6.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-7.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-8.jpg",
-            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-9.jpg"
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-10.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-11.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-12.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-13.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-14.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-15.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-16.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-17.jpg",
+            "image/thang-6-2026/song-ngu-do-4-banh-tra-doc-36k-44k/song-ngu-do-4-banh-tra-doc-36k-44k-video-1.mp4"
     ],
     'thien-hoa-van-nguyet-4-banh-re-175k-24k': [
             "image/cap-nhat-2026/4-banh-re-thien-hoa-van-nguyet-o-xanh-la/4-banh-re-thien-hoa-van-nguyet-o-xanh-la-1.jpg",
