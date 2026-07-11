@@ -12,9 +12,9 @@ alwaysApply: false
 |---|------|------|
 | 1 | `js/products.js` | `thumbnail: 'image/.../ten-anh.jpg'` (ảnh gốc, **không** `-thumb`) |
 | 2 | `js/product-images-manifest.js` | Đưa cùng ảnh đó lên **dòng đầu** mảng gallery của `id` SP |
-| 3 | Chạy script | `python3 scripts/build-products-catalog.py` (sinh luôn `js/product-og-map.js` cho preview link) |
+| 3 | Chạy script | `python3 scripts/build-products-catalog.py` (sinh catalog + `p/<id>/` + OG map) |
 
-Trang chủ dùng `thumbnail` + `products-catalog.json` (tự sinh). Trang chi tiết dùng `product-images-manifest.js` (ảnh đầu mảng = ảnh mở đầu). **Preview link** (`product.html?id=…` chia sẻ Zalo/Facebook): `js/product-og-map.js` + `js/product-og-head.js` trong `<head>`.
+Trang chủ dùng `thumbnail` + `products-catalog.json` (tự sinh). Trang chi tiết dùng `product-images-manifest.js` (ảnh đầu mảng = ảnh mở đầu). **Preview link** (Zalo/Facebook): URL `https://hopqua.io.vn/p/<sku>/` — HTML tĩnh sinh bởi `scripts/build-product-pages.py` (OG ảnh bake sẵn trong `<head>`).
 
 ## Ví dụ — Hộp Cứng 6 Bánh Mini
 
@@ -37,7 +37,7 @@ cd website/source
 python3 -m http.server 8765
 ```
 
-Mở `http://localhost:8765/` và `product.html?id=<sku>` — F5 cứng (Ctrl+Shift+R) nếu vẫn thấy ảnh cũ.
+Mở `http://localhost:8765/` và `/p/<sku>/` hoặc `product.html?id=<sku>` — F5 cứng (Ctrl+Shift+R) nếu vẫn thấy ảnh cũ.
 
 ## Deploy
 

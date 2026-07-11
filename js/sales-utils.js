@@ -275,7 +275,8 @@ function getProductBadges(product) {
 }
 
 function buildProductPageUrl(product) {
-    return `${SITE_ORIGIN}/product.html?id=${encodeURIComponent(product.id)}`;
+    const id = typeof product === 'string' ? product : (product.id || product.webId);
+    return `${SITE_ORIGIN}/p/${encodeURIComponent(id)}/`;
 }
 
 function buildZaloUrl(product) {

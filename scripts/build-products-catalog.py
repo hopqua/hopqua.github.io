@@ -453,10 +453,13 @@ def main() -> None:
     print(f"✅ {OUT_JSON} — {len(items)} mẫu, {size_kb:.1f} KB")
 
     og_script = ROOT / "scripts" / "build-product-og-map.py"
-    if og_script.is_file():
+    pages_script = ROOT / "scripts" / "build-product-pages.py"
+    if pages_script.is_file():
+        subprocess.run([sys.executable, str(pages_script)], check=True)
+    elif og_script.is_file():
         subprocess.run([sys.executable, str(og_script)], check=True)
     else:
-        print(f"⚠️ Bỏ qua OG map — chưa có {og_script.name}")
+        print(f"⚠️ Bỏ qua trang SP — chưa có {pages_script.name}")
 
 
 if __name__ == "__main__":

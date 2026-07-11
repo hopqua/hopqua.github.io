@@ -112,7 +112,7 @@ function updateSuggestions(query, suggestEl) {
         }
         suggestEl.innerHTML = results
             .map((p) => {
-                const url = `/product.html?id=${encodeURIComponent(p.id)}`;
+                const url = `/p/${encodeURIComponent(p.id)}/`;
                 const thumb = p.thumbnail
                     ? p.thumbnail.startsWith('http')
                         ? p.thumbnail

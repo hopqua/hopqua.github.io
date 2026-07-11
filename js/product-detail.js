@@ -1,9 +1,17 @@
 let currentImageIndex = 0;
 let productImages = [];
 
-document.addEventListener('DOMContentLoaded', function() {
+function resolveProductIdFromLocation() {
+    if (window.PRODUCT_PAGE_ID) return window.PRODUCT_PAGE_ID;
     const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('id');
+    const fromQuery = urlParams.get('id');
+    if (fromQuery) return fromQuery;
+    const match = window.location.pathname.match(/\/p\/([^/]+)(?:\/index\.html)?\/?$/);
+    return match ? decodeURIComponent(match[1]) : null;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const productId = resolveProductIdFromLocation();
 
     if (!productId) {
         showProductMissingId();

@@ -29,7 +29,7 @@ Mở HTML: chạy `./chay-quan-tri.sh` → `http://127.0.0.1:8876/quan-tri-san-p
 | `images` | `product-images-manifest.js` (gallery) |
 | `mo_ta_ngan` | đầu `description` |
 | `mo_ta_chi_tiet` | phần còn lại `description` |
-| `seo_title` / `seo_description` / `seo_keywords` | `data/products-seo.json` + OG |
+| `seo_title` / `seo_description` / `seo_keywords` | `data/products-seo.json` + OG trang `p/<sku>/` |
 | `xoa: true` | Xóa SP khỏi `products.js` (Apply) |
 | Nút **+ Thêm SP** | Thêm SP mới vào web (Apply) |
 | Thả ảnh trong **Chi tiết ▾** | `image/{folder}/` — tự đặt tên, nén, `-thumb.jpg` |
@@ -69,4 +69,5 @@ Sinh lại HTML/JSON/CSV từ `products.js` + manifest + stock + giá.
 ## Không sửa tay
 
 - `products-catalog.json` — chạy `build-products-catalog.py`
+- `p/<sku>/index.html` — chạy `build-product-pages.py` (hoặc qua catalog)
 - `quan-tri-san-pham.html` — chạy `build-quan-tri-san-pham.py` (shell; logic ở `assets/quan-tri-admin.js`)

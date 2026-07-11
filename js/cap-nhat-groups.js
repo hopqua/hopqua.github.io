@@ -37,7 +37,7 @@ function renderCapNhatVariantPickerHtml(productId) {
             const img = thumb
                 ? `<img src="${thumb}" alt="" width="48" height="48" loading="lazy" decoding="async">`
                 : '';
-            return `<a href="product.html?id=${encodeURIComponent(v.id)}" class="pd-variant-chip${active}" title="${v.label}">${img}<span>${v.label}</span></a>`;
+            return `<a href="/p/${encodeURIComponent(v.id)}/" class="pd-variant-chip${active}" title="${v.label}">${img}<span>${v.label}</span></a>`;
         })
         .join('');
 

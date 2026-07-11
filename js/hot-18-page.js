@@ -38,7 +38,7 @@ function injectHot18ItemListSchema(products) {
             '@type': 'ListItem',
             position: index + 1,
             name: product.name,
-            url: `${HOT_18_PAGE_URL.split('/18-')[0]}/product.html?id=${encodeURIComponent(product.id)}`,
+            url: `${HOT_18_PAGE_URL.split('/18-')[0]}/p/${encodeURIComponent(product.id)}/`,
         })),
     });
     document.head.appendChild(script);

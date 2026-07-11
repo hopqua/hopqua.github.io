@@ -56,7 +56,7 @@ function renderCatalogThumbStripHtml(product, max = 4) {
 
 function catalogProductUrl(row) {
     const id = row.webId || row.id;
-    return id ? `/product.html?id=${encodeURIComponent(id)}` : '#';
+    return id ? `/p/${encodeURIComponent(id)}/` : '#';
 }
 
 function parsePackWeightG(product) {

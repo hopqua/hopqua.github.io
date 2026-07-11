@@ -17,7 +17,7 @@
     }
 
     var pageTitle = ((p.st || p.n) + ' | Hộp Bánh Trung Thu Vân Thắng');
-    var productUrl = site + '/product.html?id=' + encodeURIComponent(id);
+    var productUrl = site + '/p/' + encodeURIComponent(id) + '/';
     var imageUrl = site + '/' + String(p.t).replace(/^\//, '');
 
     document.title = pageTitle;

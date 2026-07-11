@@ -24,8 +24,8 @@ function displayProducts(container, productsToDisplay, globalStartIndex = 0, opt
         const zaloUrl = buildZaloUrl(product);
         const detailUrl =
             typeof buildProductPageUrl === 'function'
-                ? buildProductPageUrl(product)
-                : `/product.html?id=${encodeURIComponent(product.id)}`;
+                ? buildProductPageUrl(product).replace(/^https?:\/\/[^/]+/, '')
+                : `/p/${encodeURIComponent(product.id)}/`;
         const secondaryBtnHtml = useShopee
             ? `<a href="${getShopeeUrl(product)}" target="_blank" rel="noopener sponsored" class="btn-shopee-card">Mua Shopee</a>`
             : `<a href="${zaloUrl}" target="_blank" rel="noopener" class="btn-zalo-card" data-product-id="${product.id}">Zalo báo giá</a>`;

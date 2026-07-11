@@ -4,11 +4,16 @@ from __future__ import annotations
 
 import re
 import json
+import sys
 import xml.etree.ElementTree as ET
 import xml.sax.saxutils
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import quote
+
+SCRIPTS = Path(__file__).resolve().parent
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+from product_urls import product_page_url
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE_URL = "https://hopqua.io.vn"
@@ -79,7 +84,7 @@ def xml_text(value: str) -> str:
 
 
 def product_url(product_id: str) -> str:
-    return f"{BASE_URL}/product.html?id={quote(product_id, safe='')}"
+    return product_page_url(product_id)
 
 
 def make_url_block(loc: str, lastmod: str | None = None) -> str:

@@ -14,6 +14,13 @@ PRODUCTS_JS = ROOT / "js" / "products.js"
 MANIFEST_JS = ROOT / "js" / "product-images-manifest.js"
 SITE = "https://hopqua.io.vn"
 
+sys_path = Path(__file__).resolve().parent
+import sys
+
+if str(sys_path) not in sys.path:
+    sys.path.insert(0, str(sys_path))
+from product_urls import product_page_url, product_legacy_url
+
 
 def _hop_qua_root() -> Path:
     here = Path(__file__).resolve()
@@ -341,7 +348,7 @@ def collect_products() -> list[AdminProduct]:
                 images=imgs,
                 con_hang=in_stock,
                 folder=folder,
-                web_url=f"{SITE}/product.html?id={sku}",
+                web_url=product_page_url(sku),
                 ngay_dang=ngay,
                 thich=thich,
                 thu_tu=thu_tu,
@@ -413,6 +420,8 @@ def rows_to_payload(rows: list[AdminProduct]) -> dict:
                 "images": r.images,
                 "con_hang": r.con_hang,
                 "folder": r.folder,
+                "web_url": r.web_url,
+                "web_url_legacy": product_legacy_url(r.sku),
                 "thich": r.thich,
                 "ngay_dang": r.ngay_dang,
                 "thu_tu": r.thu_tu,

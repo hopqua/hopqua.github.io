@@ -548,7 +548,6 @@ def main() -> None:
     if not args.dry_run and (updated + added + removed):
         for script in (
             "build-products-catalog.py",
-            "build-product-og-map.py",
             "generate-sitemap.py",
             "build-quan-tri-san-pham.py",
         ):

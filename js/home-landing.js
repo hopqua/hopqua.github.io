@@ -50,7 +50,7 @@ function renderShopTileHtml(product, options = {}) {
     const detail =
         typeof catalogProductUrl === 'function'
             ? catalogProductUrl(product)
-            : `/product.html?id=${encodeURIComponent(product.id)}`;
+            : `/p/${encodeURIComponent(product.id)}/`;
     const title = product.name || product.id || '';
     const price =
         typeof formatCatalogRetailLabel === 'function'

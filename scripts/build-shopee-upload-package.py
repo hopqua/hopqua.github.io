@@ -9,11 +9,17 @@ import json
 import math
 import re
 import shutil
+import sys
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
 import openpyxl
+
+SCRIPTS = Path(__file__).resolve().parent
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+from product_urls import product_page_url
 
 ROOT = Path(__file__).resolve().parent.parent
 PRODUCTS_JS = ROOT / "js" / "products.js"
@@ -1175,7 +1181,7 @@ def main() -> None:
                 delta=delta,
                 has_product=bool(prod),
                 has_images=bool(prod and prod.images),
-                web_url=f"{SITE}/product.html?id={sku}",
+                web_url=product_page_url(sku),
                 on_shopee=on_shopee,
                 shopee_url=shopee_url,
                 thumb_url=product_thumb_url(prod),
@@ -1195,7 +1201,7 @@ def main() -> None:
                 "gia_shopee": shopee_price or old_price or "",
                 "shopee_item_id": shopee_url.rstrip("/").split("/")[-1] if on_shopee else "",
                 "shopee_url": shopee_url,
-                "link_web": f"{SITE}/product.html?id={sku}",
+                "link_web": product_page_url(sku),
             }
         )
 

@@ -9,7 +9,8 @@ function getAbsoluteUrl(path) {
 }
 
 function getCanonicalProductUrl(product) {
-    return `${SITE_ORIGIN}/product.html?id=${encodeURIComponent(product.id)}`;
+    const id = product.id || product.webId;
+    return `${SITE_ORIGIN}/p/${encodeURIComponent(id)}/`;
 }
 
 function buildProductMetaDescription(product) {
