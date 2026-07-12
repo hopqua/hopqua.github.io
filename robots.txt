@@ -4,4 +4,7 @@ Disallow: /debug.html
 Disallow: /test.html
 Disallow: /simple-test.html
 
+# GEO — hướng dẫn cho AI / LLM crawlers
+# https://hopqua.io.vn/llms.txt
+
 Sitemap: https://hopqua.io.vn/sitemap.xml

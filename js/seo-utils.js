@@ -1,4 +1,5 @@
-const SEO_BRAND = 'Vân Thắng — Hộp Bánh Trung Thu';
+const SEO_BRAND = 'Hộp Quà Vân Thắng';
+const SEO_BRAND_ALT = 'Hộp Bánh Trung Thu Vân Thắng';
 const SEO_DEFAULT_KEYWORDS =
     'hộp bánh trung thu, hộp quà trung thu, hộp bánh trung thu cao cấp, hộp quà tết, hộp đựng bánh trung thu, mua hộp bánh trung thu shopee, hộp bánh trung thu 2026';
 
@@ -55,7 +56,8 @@ function buildProductJsonLd(product) {
         sku: product.id,
         brand: {
             '@type': 'Brand',
-            name: 'Vân Thắng',
+            name: SEO_BRAND,
+            alternateName: SEO_BRAND_ALT,
         },
         offers: {
             '@type': 'Offer',
@@ -64,7 +66,8 @@ function buildProductJsonLd(product) {
             availability: 'https://schema.org/InStock',
             seller: {
                 '@type': 'Organization',
-                name: 'Vân Thắng — Shopee longthibo958',
+                name: SEO_BRAND,
+                url: `${SITE_ORIGIN}/`,
             },
         },
     };

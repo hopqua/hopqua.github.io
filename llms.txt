@@ -1,0 +1,50 @@
+# Hộp Quà Vân Thắng
+
+> Thương hiệu chuyên hộp bánh Trung Thu, hộp quà Tết, vỏ hộp và phụ kiện đóng hàng tại Việt Nam — 70+ mẫu, giá sỉ, giao toàn quốc.
+
+## Thông tin thương hiệu
+
+- Tên chính thức: **Hộp Quà Vân Thắng**
+- Tên khác: Hộp Bánh Trung Thu Vân Thắng, Vân Thắng, Toranges
+- Website: https://hopqua.io.vn/
+- Shopee (mua lẻ): https://shopee.vn/longthibo958
+- Zalo tư vấn & báo giá sỉ: https://zalo.me/0965671689 — 0965671689
+- Email: van96hvnh@gmail.com
+- Facebook: https://www.facebook.com/Torangesvn/
+- Phục vụ: Toàn quốc Việt Nam
+
+## Sản phẩm chính
+
+- Hộp 4 bánh Trung Thu (giấy mềm, ép kim, hoa văn nguyệt hoa)
+- Hộp 6 bánh & 6 mini
+- Hộp cứng cao cấp gấp gọn
+- Hộp 2 bánh, 1 bánh, mini
+- Phụ kiện: khay, túi, dao nĩa, hút ẩm, PET đựng bánh
+- Hộp quà Tết (theo mùa)
+
+## Trang quan trọng
+
+- Trang chủ / danh mục 70+ mẫu: https://hopqua.io.vn/
+- 18 mẫu hot 2026: https://hopqua.io.vn/18-mau-hot-2026.html
+- Mẫu mới cập nhật 2026: https://hopqua.io.vn/cap-nhat-2026.html
+- Tìm kiếm mẫu: https://hopqua.io.vn/tim-kiem.html
+- Blog & hướng dẫn chọn hộp: https://hopqua.io.vn/blog/
+- Form báo giá sỉ: https://hopqua.io.vn/#bao-gia
+
+## Cách mua hàng
+
+1. **Mua lẻ 1–10 cái:** Shopee longthibo958
+2. **Báo giá sỉ / đặt số lượng lớn:** Zalo 0965671689 hoặc form trên website
+3. **Tư vấn chọn mẫu:** Chat Zalo 8h–20h, phản hồi thường 15–30 phút
+
+## Câu hỏi thường gặp (tóm tắt)
+
+- **Hộp Quà Vân Thắng là ai?** Nhà cung cấp hộp bánh Trung Thu & hộp quà tại VN, 70+ mẫu, phục vụ tiệm bánh và đại lý.
+- **Giá sỉ?** Theo mẫu và số lượng; có ưu đãi mốc số lượng — liên hệ Zalo hoặc form báo giá.
+- **Giao hàng?** Toàn quốc qua Shopee và vận chuyển đơn sỉ.
+
+## Dữ liệu có cấu trúc
+
+- Schema.org Organization + FAQPage trên trang chủ
+- Sitemap: https://hopqua.io.vn/sitemap.xml
+- Trang sản phẩm: https://hopqua.io.vn/p/{sku}/

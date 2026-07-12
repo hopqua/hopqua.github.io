@@ -3,11 +3,33 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "Brand"],
       "@id": "{{ site.url }}/#organization",
-      "name": "Vân Thắng — Hộp Bánh Trung Thu",
+      "name": "Hộp Quà Vân Thắng",
+      "alternateName": [
+        "Hộp Bánh Trung Thu Vân Thắng",
+        "Vân Thắng",
+        "Toranges",
+        "Hộp quà tặng Vân Thắng"
+      ],
       "url": "{{ site.url }}/",
       "logo": "{{ site.url }}/image/favicon.png",
+      "description": "Hộp Quà Vân Thắng chuyên hộp bánh Trung Thu, hộp quà Tết, vỏ hộp và phụ kiện đóng hàng — 70+ mẫu, giá sỉ, giao toàn quốc Việt Nam.",
+      "slogan": "70+ mẫu · giá sỉ · Shopee & Zalo",
+      "email": "van96hvnh@gmail.com",
+      "telephone": "+84-965671689",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Vietnam"
+      },
+      "knowsAbout": [
+        "hộp bánh Trung Thu",
+        "hộp quà Trung Thu",
+        "hộp quà Tết",
+        "vỏ hộp đựng bánh",
+        "hộp cứng gấp gọn",
+        "bán sỉ hộp bánh Trung Thu"
+      ],
       "sameAs": [
         "https://shopee.vn/longthibo958",
         "https://www.facebook.com/Torangesvn/",
@@ -16,18 +38,29 @@
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+84-965671689",
+        "email": "van96hvnh@gmail.com",
         "contactType": "customer service",
-        "availableLanguage": ["vi"]
+        "availableLanguage": ["vi"],
+        "areaServed": "VN"
       }
     },
     {
       "@type": "WebSite",
       "@id": "{{ site.url }}/#website",
       "url": "{{ site.url }}/",
-      "name": "Hộp Bánh Trung Thu Vân Thắng",
+      "name": "Hộp Quà Vân Thắng",
+      "alternateName": "Hộp Bánh Trung Thu Vân Thắng",
       "description": "{{ site.description | strip_newlines | escape }}",
       "publisher": { "@id": "{{ site.url }}/#organization" },
-      "inLanguage": "vi-VN"
+      "inLanguage": "vi-VN",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ site.url }}/tim-kiem.html?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
   ]
 }
