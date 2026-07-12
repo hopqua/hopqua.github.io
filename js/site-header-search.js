@@ -8,19 +8,24 @@ function injectSiteSearchBar() {
     }
 
     const compactInner = document.querySelector('.header-compact-inner');
+    const landingTools = document.querySelector('.site-header-tools');
     const landingBar = document.querySelector('.site-header-bar');
     const legacyHeader = document.querySelector('header .container');
-    const host = compactInner || landingBar || legacyHeader;
+    const host = compactInner || landingTools || landingBar || legacyHeader;
     if (!host) {
         return;
     }
 
     const initialQ = typeof getSearchQueryFromUrl === 'function' ? getSearchQueryFromUrl() : '';
     const action = '/tim-kiem.html';
+    const isLanding = !!landingTools || !!landingBar;
+    const shortPlaceholder = window.matchMedia('(max-width: 768px)').matches
+        ? 'Tìm mẫu hộp…'
+        : 'Tìm mẫu hộp… (vd: hạc đỏ, 4 bánh, hộp cứng)';
 
     const wrap = document.createElement('div');
     wrap.className = 'site-search-wrap';
-    if (landingBar) {
+    if (isLanding) {
         wrap.classList.add('site-search-wrap--landing');
     }
     wrap.innerHTML = `
@@ -32,7 +37,7 @@ function injectSiteSearchBar() {
                 type="search"
                 name="q"
                 value="${escapeHtmlAttr(initialQ)}"
-                placeholder="Tìm mẫu hộp… (vd: hạc đỏ, 4 bánh, hộp cứng)"
+                placeholder="${escapeHtmlAttr(shortPlaceholder)}"
                 autocomplete="off"
                 enterkeyhint="search"
             />
@@ -54,12 +59,12 @@ function injectSiteSearchBar() {
         } else {
             compactInner.appendChild(wrap);
         }
-    } else if (landingBar) {
-        const nav = landingBar.querySelector('.site-header-nav');
+    } else if (landingTools || landingBar) {
+        const nav = host.querySelector('.site-header-nav');
         if (nav) {
-            landingBar.insertBefore(wrap, nav);
+            host.insertBefore(wrap, nav);
         } else {
-            landingBar.appendChild(wrap);
+            host.insertBefore(wrap, host.firstChild);
         }
     } else {
         const nav = legacyHeader.querySelector('nav');
